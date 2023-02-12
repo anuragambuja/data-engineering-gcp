@@ -1,11 +1,5 @@
 # data-engineering-gcp
 
->Previous: [Data Ingestion](2_data_ingestion.md)
-
->[Back to index](README.md)
-
->Next: [Analytics Engineering](4_analytics.md)
-
 ### Table of contents
 
 - [Data Warehouse](#data-warehouse)
