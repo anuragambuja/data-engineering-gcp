@@ -265,7 +265,8 @@ BigQuery is built on 4 infrastructure technologies.
 * ***Borg***: an orchestration solution that handles everything.
   * Borg is a precursor of Kubernetes.
 
-![bq internals](images/03_02.png)
+![image](https://user-images.githubusercontent.com/19702456/218378202-7a953293-4430-4091-b194-9471db807cb7.png)
+
 
 ### Column-oriented vs record-oriented storage
 
@@ -273,13 +274,13 @@ Traditional methods for tabular data storage are ***record-oriented*** (also kno
 
 BigQuery uses a ***columnar storage format***. Data is stored according to the columns of the table rather than the rows. This is beneficial when dealing with massive amounts of data because it allows us to discard right away the columns we're not interested in when performing queries, thus reducing the amount of processed data.
 
-![columns vs records](images/03_03.png)
+![image](https://user-images.githubusercontent.com/19702456/218378300-23c7c082-6afc-4db4-a928-a8055aeef3d8.png)
 
 When performing queries, Dremel modifies them in order to create an _execution tree_: parts of the query are assigned to different mixers which in turn assign even smaller parts to different slots which will access Colossus and retrieve the data.
 
 The columnar storage format is perfect for this workflow as it allows very fast data retrieval from colossus by multiple workers, which then perform any needed computation on the retrieved datapoints and return them to the mixers, which will perform any necessary aggregation before returning that data to the root server, which will compose the final output of the query.
 
-![columns vs records](images/03_04.png)
+![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
 
 _[Back to the top](#table-of-contents)_
 
@@ -295,7 +296,7 @@ The pricing for BigQuery ML is slightly different and more complex than regular 
 
 BQ ML offers a variety of ML models depending on the use case, as the image below shows:
 
-![bq ml](images/03_05.png)
+![image](https://user-images.githubusercontent.com/19702456/218378512-8c8c3242-155a-4159-8291-c0aa15a9b9bf.png)
 
 We will now create a few example queries to show how BQ ML works. Let's begin with creating a custom table:
 
