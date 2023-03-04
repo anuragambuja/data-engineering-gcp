@@ -63,6 +63,19 @@ a policy is set on a resource and each policy contains a set of roles and role m
 - Deploy HTTP based application
 - Support many runtime engine: Python, java, Go, Node JS
 
+```bash
+# Initialize your SDK
+$ gcloud init
+
+# Deploy your code to App Engine 
+$ gcloud app deploy
+
+# stream logs of your application
+$ gcloud app logs tail -s default
+
+# view your application - will provide URL for the browser
+$ gcloud app browse
+```
 
 ===============================================================================
 
