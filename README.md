@@ -1,9 +1,43 @@
+## History and Architecture of GCP 
 
-History and Architecture of GCP 
+![image](https://user-images.githubusercontent.com/19702456/222905593-f0e0471b-def3-4df9-9e1a-38394d5e74ec.png)
+
+## Storage
+
+![image](https://user-images.githubusercontent.com/19702456/222907142-7afd4075-0ca9-40a0-a7cf-973eb2ab2672.png)
+
+![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
+
+## Ingestion
+
+![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
+
+## Zone & Region
+- Zones – Independent data Center
+- Region – Geographical area
+- Multi-region : Collection of Geographical
+- Global - Anywhere
+
+![image](https://user-images.githubusercontent.com/19702456/222907494-543244ac-2303-470b-8db1-240333a0c5e4.png)
+
+> Why Zones & Regions ?
+- Low latency
+- Follow Government rules
+- High availability
+- Disaster recovery
+
+Find the updated zones and regions @ [Google Zones & Regions](https://cloud.google.com/about/locations)
+
+## 
+
+
+
+
+===============================================================================
 
 ![image](https://user-images.githubusercontent.com/19702456/222905584-a8066c4c-df25-412b-9854-e9094c29fd5b.png)
 
-![image](https://user-images.githubusercontent.com/19702456/222905593-f0e0471b-def3-4df9-9e1a-38394d5e74ec.png)
+
 
 
 ![image](https://user-images.githubusercontent.com/19702456/222905595-4d6ad300-4175-440e-b251-ba255316fd56.png)
@@ -15,7 +49,7 @@ If you have SQL Server MySQL or PostgresSQL as your relational database, you can
 
 ![image](https://user-images.githubusercontent.com/19702456/222905629-28a9470d-d786-4baa-b8c9-1e4ee160476c.png)
 
-![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
+
 
 
 One solution for data governance is the Cloud data catalog and the data loss prevention API. The data catalog makes all the metadata about your datasets available to search for your users. You group datasets together with tags, flag certain columns as sensitive et cetera. Often used in conjunction with data catalog is the Cloud Data Loss Prevention API, or DLP API, which helps you better understand and manage sensitive data. It provides fast, scalable classification and reduction for sensitive data elements like credit card numbers, names, social security numbers, US and selected international identifier numbers, phone numbers and Google Cloud credentials.
