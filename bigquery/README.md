@@ -1,8 +1,3 @@
-
-# data-engineering-gcp
-
-### Table of contents
-
 - [BigQuery](#bigquery)
   - [Pricing](#pricing)
   - [External tables](#external-tables)
