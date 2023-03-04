@@ -8,6 +8,11 @@
 
 ![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
 
+![image](https://user-images.githubusercontent.com/19702456/222908272-a6bb9bcf-9fcc-4dcf-9ff3-3476f4b6221d.png)
+
+![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
+
+
 ## Ingestion
 
 ![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
@@ -28,7 +33,10 @@
 
 Find the updated zones and regions @ [Google Zones & Regions](https://cloud.google.com/about/locations)
 
-## 
+## IAM
+a policy is set on a resource and each policy contains a set of roles and role members.  resources inherit policies from parents so a policy can be set on a resource for example a service and another policy can be set on a parent such as a project that contains that service. The final policy is the union of the parent policy and the resource policy. In case of conflict, if the parent policy is less restrictive it overrides a more restrictive resource policy. 
+
+![image](https://user-images.githubusercontent.com/19702456/222905653-00cbff0f-1444-44f9-9eee-9b47bc93f32b.png)
 
 
 
@@ -56,10 +64,7 @@ One solution for data governance is the Cloud data catalog and the data loss pre
 Google Cloud has a fully-managed version of Airflow called "Cloud Composer." Cloud Composer helps your data engineering team orchestrate all the pieces to the data engineering puzzle. 
 
 
-IAM
-a policy is set on a resource and each policy contains a set of roles and role members.  resources inherit policies from parents so a policy can be set on a resource for example a service and another policy can be set on a parent such as a project that contains that service. The final policy is the union of the parent policy and the resource policy. In case of conflict, if the parent policy is less restrictive it overrides a more restrictive resource policy. 
 
-![image](https://user-images.githubusercontent.com/19702456/222905653-00cbff0f-1444-44f9-9eee-9b47bc93f32b.png)
 
 
 Compute
