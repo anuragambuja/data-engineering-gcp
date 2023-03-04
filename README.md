@@ -53,7 +53,15 @@ a policy is set on a resource and each policy contains a set of roles and role m
 
 ![image](https://user-images.githubusercontent.com/19702456/222905653-00cbff0f-1444-44f9-9eee-9b47bc93f32b.png)
 
+## Virtual machine
+- IAAS – Full Control, more flexibility, more responsibility
+- Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
 
+## App Engine
+- PAAS Solution
+- No Server management
+- Deploy HTTP based application
+- Support many runtime engine: Python, java, Go, Node JS
 
 
 ===============================================================================
