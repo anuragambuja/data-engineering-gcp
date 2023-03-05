@@ -92,10 +92,37 @@ $ gsutil ls -cat gs://proven-audio-376216-testing/filename.txt#12345
 $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 ```
 
+> Controlling access
 
+- Apply at Bucket level
+- Uniform level access
+	- No Object level permission
+	- Apply uniform at all object inside bucket
+- Fine grained permission
+	- Access Control List – ACL For Each object Separately
 
+- Apply Project level
+	- IAM
+	- Different Predefined Role
+		- Storage Admin
+		- Storage Object Admin
+		- Storage Object Creator
+		- Storage Object Viewer
+	- Create Custom Role
+- Assign Bucket level Role: Select bucket & assign role too users or to other GCP services or product
 
+> Retention Policy: Minimum duration for which bucket will be protected from Deletion or modification
 
+> Signed URL: 
+- Temporary access
+- you can give access to user who doesn’t have Google Account.
+- URL expired after time period defined.
+- Max period for which URL is valid is 7 days.
+```
+pip install pyopenssl
+gsutil signurl -d 10m -u gs://<bucket>/<object>
+```
 
+> - Pricing
 
 
