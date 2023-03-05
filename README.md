@@ -83,7 +83,14 @@ $ gcloud app browse
 ```
 
 ## Cloud Function
-
+- Server less
+- Fully managed
+- Build small micro service
+- Auto scaling as traffic increase
+- Event based trigger
+  - Http
+  - File upload etc.
+  - Message pushed to pub/sub
 
 ===============================================================================
 
