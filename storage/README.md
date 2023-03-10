@@ -92,15 +92,27 @@ $ gsutil ls -cat gs://proven-audio-376216-testing/filename.txt#12345
 $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 ```
 
-> Controlling access
+## **Controlling access**
 
-- Apply at Bucket level
-- Uniform level access
+- ### **Uniform level access**
+	- Apply at Bucket level
 	- No Object level permission
 	- Apply uniform at all object inside bucket
-- Fine grained permission
+
+- ### **Fine grained permission**
 	- Legacy access control method
 	- Access Control List – ACL For Each object Separately
+
+- ### **Signed URL**: 
+	- Temporary access
+	- you can give access to user who doesn’t have Google Account.
+	- URL expired after time period defined.
+	- Max period for which URL is valid is 7 days.
+	
+	```
+	pip install pyopenssl
+	gsutil signurl -d 10m -u gs://<bucket>/<object>
+	```
 
 - Apply Project level
 	- IAM
@@ -110,24 +122,18 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 		- Storage Object Creator
 		- Storage Object Viewer
 	- Create Custom Role
-- Assign Bucket level Role: Select bucket & assign role too users or to other GCP services or product
+- Assign Bucket level Role
+	- Select bucket & assign role too users or to other GCP services or product
 
-> Retention Policy:
+
+## **Retention Policy**
 - Minimum duration for which bucket will be protected from Deletion or modification
 
-> Signed URL: 
-- Temporary access
-- you can give access to user who doesn’t have Google Account.
-- URL expired after time period defined.
-- Max period for which URL is valid is 7 days.
-```
-pip install pyopenssl
-gsutil signurl -d 10m -u gs://<bucket>/<object>
-```
 
-> - Pricing
 
-> Cloud Cloud Transfer Service
+## **Pricing**
+
+## **Cloud Cloud Transfer Service**
 
 ![image](https://user-images.githubusercontent.com/19702456/224348225-b7ad8464-3a93-4b34-be45-4192827635ef.png)
 
