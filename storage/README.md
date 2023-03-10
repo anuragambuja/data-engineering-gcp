@@ -103,9 +103,9 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 	- Legacy access control method
 	- Access Control List – ACL For Each object Separately
 
-- ### **Signed URL**: 
+- ### **Signed URL**
 	- Temporary access
-	- you can give access to user who doesn’t have Google Account.
+	- you can give read or write access on objects to user who doesn’t have Google Account.
 	- URL expired after time period defined.
 	- Max period for which URL is valid is 7 days.
 	
@@ -113,6 +113,10 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 	pip install pyopenssl
 	gsutil signurl -d 10m -u gs://<bucket>/<object>
 	```
+- ### **Signed Policy Documnets**
+	- Specify what can be uploaded to a bucked
+	- Control - Size, Type and other upload characteristics
+
 
 - Apply Project level
 	- IAM
@@ -129,7 +133,21 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 ## **Retention Policy**
 - Minimum duration for which bucket will be protected from Deletion or modification
 
-
+## **Lifecycle management**
+- Based on condition what action needs to perform on object.
+- Condition
+	- Object age
+	- Number of versions of object
+	- Created Before
+	- Is Live
+	- Matches Storage Class
+- Action
+	- Transition to different storage class for high performance
+		- Multi-reginal --> Nearline, Coldline, Archive
+		- Standard --> Nearline, Coldline, Archive
+		- Nearline --> Coldline, Archive
+		- Coldline --> Archive
+	- if versioned, deleting live version creates non current version but deleting non-current version deletes object permanently.
 
 ## **Pricing**
 
@@ -141,5 +159,9 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 
 
 
-
+## Commands
+```bash
+$ gsutil mb gs://bucket-name
+$ gsutil cp filename gs://bucket-name
+```
 
