@@ -151,7 +151,24 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 
 ## **Pricing**
 
-## **Cloud Cloud Transfer Service**
+## **Cloud Transfer Service**
+
+### **gsutil**
+- Online mode of transfer
+- install locally Google Cloud SDK
+- gsutil -m cp large_number_of_small_files (-m for parallel upload)
+
+### **Transfer Service**
+- Transfer Jobs
+	- Quickly and securely transfer data to, from, and between cloud and on-premises storage systems. Sources include Google Cloud Storage, Amazon S3, Azure Storage, filesystems, and more.
+- Agent Pools
+	- Agent pools enable you to transfer data to/from POSIX filesystems and from S3-compatible object storage, with control over deployment, network path, and bandwidth to optimize performance and cost. Each pool consists of one or more self-hosted agents that work in parallel to move data for a particular source or destination
+
+### **Transfer Appliance**
+- Physical device which securely transfer large amounts of data to Google Cloud Platform
+- When data that exceeds 20 TB or would take more than a week to upload.
+
+![image](https://user-images.githubusercontent.com/19702456/224366561-bced85de-a512-4aba-aea7-6801762c21a5.png)
 
 ![image](https://user-images.githubusercontent.com/19702456/224348225-b7ad8464-3a93-4b34-be45-4192827635ef.png)
 
