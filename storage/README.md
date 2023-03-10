@@ -99,6 +99,7 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 	- No Object level permission
 	- Apply uniform at all object inside bucket
 - Fine grained permission
+	- Legacy access control method
 	- Access Control List – ACL For Each object Separately
 
 - Apply Project level
@@ -111,7 +112,8 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 	- Create Custom Role
 - Assign Bucket level Role: Select bucket & assign role too users or to other GCP services or product
 
-> Retention Policy: Minimum duration for which bucket will be protected from Deletion or modification
+> Retention Policy:
+- Minimum duration for which bucket will be protected from Deletion or modification
 
 > Signed URL: 
 - Temporary access
@@ -124,5 +126,14 @@ gsutil signurl -d 10m -u gs://<bucket>/<object>
 ```
 
 > - Pricing
+
+> Cloud Cloud Transfer Service
+
+![image](https://user-images.githubusercontent.com/19702456/224348225-b7ad8464-3a93-4b34-be45-4192827635ef.png)
+
+![image](https://user-images.githubusercontent.com/19702456/224348396-6d69edc7-84c4-43a8-87b9-848233aa4e12.png)
+
+
+
 
 
