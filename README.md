@@ -64,7 +64,7 @@ a policy is set on a resource and each policy contains a set of roles and role m
 
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
 
-- Which storage to use when ? 
+### Which storage to use when ?
 - Cloud Storage
   - Unstructured data storage
   - Video stream, Image
