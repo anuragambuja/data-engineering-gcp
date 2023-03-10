@@ -48,6 +48,12 @@ a policy is set on a resource and each policy contains a set of roles and role m
 
 ![image](https://user-images.githubusercontent.com/19702456/222905653-00cbff0f-1444-44f9-9eee-9b47bc93f32b.png)
 
+## RTO & RPO
+- RTO – Recovery Time objective: Maximum time for which system can be down
+- RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
+
+![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
+
 ## Cloud Storage
 
 ![image](https://user-images.githubusercontent.com/19702456/222907142-7afd4075-0ca9-40a0-a7cf-973eb2ab2672.png)
@@ -57,6 +63,24 @@ a policy is set on a resource and each policy contains a set of roles and role m
 ![image](https://user-images.githubusercontent.com/19702456/222908272-a6bb9bcf-9fcc-4dcf-9ff3-3476f4b6221d.png)
 
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
+
+- Which storage to use when ? 
+- Cloud Storage
+  - Unstructured data storage
+  - Video stream, Image
+  - Staging environment
+  - Compliance
+  - Backup
+  - Data lake
+- Persistent Disk
+  - Attach Disk with VM & Containers
+  - Share read-only disk with multiple VM
+  - Database storage
+- Local Disk
+  - Temporary high performance attach Disk
+- File Store
+  - Performance predictable
+  - Lift-shift millions of Files
 
 ## Virtual machine
 - IAAS – Full Control, more flexibility, more responsibility
