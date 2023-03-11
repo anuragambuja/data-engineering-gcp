@@ -1,9 +1,9 @@
 - Contents 
-  - [History and Architecture](History and Architecture)
-  - [Ingestion](Ingestion)
-  - [Zone & Region](Zone & Region)
+  - [History and Architecture](#history-and-architecture)
+  - [Ingestion](#ingestion)
+  - [Zone & Region](#zone--region)
   - [IAM](IAM)
-  - [Cloud Storage](Cloud Storage)
+  - [Storage](storage)
   - [Virtual machine](Virtual machine)
   - [App Engine](App Engine)
   - [Cloud Function](Cloud Function)
