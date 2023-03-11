@@ -1,5 +1,5 @@
 
-### **Cloud SQL**  
+# **Cloud SQL**  
 - Fully managed Relational database services for MySQL, PostgreSQL & SQL Server. No maintenance & auto update. Generally used for storing Transactional database
 - Regional Database with 99.95% SLA. Multiple zones for high availability and multi-region for backups only. 
 - Storage up to 30 TB
@@ -13,7 +13,7 @@
 - Export data: gcloud utility or Cloud Console to SQL/CSV format
 - To failover, the sql instance should not reside in single zone
 
-> Connect to MySQL instance
+### **Connect to MySQL instance**
 
 ```bash
 # 1. Using cloud shell
@@ -45,7 +45,7 @@ $ ./cloud_sql_proxy -instance=<INSTANCE_CONNECTION_NAME>=tcp:5432
 Source: https://cloud.google.com/sql/docs/mysql/sql-proxy
 
 
-> Data Migration to Cloud SQL
+### **Data Migration to Cloud SQL**
 
 ```bash
 # 1. Get the database dump
