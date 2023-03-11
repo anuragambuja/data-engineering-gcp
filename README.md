@@ -108,6 +108,25 @@ A policy is set on a resource and each policy contains a set of roles and role m
 - Scale with Read replicas – To transfer workload to other instance
 - Export data: gcloud utility or Cloud Console to SQL/CSV format
 
+> Connect to MySQL instance
+
+```bash
+# 1. using cloud shell
+$ gcloud sql connect <sql-instance-name> --user=username --quiet
+```
+
+```bash
+# 2. using external agent after whitelisting the ip
+
+# get the external ip
+$ curl 'https://api.ipify.org?format=json' 
+
+# Add the external ip address under instance's connections > add network to whitelist the ip
+
+# connect to mysql instance
+$ mysql -h <white-listed-ip> -u <username> -p
+```
+
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
   
 ## Virtual Machine
