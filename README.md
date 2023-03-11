@@ -109,6 +109,7 @@ A policy is set on a resource and each policy contains a set of roles and role m
 - Point-in Time Recovery
 - Scale with Read replicas – To transfer workload to other instance
 - Export data: gcloud utility or Cloud Console to SQL/CSV format
+- To failover, the sql instance should not reside in single zone
 
 > Connect to MySQL instance
 
