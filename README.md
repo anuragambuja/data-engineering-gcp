@@ -98,11 +98,10 @@ A policy is set on a resource and each policy contains a set of roles and role m
 
 ### **Cloud SQL**  
 - Fully managed Relational database services for MySQL, PostgreSQL & SQL Server. No maintenance & auto update. Generally used for storing Transactional database
-- Regional Database with 99.95% SLA
+- Regional Database with 99.95% SLA. Multiple zones for high availability and multi-region for backups only. 
 - Storage up to 30 TB
 - Vertical Scale up to 96 core & 416 GB Memory. No Horizontal Scaling
 - Data is encrypted with Google managed key or CMEK
-- Cloud SQL can be accessed from anywhere like – App Engine, Compute Engine…
 - Back-up Database: On-demand Backup and Scheduled backup
 - Database migration service (DMS)
   - migrate data from different SQL system to Cloud SQL
