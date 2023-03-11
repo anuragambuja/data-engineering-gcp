@@ -9,7 +9,7 @@
     - [Cloud Spanner](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Spanner.md)
     - [Memory Store]()
     - [Bigtable]()
-    - [Firestore]()
+    - [Datastore and Firestore](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Datastore%20and%20Firestore.md)
     - [Bigquery]()    
     - [Comparison of different Database services](#comparison-of-different-database-services)
     
