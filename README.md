@@ -11,6 +11,7 @@
     - [Bigtable]()
     - [Firestore]()
     - [Bigquery]()    
+    - Comparison of different Database services(#comparison-of-different-database-services)
   - [Virtual machine](#virtual-machine)
   - [App Engine](#app-engine)
   - [Cloud Function](#cloud-function)
@@ -126,7 +127,7 @@ $ curl 'https://api.ipify.org?format=json'
 # connect to mysql instance
 $ mysql -h <white-listed-ip> -u <username> -p
 ```
-
+### **Comparison of different Database services**
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
   
 ## Virtual Machine
