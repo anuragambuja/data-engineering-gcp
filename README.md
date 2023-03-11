@@ -4,16 +4,17 @@
   - [IAM](#iam)
   - [Storage](#storage)
     - [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/storage)
-  - [Virtual machine](#virtual-machine)
-  - [App Engine](#app-engine)
-  - [Cloud Function](#cloud-function)
   - [Database](#database)
-    - [Cloud SQL]()
+    - [Cloud SQL](#cloud-sql)
     - [Cloud Spanner]()
     - [Memory Store]()
     - [Bigtable]()
     - [Firestore]()
-    - [Bigquery]()
+    - [Bigquery]()    
+  - [Virtual machine](#virtual-machine)
+  - [App Engine](#app-engine)
+  - [Cloud Function](#cloud-function)
+ 
 
 ## History and Architecture
 
@@ -35,7 +36,7 @@
 
 Find the updated zones and regions @ [Google Zones & Regions](https://cloud.google.com/about/locations)
 
-#### **RTO & RPO**
+#### **What is RTO & RPO ?**
 - RTO – Recovery Time objective: Maximum time for which system can be down
 - RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
 
@@ -62,8 +63,6 @@ A policy is set on a resource and each policy contains a set of roles and role m
 ![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
 
 ![image](https://user-images.githubusercontent.com/19702456/222908272-a6bb9bcf-9fcc-4dcf-9ff3-3476f4b6221d.png)
-
-![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
 
 #### **Which storage to use when ?**
 - Cloud Storage
@@ -92,6 +91,24 @@ A policy is set on a resource and each policy contains a set of roles and role m
   sudo mount <filestore_ip>:/<fileshare_name> <mount point> # /mnt/new
   sodo chmod go+rw /mnt/new
   ```
+  
+## Database
+
+### **Cloud SQL**  
+- Fully managed Relational database services for MySQL, PostgreSQL & SQL Server. No maintenance & auto update. Generally used for storing Transactional database
+- Regional Database with 99.95% SLA
+- Storage up to 30 TB
+- Vertical Scale up to 96 core & 416 GB Memory. No Horizontal Scaling
+- Data is encrypted with Google managed key or CMEK
+- Cloud SQL can be accessed from anywhere like – App Engine, Compute Engine…
+- Back-up Database: On-demand Backup and Scheduled backup
+- Database migration service (DMS)
+  - migrate data from different SQL system to Cloud SQL
+- Point-in Time Recovery
+- Scale with Read replicas – To transfer workload to other instance
+- Export data: gcloud utility or Cloud Console to SQL/CSV format
+
+![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
   
 ## Virtual Machine
 - IAAS – Full Control, more flexibility, more responsibility
@@ -126,6 +143,14 @@ $ gcloud app browse
   - Http
   - File upload etc.
   - Message pushed to pub/sub
+
+
+
+
+
+
+
+
 
 ===============================================================================
 
