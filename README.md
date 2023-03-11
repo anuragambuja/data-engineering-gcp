@@ -79,8 +79,19 @@ a policy is set on a resource and each policy contains a set of roles and role m
 - Local Disk
   - Temporary high performance attach Disk
 - File Store
-  - Performance predictable
+  - FUlly managed, High performance filestorage, easy fileshare
+  - Network attached storage (NAS) for compute Engine and GKE instances
+  - Minimum 1 TB, can scale upto 64 TB
+  - Supports both HDD and SSD
+  - Costly copared to cloud storage
   - Lift-shift millions of Files
+  ```
+  sudo apt-get -y install nfs-common
+  sudo mkdir -p /mnt/new # folder to mount filestore instance
+  sudo mount <filestore_ip>:/<fileshare_name> <mount point> # /mnt/new
+  sodo chmod go+rw /mnt/new
+  ```
+  
 
 ## Virtual machine
 - IAAS – Full Control, more flexibility, more responsibility
