@@ -13,6 +13,23 @@
   - can not export with gcloud
   - Cloud Console or Cloud Dataflow Job
 
+### Hot Spotting
+- Hot spots occur when many read and write operations happen on the same node
+- Can happen with sequential primary keys
+  - Auto-increment values
+  - Timestamps
+- Consider using 
+  - hash value of primary
+  - Bit-reverse sequential values
+  - Promote high cardinality attributes in multi-attribute primary key
+
+### Interleaved Tables
+- Parent-Child relationship
+  - Order to order line 
+  - Person to addresses
+- Row from parent table stored with rows from child table
+- More efficient when retriving data from both
+
 ### Cloud SQL v/s Cloud Spanner
 
 ![image](https://user-images.githubusercontent.com/19702456/224495479-ff046073-a3f8-4edb-b0a4-3d779607e0e0.png)
