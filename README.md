@@ -1,20 +1,23 @@
 - Contents 
   - [History and Architecture](#history-and-architecture)
-  - [Ingestion](#ingestion)
   - [Zone & Region](#zone--region)
-  - [IAM](IAM)
-  - [Storage](storage)
-  - [Virtual machine](Virtual machine)
-  - [App Engine](App Engine)
-  - [Cloud Function](Cloud Function)
+  - [IAM](#iam)
+  - [Storage](#storage)
+    - [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/storage)
+  - [Virtual machine](#virtual-machine)
+  - [App Engine](#app-engine)
+  - [Cloud Function](#cloud-function)
+  - [Database](#database)
+    - [Cloud SQL]()
+    - [Cloud Spanner]()
+    - [Memory Store]()
+    - [Bigtable]()
+    - [Firestore]()
+    - [Bigquery]()
 
 ## History and Architecture
 
 ![image](https://user-images.githubusercontent.com/19702456/222905593-f0e0471b-def3-4df9-9e1a-38394d5e74ec.png)
-
-## Ingestion
-
-![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
 
 ## Zone & Region
 - Zones – Independent data Center
@@ -24,37 +27,35 @@
 
 ![image](https://user-images.githubusercontent.com/19702456/222907494-543244ac-2303-470b-8db1-240333a0c5e4.png)
 
-> Why Zones & Regions ?
+#### **Why Zones & Regions ?**
 - Low latency
-- Follow Government rules
+- Follow Government norms
 - High availability
 - Disaster recovery
 
 Find the updated zones and regions @ [Google Zones & Regions](https://cloud.google.com/about/locations)
+
+#### **RTO & RPO**
+- RTO – Recovery Time objective: Maximum time for which system can be down
+- RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
+
+![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
 
 ## IAM
 
 - Roles are collection of permissions. One can assign Role to identity, but Can not assign permission directly.
 - Service Account is identity for Compute engine. Max 10 keys per Service Account and Max 100 Service Account per project.
 
-
 ![image](https://user-images.githubusercontent.com/19702456/222914917-7c47e20e-2520-493c-adb9-4ac360901a94.png)
 
 ![image](https://user-images.githubusercontent.com/19702456/222914943-ce2666bf-cd5b-4db0-a075-62d0f2bf081a.png)
 
-
-
-a policy is set on a resource and each policy contains a set of roles and role members.  resources inherit policies from parents so a policy can be set on a resource for example a service and another policy can be set on a parent such as a project that contains that service. The final policy is the union of the parent policy and the resource policy. In case of conflict, if the parent policy is less restrictive it overrides a more restrictive resource policy. 
+A policy is set on a resource and each policy contains a set of roles and role members.  resources inherit policies from parents so a policy can be set on a resource for example a service and another policy can be set on a parent such as a project that contains that service. The final policy is the union of the parent policy and the resource policy. In case of conflict, if the parent policy is less restrictive it overrides a more restrictive resource policy. 
 
 ![image](https://user-images.githubusercontent.com/19702456/222905653-00cbff0f-1444-44f9-9eee-9b47bc93f32b.png)
 
-## RTO & RPO
-- RTO – Recovery Time objective: Maximum time for which system can be down
-- RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
 
-![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
-
-## Cloud Storage
+## Storage
 
 ![image](https://user-images.githubusercontent.com/19702456/222907142-7afd4075-0ca9-40a0-a7cf-973eb2ab2672.png)
 
@@ -64,7 +65,7 @@ a policy is set on a resource and each policy contains a set of roles and role m
 
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
 
-### Which storage to use when ?
+#### **Which storage to use when ?**
 - Cloud Storage
   - Unstructured data storage
   - Video stream, Image
@@ -92,8 +93,7 @@ a policy is set on a resource and each policy contains a set of roles and role m
   sodo chmod go+rw /mnt/new
   ```
   
-
-## Virtual machine
+## Virtual Machine
 - IAAS – Full Control, more flexibility, more responsibility
 - Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
 
@@ -143,14 +143,8 @@ If you have SQL Server MySQL or PostgresSQL as your relational database, you can
 
 ![image](https://user-images.githubusercontent.com/19702456/222905629-28a9470d-d786-4baa-b8c9-1e4ee160476c.png)
 
-
-
-
 One solution for data governance is the Cloud data catalog and the data loss prevention API. The data catalog makes all the metadata about your datasets available to search for your users. You group datasets together with tags, flag certain columns as sensitive et cetera. Often used in conjunction with data catalog is the Cloud Data Loss Prevention API, or DLP API, which helps you better understand and manage sensitive data. It provides fast, scalable classification and reduction for sensitive data elements like credit card numbers, names, social security numbers, US and selected international identifier numbers, phone numbers and Google Cloud credentials.
 Google Cloud has a fully-managed version of Airflow called "Cloud Composer." Cloud Composer helps your data engineering team orchestrate all the pieces to the data engineering puzzle. 
-
-
-
 
 
 Compute
@@ -162,4 +156,6 @@ Compute Engine lets you create virtual machines that run different operating sys
 3. App Engine: Paas, serverless and ops-free. Standard Environments gives a pre configured container. Fexible environment gives a VM.Instance Classes determine the prices. Write simple, single purpose functions attached to the events emitted from cloud infra and services. Cloud functions are written in javascript and can run in any standard node.js runtime. use cases: Mobile and IoT apps
 
 
+## Ingestion
 
+![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
