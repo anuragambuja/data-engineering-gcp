@@ -11,7 +11,8 @@
     - [Bigtable]()
     - [Firestore]()
     - [Bigquery]()    
-    - Comparison of different Database services(#comparison-of-different-database-services)
+    - [Comparison of different Database services](#comparison-of-different-database-services)
+    
   - [Virtual machine](#virtual-machine)
   - [App Engine](#app-engine)
   - [Cloud Function](#cloud-function)
@@ -127,6 +128,16 @@ $ curl 'https://api.ipify.org?format=json'
 # connect to mysql instance
 $ mysql -h <white-listed-ip> -u <username> -p
 ```
+
+> Data Migration to Cloud SQL
+
+```bash
+# 1. Get the database dump
+$ mysqldump -u root -p database-name > backup.sql
+
+# 2. Upload the backup.sql to cloud storage and provide location under Overview > Import
+```
+
 ### **Comparison of different Database services**
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
   
@@ -163,10 +174,6 @@ $ gcloud app browse
   - Http
   - File upload etc.
   - Message pushed to pub/sub
-
-
-
-
 
 
 
