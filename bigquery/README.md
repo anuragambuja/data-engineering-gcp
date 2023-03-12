@@ -13,16 +13,30 @@
   - Standard SQL
   - legacy SQL
 - Big Query can query from external data source.
-- Cloud storage, SQL, Big Table
+  - Cloud storage, SQL, Big Table
 - Biquery can load data from various sources - CSV, JSONL, Avro, SQL and many more
-- Query costs around $5 for 1 TB of data scanned
 - How to access BigQuery
   - Cloud Console
   - bq – command line tool
   - Client library - written in C#, Go, Java, Node.js, PHP, Python, and Ruby
 - Data organization: `project.dataset.table`
 - Support for AI/ML, GIS data
-
+- Data Types
+  - Array Type
+    - Arrays of arrays not allowed
+    - Arrays of structs allowed
+    - Declare as ARRAY<T>
+  - Struct Type
+    - Declare as STRUCT<T> eg. STRUCT<a int64, b string>
+    - Structs can be directly compared using equality operators: =, != or <>, [NOT] IN
+- Data Access Controls
+  - Organization or project level for all project's BQ resources
+  - dataset level for access to a specific data set
+  - table or view level for access to specific tables or views in a dataset
+- Column Level Security
+  - Restrict access to sensitive information in a table
+  - Define Taxonomy of tags in Data Catalog and assign tags to columns in Bigquery
+  - USe IAM roles to restrict access to each policy tag
 
 ## Architecture
 
@@ -79,3 +93,15 @@ Data processing has a [2-tier pricing model](https://cloud.google.com/bigquery/p
    -  The flat-rate pricing only makes sense when processing more than 400TB of data per month.
   
 When running queries on BQ, the top-right corner of the window will display an approximation of the size of the data that will be processed by the query. Once the query has run, the actual amount of processed data will appear in the _Query results_ panel in the lower half of the window. This can be useful to quickly calculate the cost of the query.
+  
+## Partitions 
+- Table is divided into segments called partitions  
+- [Partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables) are very useful to improve performance and reduce costs, because BQ will not process as much data per query.
+- You may partition a table by:
+  - ***Time-unit column***: tables are partitioned based on a `TIMESTAMP`, `DATE`, or `DATETIME` column in the table.
+  - ***Ingestion time***: tables are partitioned based on the timestamp when BigQuery ingests the data. Creates pseudo-column _PARTITIONTIME 
+  - ***Integer range***: tables are partitioned based on an integer column.
+  - For Time-unit and Ingestion time columns, the partition may be daily (the default option), hourly, monthly or yearly.
+  - BigQuery limits the amount of partitions to 4000 per table. If you need more partitions, consider clustering
+  - 
+  
