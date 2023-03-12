@@ -36,6 +36,9 @@
   - datastore mode
 - Real-time updates
 - Mobile and Web client libraries
-
+- Limitations of Transactions type:
+   - Maximum duration of 60 seconds and 10 second idle expiration after 30 seconds
+   - Modify upto 500 entities in a single transaction
+   - Transaction can fail due to too many concurrent modifications, exceeds resource limits or internal error
 ![image](https://user-images.githubusercontent.com/19702456/224506464-e6fd2383-82f4-4aec-aa31-a1a561ffaa88.png)
 
