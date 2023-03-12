@@ -1,26 +1,41 @@
 # Datastore
 
- Highly scalable NoSQL database
- Serverless
- Document kind data storage – MongoDB
- App Engine + Datastore
- SQL Like Queries – GQL
- Support ACID Transaction
- Multiple indexes
- Data replication across different region
- Use case
- Session Info
- Product catlog
- Export data from gcloud utility only
+- Serverless and Highly scalable NoSQL database
+- Document kind data storage – MongoDB
+- SQL Like Queries – GQL
+- Support ACID Transactions
+- Multiple indexes
+- Data replication across different region
+- Use case
+  - Session Info
+  - Product catlog
+- Export data from gcloud and console
+- App Engine + Datastore
+- Entity Value Types
+  - Atomic Values: Integers, Floats, Strings, Dates
+  - Arrays
+  - Entities: Entity Group is an entity and all its decendents
+- Indexes
+  - No Scannig. Indexes required for all queries
+  - Types: Single field and Composite
+  - Automatically create some indexes
+    - Atomic values, ascending and descending
+    - Maps and arrays also
+
+![image](https://user-images.githubusercontent.com/19702456/224506020-6295dd2c-dfad-4ae0-9d16-14f2abd98221.png)
+
+** You can use either Datastore or Firestore within a project but not both. 
 
 # Firestore
 
- Firestore is the next generation of Datastore
- Highly scalable NoSQL database
- Collection & Document Model
- Two mode
- native Mode
- datastore mode
- Real-time updates
- Mobile and Web client libraries
- Let’s see in Action
+- Firestore is the next generation of Datastore
+- Highly scalable NoSQL database
+- Collection & Document Model
+- Two mode
+  - native Mode
+  - datastore mode
+- Real-time updates
+- Mobile and Web client libraries
+
+![image](https://user-images.githubusercontent.com/19702456/224506464-e6fd2383-82f4-4aec-aa31-a1a561ffaa88.png)
+
