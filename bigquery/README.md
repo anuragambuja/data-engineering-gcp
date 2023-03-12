@@ -1,0 +1,22 @@
+# Bigquery
+
+- Serverless Data warehouse solution in GCP just like Relational database – SQL schema. 
+- This is for Analytical database and not for Transactional purpose. Alternative to OpenSource Apache Hive
+- Built using BigTable + GCP Infrastructure
+- BigQuery is Columnar storage
+- Exabyte scale
+- Query using
+  - Standard SQL
+  - legacy SQL
+- Big Query can query from external data source.
+- Cloud storage, SQL, Big Table
+- Biquery can load data from various sources - CSV, JSONL, Avro, SQL and many more
+- Query costs around $5 for 1 TB of data scanned
+- How to access BigQuery
+  - Cloud Console
+  - bq – command line tool
+  - Client library - written in C#, Go, Java, Node.js, PHP, Python, and Ruby
+- Data organization: `project.dataset.table`
+- Pricing
+  - On-Demand
+  - Flat rate pricing
