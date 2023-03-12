@@ -1,7 +1,11 @@
 # Bigquery
 
-- Serverless Data warehouse solution in GCP just like Relational database – SQL schema. 
-- This is for Analytical database and not for Transactional purpose. Alternative to OpenSource Apache Hive
+- Data warehouse solution in GCP just like Relational database – SQL schema. 
+- BQ is ***serverless***. There are no servers to manage or database software to install; this is managed by Google and it's transparent to the customers.
+- BQ is ***scalable*** and has ***high availability***. Google takes care of the underlying software and infrastructure.
+- BQ has built-in features like Machine Learning, Geospatial Analysis and Business Intelligence among others.
+- BQ maximizes flexibility by separating data analysis and storage in different _compute engines_, thus allowing the customers to budget accordingly and reduce costs.
+- This is for Analytical database and not for Transactional purpose. Alternative to OpenSource Apache Hive. Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
 - Built using BigTable + GCP Infrastructure
 - BigQuery is Columnar storage
 - Exabyte scale
