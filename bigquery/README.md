@@ -17,9 +17,6 @@
   - bq – command line tool
   - Client library - written in C#, Go, Java, Node.js, PHP, Python, and Ruby
 - Data organization: `project.dataset.table`
-- Pricing
-  - On-Demand
-  - Flat rate pricing
 - Support for AI/ML, GIS data
 
 
@@ -65,3 +62,16 @@ Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery
   * Order statements should be the last part of the query.
   * [Optimize join patterns](https://cloud.google.com/bigquery/docs/best-practices-performance-compute#optimize_your_join_patterns).
   * Place the table with the _largest_ number of rows first, followed by the table with the _fewest_ rows, and then place the remaining tables by decreasing size. This is due to how BigQuery works internally: the first table will be distributed evenly and the second table will be broadcasted to all the nodes.
+
+## Pricing
+
+BigQuery pricing is divided in 2 main components: processing and storage. There are also additional charges for other operations such as ingestion or extraction. The cost of storage is fixed and at the time of writing is US$0.02 per GB per month; you may check the current storage pricing [in this link](https://cloud.google.com/bigquery/pricing#storage).
+
+Data processing has a [2-tier pricing model](https://cloud.google.com/bigquery/pricing#analysis_pricing_models):
+-  On demand pricing (default): US$5 per TB per month; the first TB of the month is free.
+-  Flat rate pricing: based on the number of pre-requested _slots_ (virtual CPUs).
+   -  A minimum of 100 slots is required for the flat-rate pricing which costs US$2,000 per month.
+   -  Queries take up slots. If you're running multiple queries and run out of slots, the additional queries must wait until other queries finish in order to free up the slot. On demand pricing does not have this issue.
+   -  The flat-rate pricing only makes sense when processing more than 400TB of data per month.
+  
+When running queries on BQ, the top-right corner of the window will display an approximation of the size of the data that will be processed by the query. Once the query has run, the actual amount of processed data will appear in the _Query results_ panel in the lower half of the window. This can be useful to quickly calculate the cost of the query.
