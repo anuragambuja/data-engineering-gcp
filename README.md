@@ -7,10 +7,10 @@
   - [Database](#database)
     - [Cloud SQL](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20SQL.md)
     - [Cloud Spanner](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Spanner.md)
-    - [Memory Store]()
-    - [Bigtable]()
+    - [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
+    - [Bigtable](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Bigtable.md)
     - [Datastore and Firestore](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Datastore%20and%20Firestore.md)
-    - [Bigquery]()    
+    - [Bigquery](https://github.com/anuragambuja/data-engineering-gcp/tree/main/bigquery)    
     - [Comparison of different Database services](#comparison-of-different-database-services)
     
   - [Virtual machine](#virtual-machine)
