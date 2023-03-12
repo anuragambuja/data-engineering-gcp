@@ -23,7 +23,7 @@
 - Support for AI/ML, GIS data
 
 
-### BigQuery Architecture
+## Architecture
 
 BigQuery is built on 4 infrastructure technologies.
 - ***Dremel***: the _compute_ part of BQ. It executes the SQL queries.
