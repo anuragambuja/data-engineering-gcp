@@ -46,68 +46,7 @@ SELECT * FROM taxi-rides-ny.nytaxi.external_yellow_tripdata;
 
 _[Back to the top](#table-of-contents)_
 
-## Partitions
-
-_Video sources: [1](https://www.youtube.com/watch?v=jrHljAoD6nM&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=25), [2](https://www.youtube.com/watch?v=-CqXf7vhhDs&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=26)_
-
-BQ tables can be ***partitioned*** into multiple smaller tables. For example, if we often filter queries based on date, we could partition a table based on date so that we only query a specific sub-table based on the date we're interested in.
-
-[Partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables) are very useful to improve performance and reduce costs, because BQ will not process as much data per query.
-
-You may partition a table by:
-* ***Time-unit column***: tables are partitioned based on a `TIMESTAMP`, `DATE`, or `DATETIME` column in the table.
-* ***Ingestion time***: tables are partitioned based on the timestamp when BigQuery ingests the data.
-* ***Integer range***: tables are partitioned based on an integer column.
-
-For Time-unit and Ingestion time columns, the partition may be daily (the default option), hourly, monthly or yearly.
-
->Note: BigQuery limits the amount of partitions to 4000 per table. If you need more partitions, consider [clustering](#clustering) as well.
-
-Here's an example query for creating a partitioned table:
-
-```sql
-CREATE OR REPLACE TABLE taxi-rides-ny.nytaxi.yellow_tripdata_partitoned
-PARTITION BY
-  DATE(tpep_pickup_datetime) AS
-SELECT * FROM taxi-rides-ny.nytaxi.external_yellow_tripdata;
-```
-
-BQ will identify partitioned tables with a specific icon. The _Details_ tab of the table will specify the field which was used for partitioning the table and its datatype.
-
-Querying a partitioned table is identical to querying a non-partitioned table, but the amount of processed data may be drastically different. Here are 2 identical queries to the non-partitioned and partitioned tables we created in the previous queries:
-
-```sql
-SELECT DISTINCT(VendorID)
-FROM taxi-rides-ny.nytaxi.yellow_tripdata_non_partitoned
-WHERE DATE(tpep_pickup_datetime) BETWEEN '2019-06-01' AND '2019-06-30';
-```
-* Query to non-partitioned table.
-* It will process around 1.6GB of data/
-
-```sql
-SELECT DISTINCT(VendorID)
-FROM taxi-rides-ny.nytaxi.yellow_tripdata_partitoned
-WHERE DATE(tpep_pickup_datetime) BETWEEN '2019-06-01' AND '2019-06-30';
-```
-* Query to partitioned table.
-* It will process around 106MB of data.
-
-You may check the amount of rows of each partition in a partitioned table with a query such as this:
-
-```sql
-SELECT table_name, partition_id, total_rows
-FROM `nytaxi.INFORMATION_SCHEMA.PARTITIONS`
-WHERE table_name = 'yellow_tripdata_partitoned'
-ORDER BY total_rows DESC;
-```
-
-This is useful to check if there are data imbalances and/or biases in your partitions.
-
-_[Back to the top](#table-of-contents)_
-
 ## Clustering
-
-_Video sources: [1](https://www.youtube.com/watch?v=jrHljAoD6nM&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=25), [2](https://www.youtube.com/watch?v=-CqXf7vhhDs&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=26)_
 
 ***Clustering*** consists of rearranging a table based on the values of its columns so that the table is ordered according to any criteria. Clustering can be done based on one or multiple columns up to 4; the ***order*** of the columns in which the clustering is specified is important in order to determine the column priority.
 
@@ -157,11 +96,7 @@ WHERE DATE(tpep_pickup_datetime) BETWEEN '2019-06-01' AND '2020-12-31'
 * Query to partitioned and clustered data.
 * This will process about 865MB of data.
 
-_[Back to the top](#table-of-contents)_
-
 ## Partitioning vs Clustering
-
-_[Video source](https://www.youtube.com/watch?v=-CqXf7vhhDs&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=26)_
 
 As mentioned before, you may combine both partitioning and clustering in a table, but there are important differences between both techniques that you need to be aware of in order to decide what to use for your specific scenario:
 
@@ -180,7 +115,6 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 
 _[Back to the top](#table-of-contents)_
 
-_[Back to the top](#table-of-contents)_
 
 ## Internals
 
