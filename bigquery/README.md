@@ -98,10 +98,41 @@ When running queries on BQ, the top-right corner of the window will display an a
 - Table is divided into segments called partitions  
 - [Partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables) are very useful to improve performance and reduce costs, because BQ will not process as much data per query.
 - You may partition a table by:
-  - ***Time-unit column***: tables are partitioned based on a `TIMESTAMP`, `DATE`, or `DATETIME` column in the table.
+  - ***Time-unit column***: tables are partitioned based on a `TIMESTAMP`, `DATE`, or `DATETIME` column in the table. Special partitions: __NULL__ when nulls in partition column and __UNPARTITIONED__ when values in column outside allowed range
   - ***Ingestion time***: tables are partitioned based on the timestamp when BigQuery ingests the data. Creates pseudo-column _PARTITIONTIME 
   - ***Integer range***: tables are partitioned based on an integer column.
   - For Time-unit and Ingestion time columns, the partition may be daily (the default option), hourly, monthly or yearly.
   - BigQuery limits the amount of partitions to 4000 per table. If you need more partitions, consider clustering
-  - 
+  - Requiring partition filter using _partitioning_filter parameter and is specified at table level
+- The _Details_ tab of the table will specify the field which was used for partitioning the table and its datatype.
+
+Here's an example query for creating a partitioned table:
+
+```sql
+CREATE OR REPLACE TABLE taxi-rides-ny.nytaxi.yellow_tripdata_partitoned
+PARTITION BY
+  DATE(tpep_pickup_datetime) AS
+SELECT * FROM taxi-rides-ny.nytaxi.external_yellow_tripdata;
+```
+
+  You may check the amount of rows of each partition in a partitioned table with a query such as this:
+
+```sql
+SELECT table_name, partition_id, total_rows
+FROM `nytaxi.INFORMATION_SCHEMA.PARTITIONS`
+WHERE table_name = 'yellow_tripdata_partitoned'
+ORDER BY total_rows DESC;
+```
+  
+This is useful to check if there are data imbalances and/or biases in your partitions.  
+  
+## Clustering 
+  
+  
+  
+  
+  
+  
+  
+  
   
