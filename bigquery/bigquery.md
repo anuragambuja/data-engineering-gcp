@@ -17,19 +17,6 @@
 
 # BigQuery
 
-_[Video source](https://www.youtube.com/watch?v=jrHljAoD6nM&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=25)_
-
-BigQuery (BQ) is a Data Warehouse solution offered by Google Cloud Platform.
-* BQ is ***serverless***. There are no servers to manage or database software to install; this is managed by Google and it's transparent to the customers.
-* BQ is ***scalable*** and has ***high availability***. Google takes care of the underlying software and infrastructure.
-* BQ has built-in features like Machine Learning, Geospatial Analysis and Business Intelligence among others.
-* BQ maximizes flexibility by separating data analysis and storage in different _compute engines_, thus allowing the customers to budget accordingly and reduce costs.
-
-Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
-
-_[Back to the top](#table-of-contents)_
-
-
 ## External tables
 
 BigQuery supports a few [_external data sources_](https://cloud.google.com/bigquery/external-data-sources): you may query these sources directly from BigQuery even though the data itself isn't stored in BQ.
