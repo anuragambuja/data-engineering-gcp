@@ -39,6 +39,16 @@
   - Restrict access to sensitive information in a table
   - Define Taxonomy of tags in Data Catalog and assign tags to columns in Bigquery
   - USe IAM roles to restrict access to each policy tag
+- Row Level Security
+  - Filter data in a table based on user conditions
+  - Row level policy is applied to table
+  ![image](https://user-images.githubusercontent.com/19702456/224623322-b8b93a8c-3087-4a03-9c2a-552ec7f3d6ab.png)
+
+
+```bash
+# Get details
+$ bq show --format=prettyjson dataset:tablename
+```
 
 ## Architecture
 
