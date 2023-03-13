@@ -9,6 +9,7 @@
 - Built using BigTable + GCP Infrastructure
 - BigQuery is Columnar storage
 - Exabyte scale
+- BQ managed Transfer Service allows to move data into BQ from SaaS services. You can schedule loades and automatically scale and access other data sources through various connectors.
 - Query using
   - Standard SQL
   - legacy SQL
@@ -22,6 +23,7 @@
 - Data organization: `project.dataset.table`
 - Support for AI/ML, GIS data
 - Data Types
+  - Avro is the preferred format for loading data into BigQuery. Compresed Avro files not supported but compressed Avro data blocks are supported. Parquet has better compression ratio and smaller files. For CSV and JSON, BQ can load uncompressed files significantly faster than compressed
   - Array Type
     - Arrays of arrays not allowed
     - Arrays of structs allowed
@@ -94,7 +96,10 @@ Data processing has a [2-tier pricing model](https://cloud.google.com/bigquery/p
   
 When running queries on BQ, the top-right corner of the window will display an approximation of the size of the data that will be processed by the query. Once the query has run, the actual amount of processed data will appear in the _Query results_ panel in the lower half of the window. This can be useful to quickly calculate the cost of the query.
   
-## Partitions 
+## Partitioning and Clustering  
+
+### Partitions 
+  
 - Table is divided into segments called partitions  
 - [Partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables) are very useful to improve performance and reduce costs, because BQ will not process as much data per query.
 - You may partition a table by:
@@ -126,24 +131,21 @@ ORDER BY total_rows DESC;
   
 This is useful to check if there are data imbalances and/or biases in your partitions.  
   
-## Clustering 
+### Clustering 
 
-***Clustering*** consists of rearranging a table based on the values of its columns so that the table is ordered according to any criteria. Clustering can be done based on one or multiple columns up to 4; the ***order*** of the columns in which the clustering is specified is important in order to determine the column priority.
-
-Clustering may improve performance and lower costs on big datasets for certain types of queries, such as queries that use filter clauses and queries that aggregate data.
-
->Note: tables with less than 1GB don't show significant improvement with partitioning and clustering; doing so in a small table could even lead to increased cost due to the additional metadata reads and maintenance needed for these features.
-
-Clustering columns must be ***top-level***, ***non-repeated*** columns. The following datatypes are supported:
-* `DATE`
-* `BOOL`
-* `GEOGRAPHY`
-* `INT64`
-* `NUMERIC`
-* `BIGNUMERIC`
-* `STRING`
-* `TIMESTAMP`
-* `DATETIME`
+- ***Clustering*** consists of rearranging a table based on the values of its columns so that the table is ordered according to any criteria. Clustering can be done based on one or multiple columns up to 4; the ***order*** of the columns in which the clustering is specified is important in order to determine the column priority.
+- Clustering may improve performance and lower costs on big datasets for certain types of queries, such as queries that use filter clauses and queries that aggregate data.
+- tables with less than 1GB don't show significant improvement with partitioning and clustering; doing so in a small table could even lead to increased cost due to the additional metadata reads and maintenance needed for these features.
+- Clustering columns must be ***top-level***, ***non-repeated*** columns. The following datatypes are supported:
+  * `DATE`
+  * `BOOL`
+  * `GEOGRAPHY`
+  * `INT64`
+  * `NUMERIC`
+  * `BIGNUMERIC`
+  * `STRING`
+  * `TIMESTAMP`
+  * `DATETIME`
 
 A partitioned table can also be clustered. Here's an example query for creating a partitioned and clustered table:
 
@@ -176,7 +178,7 @@ WHERE DATE(tpep_pickup_datetime) BETWEEN '2019-06-01' AND '2020-12-31'
 * Query to partitioned and clustered data.
 * This will process about 865MB of data.
 
-## Partitioning vs Clustering
+### Partitioning vs Clustering
 
 As mentioned before, you may combine both partitioning and clustering in a table, but there are important differences between both techniques that you need to be aware of in order to decide what to use for your specific scenario:
 
