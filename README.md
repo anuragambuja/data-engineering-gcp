@@ -46,7 +46,7 @@ Find the updated zones and regions @ [Google Zones & Regions](https://cloud.goog
 
 ## IAM
 
-- Roles are collection of permissions. One can assign Role to identity, but Can not assign permission directly.
+- Roles are collection of permissions. One can assign Role to identity, but Can not assign permission directly. So, permissions are assigned to identities via roles.
 - Service Account is identity for Compute engine. Max 10 keys per Service Account and Max 100 Service Account per project.
 
 ![image](https://user-images.githubusercontent.com/19702456/222914917-7c47e20e-2520-493c-adb9-4ac360901a94.png)
