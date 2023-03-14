@@ -1,6 +1,6 @@
 # Cloud DataFlow
 
-- Serverless, Fully managed Managed service for both batch + stream Processing. Horizontal autoscaling of worker
+- Fully managed Managed service for both batch + stream Processing. Horizontal autoscaling of worker
 - An advanced unified programming model to implement batch and streaming data processing jobs that run on various execution engine/ runner
 - Cloud version of Apache Beam = (Batch + Stream)
 - Jobs created with
@@ -14,6 +14,7 @@
   - Apache Flink
   - Apache Spark
   - Cloud DataFlow
+- Job States: Running, Not Started, Queues, Cancelling/Cancelled, Draining/Drained, Updating/Updated, Succeeded, Failed
 
 # Apache Beam
 -  A pipeline is a graph of transformations that a user constructs that defines the data processing they want to do.
