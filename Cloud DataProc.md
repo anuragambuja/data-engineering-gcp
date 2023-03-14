@@ -1,5 +1,17 @@
+# Cloud DataProc
 
-Dataproc is fully managed service for running Hadoop and Spark data processing workloads. 
+- Dataproc is fully managed service for running Hadoop and Spark data processing workloads. 
+- Cluster type
+  - Standard (1 master, N workers)
+  - Single Node (1 master, 0 workers)
+  - High Availability (3 masters, N workers)
+- Worker node regular VM or Preemptible VM (Cost reduction)
+- Job Supported: Hadoop, SparkR, Spark, SparkSQL, Hive, Pig, PySpark
+- Monitoring
+  - Job Driver Output
+  - Cloud Monotoring
+  - Cloud Logging
+
 
 ![image](https://user-images.githubusercontent.com/19702456/222905812-b96b7e40-6a27-4dd8-ae91-341dd2125dfc.png)
 
