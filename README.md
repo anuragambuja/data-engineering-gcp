@@ -134,6 +134,25 @@ $ gcloud app browse
   - Message pushed to pub/sub
 
 
+# Cloud Monitor
+
+- Collect metrices from GCP, AWS and hybrid cloud resources
+- Dashboards and Visualizations
+- Alerting and Anomaly reporting
+- Predefined and custom metrices. For more detailed metrices install monitoring agent. 
+
+# Cloud Logging
+
+- Centralized repository for ingesting logs
+- System and application logs
+- managed Service
+- Uses Google-customized FluentD agent
+- Retains logs for 30 days
+- Stream logs to pub/sub for 3rd party tools
+- Analytics with Bigquery
+
+
+
 
 
 
@@ -169,3 +188,5 @@ Compute Engine lets you create virtual machines that run different operating sys
 ## Ingestion
 
 ![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
+
+
