@@ -115,5 +115,59 @@
     - Text Classification 
 
 - Custom Model
+  - Have your own data and train your model
+
+- BigQuery ML
+  - Create ML Model in SQL
+  - Model support
+    - Linear Regression
+    - Multiclass Logistic Regression
+    - K-Means
+    - XGBoost
+    - Tensorflow – Import
+  - BigQuery Function
+    - Create MODEL
+      - Model Type – Linear Reg, Logistic
+      - Label Column
+      - Learning Rate etc…
+      ```
+      CREATE OR REPLACE MODEL `bqml_tutorial.irisdata_model`
+      OPTIONS
+        ( model_type='LOGISTIC_REG',
+          auto_class_weights=TRUE,
+          data_split_method='NO_SPLIT',
+          input_label_cols=['species'],
+          max_iterations=10) AS
+      SELECT * FROM `bigquery-public-data.ml_datasets.iris`
+      ;
+      ```
+    - Evaluate Model
+      - ML.Evaluate
+      - Provide Model & Test Data
+      - Determine how good model performance on Test data
+      ```
+      SELECT * 
+      FROM ML.EVALUATE(MODEL bqml_tutorial.irisdata_model,
+                (SELECT * FROM `bigquery-public-data.ml_datasets.iris`))
+      ;
+      ```
+    - Prediction
+      - ML.Prediction
+      - Apply Live data to Model to get prediction
+      ```
+      select * from ML.PREDICT(MODEL bqml_tutorial.irisdata_model, 
+                        (SELECT 5.1 as sepal_length,
+                                2.5 as petal_length,
+                                3.0 as petal_width,
+                                1.1 as sepal_width))
+       ;
+       ```
+
+- TPU – Tensor Processing Unit
+  - To do training faster Google created ASIC based in-house dedicated computing for Tensor Processing
+  - Speed up training by 20x to 30x
+  - Work with VM, GKE, AI Platform
+
+
 
 
