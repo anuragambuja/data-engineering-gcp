@@ -38,6 +38,11 @@
     - precision - percent of positive data points correctly classified. TP/(TP+FP)
     - Recall - Percent of Actual positive data points identified. TP /(TP+FN)
     - Mean Squared Error (Regression)
+- Model troubleshooting
+  - Underfitting - Model performs poorly on training and validation data. Increase complexity of model to correct it
+  - Overfitting - Model performs well on trianing data and poorly on validation data. regularization can be used for correcting it
+  - Bias - Model did not sufficiently generalize from training data 
+  - Variance error is due to sensitivity in small fluctuations in training data
 
 - Regression
   - Output prediction is continuous in nature
@@ -74,8 +79,41 @@
   - Dataprep is serverless and works at any scale
   - Automatically detect schema, anomalies
   - Concern – Need to share data with Trifacta
+  - Run the Job in Dataflow or Trifacta Photon environment
 
     ![image](https://user-images.githubusercontent.com/19702456/225673995-ebebe006-6511-4a8d-82b8-8ec39f3123b9.png)
 
+- Pre-Trained ML
+  - No Training required from customer
+  - For generic use case like
+    - Object recognition/detection – Vision API
+      - Detect printed and handwritten text
+      - Detect objects
+      - Identify popular places and product logos
+      - Moderate content
+      - Celebrity recognition
+    - OCR
+    - Speech to Text
+      - Accurately convert speech into text using an API powered by Google’s AI technologies.
+      - 125 languages support
+      - Streaming speech recognition
+      - Content filtering
+      - Automatic punctuation
+    - Text to Speech API
+      - Convert text into natural-sounding speech using an API powered by Google’s AI technologies.
+    - Language Translation
+    - NLP API – to get insight from natural language
+       - Identify entities within documents
+       - Sentiment analysis
+       - Content classification
+
+- Auto ML
+  - Throw your data & GCP will create best model for you
+  - Transfer learning technology
+  - Example Use cases:
+    - Flower species recognition
+    - Text Classification 
+
+- Custom Model
 
 
