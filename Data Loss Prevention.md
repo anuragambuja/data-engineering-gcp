@@ -26,7 +26,11 @@
 - Once Template defined, it can be reused for other Jobs
 
 ### InfoTypes
-- type of data to scan for
+- Pattern detectors to idenity sensitive information. Ex. date of birth, Passwords, US SSN, Authentication Tokens, Indian AADHAR etc
+- Inspection Job applies InfoTypes to a dataset. When API matches a pattern, it returns 
+  - InfoType
+  - Likelihood Score
+  - Location
 
 ![image](https://user-images.githubusercontent.com/19702456/225634162-0e27eb81-7a2c-4847-a0cd-4310651da660.png)
 
