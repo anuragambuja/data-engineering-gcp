@@ -101,7 +101,9 @@
       - Automatic punctuation
     - Text to Speech API
       - Convert text into natural-sounding speech using an API powered by Google’s AI technologies.
+      - 32 Voices
     - Language Translation
+    - Dialogue Flow
     - NLP API – to get insight from natural language
        - Identify entities within documents
        - Sentiment analysis
@@ -122,9 +124,12 @@
   - Model support
     - Linear Regression
     - Multiclass Logistic Regression
-    - K-Means
-    - XGBoost
-    - Tensorflow – Import
+    - K-Means Clustering
+    - TIme series forecast
+    - Matrix factorization
+    - Boosted Tree and XGBoost
+    - Tensorflow (imported)
+    - AutoML Tables
   - BigQuery Function
     - Create MODEL
       - Model Type – Linear Reg, Logistic
@@ -139,7 +144,6 @@
           input_label_cols=['species'],
           max_iterations=10) AS
       SELECT * FROM `bigquery-public-data.ml_datasets.iris`
-      ;
       ```
     - Evaluate Model
       - ML.Evaluate
@@ -149,7 +153,6 @@
       SELECT * 
       FROM ML.EVALUATE(MODEL bqml_tutorial.irisdata_model,
                 (SELECT * FROM `bigquery-public-data.ml_datasets.iris`))
-      ;
       ```
     - Prediction
       - ML.Prediction
@@ -160,14 +163,34 @@
                                 2.5 as petal_length,
                                 3.0 as petal_width,
                                 1.1 as sepal_width))
-       ;
        ```
+- Kubeflow
+  - machine learning toolkit for kubernetes
+  - Packages models like applications
+  - compose, deploy and manage ML workflows
 
-- TPU – Tensor Processing Unit
-  - To do training faster Google created ASIC based in-house dedicated computing for Tensor Processing
-  - Speed up training by 20x to 30x
-  - Work with VM, GKE, AI Platform
+- GPUs and TPUs
+  - Graphical Processing Unit (GPU)
+    - Highlyparallel processing
+    - Local memory
+    - Arithematic logic Units (ALUs)
+    - Matrix Multiplication
+    - Available on other cloud and on premises
+    - Cost more than TPUs
+    - Need to install NVIDIA drivers
+  - Tensor Processing Unit (TPU)
+    - To do training faster Google created ASIC based in-house dedicated computing for Tensor Processing
+    - Speed up training by 20x to 30x
+    - Work with VM, GKE, AI Platform
+    - Useful for training large training needs
+    - Cost less than GPUs
 
+- Monitoring ML Model Best Practices
+  - Monitor for data skew
+  - Watch for changes in dependencies
+  - Models are refreshed as needed
+  - Test for Unfairness
+  - Access model prediction quality using different metrices
 
 
 
