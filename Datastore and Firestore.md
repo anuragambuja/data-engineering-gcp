@@ -29,6 +29,8 @@
 # Firestore
 
 - Firestore is the next generation of Datastore
+- ACID Transactions
+- High availability of reads and writes
 - Highly scalable NoSQL database
 - Collection & Document Model
 - Two mode
