@@ -44,8 +44,10 @@
   - Filter data in a table based on user conditions
   - Row level policy is applied to table
   ![image](https://user-images.githubusercontent.com/19702456/224623322-b8b93a8c-3087-4a03-9c2a-552ec7f3d6ab.png)
-
-
+- Query caching is based on exact string comparison. So even whitespaces can cause a cache miss. Queries are never cached if they exhibit non-deterministic behavior (for example, they use CURRENT_TIMESTAMP or RAND), if the table or view being queried has changed (even if the columns/rows of interest to the query are unchanged), if the table is associated with a streaming buffer (even if there are no new rows), if the query uses DML statements, or queries external data sources.
+- You can recover a deleted table only if another table with the same ID in the dataset has not been created. In particular, this means you cannot recover a deleted table if it is being streamed to, chances are that the streaming pipeline would have already created an empty table and started pushing rows into it. using Create or Replace table because this makes the table irrecoverable.
+- BigQuery supports user-defined functions or UDF. Java Script is currently the only external language supported. BigQuery can optimize the execution of SQL much better than it can for JavaScript.
+  
 ```bash
 # Get details
 $ bq show --format=prettyjson dataset:tablename
@@ -104,6 +106,7 @@ Data processing has a [2-tier pricing model](https://cloud.google.com/bigquery/p
    -  A minimum of 100 slots is required for the flat-rate pricing which costs US$2,000 per month.
    -  Queries take up slots. If you're running multiple queries and run out of slots, the additional queries must wait until other queries finish in order to free up the slot. On demand pricing does not have this issue.
    -  The flat-rate pricing only makes sense when processing more than 400TB of data per month.
+- The cost of a query is always assigned to the active project from where the query is executed.
   
 When running queries on BQ, the top-right corner of the window will display an approximation of the size of the data that will be processed by the query. Once the query has run, the actual amount of processed data will appear in the _Query results_ panel in the lower half of the window. This can be useful to quickly calculate the cost of the query.
   
@@ -157,7 +160,7 @@ This is useful to check if there are data imbalances and/or biases in your parti
   * `STRING`
   * `TIMESTAMP`
   * `DATETIME`
-
+- BigQuery supports clustering for both partitioned and non-partitioned tables. When you use clustering and partitioning together, the data can be partitioned by a date, date time or timestamp column, and then clustered on a different set of columns.
 A partitioned table can also be clustered. Here's an example query for creating a partitioned and clustered table:
 
 ```sql
