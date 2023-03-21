@@ -77,6 +77,10 @@
 ### ML in GCP
 
    ![image](https://user-images.githubusercontent.com/19702456/225668516-b06ef0ce-c313-4b1d-823f-1e9748846cbc.png)
+   
+   ![image](https://user-images.githubusercontent.com/19702456/226695445-fcc243b7-d603-43f5-9b9b-a3f25fe196b0.png)
+   
+   ![image](https://user-images.githubusercontent.com/19702456/226695557-5685290e-fe5c-4f11-bc75-52e2690df9b3.png)
 
 - DataPrep
 
@@ -176,6 +180,9 @@
                                 3.0 as petal_width,
                                 1.1 as sepal_width))
        ```
+
+  ![image](https://user-images.githubusercontent.com/19702456/226696177-6e6105e6-a745-4786-ae4d-94e5d342c056.png)
+       
 - Kubeflow
   - Kubeflow is a platform that provides the tools and scalable services required to develop and deploy ML workloads all the way from distributed training to scalable serving to notebooks with JupyterHub and workflow orchestration. Kubeflow services are built on top of Kubernetes. 
   - Packages models like applications. This adds an element of portability since you can then move your ML pipelines even between cloud providers. AI Hub is a repository for ML components. Among the assets stored on AI Hub are entire Kubeflow pipelines, Jupyter notebooks, TensorFlow modules, fully trained models, services, and VM images. Public assets are available to all AI Hub users. Restricted scope assets contain AI components you have uploaded and those that have been shared with you.
