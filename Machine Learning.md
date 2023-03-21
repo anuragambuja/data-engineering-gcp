@@ -22,6 +22,8 @@
     - Does not require examples
     - Combination of exploration and exploitation
  
+  ![image](https://user-images.githubusercontent.com/19702456/226649438-f53178f3-e102-48f7-8752-eda4cfac92ef.png)
+
 - Features - describes characterstics of an entity, act as an input variable. eg. height, length of an entity
 - Labels - An attribute that is predicted or categorized. eg, selling price, income, Fraud/Non Fraud 
 - Feature Engineering - Identifying useful features
@@ -36,11 +38,14 @@
   - Test Model
 - Model Evaluation
   - How well does the model perform
-  - COmmonly used metrices 
+  - Commonly used metrices 
     - Accuracy - Number of correctly predicted data points. (TP+TN)/(TP+FP+TN+FN)
     - precision - percent of positive data points correctly classified. TP/(TP+FP)
     - Recall - Percent of Actual positive data points identified. TP /(TP+FN)
     - Mean Squared Error (Regression)
+    
+    ![image](https://user-images.githubusercontent.com/19702456/226649600-045a0da0-c2c4-4807-8435-852c6a0008f2.png)
+    
 - Model troubleshooting
   - Underfitting - Model performs poorly on training and validation data. Increase complexity of model to correct it
   - Overfitting - Model performs well on trianing data and poorly on validation data. regularization can be used for correcting it
@@ -200,4 +205,14 @@
   - Access model prediction quality using different metrices
 
 
+### Vertex AI
+- Vertex AI is the unified AI platform on Google Cloud to train and deploy a ML model. Vertex AI offers two options on one platform to build a ML model: a codeless solution with AutoML and a code-based solution with Custom Training using Vertex Workbench
 
+    ![image](https://user-images.githubusercontent.com/19702456/226648437-3c7930c6-0ec7-41a0-a271-de9b0780d2cb.png)
+
+- Benefits
+  - Features are sharable for training or serving tasks
+  - Features are reusable
+  - Features are scalable
+  - Features are easy to use
+  - 
