@@ -1,5 +1,5 @@
 
-# Bigquery
+# BigQuery
 
 - Data warehouse solution in GCP just like Relational database – SQL schema. 
 - BQ is ***serverless***. There are no servers to manage or database software to install; this is managed by Google and it's transparent to the customers.
