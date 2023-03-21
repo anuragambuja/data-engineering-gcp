@@ -1,6 +1,6 @@
 # Machine Learning
-- [Overview]()
-- [ML in GCP]()
+- [Overview](#overview)
+- [ML in GCP](#ml-in-gcp)
 
 ### Overview
 - ML Types
@@ -71,7 +71,7 @@
 
 ### ML in GCP
 
-    ![image](https://user-images.githubusercontent.com/19702456/225668516-b06ef0ce-c313-4b1d-823f-1e9748846cbc.png)
+   ![image](https://user-images.githubusercontent.com/19702456/225668516-b06ef0ce-c313-4b1d-823f-1e9748846cbc.png)
 
 - DataPrep
 
@@ -114,10 +114,14 @@
 
 - Auto ML
   - Throw your data & GCP will create best model for you
+  - Each time you train with a prepared data set, it creates a new custom model. Custom models are temporary. They are eventually deleted, and they cannot be exported or saved externally. So you will need to train a new custom model periodically to continue predicting and classifying.
   - Transfer learning technology
   - Example Use cases:
     - Flower species recognition
     - Text Classification 
+
+  ![image](https://user-images.githubusercontent.com/19702456/226640484-f769cae3-3b28-4867-aab3-c59d78642f8e.png)
+
 
 - Custom Model
   - Have your own data and train your model
@@ -168,8 +172,8 @@
                                 1.1 as sepal_width))
        ```
 - Kubeflow
-  - machine learning toolkit for kubernetes
-  - Packages models like applications
+  - Kubeflow is a platform that provides the tools and scalable services required to develop and deploy ML workloads all the way from distributed training to scalable serving to notebooks with JupyterHub and workflow orchestration. Kubeflow services are built on top of Kubernetes. 
+  - Packages models like applications. This adds an element of portability since you can then move your ML pipelines even between cloud providers. AI Hub is a repository for ML components. Among the assets stored on AI Hub are entire Kubeflow pipelines, Jupyter notebooks, TensorFlow modules, fully trained models, services, and VM images. Public assets are available to all AI Hub users. Restricted scope assets contain AI components you have uploaded and those that have been shared with you.
   - compose, deploy and manage ML workflows
 
 - GPUs and TPUs
