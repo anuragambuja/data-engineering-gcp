@@ -1,5 +1,8 @@
 # Machine Learning
+- [Overview]()
+- [ML in GCP]()
 
+### Overview
 - ML Types
   - Supervised Learning
     - Label has been given. Goal is to predict category ot value.
@@ -66,7 +69,7 @@
     - KNN
     - Decision Tree Classification
 
-- ML in GCP
+### ML in GCP
 
     ![image](https://user-images.githubusercontent.com/19702456/225668516-b06ef0ce-c313-4b1d-823f-1e9748846cbc.png)
 
