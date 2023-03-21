@@ -1,0 +1,17 @@
+# Data Fusion
+
+- Fully-managed, cloud native solution to quickly building data pipelines. You need to create an instance of Data Fusion. 
+- Code free, Drag-n-drop ETL/ELT development tool
+- 150+ preconfigured connectors & transformations
+- Built with Open-source CDAP
+- 3 Edition are available
+  - Developer
+  - Basic
+  - Enterprise
+- Pricing : https://cloud.google.com/data-fusion/pricing#cloud-data-fusion-pricing
+- The Control Center gives you the ability to see everything at a glance and search for what you need, whether it's a particular data set, pipeline or other artifact, like a data dictionary, 
+- There are two components in Administration, management and configuration. Under management, you have services and metrics. Under configuration, you have namespace, compute profiles, preferences, system artifacts and the REST client.
+- Cloud Data Fusion translates your visually built pipeline into an Apache Spark or MapReduce program that executes transformations on an ephemeral Cloud Dataproc cluster in parallel. 
+
+
+![image](https://user-images.githubusercontent.com/19702456/224944491-d5b1378c-aa7c-4129-b743-007806c41e20.png)
