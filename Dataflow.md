@@ -19,11 +19,34 @@
   - Cloud DataFlow
 - Job States: Running, Not Started, Queues, Cancelling/Cancelled, Draining/Drained, Updating/Updated, Succeeded, Failed
 
+- When a Dataflow job is created, a cloud storage bucket is used to store binary files containing pipeline code. A cloud storage bucket is also used to temporarily store export or import data. By default, when data is stored in any of these locations, a Google-managed key is used to encrypt the data. When your pipeline starts and the data is loaded into the worker memory, data keys used in key-based operations, such as windowing, grouping, and joining, will be decrypted using your CMEK keys. Using CMEK requires both the Dataflow service account and the Controller Agent service account to have the cloud KMS CryptoKey Encrypter/Decrypter role. When you launch a job that uses CMEK, the region for your key and the regional input for your Dataflow job must be the same.
+
+    ![image](https://user-images.githubusercontent.com/19702456/226963260-a4cb6ad1-d144-4794-854c-42cabeadeb0f.png)
+
+    A pipeline identifies the data to be processed and the actions to be taken on the data. The data is held in a distributed data abstraction called a P collection. The P collection is immutable. Any change that happens in a pipeline ingests one P collection and creates a new one. It does not change the incoming P collection. The action or code is contained in an abstraction called a P transform. P transform handles input, transformation, an output of the data. The data in the P collection is passed along a graph from one P transform to another. Pipeline runners are analogous to container hosts such as Google Kubernetes Engine. A P collection represents both streaming data and batch data. There is no size limit to a P collection. Streaming data is an unbounded P collection that doesn't end. Each element inside a P collection can be individually accessed and processed. In a P collection, all data types are stored in a serialized state as byte strings.
+
+   ![image](https://user-images.githubusercontent.com/19702456/226963349-5765d651-f9b4-42c2-8bd1-64d8ff69ce8d.png)
+
+   ![image](https://user-images.githubusercontent.com/19702456/226964415-cf1d6c9a-7329-41c6-92f0-84bf78a52415.png)
+   
+   ![image](https://user-images.githubusercontent.com/19702456/226964539-2449f160-a634-456c-a8fd-6df1fa870cb1.png)
+
+
 - All data in Apache Beam pipelines reside in PCollections. To create your pipeline’s initial PCollection, apply a root transform to your pipeline object. A root transform creates a PCollection from either an external data source or some local data you specify. There are two kinds of root transforms in the Beam SDKs: Read and Create. Read transforms read data from an external source, such as a text file or a database table. Create transforms create a PCollection from an in-memory list and are especially useful for testing.
+
 - Bundles are groupings of elements in the pipeline for a unit of work. Checkpoints allow for the ability to bookmark where the data has been read in the source, which means that the data that has been processed in the stream doesn't need to be reread. 
+
 - Transforms are what change your data. In Apache Beam, transforms are done by the PTransform class. At runtime, these operations will be performed on a number of independent workers. The input and output to every PTransform is a PCollection.
-- ParDo is a Beam transform for generic parallel processing. The ParDo processing paradigm is similar to the “Map” phase of a Map/Shuffle/Reduce-style algorithm: a ParDo transform considers each element in the input PCollection, performs some processing function (your user code) on that element, and emits zero, one, or multiple elements to an output PCollection.
-- When you run your pipeline on Dataflow, it uses the service account service- @dataflow-service-producer-prod.iam.gserviceaccount.com. This account is automatically created when the Dataflow API is enabled. It is assigned the Dataflow service agent role and has the necessary permissions to run a Dataflow job in your project. 
+
+- ParDo is a Beam transform for generic parallel processing. The ParDo processing paradigm is similar to the “Map” phase of a Map/Shuffle/Reduce-style algorithm: a ParDo transform considers each element in the input PCollection, performs some processing function (your user code) on that element, and emits zero, one, or multiple elements to an output PCollection. You might use it to extract certain fields from a set of raw input records or convert raw input into a different format. 
+
+    ![image](https://user-images.githubusercontent.com/19702456/226965334-039ec168-4923-4dcf-b527-b898e2631e84.png)
+
+    - When you apply a ParDo transform, you need to provide code in the form of a DoFn object. A DoFn is a Beam SDK class that defines a distributed processing function. Your DoFn code must be fully serializable, item potent and thread safe.
+    - A side input is an additional input that your do function can access each time it processes an element in the input PCollection. When you specify a side input, you create a view of some other data that can be read from within the ParDo transform's do function while processing each element. Side inputs are useful if your ParDo needs to inject additional data when processing each element in the input PCollection, but the additional data needs to be determined at runtime and not hard coded. 
+
+- When you run your pipeline on Dataflow, it uses the service account service- @dataflow-service-producer-prod.iam.gserviceaccount.com. This account is automatically created when the Dataflow API is enabled. It is assigned the Dataflow service agent role and has the necessary permissions to run a Dataflow job in your project. By default, workers use your project's Compute Engine default service account as the controller service account. This service account, <project-number>-compute @developer.gservices.com, is automatically created when you enable the Compute Engine API for your project from the API's page in the Google Cloud console.
+
 - When you launch a batch pipeline, the ratio of VMs to PDs is 1:1. For each VM, only one persistent disk is attached. For jobs running Shuffle on worker VMs, the default size of each persistent disk is 250 gigabytes. If the batch job is running using Shuffle Service, the default persistent disk size is 25 gigabytes. Streaming pipelines, however, are deployed with a fixed pool of persistent disks. Each worker must have at least one persistent disk attached to it while the maximum is 15 persistent disks per worker instance. When you run a job using the Dataflow back end, the feature that is used is Dataflow Streaming Engine. For jobs launched to execute in the worker VMs, the default persistent disk size is 400 gigabytes. Jobs launched using Streaming Engine have a persistent disk size of 30 gigabytes. It is important to note that the amount of disk allocated in a streaming pipeline is equal to the maxNumWorkers flag. For example, if you launch a job with three workers initially and set the maximum number of workers to 25, 25 disks will count against your quota and not three. For streaming jobs that do not use Streaming Engine, the maxNumWorkers flag is optional. The default is 100.
 
 > ### Windows
@@ -102,5 +125,6 @@ We use unit tests in Beam to assert behavior of one small testable piece of your
 ![image](https://user-images.githubusercontent.com/19702456/226887770-31f995d2-b42f-4fc8-811d-1e4170d763af.png)
 
 
-
+## Note
+- Consider using combine when you can instead of GroupByKey, especially if your data is heavily skewed.    
 
