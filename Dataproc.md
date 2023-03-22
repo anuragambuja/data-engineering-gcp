@@ -1,4 +1,4 @@
-# Cloud DataProc
+# Dataproc
 
 - Dataproc is fully managed service for running Hadoop and Spark data processing workloads. 
 - Cluster type
