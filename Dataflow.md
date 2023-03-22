@@ -38,6 +38,29 @@
     ![image](https://user-images.githubusercontent.com/19702456/226908783-9e76ca62-aa59-4a05-a8fa-d60742084cd4.png)
 
 > ### Watermark
+- Watermark keep tracks of lag time. The watermark is the relationship between the processing timestamp and the event. The processing timestamp is the moment the message arrives at the pipeline.  Any message that arrives before the watermark is said to be early. if it arrives right after the watermark is said to be on time and if it arrives later, then it is late.
+- Data flow estimates the watermark as the oldest timestamp waiting to be processed. This estimation is continuously updated with every new message that is received. 
+- Data freshness is the amount of time between real time and the output watermark (timestamp of the oldest message waiting to be processed). 
+- System latency is the current maximum duration that an item of data has been processing or awaiting processing. Latency measures the time it takes to fully process a message.This includes any waiting time in the input source.
+- Dataflow ordinarily is going to wait until the watermark it has computed has elapsed. Beams default windowing configuration tries to determine when all data has arrived based on the type of data source, and then advances the watermark past the end of the window. This default configuration does not allow late data. The default behavior is to trigger at the watermark. If you don't specify a trigger, you are actually using the trigger after watermark. After watermark is an event time trigger. The message's time stamps are used to measure time with these triggers. But we could also add custom triggers.
+
+    ![image](https://user-images.githubusercontent.com/19702456/226929266-404bc908-c88f-4e0c-a7e5-0e740fbe7643.png)
+
+    ![image](https://user-images.githubusercontent.com/19702456/226929604-0cc56331-7a73-4bc5-8115-b046c5cb8ecf.png)
+    
+> ### Triggers
+- Triggers determine at what point during processing time results will be materialized. Each specific output for a window is referred to as a pane of the window. Triggers fire panes when the trigger’s conditions are met. In Apache Beam, those conditions include watermark progress, processing time progress (which will progress uniformly, regardless of how much data has actually arrived), element counts (such as when a certain amount of new data arrives), and data-dependent triggers, like when the end of a file is reached.
+- A trigger’s conditions may lead it to fire a pane many times. Consequently, it’s also necessary to specify how to accumulate these results. Apache Beam currently supports two accumulation modes, one which accumulates results together and the other which returns only the portions of the result that are new since the last pane fired. There are two accumulation modes in apache beam - accumulate and discard. With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far. With discard once some messages have been used for a calculation those messages are discarded. If new messages arrive later and there is a new trigger, the result will only include the new messages and those messages will be discarded again.
+
+    ![image](https://user-images.githubusercontent.com/19702456/226931988-5604dea1-a983-4324-bfed-35d4e19efc5c.png)
+
+> ### State & Timers
+- With stateful ParDos, there are many aggregations that can be implemented without having to use a combiner or a GroupByKey. State is maintained per key. For streaming pipelines, the state is also maintained per window. The state can be read and mutated during the processing of each one of the elements. The state is local to each one of the transformers. For instance, two different keys process, and two different workers are not able to share a common state, but all elements in the same key can share a common state. The state variables allow you to batch the request by accumulating elements in a buffer and making batch calls to the external services, that, for example, you can make a call every 10 messages. It is important to remember to clear the state once it has been used. The DoFn will not finish entirely unless the whole state has been clear.
+- Timers are used in combination with state variables, to ensure that the state is cleared at regular intervals of time.
+       
+     ![image](https://user-images.githubusercontent.com/19702456/226947028-89465617-e588-425e-a7d6-dfbf8c1cc6a4.png)
+
+     ![image](https://user-images.githubusercontent.com/19702456/226947218-53b5376f-fa2f-488e-b066-e096509d2e98.png)
 
 > ### Dataflow Suffle Service
 A shuffle is a Dataflow-based operation behind transforms such as GroupByKey, CoGroupByKey, and Combine. The Dataflow Shuffle operation partitions and groups data by key in a scalable, efficient, fault-tolerant manner. Currently, Dataflow uses a shuffle implementation that runs entirely on worker virtual machines and consumes worker CPU, memory, and persistent disk storage. The service-based Dataflow Shuffle feature available for batch pipelines only moves the shuffle operations out of the worker VMs and into the Dataflow service backend. The worker nodes will benefit from a reduction in consumed CPU, memory, and persistent disk storage resources, and your pipelines will have better autoscaling because the worker nodes VMs no longer hold any shuffle data, and can therefore be scaled down earlier.
