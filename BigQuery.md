@@ -209,7 +209,7 @@ You may choose clustering over partitioning when partitioning results in a small
 BigQuery has _automatic reclustering_: when new data is written to a table, it can be written to blocks that contain key ranges that overlap with the key ranges in previously written blocks, which weaken the sort property of the table. BQ will perform automatic reclustering in the background to restore the sort properties of the table.
 * For partitioned tables, clustering is maintaned for data within the scope of each partition.
   
-  
+> Install bigquery api in notebook:  `! pip install google-cloud-bigquery==1.25.0 --use-feature=2020-resolver`  
   
   
   
