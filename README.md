@@ -15,7 +15,7 @@
 - [Compute](#compute)
   - [Overview](#overview-2)
   - [Google Compute Engine (GCE)](#google-compute-engine-gce)
-  - [Google Kubernetes Engine](#google-kubernetes-engine)
+  - [Google Kubernetes Engine (GKE)](#google-kubernetes-engine-gke)
   - [App Engine](#app-engine)
 
 - [Storage](#storage)
@@ -129,7 +129,7 @@ A policy is set on a resource and each policy contains a set of roles and role m
 -  Every VM instance comes with a small root persistent disk containing the OS. 
 -  You cannot change the zone of the machine once instanciated.
 
-> ### [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
+> ### Google Kubernetes Engine (GKE)
 - Developed by Google , Launched in 2014 – Kubernetes. In 2015, Google Launched cloud version - GKE
 - Cloud Agnostics
 - Written in Go language
