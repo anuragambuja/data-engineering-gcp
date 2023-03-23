@@ -1,21 +1,63 @@
 - Contents 
   - [History and Architecture](#history-and-architecture)
+  
   - [Zone & Region](#zone--region)
+    - [Why Zones & Regions ?](#why-zones--regions-)
+    - [What is RTO & RPO ?](#what-is-rto--rpo-)
+
   - [IAM](#iam)
+    - [G Suite and Cloud Identity](https://github.com/anuragambuja/data-engineering-gcp#g-suite-and-cloud-identity)
+    - [Google Group](#google-group)
+
+  - [Compute Engine](#compute-engine)
+
+  - [App Engine](#app-engine)
+
+  - [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
+    
   - [Storage](#storage)
-    - [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/storage)
+    - [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
+    - [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
+    - [Which storage to use when ?](#which-storage-to-use-when-)
+    
   - [Database](#database)
     - [Cloud SQL](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20SQL.md)
     - [Cloud Spanner](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Spanner.md)
     - [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
     - [Bigtable](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Bigtable.md)
     - [Datastore and Firestore](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Datastore%20and%20Firestore.md)
-    - [Bigquery](https://github.com/anuragambuja/data-engineering-gcp/tree/main/bigquery)    
+    - [Bigquery](https://github.com/anuragambuja/data-engineering-gcp/blob/main/BigQuery.md)    
     - [Comparison of different Database services](#comparison-of-different-database-services)
-    
-  - [Virtual machine](#virtual-machine)
-  - [App Engine](#app-engine)
-  - [Cloud Function](#cloud-function)
+  
+  - [Processing](#processing)
+  
+    - [Cloud Function](#cloud-function)
+
+    - [Cloud Composer](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Composer.md)
+
+    - [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
+
+    - [Data Fusion](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Fusion.md)
+
+    - [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
+
+    - [Dataflow](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataflow.md)
+
+    - [Dataproc](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataproc.md)
+
+    - [PubSub](https://github.com/anuragambuja/data-engineering-gcp/blob/main/PubSub.md)
+
+  - [Logging & Monitoring](#logging--monitoring)
+  
+    - [Cloud Monitor](#cloud-monitor)
+
+    - [Cloud Logging](#cloud-logging)
+
+  - [Machine Learning](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Machine%20Learning.md)
+
+  - [Usuable Codes](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
+
+  - [References](#references)
  
 
 ## History and Architecture
@@ -37,7 +79,7 @@
 - Disaster recovery
 - Global Footprint
 
-Find the updated zones and regions @ [Google Zones & Regions](https://cloud.google.com/about/locations)
+Find the updated zones and regions [here](https://cloud.google.com/about/locations).
 
 #### **What is RTO & RPO ?**
 - RTO – Recovery Time objective: Maximum time for which system can be down
@@ -59,7 +101,6 @@ A policy is set on a resource and each policy contains a set of roles and role m
 
 ![image](https://user-images.githubusercontent.com/19702456/222905653-00cbff0f-1444-44f9-9eee-9b47bc93f32b.png)
 
-
 ### G Suite and Cloud Identity
 - G Suite user is a member of an organization's G Suite domain
 - Cloud Identity is like G Suite domain but without access to G suite services
@@ -68,10 +109,6 @@ A policy is set on a resource and each policy contains a set of roles and role m
 - Collection of Identities
 - Useful for assigning roles to multiple users
 - Identities in group acquire roles assigned to the group and loses when removed from group
-
-### 
-
-
 
 ## Storage
 
@@ -114,7 +151,7 @@ A policy is set on a resource and each policy contains a set of roles and role m
 ### **Comparison of different Database services**
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
   
-## Virtual Machine
+## Compute Engine
 - IAAS – Full Control, more flexibility, more responsibility
 - Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
 
@@ -149,14 +186,14 @@ $ gcloud app browse
   - Message pushed to pub/sub
 
 
-# Cloud Monitor
+## Cloud Monitor
 
 - Collect metrices from GCP, AWS and hybrid cloud resources
 - Dashboards and Visualizations
 - Alerting and Anomaly reporting
 - Predefined and custom metrices. For more detailed metrices install monitoring agent. 
 
-# Cloud Logging
+## Cloud Logging
 
 - Centralized repository for ingesting logs
 - System and application logs
@@ -168,7 +205,8 @@ $ gcloud app browse
 
 
 
-
+## References
+- 
 
 
 ===============================================================================
