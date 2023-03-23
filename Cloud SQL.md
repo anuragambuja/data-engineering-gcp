@@ -2,8 +2,8 @@
 # **Cloud SQL**  
 - Fully managed Relational database services for MySQL, PostgreSQL & SQL Server. No maintenance & auto update. Generally used for storing Transactional database
 - Regional Database with 99.95% SLA. Multiple zones for high availability and multi-region for backups only. 
-- Storage up to 30 TB
-- Vertical Scale up to 96 core & 416 GB Memory. Horizontal Scaling with only Read replicas – To transfer workload to other instance. If you need horizontal read-write scaling, consider Cloud Spanner. Google Cloud SQL supports three read replica scenarios: 
+- Storage up to 64 TB per instance
+- Vertical Scale up to 60,000 IOPS & 624 GB Memory. Horizontal Scaling with only Read replicas – To transfer workload to other instance. If you need horizontal read-write scaling, consider Cloud Spanner. Google Cloud SQL supports three read replica scenarios: 
   - Cloud SQL instances replicating from a Cloud SQL primary instances
   - Cloud SQL instances replicating from an external primary instance
   - External MySQL instances replicating from a Cloud SQL primary instance.
