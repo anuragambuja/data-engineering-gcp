@@ -70,7 +70,7 @@
 
 ![image](https://user-images.githubusercontent.com/19702456/222907494-543244ac-2303-470b-8db1-240333a0c5e4.png)
 
-#### **Why Zones & Regions ?**
+> ### **Why Zones & Regions ?**
 - Low latency
 - Adhere to government regulations
 - High availability
@@ -79,7 +79,7 @@
 
 Find the updated zones and regions [here](https://cloud.google.com/about/locations).
 
-#### **What is RTO & RPO ?**
+> ### **What is RTO & RPO ?**
 - RTO – Recovery Time objective: Maximum time for which system can be down
 - RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
 
@@ -99,11 +99,11 @@ A policy is set on a resource and each policy contains a set of roles and role m
 
 ![image](https://user-images.githubusercontent.com/19702456/222905653-00cbff0f-1444-44f9-9eee-9b47bc93f32b.png)
 
-### G Suite and Cloud Identity
+> ### G Suite and Cloud Identity
 - G Suite user is a member of an organization's G Suite domain
 - Cloud Identity is like G Suite domain but without access to G suite services
 
-### Google Group
+> ### Google Group
 - Collection of Identities
 - Useful for assigning roles to multiple users
 - Identities in group acquire roles assigned to the group and loses when removed from group
@@ -119,13 +119,13 @@ Compute Engine lets you create virtual machines that run different operating sys
 
 3. App Engine: Paas, serverless and ops-free. Standard Environments gives a pre configured container. Fexible environment gives a VM.Instance Classes determine the prices. Write simple, single purpose functions attached to the events emitted from cloud infra and services. Cloud functions are written in javascript and can run in any standard node.js runtime. use cases: Mobile and IoT apps
   
-### Google Compute Engine (GCE)
+> ### Google Compute Engine (GCE)
 - IAAS – Full Control, more flexibility, more responsibility
 - Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
 
-### [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
+> ### [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
 
-### App Engine
+> ### App Engine
 - PAAS Solution
 - No Server management
 - Deploy HTTP based application
