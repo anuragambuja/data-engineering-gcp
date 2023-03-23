@@ -54,7 +54,9 @@
 
 - [Machine Learning](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Machine%20Learning.md)
 
-- [Usuable Codes](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
+- [Codes](#codes)
+  - [gcloud](#gcloud)
+  - [Codelines](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
 
 - [References](#references)
  
@@ -106,6 +108,10 @@ Find the updated zones and regions [here](https://cloud.google.com/about/locatio
 A policy is set on a resource and each policy contains a set of roles and role members.  resources inherit policies from parents so a policy can be set on a resource for example a service and another policy can be set on a parent such as a project that contains that service. The final policy is the union of the parent policy and the resource policy. In case of conflict, if the parent policy is less restrictive it overrides a more restrictive resource policy. 
 
 ![image](https://user-images.githubusercontent.com/19702456/222905653-00cbff0f-1444-44f9-9eee-9b47bc93f32b.png)
+
+- roles associated with the account: `gcloud projects get-iam-policy $PROJECT --format='table(bindings.role)' --flatten="bindings[].members" --filter="bindings.members:$USER_EMAIL"`
+ 
+- Add the Dataflow Admin role to the user account: `gcloud projects add-iam-policy-binding $PROJECT --member=user:$USER_EMAIL --role=roles/dataflow.admin`
 
 > ### G Suite and Cloud Identity
 - G Suite user is a member of an organization's G Suite domain
@@ -241,6 +247,24 @@ $ gcloud app browse
 - Retains logs for 30 days
 - Stream logs to pub/sub for 3rd party tools
 - Analytics with Bigquery
+
+## Codes
+
+> ### gcloud
+
+- Set environment variable to point to your downloaded GCP keys:
+   ```shell
+   export GOOGLE_APPLICATION_CREDENTIALS="<path/to/your/service-account-authkeys>.json"
+   
+   # Refresh token/session, and verify authentication
+   gcloud auth application-default login
+   
+   OR, gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
+   ```
+
+- Get project id: `gcloud info --format='value(config.project)'`
+
+> ### [Codelines](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
 
 ## References
 - [Google Cloud Console](https://console.cloud.google.com/)
