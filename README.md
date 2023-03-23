@@ -3,14 +3,17 @@
 - [History and Architecture](#history-and-architecture)
 
 - [Zone & Region](#zone--region)
+  - [Overview](#overview)
   - [Why Zones & Regions ?](#why-zones--regions-)
   - [What is RTO & RPO ?](#what-is-rto--rpo-)
 
 - [IAM](#iam)
+  - [Overview](#overview-1)
   - [G Suite and Cloud Identity](#g-suite-and-cloud-identity)
   - [Google Group](#google-group)
 
 - [Compute](#compute)
+  - [Overview](#overview-2)
   - [Google Compute Engine (GCE)](#google-compute-engine-gce)
   - [Google Kubernetes Engine](#google-kubernetes-engine)
   - [App Engine](#app-engine)
@@ -63,6 +66,7 @@
 ![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
 
 ## Zone & Region
+> ### Overview
 - Zones – Independent data Center. Each Zone has one or more discrete clusters.
 - Region – Specific geographical location to host your resources
 - Multi-region - Geographical Collection
@@ -70,7 +74,7 @@
 
 ![image](https://user-images.githubusercontent.com/19702456/222907494-543244ac-2303-470b-8db1-240333a0c5e4.png)
 
-> ### **Why Zones & Regions ?**
+> ### Why Zones & Regions ?
 - Low latency
 - Adhere to government regulations
 - High availability
@@ -79,14 +83,14 @@
 
 Find the updated zones and regions [here](https://cloud.google.com/about/locations).
 
-> ### **What is RTO & RPO ?**
+> ### What is RTO & RPO ?
 - RTO – Recovery Time objective: Maximum time for which system can be down
 - RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
 
 ![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
 
 ## IAM
-
+> ### Overview
 - Roles are collection of permissions. One can assign Role to identity, but Can not assign permission directly. So, permissions are assigned to identities via roles.
 - Service Account is identity for Compute engine. Max 10 keys per Service Account and Max 100 Service Account per project.
 - Roles are attached to identities; policies are attached to resources.
@@ -109,6 +113,7 @@ A policy is set on a resource and each policy contains a set of roles and role m
 - Identities in group acquire roles assigned to the group and loses when removed from group
 
 ## Compute
+> ### Overview
   - Compute Compute Engine lets you create virtual machines that run different operating systems, including multiple flavors of Linux (Debian, Ubuntu, Suse, Red Hat, CoreOS) and Windows Server, on Google infrastructure. 
   - Resources that live in a zone are referred to as zonal resources. Virtual machine instances and persistent disks live in a zone. If you want to attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP address.
 
