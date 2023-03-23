@@ -11,13 +11,13 @@
   - [Google Group](#google-group)
 
 - [Compute](#compute)
-  - [Compute Engine](#compute-engine)
-  - [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
+  - [Google Compute Engine (GCE)](#google-compute-engine-gce)
+  - [Google Kubernetes Engine](#google-kubernetes-engine)
   - [App Engine](#app-engine)
 
 - [Storage](#storage)
-  - [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
-  - [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
+  - [Cloud Storage](#cloud-storage)
+  - [Memory Store](#memory-store)
   - [Which storage to use when ?](#which-storage-to-use-when-)
 
 - [Database](#database)
@@ -123,6 +123,8 @@ Compute Engine lets you create virtual machines that run different operating sys
 - IAAS – Full Control, more flexibility, more responsibility
 - Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
 
+### [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
+
 ### App Engine
 - PAAS Solution
 - No Server management
@@ -150,6 +152,10 @@ $ gcloud app browse
 ![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
 
 ![image](https://user-images.githubusercontent.com/19702456/222908272-a6bb9bcf-9fcc-4dcf-9ff3-3476f4b6221d.png)
+
+### [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
+
+### [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
 
 #### **Which storage to use when ?**
 - Cloud Storage
