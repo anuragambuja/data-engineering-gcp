@@ -121,22 +121,29 @@ A policy is set on a resource and each policy contains a set of roles and role m
   - Compute Compute Engine lets you create virtual machines that run different operating systems, including multiple flavors of Linux (Debian, Ubuntu, Suse, Red Hat, CoreOS) and Windows Server, on Google infrastructure. 
   - Resources that live in a zone are referred to as zonal resources. Virtual machine instances and persistent disks live in a zone. If you want to attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP address.
 
-Compute Engine lets you create virtual machines that run different operating systems, including multiple flavors of Linux (Debian, Ubuntu, Suse, Red Hat, CoreOS) and Windows Server, on Google infrastructure. A region is a specific geographical location where you can run your resources. Each region has one or more zones. For example, the us-central1 region denotes a region in the Central United States that has zones us-central1-a, us-central1-b, us-central1-c, and us-central1-f. Resources that live in a zone are referred to as zonal resources. Virtual machine instances and persistent disks live in a zone. If you want to attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP address.
-1. GCE (Google Compute Engine) - IAAS. The more sphisticated load balancing need to be done, the higher you need to go in OSI stack.Projects can have upto 5 VPC(virtual private netword). Each GCE instance belongs in one VPC. Instances within VPC communicate on LAN. Instances across VPC communicate on internet. Every VM instance comes with a small root persistent disk containing the OS. You cannot change the zone of the machine once instanciated. 
-
-2. Google Container Engine - Kubernetes (GKE): Kubernetes (master) instance manages node instances which runs a kubelet agent instance which communicates with kubernetes and manages pod which runs multiple containers inside it. Container disks are ephemeral (data is lost once the container is restarted) so use GCEPersistentDIsk. Network load balancing works with container engine. For HTTP load balancing, need to integrate with Compute Engine load balancing. Managed master runs the kubernetes API server which services REST requests, schedules pod creation & deletion on worker nodes, and synchronizes pod information (such as open ports and location). Node pool is subset of machines within a cluster that all have the same configuration. You can run multiple kubernetes node versions on each node pool in your cluster, update each node pool independently and target different node poola for specific deployments. Autoscaling is possible using cluster autoscaler. Hybrid apps
-
-3. App Engine: Paas, serverless and ops-free. Standard Environments gives a pre configured container. Fexible environment gives a VM.Instance Classes determine the prices. Write simple, single purpose functions attached to the events emitted from cloud infra and services. Cloud functions are written in javascript and can run in any standard node.js runtime. use cases: Mobile and IoT apps
-  
 > ### Google Compute Engine (GCE)
 - IAAS – Full Control, more flexibility, more responsibility
 - Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
+- The more sphisticated load balancing need to be done, the higher you need to go in OSI stack.
+- Projects can have upto 5 VPC(virtual private netword). Each GCE instance belongs in one VPC. Instances within VPC communicate on LAN. Instances across VPC communicate on internet.
+-  Every VM instance comes with a small root persistent disk containing the OS. 
+-  You cannot change the zone of the machine once instanciated.
 
 > ### [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
+- Developed by Google , Launched in 2014 – Kubernetes. In 2015, Google Launched cloud version - GKE
+- Cloud Agnostics
+- Written in Go language
+- Google Kubernetes Engine (GKE) provides a managed environment for deploying, managing, and scaling your containerized applications using Google infrastructure. The Kubernetes Engine environment consists of multiple machines (specifically Compute Engine instances) grouped to form a container cluster. Kubernetes (master) instance manages node instances which runs a kubelet agent instance which communicates with kubernetes and manages pod which runs multiple containers inside it. Container disks are ephemeral (data is lost once the container is restarted) so use GCEPersistentDIsk. Network load balancing works with container engine. For HTTP load balancing, need to integrate with Compute Engine load balancing. Managed master runs the kubernetes API server which services REST requests, schedules pod creation & deletion on worker nodes, and synchronizes pod information (such as open ports and location).
+- Google Kubernetes Engine (GKE) clusters are powered by the Kubernetes open source cluster management system. Kubernetes provides the mechanisms through which you interact with your container cluster. When you run a GKE cluster, you also gain the benefit of advanced cluster management features that Google Cloud provides. These include:
+  -	Load balancing for Compute Engine instances
+  -	Node pool is subset of machines within a cluster that all have the same configuration. You can run multiple kubernetes node versions on each node pool in your cluster, update each node pool independently and target different node poola for specific deployments. Node pools to designate subsets of nodes within a cluster for additional flexibility
+  -	Automatic scaling of your cluster's node instance count
+  -	Automatic upgrades for your cluster's node software
+  -	Node auto-repair to maintain node health and availability
+  -	Logging and Monitoring with Cloud Monitoring for visibility into your cluster
 
 > ### App Engine
-- PAAS Solution
-- No Server management
+- PAAS Solution. No Server management required.
 - Deploy HTTP based application
 - Support many runtime engine: Python, java, Go, Node JS
 
