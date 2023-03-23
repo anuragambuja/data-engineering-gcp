@@ -1,63 +1,64 @@
-- Contents 
-  - [History and Architecture](#history-and-architecture)
-  
-  - [Zone & Region](#zone--region)
-    - [Why Zones & Regions ?](#why-zones--regions-)
-    - [What is RTO & RPO ?](#what-is-rto--rpo-)
+# Contents 
 
-  - [IAM](#iam)
-    - [G Suite and Cloud Identity](https://github.com/anuragambuja/data-engineering-gcp#g-suite-and-cloud-identity)
-    - [Google Group](#google-group)
+- [History and Architecture](#history-and-architecture)
 
-  - [Compute Engine](#compute-engine)
+- [Zone & Region](#zone--region)
+  - [Why Zones & Regions ?](#why-zones--regions-)
+  - [What is RTO & RPO ?](#what-is-rto--rpo-)
 
-  - [App Engine](#app-engine)
+- [IAM](#iam)
+  - [G Suite and Cloud Identity](#g-suite-and-cloud-identity)
+  - [Google Group](#google-group)
 
-  - [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
-    
-  - [Storage](#storage)
-    - [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
-    - [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
-    - [Which storage to use when ?](#which-storage-to-use-when-)
-    
-  - [Database](#database)
-    - [Cloud SQL](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20SQL.md)
-    - [Cloud Spanner](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Spanner.md)
-    - [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
-    - [Bigtable](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Bigtable.md)
-    - [Datastore and Firestore](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Datastore%20and%20Firestore.md)
-    - [Bigquery](https://github.com/anuragambuja/data-engineering-gcp/blob/main/BigQuery.md)    
-    - [Comparison of different Database services](#comparison-of-different-database-services)
-  
-  - [Processing](#processing)
-  
-    - [Cloud Function](#cloud-function)
+- [Compute Engine](#compute-engine)
 
-    - [Cloud Composer](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Composer.md)
+- [App Engine](#app-engine)
 
-    - [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
+- [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
 
-    - [Data Fusion](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Fusion.md)
+- [Storage](#storage)
+  - [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
+  - [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
+  - [Which storage to use when ?](#which-storage-to-use-when-)
 
-    - [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
+- [Database](#database)
+  - [Cloud SQL](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20SQL.md)
+  - [Cloud Spanner](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Spanner.md)
+  - [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
+  - [Bigtable](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Bigtable.md)
+  - [Datastore and Firestore](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Datastore%20and%20Firestore.md)
+  - [Bigquery](https://github.com/anuragambuja/data-engineering-gcp/blob/main/BigQuery.md)    
+  - [Comparison of different Database services](#comparison-of-different-database-services)
 
-    - [Dataflow](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataflow.md)
+- [Processing](#processing)
 
-    - [Dataproc](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataproc.md)
+  - [Cloud Function](#cloud-function)
 
-    - [PubSub](https://github.com/anuragambuja/data-engineering-gcp/blob/main/PubSub.md)
+  - [Cloud Composer](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Composer.md)
 
-  - [Logging & Monitoring](#logging--monitoring)
-  
-    - [Cloud Monitor](#cloud-monitor)
+  - [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
 
-    - [Cloud Logging](#cloud-logging)
+  - [Data Fusion](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Fusion.md)
 
-  - [Machine Learning](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Machine%20Learning.md)
+  - [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
 
-  - [Usuable Codes](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
+  - [Dataflow](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataflow.md)
 
-  - [References](#references)
+  - [Dataproc](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataproc.md)
+
+  - [PubSub](https://github.com/anuragambuja/data-engineering-gcp/blob/main/PubSub.md)
+
+- [Logging & Monitoring](#logging--monitoring)
+
+  - [Cloud Monitor](#cloud-monitor)
+
+  - [Cloud Logging](#cloud-logging)
+
+- [Machine Learning](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Machine%20Learning.md)
+
+- [Usuable Codes](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
+
+- [References](#references)
  
 
 ## History and Architecture
@@ -110,6 +111,30 @@ A policy is set on a resource and each policy contains a set of roles and role m
 - Useful for assigning roles to multiple users
 - Identities in group acquire roles assigned to the group and loses when removed from group
 
+## Compute Engine
+- IAAS – Full Control, more flexibility, more responsibility
+- Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
+
+## App Engine
+- PAAS Solution
+- No Server management
+- Deploy HTTP based application
+- Support many runtime engine: Python, java, Go, Node JS
+
+```bash
+# Initialize your SDK
+$ gcloud init
+
+# Deploy your code to App Engine 
+$ gcloud app deploy
+
+# stream logs of your application
+$ gcloud app logs tail -s default
+
+# view your application - will provide URL for the browser
+$ gcloud app browse
+```
+
 ## Storage
 
 ![image](https://user-images.githubusercontent.com/19702456/222907142-7afd4075-0ca9-40a0-a7cf-973eb2ab2672.png)
@@ -151,30 +176,6 @@ A policy is set on a resource and each policy contains a set of roles and role m
 ### **Comparison of different Database services**
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
   
-## Compute Engine
-- IAAS – Full Control, more flexibility, more responsibility
-- Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
-
-## App Engine
-- PAAS Solution
-- No Server management
-- Deploy HTTP based application
-- Support many runtime engine: Python, java, Go, Node JS
-
-```bash
-# Initialize your SDK
-$ gcloud init
-
-# Deploy your code to App Engine 
-$ gcloud app deploy
-
-# stream logs of your application
-$ gcloud app logs tail -s default
-
-# view your application - will provide URL for the browser
-$ gcloud app browse
-```
-
 ## Cloud Function
 - Server less
 - Fully managed
@@ -185,15 +186,16 @@ $ gcloud app browse
   - File upload etc.
   - Message pushed to pub/sub
 
+## Logging & Monitoring
 
-## Cloud Monitor
+### Cloud Monitor
 
 - Collect metrices from GCP, AWS and hybrid cloud resources
 - Dashboards and Visualizations
 - Alerting and Anomaly reporting
 - Predefined and custom metrices. For more detailed metrices install monitoring agent. 
 
-## Cloud Logging
+### Cloud Logging
 
 - Centralized repository for ingesting logs
 - System and application logs
@@ -203,8 +205,6 @@ $ gcloud app browse
 - Stream logs to pub/sub for 3rd party tools
 - Analytics with Bigquery
 
-
-
 ## References
 - 
 
@@ -212,8 +212,6 @@ $ gcloud app browse
 ===============================================================================
 
 ![image](https://user-images.githubusercontent.com/19702456/222905584-a8066c4c-df25-412b-9854-e9094c29fd5b.png)
-
-
 
 
 ![image](https://user-images.githubusercontent.com/19702456/222905595-4d6ad300-4175-440e-b251-ba255316fd56.png)
