@@ -30,15 +30,16 @@
   - [Comparison of different Database services](#comparison-of-different-database-services)
 
 - [Processing](#processing)
-
   - [Cloud Function](#cloud-function)
-  - [Cloud Composer](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Composer.md)
-  - [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
   - [Data Fusion](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Fusion.md)
-  - [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
+  - [PubSub](https://github.com/anuragambuja/data-engineering-gcp/blob/main/PubSub.md)
   - [Dataflow](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataflow.md)
   - [Dataproc](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataproc.md)
-  - [PubSub](https://github.com/anuragambuja/data-engineering-gcp/blob/main/PubSub.md)
+  - [Cloud Composer](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Composer.md)
+
+- [Data Governance](#data-governance)
+  - [Data Catalog](#data-catalog)
+  - [Data Loss Prevention](#data-loss-prevention)
 
 - [Logging & Monitoring](#logging--monitoring)
   - [Cloud Monitor](#cloud-monitor)
@@ -58,6 +59,8 @@
 ![image](https://user-images.githubusercontent.com/19702456/222905584-a8066c4c-df25-412b-9854-e9094c29fd5b.png)
 
 ![image](https://user-images.githubusercontent.com/19702456/222905595-4d6ad300-4175-440e-b251-ba255316fd56.png)
+
+![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
 
 ## Zone & Region
 - Zones – Independent data Center. Each Zone has one or more discrete clusters.
@@ -108,6 +111,13 @@ A policy is set on a resource and each policy contains a set of roles and role m
 ## Compute
   - Compute Compute Engine lets you create virtual machines that run different operating systems, including multiple flavors of Linux (Debian, Ubuntu, Suse, Red Hat, CoreOS) and Windows Server, on Google infrastructure. 
   - Resources that live in a zone are referred to as zonal resources. Virtual machine instances and persistent disks live in a zone. If you want to attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP address.
+
+Compute Engine lets you create virtual machines that run different operating systems, including multiple flavors of Linux (Debian, Ubuntu, Suse, Red Hat, CoreOS) and Windows Server, on Google infrastructure. A region is a specific geographical location where you can run your resources. Each region has one or more zones. For example, the us-central1 region denotes a region in the Central United States that has zones us-central1-a, us-central1-b, us-central1-c, and us-central1-f. Resources that live in a zone are referred to as zonal resources. Virtual machine instances and persistent disks live in a zone. If you want to attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP address.
+1. GCE (Google Compute Engine) - IAAS. The more sphisticated load balancing need to be done, the higher you need to go in OSI stack.Projects can have upto 5 VPC(virtual private netword). Each GCE instance belongs in one VPC. Instances within VPC communicate on LAN. Instances across VPC communicate on internet. Every VM instance comes with a small root persistent disk containing the OS. You cannot change the zone of the machine once instanciated. 
+
+2. Google Container Engine - Kubernetes (GKE): Kubernetes (master) instance manages node instances which runs a kubelet agent instance which communicates with kubernetes and manages pod which runs multiple containers inside it. Container disks are ephemeral (data is lost once the container is restarted) so use GCEPersistentDIsk. Network load balancing works with container engine. For HTTP load balancing, need to integrate with Compute Engine load balancing. Managed master runs the kubernetes API server which services REST requests, schedules pod creation & deletion on worker nodes, and synchronizes pod information (such as open ports and location). Node pool is subset of machines within a cluster that all have the same configuration. You can run multiple kubernetes node versions on each node pool in your cluster, update each node pool independently and target different node poola for specific deployments. Autoscaling is possible using cluster autoscaler. Hybrid apps
+
+3. App Engine: Paas, serverless and ops-free. Standard Environments gives a pre configured container. Fexible environment gives a VM.Instance Classes determine the prices. Write simple, single purpose functions attached to the events emitted from cloud infra and services. Cloud functions are written in javascript and can run in any standard node.js runtime. use cases: Mobile and IoT apps
   
 ### Google Compute Engine (GCE)
 - IAAS – Full Control, more flexibility, more responsibility
@@ -184,6 +194,10 @@ $ gcloud app browse
   - File upload etc.
   - Message pushed to pub/sub
 
+## Data Governance
+### [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
+### [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
+
 ## Logging & Monitoring
 
 ### Cloud Monitor
@@ -206,24 +220,12 @@ $ gcloud app browse
 ## References
 - 
 
-
 ===============================================================================
 
 One solution for data governance is the Cloud data catalog and the data loss prevention API. The data catalog makes all the metadata about your datasets available to search for your users. You group datasets together with tags, flag certain columns as sensitive et cetera. Often used in conjunction with data catalog is the Cloud Data Loss Prevention API, or DLP API, which helps you better understand and manage sensitive data. It provides fast, scalable classification and reduction for sensitive data elements like credit card numbers, names, social security numbers, US and selected international identifier numbers, phone numbers and Google Cloud credentials.
 Google Cloud has a fully-managed version of Airflow called "Cloud Composer." Cloud Composer helps your data engineering team orchestrate all the pieces to the data engineering puzzle. 
 
 
-Compute
-Compute Engine lets you create virtual machines that run different operating systems, including multiple flavors of Linux (Debian, Ubuntu, Suse, Red Hat, CoreOS) and Windows Server, on Google infrastructure. A region is a specific geographical location where you can run your resources. Each region has one or more zones. For example, the us-central1 region denotes a region in the Central United States that has zones us-central1-a, us-central1-b, us-central1-c, and us-central1-f. Resources that live in a zone are referred to as zonal resources. Virtual machine instances and persistent disks live in a zone. If you want to attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP address.
-1. GCE (Google Compute Engine) - IAAS. The more sphisticated load balancing need to be done, the higher you need to go in OSI stack.Projects can have upto 5 VPC(virtual private netword). Each GCE instance belongs in one VPC. Instances within VPC communicate on LAN. Instances across VPC communicate on internet. Every VM instance comes with a small root persistent disk containing the OS. You cannot change the zone of the machine once instanciated. 
 
-2. Google Container Engine - Kubernetes (GKE): Kubernetes (master) instance manages node instances which runs a kubelet agent instance which communicates with kubernetes and manages pod which runs multiple containers inside it. Container disks are ephemeral (data is lost once the container is restarted) so use GCEPersistentDIsk. Network load balancing works with container engine. For HTTP load balancing, need to integrate with Compute Engine load balancing. Managed master runs the kubernetes API server which services REST requests, schedules pod creation & deletion on worker nodes, and synchronizes pod information (such as open ports and location). Node pool is subset of machines within a cluster that all have the same configuration. You can run multiple kubernetes node versions on each node pool in your cluster, update each node pool independently and target different node poola for specific deployments. Autoscaling is possible using cluster autoscaler. Hybrid apps
-
-3. App Engine: Paas, serverless and ops-free. Standard Environments gives a pre configured container. Fexible environment gives a VM.Instance Classes determine the prices. Write simple, single purpose functions attached to the events emitted from cloud infra and services. Cloud functions are written in javascript and can run in any standard node.js runtime. use cases: Mobile and IoT apps
-
-
-## Ingestion
-
-![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
 
 
