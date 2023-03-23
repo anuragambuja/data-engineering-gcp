@@ -10,11 +10,10 @@
   - [G Suite and Cloud Identity](#g-suite-and-cloud-identity)
   - [Google Group](#google-group)
 
-- [Compute Engine](#compute-engine)
-
-- [App Engine](#app-engine)
-
-- [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
+- [Compute](#compute)
+  - [Compute Engine](#compute-engine)
+  - [Google Kubernetes Engine](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Google%20Kubernetes%20Engine.md)
+  - [App Engine](#app-engine)
 
 - [Storage](#storage)
   - [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
@@ -33,25 +32,16 @@
 - [Processing](#processing)
 
   - [Cloud Function](#cloud-function)
-
   - [Cloud Composer](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Composer.md)
-
   - [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
-
   - [Data Fusion](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Fusion.md)
-
   - [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
-
   - [Dataflow](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataflow.md)
-
   - [Dataproc](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Dataproc.md)
-
   - [PubSub](https://github.com/anuragambuja/data-engineering-gcp/blob/main/PubSub.md)
 
 - [Logging & Monitoring](#logging--monitoring)
-
   - [Cloud Monitor](#cloud-monitor)
-
   - [Cloud Logging](#cloud-logging)
 
 - [Machine Learning](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Machine%20Learning.md)
@@ -64,6 +54,10 @@
 ## History and Architecture
 
 ![image](https://user-images.githubusercontent.com/19702456/222905593-f0e0471b-def3-4df9-9e1a-38394d5e74ec.png)
+
+![image](https://user-images.githubusercontent.com/19702456/222905584-a8066c4c-df25-412b-9854-e9094c29fd5b.png)
+
+![image](https://user-images.githubusercontent.com/19702456/222905595-4d6ad300-4175-440e-b251-ba255316fd56.png)
 
 ## Zone & Region
 - Zones – Independent data Center. Each Zone has one or more discrete clusters.
@@ -111,11 +105,15 @@ A policy is set on a resource and each policy contains a set of roles and role m
 - Useful for assigning roles to multiple users
 - Identities in group acquire roles assigned to the group and loses when removed from group
 
-## Compute Engine
+## Compute
+  - Compute Compute Engine lets you create virtual machines that run different operating systems, including multiple flavors of Linux (Debian, Ubuntu, Suse, Red Hat, CoreOS) and Windows Server, on Google infrastructure. 
+  - Resources that live in a zone are referred to as zonal resources. Virtual machine instances and persistent disks live in a zone. If you want to attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP address.
+  
+### Google Compute Engine (GCE)
 - IAAS – Full Control, more flexibility, more responsibility
 - Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
 
-## App Engine
+### App Engine
 - PAAS Solution
 - No Server management
 - Deploy HTTP based application
@@ -210,18 +208,6 @@ $ gcloud app browse
 
 
 ===============================================================================
-
-![image](https://user-images.githubusercontent.com/19702456/222905584-a8066c4c-df25-412b-9854-e9094c29fd5b.png)
-
-
-![image](https://user-images.githubusercontent.com/19702456/222905595-4d6ad300-4175-440e-b251-ba255316fd56.png)
-
-Databases
-If you have SQL Server MySQL or PostgresSQL as your relational database, you can migrate it to Cloud SQL, which is Google Cloud's fully managed relational database solution. Cloud SQL delivers high performance and scalability with up to 64 terabytes of storage capacity, 60,000 IOPS and 624 gigabytes of RAM per instance. You can take advantage of storage auto-scale to handle growing database needs with zero downtime. Cloud SQL databases are RECORD-based storage, meaning the entire record must be opened on disk even if you just selected a single column in your query.
-
-![image](https://user-images.githubusercontent.com/19702456/222905623-6162f053-9a23-4a80-ba81-60bc9479af57.png)
-
-![image](https://user-images.githubusercontent.com/19702456/222905629-28a9470d-d786-4baa-b8c9-1e4ee160476c.png)
 
 One solution for data governance is the Cloud data catalog and the data loss prevention API. The data catalog makes all the metadata about your datasets available to search for your users. You group datasets together with tags, flag certain columns as sensitive et cetera. Often used in conjunction with data catalog is the Cloud Data Loss Prevention API, or DLP API, which helps you better understand and manage sensitive data. It provides fast, scalable classification and reduction for sensitive data elements like credit card numbers, names, social security numbers, US and selected international identifier numbers, phone numbers and Google Cloud credentials.
 Google Cloud has a fully-managed version of Airflow called "Cloud Composer." Cloud Composer helps your data engineering team orchestrate all the pieces to the data engineering puzzle. 
