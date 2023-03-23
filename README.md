@@ -261,8 +261,8 @@ $ gcloud app browse
    
    OR, gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
    ```
-
 - Get project id: `gcloud info --format='value(config.project)'`
+- Enable/Disable service: `gcloud services enable/disable dataflow.googleapis.com --force`
 
 > ### [Codelines](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
 
