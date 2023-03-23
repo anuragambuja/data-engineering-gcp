@@ -22,7 +22,7 @@ Inside of a Google data center, the internal name for the massively distributed 
 In general, you want to use a push-based model for any data that you know you will need while pull-based may be a useful model if there is a lot of data that you might not ever need to migrate.
 To get the most from Dataproc, customers need to move to an ephemeral model of only using clusters when they need them.
 
-
+- To locate the default Cloud Storage bucket used by Dataproc: `gcloud dataproc clusters describe sparktodp --region=us-central1 --format=json | jq -r '.config.configBucket'`
 
 
 
