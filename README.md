@@ -162,11 +162,11 @@ $ gcloud app browse
 
 ![image](https://user-images.githubusercontent.com/19702456/222908272-a6bb9bcf-9fcc-4dcf-9ff3-3476f4b6221d.png)
 
-### [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
+> ### [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
 
-### [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
+> ### [Memory Store](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Memory%20Store.md)
 
-#### **Which storage to use when ?**
+> ### Which storage to use when ?
 - Cloud Storage
   - Unstructured data storage
   - Video stream, Image
@@ -196,10 +196,10 @@ $ gcloud app browse
   
 ## Database
 > ### Overview
-### **Comparison of different Database services**
+> ### Comparison of different Database services
 ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
   
-## Cloud Function
+> ## Cloud Function
 - Server less
 - Fully managed
 - Build small micro service
@@ -211,19 +211,21 @@ $ gcloud app browse
 
 ## Data Governance
 > ### Overview
-### [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
-### [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
+- One solution for data governance is the Cloud data catalog and the data loss prevention API.
+
+> ### [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
+> ### [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
 
 ## Logging & Monitoring
 
-### Cloud Monitor
+> ### Cloud Monitor
 
 - Collect metrices from GCP, AWS and hybrid cloud resources
 - Dashboards and Visualizations
 - Alerting and Anomaly reporting
 - Predefined and custom metrices. For more detailed metrices install monitoring agent. 
 
-### Cloud Logging
+> ### Cloud Logging
 
 - Centralized repository for ingesting logs
 - System and application logs
@@ -235,13 +237,6 @@ $ gcloud app browse
 
 ## References
 - 
-
-===============================================================================
-
-One solution for data governance is the Cloud data catalog and the data loss prevention API. The data catalog makes all the metadata about your datasets available to search for your users. You group datasets together with tags, flag certain columns as sensitive et cetera. Often used in conjunction with data catalog is the Cloud Data Loss Prevention API, or DLP API, which helps you better understand and manage sensitive data. It provides fast, scalable classification and reduction for sensitive data elements like credit card numbers, names, social security numbers, US and selected international identifier numbers, phone numbers and Google Cloud credentials.
-Google Cloud has a fully-managed version of Airflow called "Cloud Composer." Cloud Composer helps your data engineering team orchestrate all the pieces to the data engineering puzzle. 
-
-
 
 
 
