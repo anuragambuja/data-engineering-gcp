@@ -23,18 +23,19 @@
 ![image](https://user-images.githubusercontent.com/19702456/222905593-f0e0471b-def3-4df9-9e1a-38394d5e74ec.png)
 
 ## Zone & Region
-- Zones – Independent data Center
-- Region – Geographical area
-- Multi-region : Collection of Geographical
+- Zones – Independent data Center. Each Zone has one or more discrete clusters.
+- Region – Specific geographical location to host your resources
+- Multi-region - Geographical Collection
 - Global - Anywhere
 
 ![image](https://user-images.githubusercontent.com/19702456/222907494-543244ac-2303-470b-8db1-240333a0c5e4.png)
 
 #### **Why Zones & Regions ?**
 - Low latency
-- Follow Government norms
+- Adhere to government regulations
 - High availability
 - Disaster recovery
+- Global Footprint
 
 Find the updated zones and regions @ [Google Zones & Regions](https://cloud.google.com/about/locations)
 
