@@ -132,8 +132,52 @@ A policy is set on a resource and each policy contains a set of roles and role m
 - Important parameter : Zone, Service Account, Machine family – CPU, RAM, Boot Disk, Storage, Virtual Private Cloud
 - The more sphisticated load balancing need to be done, the higher you need to go in OSI stack.
 - Projects can have upto 5 VPC(virtual private netword). Each GCE instance belongs in one VPC. Instances within VPC communicate on LAN. Instances across VPC communicate on internet.
--  Every VM instance comes with a small root persistent disk containing the OS. 
--  You cannot change the zone of the machine once instanciated.
+- Every VM instance comes with a small root persistent disk containing the OS. 
+- When you stop an VM instance, External IP address is lost. Static IP can be switched to another VM instance in same project. You are billed for an Static IP when you are NOT using it!. Static IP remains attached even if you stop the instance. You have to
+manually detach it.
+- You cannot change the zone of the machine once instanciated.
+- Different Machine Families for Different Workloads:
+  - General Purpose (E2, N2, N2D, N1) : Best price-performance ratio
+      - Web and application servers, Small-medium databases, Dev environments
+  - Memory Optimized (M2, M1): Ultra high memory workloads
+    - Large in-memory databases and In-memory analytics
+  - Compute Optimized (C2): Compute intensive workloads
+    - Gaming applications
+- Hands-on : Setting up a HTTP server   
+  ```
+  #! /bin/bash
+  sudo su
+  apt update
+  apt -y install apache2
+  sudo service apache2 start
+  sudo update-rc.d apache2 enable
+  echo "Hello World" > /var/www/html/index.html
+  echo "Hello world from $(hostname) $(hostname -I)" > /var/www/html/index.html
+  ```
+![image](https://user-images.githubusercontent.com/19702456/230639657-628833a5-e7a7-40e7-b126-dcbf4052a8f0.png)
+- Instance Group - Group of VM instances managed as a single entity.
+  - Managed: Identical VMs created using a template. Instance template is mandatory
+    - Features: Auto scaling, auto healing and managed releases
+      - Rolling updates: Release new version step by step (gradually). Update a percentage of instances to the new version at a time.
+      - Canary Deployment: Test new version with a group of instances before releasing it across all instances.
+  - Unmanaged: Different configuration for VMs in same group:
+    - Does NOT offer auto scaling, auto healing & other services
+    - NOT Recommended unless you need different kinds of VMs
+- Load Balancing
+  - Network Layer - Transfer bits and bytes. IP (Internet Protocol): Transfer bytes. Unreliable.
+  - Transport Layer - Are the bits and bytes transferred properly ?
+    - TCP (Transmission Control): Reliability > Performance
+    - TLS (Transport Layer Security): Secure TCP
+    - UDP (User Datagram Protocol): Performance > Reliability
+  - Application Layer - Make REST API calls and Send Emails
+    - HTTP(Hypertext Transfer Protocol): Stateless Request Response Cycle
+    - HTTPS: Secure HTTP
+    - SMTP: Email Transfer Protocol
+  
+  ![image](https://user-images.githubusercontent.com/19702456/230649398-063274c7-67c7-4d49-94dd-2bd63954d79d.png)
+
+  ![image](https://user-images.githubusercontent.com/19702456/230650183-c9c0f718-5edb-41ec-945a-c55688528338.png)
+
 
 > ### Google Kubernetes Engine (GKE)
 - Developed by Google , Launched in 2014 – Kubernetes. In 2015, Google Launched cloud version - GKE
