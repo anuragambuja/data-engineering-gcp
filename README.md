@@ -178,6 +178,13 @@ manually detach it.
 
   ![image](https://user-images.githubusercontent.com/19702456/230650183-c9c0f718-5edb-41ec-945a-c55688528338.png)
 
+- Sustained use discounts (Automatic discounts for running VM instances for significant portion of the billing month) Does NOT apply on certain machine types (example: E2 and A2), or to VMs created by App Engine flexible and Dataflow. Applicable for instances created by Google Kubernetes Engine and Compute Engine.
+- Committed use discounts with predictable resource needs. Applicable for instances created by Google Kubernetes Engine and Compute Engine. Does NOT apply to VMs created by App Engine flexible and Dataflow. Commit for 1 year or 3 years. 
+- Spot VMs - Latest version of preemtible VMs but does not have a maximumum runtime of 24 hours.
+- Managed Services for Compute
+
+  ![image](https://user-images.githubusercontent.com/19702456/230710552-dc31cd82-a9ba-4bac-a72b-c1f5769b4180.png)
+
 
 > ### Google Kubernetes Engine (GKE)
 - Developed by Google , Launched in 2014 – Kubernetes. In 2015, Google Launched cloud version - GKE
@@ -296,6 +303,15 @@ $ gcloud app browse
 
 > ### gcloud
 
+- gcloud command structure 
+  - gcloud GROUP SUBGROUP ACTION ...
+    - GROUP - config or compute or container or dataflow or functions or iam or ..
+      - Which service group are you playing with?
+    - SUBGROUP - instances or images or instance-templates or machine-types or regions or zones
+      - Which sub group of the service do you want to play with?
+    - ACTION - create or list or start or stop or describe or ...
+      - What do you want to do?
+
 - Set environment variable to point to your downloaded GCP keys:
    ```shell
    export GOOGLE_APPLICATION_CREDENTIALS="<path/to/your/service-account-authkeys>.json"
@@ -307,6 +323,14 @@ $ gcloud app browse
    ```
 - Get project id: `gcloud info --format='value(config.project)'`
 - Enable/Disable service: `gcloud services enable/disable dataflow.googleapis.com --force`
+  ```
+  gcloud compute instances list
+  gcloud compute zones list
+  gcloud compute regions list
+  gcloud compute machine-types list
+  gcloud compute machine-types list --filter="zone:us-central1-b"
+  gcloud compute machine-types list --filter="zone:( us-central1-b europe-west1-d )"
+  ```
 
 > ### [Codelines](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
 
