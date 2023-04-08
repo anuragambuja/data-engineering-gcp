@@ -486,10 +486,20 @@ gcloud app regions list
 - Fully managed
 - Build small micro service
 - Auto scaling as traffic increase
-- Event based trigger
-  - Http
-  - File upload etc.
-  - Message pushed to pub/sub
+- Events are triggered from
+  - Cloud Storage
+  - Cloud Pub/Sub
+  - HTTP POST/GET/DELETE/PUT/OPTIONS
+  - Firebase
+  - Cloud Firestore
+  - Stack driver logging
+- 2 product versions
+  - Cloud Functions (1st gen): First version
+  - Cloud Functions (2nd gen): New version built on top of Cloud Run and Eventarc
+- Pay only for what you use
+  - Number of invocations
+  - Compute time of the invocations
+  - Memory and CPU provisioned
 
 ## Data Governance
 > ### Overview
