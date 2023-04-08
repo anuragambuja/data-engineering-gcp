@@ -496,10 +496,19 @@ gcloud app regions list
 - 2 product versions
   - Cloud Functions (1st gen): First version
   - Cloud Functions (2nd gen): New version built on top of Cloud Run and Eventarc
+
+
 - Pay only for what you use
   - Number of invocations
   - Compute time of the invocations
   - Memory and CPU provisioned
+- Key Enhancements in 2nd gen:
+  - Longer Request timeout: Up to 60 minutes for HTTP-triggered functions
+  - Larger instance sizes: Up to 16GiB RAM with 4 vCPU (v1: Up to 8GB RAM with 2 vCPU)
+  - Concurrency: Upto 1000 concurrent requests per function instance (v1: 1 concurrent request per function instance)
+  - Multiple Function Revisions and Traffic splitting supported (v1: NOT supported)
+  - Support for 90+ event types - enabled by Eventarc (v1: Only 7)
+
 
 ## Data Governance
 > ### Overview
