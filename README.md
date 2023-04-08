@@ -199,6 +199,97 @@ manually detach it.
   -	Node auto-repair to maintain node health and availability
   -	Logging and Monitoring with Cloud Monitoring for visibility into your cluster
 
+  ```
+  # Connect to the Kubernetes Cluster
+  gcloud container clusters get-credentials autopilot-cluster-1 --region us-central1 --project proven-audio-376216
+  
+  #Create deployment
+  kubectl create deployment hello-world-rest-api --image=in28min/hello-world-rest-api:0.0.1.RELEASE
+  kubectl get deployment
+  
+  # Create service
+  kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+  kubectl get services [--watch]
+  curl 35.202.65.199:8080/hello-world
+  
+  # Increase number of instances of your microservice
+  kubectl scale deployment hello-world-rest-api --replicas=3
+  # Increase number of nodes in your Kubernetes cluster
+  gcloud container clusters resize my-cluster --node-pool default-pool --num-nodes=2 --zone=us-central1-c
+  
+  # Setup auto scaling for your microservice
+  kubectl autoscale deployment hello-world-rest-api --max=4 --cpu-percent=70
+  kubectl get hpa
+  
+  # Add some application configuration for your microservice
+  kubectl create configmap hello-world-config --from-literal=RDS_DB_NAME=todos
+  kubectl get configmap
+  kubectl describe configmap hello-world-config
+  
+  # Add password configuration for your microservice
+  kubectl create secret generic hello-world-secrets-1 --from-literal=RDS_PASSWORD=dummytodos
+  kubectl get secret
+  kubectl describe secret hello-world-secrets-1
+  
+  # Kubernetes Deployment YAML
+  kubectl apply -f deployment.yaml
+  
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+labels:
+  app: hello-world-rest-api
+name: hello-world-rest-api
+namespace: default
+spec:
+replicas: 3
+selector:
+  matchLabels:
+    app: hello-world-rest-api
+template:
+  metadata:
+    labels:
+      app: hello-world-rest-api
+  spec:
+    containers:
+      - image: 'in28min/hello-world-rest-api:0.0.3.RELEASE'
+        name: hello-world-rest-api
+```
+  
+  ```yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+  app: hello-world-rest-api
+    name: hello-world-rest-api
+    namespace: default
+  spec:
+    ports:
+    - port: 8080
+    protocol: TCP
+    targetPort: 8080
+    selector:
+  app: hello-world-rest-api
+    sessionAffinity: None
+    type: LoadBalancer
+  
+  ```
+  
+  ```
+  gcloud container node-pools list --zone=us-central1-c --cluster=my-cluster
+  kubectl get pods -o wide
+
+  kubectl set image deployment hello-world-rest-api hello-world-rest-api=in28min/hello-world-rest-api:0.0.2.RELEASE
+  kubectl get replicasets
+  kubectl delete pod hello-world-rest-api-58dc9d7fcc-8pv7r
+  kubectl scale deployment hello-world-rest-api --replicas=1
+  kubectl delete service hello-world-rest-api
+  kubectl delete deployment hello-world-rest-api
+  gcloud container clusters delete my-cluster --zone us-central1-c
+  ```
+
 > ### App Engine
 - PAAS Solution. No Server management required. Serverless. 
 - Deploy HTTP based application
