@@ -33,6 +33,10 @@
 
 
 - All data in Apache Beam pipelines reside in PCollections. To create your pipeline’s initial PCollection, apply a root transform to your pipeline object. A root transform creates a PCollection from either an external data source or some local data you specify. There are two kinds of root transforms in the Beam SDKs: Read and Create. Read transforms read data from an external source, such as a text file or a database table. Create transforms create a PCollection from an in-memory list and are especially useful for testing.
+    - PCollections are immutable. Applying transformation on a PCollection results in creation of a new PCollection
+    - The elements in a PCollection may be of any type, but all must be of the same type.
+    - PCollection does not support grained operations. We cannot apply transformations on some specific elements in a PCollection.
+    - Each element in a PCollection has an associated timestamp with it. In Unbounded PCollections - source assign the timestamps. In Bounded PCollections - evenry elemnt is set to same timestamp. We can also assign the timestamps incase if it is not available.
 
 - Bundles are groupings of elements in the pipeline for a unit of work. Checkpoints allow for the ability to bookmark where the data has been read in the source, which means that the data that has been processed in the stream doesn't need to be reread. 
 
