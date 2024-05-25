@@ -71,30 +71,6 @@
 
 ![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
 
-## Zone & Region
-> ### Overview
-- Zones – Independent data Center. Each Zone has one or more discrete clusters.
-- Region – Specific geographical location to host your resources
-- Multi-region - Geographical Collection
-- Global - Anywhere
-
-![image](https://user-images.githubusercontent.com/19702456/222907494-543244ac-2303-470b-8db1-240333a0c5e4.png)
-
-> ### Why Zones & Regions ?
-- Low latency
-- Adhere to government regulations
-- High availability
-- Disaster recovery
-- Global Footprint
-
-Find the updated zones and regions [here](https://cloud.google.com/about/locations).
-
-> ### What is RTO & RPO ?
-- RTO – Recovery Time objective: Maximum time for which system can be down
-- RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
-
-![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
-
 ## IAM
 > ### Overview
 - Roles are collection of permissions. One can assign Role to identity, but Can not assign permission directly. So, permissions are assigned to identities via roles.
