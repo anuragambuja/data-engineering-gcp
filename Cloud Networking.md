@@ -30,8 +30,25 @@ Find the updated zones and regions [here](https://cloud.google.com/about/locatio
 
 ![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
 
-Virtual Private Cloud
-It is a managed networking service for Google Cloud infrastructure. A single VPC can span across multiple regions all over the workd, securely, without communicating across the public internet. VPCs are sharable across projects and with organizations in some cases. 
+> ## Virtual Private Cloud
+A Virtual Private Cloud (VPC) network is a virtual version of a physical network that is implemented inside of Google's production network by using Andromeda (Google Cloud Platform’s network virtualization
+stack). It is a managed networking service for Google Cloud infrastructure. A single VPC can span across multiple regions all over the workd, securely, without communicating across the public internet. VPCs are sharable across projects and with organizations in some cases. Each Google Cloud project has a default network to get you started. A VPC network is a global resource which consists of a list of regional virtual subnetworks (subnets) in data centers, all connected by a global wide area network (WAN). VPC networks are logically isolated from each other in Google Cloud. Each subnet is associated with a Google Cloud region and a private RFC 1918 CIDR block for its internal IP addresses range and a gateway.
+
+Note: The deny-all-ingress and allow-all-egress rules are also displayed, but you cannot check or uncheck them as they are implied. These two rules have a lower Priority (higher integers indicate lower priorities) so that the allow ICMP, custom, RDP and SSH rules are considered first.
+
+Routes tell VM instances and the VPC network how to send traffic from an instance to a destination, either inside the network or outside of Google Cloud. Notice that there is a route for each subnet and one for the Default internet gateway (0.0.0.0./0).
+Every VPC network has two implied firewall rules that block all incoming connections and allow all outgoing connections.  there are 4 Ingress firewall rules for the default network: These firewall rules allow ICMP, RDP and SSH ingress traffic from anywhere (0.0.0.0/0) and all TCP, UDP and ICMP traffic within the network (10.128.0.0
+default-allow-icmp
+default-allow-internal
+default-allow-rdp
+default-allow-ssh
+
+If an instance is stopped, any ephemeral external IP addresses assigned to the instance are released back into the general Compute Engine pool and become available for use by other projects. When a stopped instance is started again, a new ephemeral external IP address is assigned to the instance.
+
+The Internal IP should be 10.202.0.2 as x.x.x.1 is reserved for the gateway and you have not configured any other instances in that subnet.
+- allow-icmp firewall rule allows the ping to vm's external IP address.
+- allow-custom firewall rule allows to ping to vm's internal IP.
+-  allow-ssh firewall rule aloows to SSH to the VM.
 
 Network services
 - Load Balancing: Distribute incoming traffic across multiple instances of an application or service, ensuring high availability and scalability.
