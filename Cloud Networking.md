@@ -48,7 +48,8 @@ If an instance is stopped, any ephemeral external IP addresses assigned to the i
 The Internal IP should be 10.202.0.2 as x.x.x.1 is reserved for the gateway and you have not configured any other instances in that subnet.
 - allow-icmp firewall rule allows the ping to vm's external IP address.
 - allow-custom firewall rule allows to ping to vm's internal IP.
--  allow-ssh firewall rule aloows to SSH to the VM.
+- allow-ssh firewall rule aloows to SSH to the VM.
+- Create a firewall rule to allow external traffic to the VM instances: `gcloud compute firewall-rules create <firewall name> --target-tags <target tags> --allow tcp:80`
 
 Network services
 - Load Balancing: Distribute incoming traffic across multiple instances of an application or service, ensuring high availability and scalability.
@@ -89,6 +90,25 @@ Google Cloud Network Intelligence Center provides a comprehensive suite of tools
   - Suitable for development, testing, and non-production environments.
   - Choose Standard Tier for cost-sensitive scenarios.
   
+
+> Load Balancer 
+- Network Load Balancer
+- HTTP(s) Load Balancer: HTTP(S) Load Balancing is implemented on Google Front End (GFE). GFEs are distributed globally and operate together using Google's global network and control plane. You can configure URL rules to route some URLs to one set of instances and route other URLs to other instances. Requests are always routed to the instance group that is closest to the user, if that group has enough capacity and is appropriate for the request. If the closest group does not have enough capacity, the request is sent to the closest group that does have capacity. To set up a load balancer with a Compute Engine backend, your VMs need to be in an instance group.
+
+- 
+
+
+
+
+
+
+
+An internal load balancer consists of a:
+- Forwarding rule which binds an internal IP address.
+- Backend service (which is regional) linking to one or more backend instance groups (which are zonal).
+- Health check attached to the backend service that determines which instances can receive new connections.
+
+![image](https://github.com/anuragambuja/data-engineering-gcp/assets/19702456/d224c403-f1d6-41d4-aecc-d75948c37f91)
 
 
 
