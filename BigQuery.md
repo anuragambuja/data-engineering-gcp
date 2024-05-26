@@ -58,6 +58,18 @@ Inner join: requires that key values exist in both tables for the records to app
 Left join: Each row in the left table appears in the results, regardless of whether there are matches in the right table.
 Right join: the reverse of a left join. Each row in the right table appears in the results, regardless of whether there are matches in the left table.
 
+- BigQuery natively supports arrays. Array values must share a data type. Arrays are called REPEATED fields in BigQuery.
+  - finding the number of elements with ARRAY_LENGTH(<array>)
+  - deduplicating elements with ARRAY_AGG(DISTINCT <field>)
+  - ordering elements with ARRAY_AGG(<field> ORDER BY <field>)
+  - limiting ARRAY_AGG(<field> LIMIT 5)
+
+- A STRUCT can have:
+  - One or many fields in it
+  - The same or different data types for each field
+  - It's own alias
+  - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct (as shown above with the splits field).
+
 ## Architecture
 
 BigQuery is built on 4 infrastructure technologies.
