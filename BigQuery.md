@@ -53,6 +53,11 @@
 $ bq show --format=prettyjson dataset:tablename
 ```
 
+Cross join: combines each row of the first dataset with each row of the second dataset, where every combination is represented in the output.
+Inner join: requires that key values exist in both tables for the records to appear in the results table. Records appear in the merge only if there are matches in both tables for the key values.
+Left join: Each row in the left table appears in the results, regardless of whether there are matches in the right table.
+Right join: the reverse of a left join. Each row in the right table appears in the results, regardless of whether there are matches in the left table.
+
 ## Architecture
 
 BigQuery is built on 4 infrastructure technologies.
