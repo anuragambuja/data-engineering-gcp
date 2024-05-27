@@ -4,6 +4,8 @@ Dataplex manages data in a way that doesn’t require data movement or duplicati
 
 Dataplex provides a flexible security model that allows you to manage who can access and perform actions on Dataplex resources. Specifically, Dataplex security is implemented using different Dataplex IAM roles that allow users to administer Dataplex lakes, access data in the lake through the attached assets such as a Cloud Storage bucket or BigQuery dataset, or access metadata about the data connected to a lake.
 
+Following the Google recommendation of least privilege, Dataplex allows Dataplex administrators to grant Dataplex IAM roles to users at the level of the project, lake, zone, and individual assets like a Cloud Storage bucket.
+
 In Dataplex, a lake is the highest organizational domain that represents a specific data area or business unit. For example, you can create a lake for each department or data domain in your organization, so that you can organize and provide data for specific user groups.
 After you create a lake, you can add zones to the lake. Zones are subdomains within a lake that you can use to categorize data further. For example, you can categorize data by stage, usage, or restrictions.
 There are two types of zones:
@@ -17,6 +19,14 @@ To delete a lake, you must first detach assets and then delete the zones.
 > Tagging 
 To start tagging data, you first need to create one or more tag templates. A tag template can be a public or private tag template. When you create a new tag template, the option to create a public tag template is the default and recommended option. Users who have the required view permissions for a data asset can view all the public tags associated with it. This supports simple search for discovery while also adhering to data access controls already implemented on the underlying data.
 After you create a tag template, you can use it to attach tags to any number of desired data assets to which you have access.
+
+
+
+To control access:
+1. Create/Add Lake , Zone and assets.
+2. Assign Dataplex role to the users (Dataplex > Secure >Dataplex resources >Grant access )
+
+
 
 
 
