@@ -13,6 +13,7 @@ The YAML file has four keys sections:
 - rule bindings to apply the defined rules to the table(s)
 - optional rule dimensions to specify the types of the rules that the YAML file can contain
 sample file: https://github.com/anuragambuja/data-engineering-gcp/blob/main/codelines/dataplex-data-validation-on-bq-table.yaml
+Check the `failed_records_query` column in the final table to review the data quality checks. 
 
 
 In Dataplex, a lake is the highest organizational domain that represents a specific data area or business unit. For example, you can create a lake for each department or data domain in your organization, so that you can organize and provide data for specific user groups.
