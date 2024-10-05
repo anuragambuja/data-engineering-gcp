@@ -10,7 +10,7 @@
 - Built using BigTable + GCP Infrastructure
 - BigQuery is Columnar storage. Cloud SQL databases are RECORD-based storage, meaning the entire record must be opened on disk even if you just selected a single column in your query.
 
-- 
+- Avro, ORC, and Parquet files are all now supported for federated querying.
 - Exabyte scale
 - BQ managed Transfer Service allows to move data into BQ from SaaS services. You can schedule loades and automatically scale and access other data sources through various connectors.
 - Datasets are collections of tables that can be divided along business lines or a given analytical domain. Each dataset is tied to a Google Cloud project.
