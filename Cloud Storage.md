@@ -4,6 +4,7 @@
 - Object storage solution in GCP with no minimum Object Size and 5TB as max size. 
 - High Durability – 99.999999999% annual
 - Cloud Storage allows world-wide storage and retrieval of any amount of data at any time. You can use Cloud Storage for a range of scenarios including serving website content, storing data for archival and disaster recovery, or distributing large data objects to users via direct download.
+- The site, storage.cloud.google.com, uses TLS HTTPS to transport your data, which protects credentials as well as data in transit.
 > Storage Class - How frequently access data ?
   - Standard
     - Good for Hot data
