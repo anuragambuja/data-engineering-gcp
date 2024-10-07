@@ -1,6 +1,9 @@
 # Dataflow
 
 - Fully managed Managed service for both batch + stream Processing. Horizontal autoscaling of worker
+<img width="424" alt="image" src="https://github.com/user-attachments/assets/0b413927-8525-4c92-85ec-031135af3d0b">
+
+  
 - An advanced unified programming model to implement batch and streaming data processing jobs that run on various execution engine/ runner
     
     ![image](https://user-images.githubusercontent.com/19702456/226647382-4e6a3bc0-f4fb-4dfa-b5e7-d5c186e47ff1.png)
@@ -23,7 +26,7 @@
 
     ![image](https://user-images.githubusercontent.com/19702456/226963260-a4cb6ad1-d144-4794-854c-42cabeadeb0f.png)
 
-    A pipeline identifies the data to be processed and the actions to be taken on the data. The data is held in a distributed data abstraction called a P collection. The P collection is immutable. Any change that happens in a pipeline ingests one P collection and creates a new one. It does not change the incoming P collection. The action or code is contained in an abstraction called a P transform. P transform handles input, transformation, an output of the data. The data in the P collection is passed along a graph from one P transform to another. Pipeline runners are analogous to container hosts such as Google Kubernetes Engine. A P collection represents both streaming data and batch data. There is no size limit to a P collection. Streaming data is an unbounded P collection that doesn't end. Each element inside a P collection can be individually accessed and processed. In a P collection, all data types are stored in a serialized state as byte strings.
+    A pipeline identifies the data to be processed and the actions to be taken on the data. The data is held in a distributed data abstraction called a P collection. The P collection is immutable. Any change that happens in a pipeline ingests one P collection and creates a new one. It does not change the incoming P collection. The action or code is contained in an abstraction called a P transform. P transform handles input, transformation, an output of the data. The data in the P collection is passed along a graph from one P transform to another. Pipeline runners are analogous to container hosts such as Google Kubernetes Engine. The identical pipeline can be run on a local computer, data center VM, or on a service such as Dataflow in the Cloud. The services the runner uses to execute the code is called a backend system. A P collection represents both streaming data and batch data. There is no size limit to a P collection. Streaming data is an unbounded P collection that doesn't end. Each element inside a P collection can be individually accessed and processed. Elements represent different data types. In a P collection, all data types are stored in a serialized state as byte strings. This way, there is no need to serialize data prior to network transfer and deserialize it when it is received.Instead, the data moves through the system in a serialized state and is only deserialized when necessary for the actions of a P transform.
 
    ![image](https://user-images.githubusercontent.com/19702456/226963349-5765d651-f9b4-42c2-8bd1-64d8ff69ce8d.png)
 
