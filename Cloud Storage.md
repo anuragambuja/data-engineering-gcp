@@ -38,6 +38,7 @@
 - IAM is standard across the Google Cloud. It is set at the bucket level and applies uniform access rules to all objects within a bucket. Access control lists can be applied at the bucket level or on individual objects, so it provides more fine-grained access control. IAM provides project roles and bucket roles, including bucket reader, bucket writer and bucket owner. The ability to create or change access control lists is an IAM bucket role and the ability to create and delete buckets and to set IAM policy is a project level role. When you create a bucket, you are offered the option of disabling access lists and only using IAM. You can disable access lists even if they were in-force previously. As an example, you might give some bob@example.com reader access to a bucket through IAM, and also give them write access to a specific file in that bucket through access control lists.
 
 > Encryption Options
+We use two levels of encryption. First, the data is encrypted using a data encryption key. Then the data encryption key itself is encrypted using a key encryption key, or KEK. The KEKs are automatically rotated on a schedule, and the current KEK is stored in Cloud KMS, Cloud Key Management Service.
 - Google managed Encryption keys
 	- No Configuration
 	- Fully managed
@@ -48,6 +49,7 @@
 	- We will generate Key with : openssl rand =base64 32
 	- gsutil – encrypt with CSEK
 
+Data locking is different from encryption. Where encryption prevents someone from understanding the data, locking prevents them from modifying the data.
 ![image](https://user-images.githubusercontent.com/19702456/222905709-675cb9ef-c156-42fd-9d04-b4a24c6a84af.png)
 
 
