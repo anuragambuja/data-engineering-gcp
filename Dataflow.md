@@ -10,7 +10,7 @@
 
 - Cloud version of Apache Beam = (Batch + Stream)
 - Jobs created with
-  - Pre-define template
+  - Pre-define template - Dataflow Templates allow users who don't have any coding capability to execute their Dataflow job.
   - Notebook instance
    - Write Data Pipeline job in Java, Python, SQL
   - From Cloud Shell/Local Machine
