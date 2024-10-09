@@ -4,6 +4,10 @@
 - Code free, Drag-n-drop ETL/ELT development tool
 - 150+ preconfigured connectors & transformations
 - Built with Open-source CDAP
+- extensible: This includes the ability to templatize pipelines, create conditional triggers, and manage and templatize plugins.
+- Two major user interface components:
+  - Wrangler UI for exploring data sets visually, and building pipelines with no code
+  - Data Pipeline UI for drawing pipelines right on to a canvas
 - 3 Edition are available
   - Developer
   - Basic
