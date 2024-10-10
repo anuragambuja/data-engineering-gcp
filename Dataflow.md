@@ -23,6 +23,7 @@
 - Job States: Running, Not Started, Queues, Cancelling/Cancelled, Draining/Drained, Updating/Updated, Succeeded, Failed
 
 - When a Dataflow job is created, a cloud storage bucket is used to store binary files containing pipeline code. A cloud storage bucket is also used to temporarily store export or import data. By default, when data is stored in any of these locations, a Google-managed key is used to encrypt the data. When your pipeline starts and the data is loaded into the worker memory, data keys used in key-based operations, such as windowing, grouping, and joining, will be decrypted using your CMEK keys. Using CMEK requires both the Dataflow service account and the Controller Agent service account to have the cloud KMS CryptoKey Encrypter/Decrypter role. When you launch a job that uses CMEK, the region for your key and the regional input for your Dataflow job must be the same.
+While the job is running, persistent disks attached to Dataflow workers are used for persistent disk-based shuffle and streaming state storage. If a batch job is using Dataflow Shuffle, the backend stores the batch pipeline state during execution. If a job is using Dataflow Streaming Engine, the backend stores the streaming pipeline state during execution. By default, when data is stored in any of these locations, a Google-managed key is used to encrypt the data.
 
     ![image](https://user-images.githubusercontent.com/19702456/226963260-a4cb6ad1-d144-4794-854c-42cabeadeb0f.png)
 
@@ -34,7 +35,8 @@
    
    ![image](https://user-images.githubusercontent.com/19702456/226964539-2449f160-a634-456c-a8fd-6df1fa870cb1.png)
 
-
+- If you are launching a private IP Dataflow job (--no_use_public_ips flag), no in-use IP address quota will be taken up.
+  
 - All data in Apache Beam pipelines reside in PCollections. To create your pipeline’s initial PCollection, apply a root transform to your pipeline object. A root transform creates a PCollection from either an external data source or some local data you specify. There are two kinds of root transforms in the Beam SDKs: Read and Create. Read transforms read data from an external source, such as a text file or a database table. Create transforms create a PCollection from an in-memory list and are especially useful for testing.
     - PCollections are immutable. Applying transformation on a PCollection results in creation of a new PCollection
     - The elements in a PCollection may be of any type, but all must be of the same type.
@@ -56,9 +58,12 @@
     <img width="383" alt="image" src="https://github.com/user-attachments/assets/600a2b21-6752-4432-a3a2-34b12f3a2ffd">
 
 
-- When you run your pipeline on Dataflow, it uses the service account service- @dataflow-service-producer-prod.iam.gserviceaccount.com. This account is automatically created when the Dataflow API is enabled. It is assigned the Dataflow service agent role and has the necessary permissions to run a Dataflow job in your project. By default, workers use your project's Compute Engine default service account as the controller service account. This service account, <project-number>-compute @developer.gservices.com, is automatically created when you enable the Compute Engine API for your project from the API's page in the Google Cloud console.
+- When you run your pipeline on Dataflow, it uses the service account service-yourproject@dataflow-service-producer-prod.iam.gserviceaccount.com. This account is automatically created when the Dataflow API is enabled. It is assigned the Dataflow service agent role and has the necessary permissions to run a Dataflow job in your project. The controller service account is assigned to the Compute Engine VMs to run your Dataflow pipeline.
+By default, workers use your project's Compute Engine default service account as the controller service account. This service account, <project-number>-compute@developer.gservices.com, is automatically created when you enable the Compute Engine API for your project from the API's page in the Google Cloud console. The Dataflow service account is responsible for the interaction happening between your project and Dataflow.
 
 - When you launch a batch pipeline, the ratio of VMs to PDs is 1:1. For each VM, only one persistent disk is attached. For jobs running Shuffle on worker VMs, the default size of each persistent disk is 250 gigabytes. If the batch job is running using Shuffle Service, the default persistent disk size is 25 gigabytes. Streaming pipelines, however, are deployed with a fixed pool of persistent disks. Each worker must have at least one persistent disk attached to it while the maximum is 15 persistent disks per worker instance. When you run a job using the Dataflow back end, the feature that is used is Dataflow Streaming Engine. For jobs launched to execute in the worker VMs, the default persistent disk size is 400 gigabytes. Jobs launched using Streaming Engine have a persistent disk size of 30 gigabytes. It is important to note that the amount of disk allocated in a streaming pipeline is equal to the maxNumWorkers flag. For example, if you launch a job with three workers initially and set the maximum number of workers to 25, 25 disks will count against your quota and not three. For streaming jobs that do not use Streaming Engine, the maxNumWorkers flag is optional. The default is 100.
+
+- If your pipeline sources, syncs, and staging locations are all in the same region, you will not be charged for network egress because all the info remains in the same region. If you have a pipeline with workers in northamerica-northeast and its regional endpoint is set to us-central1, your network egress charge will increase because of the metadata that is transferred between your project and the regional endpoint.
 
 > ### Windows
 - Windows divides data into time-based finite chunks. It is required when doing aggregations over unbounded data using Beam primitives (GroupBy Key, Combiners). 
@@ -96,16 +101,16 @@
 
      ![image](https://user-images.githubusercontent.com/19702456/226947218-53b5376f-fa2f-488e-b066-e096509d2e98.png)
 
-> ### Dataflow Suffle Service
-A shuffle is a Dataflow-based operation behind transforms such as GroupByKey, CoGroupByKey, and Combine. The Dataflow Shuffle operation partitions and groups data by key in a scalable, efficient, fault-tolerant manner. Currently, Dataflow uses a shuffle implementation that runs entirely on worker virtual machines and consumes worker CPU, memory, and persistent disk storage. The service-based Dataflow Shuffle feature available for batch pipelines only moves the shuffle operations out of the worker VMs and into the Dataflow service backend. The worker nodes will benefit from a reduction in consumed CPU, memory, and persistent disk storage resources, and your pipelines will have better autoscaling because the worker nodes VMs no longer hold any shuffle data, and can therefore be scaled down earlier.
+> ### Dataflow Shuffle Service
+A shuffle is a Dataflow-based operation behind transforms such as GroupByKey, CoGroupByKey, and Combine. The Dataflow Shuffle operation partitions and groups data by key in a scalable, efficient, fault-tolerant manner. Currently, Dataflow uses a shuffle implementation that runs entirely on worker virtual machines and consumes worker CPU, memory, and persistent disk storage. The service-based Dataflow Shuffle feature available for batch pipelines only moves the shuffle operations out of the worker VMs and into the Dataflow service backend. The worker nodes will benefit from a reduction in consumed CPU, memory, and persistent disk storage resources, and your pipelines will have better autoscaling because the worker nodes VMs no longer hold any shuffle data, and can therefore be scaled down earlier. Also, because of the service, you will get better fault tolerance.An unhealthy VM holding Dataflow Shuffle data will not cause the entire job to fail, which would happen without the feature.
 
 ![image](https://user-images.githubusercontent.com/19702456/226877535-90a1d25e-df87-46da-b2d2-65272b7cf680.png)
 
 > ### Dataflow Streaming Engine
-Just like shuffle component in batch, the streaming engine offloads the window state storage from the persistent disks attached to worker VMs to a back-end service. Worker nodes continue running your user code and implements data transforms and transparently communicate with a streaming engine to source state. Streaming engine works best with smaller worker machine types like n1-standard-2, and does not require persistent disks beyond a smaller worker boot disk.
+Just like shuffle component in batch, the streaming engine offloads the window state storage from the persistent disks attached to worker VMs to a back-end service. It also implements an efficient shuffle for streaming cases. Worker nodes continue running your user code and implements data transforms and transparently communicate with a streaming engine to source state. Streaming engine works best with smaller worker machine types like n1-standard-2, and does not require persistent disks beyond a smaller worker boot disk. With streaming engine, your pipeline will be more responsive to variations to incoming data volume.
 
 > ### Flexible Resource Scheduling (FlexRS)
-When you submit a FlexRS job, the Dataflow service places the job into a queue and submits it for execution within six hours from job creation. As soon as you submit your FlexRS job, Dataflow records a job ID and performs an early validation run to verify execution parameters, configurations, quota and permissions.
+When you submit a FlexRS job, the Dataflow service places the job into a queue and submits it for execution within six hours from job creation. This makes FlexRS suitable for workloads that are not time-critical, such as daily or weekly jobs that can be completed within a certain time window. As soon as you submit your FlexRS job, Dataflow records a job ID and performs an early validation run to verify execution parameters, configurations, quota and permissions. FlexRS leverages a mix of preemptible and normal VMs.
 
 > ### Dataframe differences from standard Pandas
 - Operations are deferred, and the result of a given operation may not be available for control flow or interactive visualizations. For example, you can compute a sum, but you can't branch on the result.
