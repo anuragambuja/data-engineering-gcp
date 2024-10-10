@@ -137,5 +137,19 @@ We use unit tests in Beam to assert behavior of one small testable piece of your
 
 
 ## Note
-- Consider using combine when you can instead of GroupByKey, especially if your data is heavily skewed.    
+- Consider using combine when you can instead of GroupByKey, especially if your data is heavily skewed.
+
+# Apache Beam
+- comprehensive portability framework for data processing pipelines, one that allows you to write your pipeline once in the programming language of your choice and run it with minimal effort on the execution engine of your choice.
+- With Apache Beam, you can define your pipeline in popular languages like Java, Python, Go, SQL.
+- With portability, every runner can work with every supported language. Containerization allows us a configurable, hermetic worker environment.
+- Beam portability framework:
+  - A language-agnostic way to represent pipelines
+  - A set of protocols for executing pipelines
+- To use the portability features mentioned earlier, you must use the Dataflow Runner v2. This runner is packaged together with the Dataflow Shuffle service and Streaming Engine
+- To create a custom container image locally, create a Docker file in which you specify the Apache Beam image as the parent image.
+![image](https://github.com/user-attachments/assets/4512b32c-7488-46a1-9954-273a48e318a3)
+- Cross Language Transforms: no longer limited to a single language in a given pipeline
+![image](https://github.com/user-attachments/assets/c0c6f522-32c1-4ac1-96db-3acb4f4f16d0)
+
 
