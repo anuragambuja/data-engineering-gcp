@@ -234,8 +234,11 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 > Install bigquery api in notebook:  `! pip install google-cloud-bigquery==1.25.0 --use-feature=2020-resolver`  
   
   
-  
-  
-  
+## Streaming in Bigquery
+- Streaming Inserts allows you to insert one item at a time into a table.
+- New tables can be created from a temporary table that identifies the schema to be copied. The data enters a streaming buffer where it is held briefly until it can be inserted into the table.
+- You can disable best effort de-duplication by not populating the insert ID field for each row inserted.
+  ![image](https://github.com/user-attachments/assets/9483f15d-597a-4b54-b182-fb23722c24e4)
+
   
   
