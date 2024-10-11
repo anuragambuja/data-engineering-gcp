@@ -65,11 +65,18 @@ By default, workers use your project's Compute Engine default service account as
 
 - If your pipeline sources, syncs, and staging locations are all in the same region, you will not be charged for network egress because all the info remains in the same region. If you have a pipeline with workers in northamerica-northeast and its regional endpoint is set to us-central1, your network egress charge will increase because of the metadata that is transferred between your project and the regional endpoint.
 
+- Challenges with Processing Streaming Data
+  - Scalability:  being able to handle the volume of data as it gets larger and/or more frequent.
+  - Fault Tolerance: The larger you get, the more sensitive you are to going down unexpectedly.
+  - Model:  is the model being used--streaming or repeated batch.
+  - Timing:  latency of the data. eg. what if the network has a delay or a sensor goes bad and messages can't be sent?
+
 > ### Windows
+- In Dataflow, when you are reading messages from Pub/Sub, every message will have a timestamp that is a Pub/Sub message timestamp.
 - Windows divides data into time-based finite chunks. It is required when doing aggregations over unbounded data using Beam primitives (GroupBy Key, Combiners). 
 - Types of windows
-    - Fixed windows - are those that are divided into time slices. For example, hourly, daily, monthly. Fixed time windows consist of consistent, non-overlapping intervals.
-    - Sliding windows - represent intervals in the data stream. Sliding time windows can overlap. For example, in a running average. The frequency with which a sliding windows begin is called a period. For example, give me 30 minutes' worth of data and compute that every 5 minutes. 
+    - Fixed windows (Tumbling in Dataflow) - are those that are divided into time slices. For example, hourly, daily, monthly. Fixed time windows consist of consistent, non-overlapping intervals.
+    - Sliding windows (Hopping in Dataflow) - represent intervals in the data stream. Sliding time windows can overlap. For example, in a running average. The frequency with which a sliding windows begin is called a period. For example, give me 30 minutes' worth of data and compute that every 5 minutes. 
     - Session windows - are for situations where the communication is bursty. It might correspond to a web session. An example might be if a user comes in and uses four to five pages and leaves. It will have a time-out period, and it will flush the window at the end of that time out period.
 
     ![image](https://user-images.githubusercontent.com/19702456/226908765-bbc317d5-c411-42cd-9197-3c72de9954d6.png)
@@ -77,7 +84,7 @@ By default, workers use your project's Compute Engine default service account as
     ![image](https://user-images.githubusercontent.com/19702456/226908783-9e76ca62-aa59-4a05-a8fa-d60742084cd4.png)
 
 > ### Watermark
-- Watermark keep tracks of lag time. The watermark is the relationship between the processing timestamp and the event. The processing timestamp is the moment the message arrives at the pipeline.  Any message that arrives before the watermark is said to be early. if it arrives right after the watermark is said to be on time and if it arrives later, then it is late.
+- Watermark keep tracks of lag time which can be due to network delays, system backlogs, processing delays, pubsub latency etc. The watermark is the relationship between the processing timestamp and the event. The processing timestamp is the moment the message arrives at the pipeline.  Any message that arrives before the watermark is said to be early. if it arrives right after the watermark is said to be on time and if it arrives later, then it is late. So, Dataflow is going to do is continuously compute the watermark, which is how far behind we are.
 - Data flow estimates the watermark as the oldest timestamp waiting to be processed. This estimation is continuously updated with every new message that is received. 
 - Data freshness is the amount of time between real time and the output watermark (timestamp of the oldest message waiting to be processed). 
 - System latency is the current maximum duration that an item of data has been processing or awaiting processing. Latency measures the time it takes to fully process a message.This includes any waiting time in the input source.
