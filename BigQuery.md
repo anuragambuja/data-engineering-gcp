@@ -240,5 +240,15 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 - You can disable best effort de-duplication by not populating the insert ID field for each row inserted.
   ![image](https://github.com/user-attachments/assets/9483f15d-597a-4b54-b182-fb23722c24e4)
 
-  
-  
+
+## ML in BigQuery
+- High precision means a low false positive rate, meaning you really punish a model's precision if it makes a ton of bad guesses. Recall, on the other hand, is the ratio of correctly predicted positive observations to the all observations in actual class. Accuracy is simply true positives plus true negatives over the entire set of observations.
+- 
+
+![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
+
+
+
+
+
+
