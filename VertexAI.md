@@ -9,7 +9,10 @@
   - Split the cleaned dataset into a training and evaluation dataset.
   - Train a model on the training dataset.
   - Evaluate the model against the evaluation dataset.
+
  
+ ![image](https://github.com/user-attachments/assets/30e743a5-b048-4608-a6b5-4424fd8d28ba)
+
 - Kubeflow Pipelines is a Kubernetes-native, open source product, that has grown into the industry standard for running ML pipelines over the years.
   ![image](https://github.com/user-attachments/assets/4e907192-24eb-4e36-87d8-c122eea19f5a)
 - Key Capabilities:
