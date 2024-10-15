@@ -4,6 +4,7 @@
 - Wide column NOSQL database. Better to store data in one table than many. Small tables are problematic since querying multiple tables increases connection overhead and latency and is more difficult to load balance. 
 - Scale horizontally with Multiple Nodes
 - Data stored at column wise. Columns are grouped into column family. Empty columns do not take any space.
+- Bigtable also provides Column Families. By accessing the Column Family, you can pull some of the data you need without pulling all of the data from the row or having to search for it and assemble it. Bigtable can handle up to 100 column families without losing performance.
 - Milli second latency.
 - Handles millions of request per second.
 - Bigtable is ideal for applications that need very high throughput and scalability for non-structured key/value data, where each value is typically no larger than 10 MB. Bigtable is not well suited for highly structured data, transactional data, small data volumes less than 1 TB, and anything requiring SQL Queries and SQL-like joins.
@@ -29,7 +30,8 @@
     ```
   - Hbase API
 
-- No Multi column index. Only Row key based indexing. Row Keys are analogous to a primary key in relational databases. Bigtable does not support joins, so no concept of foreign keys. Row keys determine where data is written. 
+- No Multi column index. Only Row key based indexing. There are no alternate indexes or secondary indexes. 
+And when data is entered, it is organized lexicographically by the Row Key. Row Keys are analogous to a primary key in relational databases. Bigtable does not support joins, so no concept of foreign keys. Row keys determine where data is written. 
     
     ![image](https://user-images.githubusercontent.com/19702456/227278313-b483add6-6cc5-451c-a8c4-f219286116df.png)
 
@@ -45,16 +47,26 @@
 
 - When a node is lost in the cluster, no data is lost, and recovery is fast because only the metadata needs to be copied to the replacement node.
 
-- When you delete data, the row is marked for deletion and skipped during subsequent processing. It is not immediately removed. If you make a change to data, the new row is upended sequentially to the end of the table, and the previous version is marked for deletion. So both rows exist for a period of time. Periodically, Bigtable compacts the table, removing rows marked for deletion and reorganizing the data for read and write efficiency.       
-
+- When you delete data, the row is marked for deletion and skipped during subsequent processing. It is not immediately removed. If you make a change to data, the new row is upended sequentially to the end of the table, and the previous version is marked for deletion. So both rows exist for a period of time. Periodically, Bigtable compacts the table, removing rows marked for deletion and reorganizing the data for read and write efficiency.
+ ![image](https://github.com/user-attachments/assets/5bc8e2e6-4fc3-4753-b60e-64801a27933d)
+      
+- Optimizing BIgtable Performance:
+  - It's essential to design a schema that allows reads and writes to be evenly distributed across the Bigtable cluster. Otherwise individual nodes can get overloaded, slowing performance.
+  - The workload isn't appropriate for Bigtable. If you are testing with a small amount, less than 300 gigabytes of data, or for a very short period of time, seconds rather than minutes or hours, Bigtable won't be able to properly optimize your data.
+  - The Bigtable cluster doesn't have enough nodes. Adding more nodes can therefore improve performance.
+  - Bigtable takes time to process cells within a row, so if there are fewer cells within a row, it will generally provide better performance than more cells.
+  - Replication for Bigtable enables you to increase the availability and durability of your data by copying it across multiple regions or multiple zones within the same region. If a Bigtable cluster becomes unresponsive, replication makes it possible for incoming traffic to failover to another cluster in the same instance.
+  
 - Design Row key by keeping in your mind
   - Avoid using monotonically increasing key to avoid Hot spotting
   - Avoid low cardinality attributes
-  - Better design option: concatenate multiple attributes. Start with high cardinality attributes eg. IoT sensor ID, then add time such as date and hour i.e. low cardinality attributes near the end of the key. eg. sensor ID + reverse datetime: 12345 + (00|23|21|08|2023)
+  - Better design option: concatenate multiple attributes. Start with high cardinality attributes eg. IoT sensor ID, then add time such as date and hour i.e. low cardinality attributes near the end of the key. eg. sensor ID + reverse datetime: 12345 + (00|23|21|08|2023). By reversing the timestamp, you can design a row key where the most recent event appears at the start of the table instead of the end.
 
     ![image](https://user-images.githubusercontent.com/19702456/227277588-4a0d8fe4-fa0f-44d2-abce-5858958ce5cd.png)
     
-- Key Visualizer is a tool that helps you analyze your Bigtable usage patterns. It generates visual reports for your tables that break down your usage based on the row keys that you access. Key Visualizer automatically generates hourly and daily scans for every table in your instance that meets at least one of the following criteria: During the previous 24 hours, the table contained at least 30 gigabytes of data at some point in time. During the previous 24 hours, the average of all reads or all writes was at least 10,000 rows per second.
+- Key Visualizer is a tool that helps you analyze your Bigtable usage patterns. It generates visual reports for your tables that break down your usage based on the row keys that you access. The core of a Key Visualizer scan is the heat map, which shows the value of a metric over time broken down into contiguous ranges of row keys. The X-axis of the heat map represents time, and the Y-axis represents row keys. If the metric has a low value for a group of row keys at a point in time, the metric is cold, and it appears in a dark color. A high value is hot, and it appears in a bright color. The highest values appear in white. Key Visualizer automatically generates hourly and daily scans for every table in your instance that meets at least one of the following criteria:
+  - During the previous 24 hours, the table contained at least 30 gigabytes of data at some point in time.
+  - During the previous 24 hours, the average of all reads or all writes was at least 10,000 rows per second.
 
 - Used for
   - Financial data
