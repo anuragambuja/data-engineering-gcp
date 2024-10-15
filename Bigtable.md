@@ -6,6 +6,10 @@
 - Data stored at column wise. Columns are grouped into column family. Empty columns do not take any space.
 - Milli second latency.
 - Handles millions of request per second.
+- Bigtable is ideal for applications that need very high throughput and scalability for non-structured key/value data, where each value is typically no larger than 10 MB. Bigtable is not well suited for highly structured data, transactional data, small data volumes less than 1 TB, and anything requiring SQL Queries and SQL-like joins.
+
+  ![image](https://github.com/user-attachments/assets/eef740ec-786a-493c-a8a0-fb7a6d072003)
+
 - How to access
   - cbt – command line (part of cloud sdk)
 
@@ -28,6 +32,10 @@
 - No Multi column index. Only Row key based indexing. Row Keys are analogous to a primary key in relational databases. Bigtable does not support joins, so no concept of foreign keys. Row keys determine where data is written. 
     
     ![image](https://user-images.githubusercontent.com/19702456/227278313-b483add6-6cc5-451c-a8c4-f219286116df.png)
+
+- Bigtable stores data in a file system called Colossus. Colossus also contains data structures called Tablets that are used to identify and manage the data. And metadata about the Tablets is what is stored on the VMs in the Bigtable cluster itself.
+  ![image](https://github.com/user-attachments/assets/ece04843-5896-4bcd-82eb-d328bd1cab9f)
+
 
 - Bigtable writes data to multiple servers (nodes) which handles a subset of workload. Within nodes there are multiple sorted-string tables(SSTables). Data is sharded into blocks of continuous rows, called tablets. Tablets are stored in Colossus file system. So, metadata is stored on node and data is stored in Colossus.
   
