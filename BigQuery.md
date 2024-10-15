@@ -129,7 +129,14 @@ Data processing has a [2-tier pricing model](https://cloud.google.com/bigquery/p
    -  Queries take up slots. If you're running multiple queries and run out of slots, the additional queries must wait until other queries finish in order to free up the slot. On demand pricing does not have this issue.
    -  The flat-rate pricing only makes sense when processing more than 400TB of data per month.
 - The cost of a query is always assigned to the active project from where the query is executed.
-  
+- BigQuery Editions:
+  -   
+![image](https://github.com/user-attachments/assets/86ad7e36-49bb-40da-aee6-51929907898f)
+- Difference between Uncompresses and Compressed storage pricing
+  ![image](https://github.com/user-attachments/assets/53a3571e-af71-4c28-9a75-2eb052e6575d)
+
+
+
 When running queries on BQ, the top-right corner of the window will display an approximation of the size of the data that will be processed by the query. Once the query has run, the actual amount of processed data will appear in the _Query results_ panel in the lower half of the window. This can be useful to quickly calculate the cost of the query.
   
 ## Partitioning and Clustering  
