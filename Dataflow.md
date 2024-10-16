@@ -117,14 +117,46 @@ By default, workers use your project's Compute Engine default service account as
 
 ![image](https://github.com/user-attachments/assets/f900834b-e57c-440d-bfb1-fc4dae2a9249)
 
+# Sources and Sinks
+- A source is when you read input data into a Beam pipeline. A sink is where you would write output data from your Beam pipeline. A sink is a PTransform that performs a write to the specified destination.
+- bounded source: A bounded source is a source that reads a finite amount of input commonly associated with batch processing. A bounded source will be responsible for splitting up the work of reading an input into bundles. Bundles are groupings of elements in the pipeline for a unit of work. If the bundles can be broken down into smaller chunks, Dataflow will dynamically rebalance work to achieve better performance.
+- unbounded source: An unbounded source is a source that reads from an unbounded amount of input commonly associated with streaming. Checkpoints allow for the ability to bookmark where the data has been read in the source, which means that data that has been processed in the stream doesn’t need to be re-read. Some unbounded sources, for example PubSub IO, have the ability to pass a record ID to allow deduplication of messages.
+- Text IO & File IO
+- Bigquery IO:
+- PubSub IO:
+- Kafka IO: Kafka IO is built in Java. Python's Kafka IO module uses the cross-language transform to enable Kafka IO on Python.
+- BigTable IO: Big table IO serves as the module that will communicate between big table and dataflow. You are able to include a row filter when reading from Big Table.
+- Avro IO: Avro IO allows you to read and write to that file type. Avro files provide the schema and the data so the files can be self-describing.
+
+# Schema
+- A schema describe a type in terms of fields and values
+- Fields can be int, long, string etc
+- Some fields can be marked as optional,  sometimes referred to as nullable or requited.
+- Often records have a nested structure. These structure records have some commonly feature array or map type fields.
 
 > ### State & Timers
-- With stateful ParDos, there are many aggregations that can be implemented without having to use a combiner or a GroupByKey. State is maintained per key. For streaming pipelines, the state is also maintained per window. The state can be read and mutated during the processing of each one of the elements. The state is local to each one of the transformers. For instance, two different keys process, and two different workers are not able to share a common state, but all elements in the same key can share a common state. The state variables allow you to batch the request by accumulating elements in a buffer and making batch calls to the external services, that, for example, you can make a call every 10 messages. It is important to remember to clear the state once it has been used. The DoFn will not finish entirely unless the whole state has been clear.
-- Timers are used in combination with state variables, to ensure that the state is cleared at regular intervals of time.
-       
+- With stateful ParDos, there are many aggregations that can be implemented without having to use a combiner or a GroupByKey. State is maintained per key. For streaming pipelines, the state is also maintained per window.
+- The state can be read and mutated during the processing of each one of the elements. The state is local to each one of the transformers. For instance, two different keys process, and two different workers are not able to share a common state, but all elements in the same key can share a common state. The state variables allow you to batch the request by accumulating elements in a buffer and making batch calls to the external services, that, for example, you can make a call every 10 messages. It is important to remember to clear the state once it has been used. The DoFn will not finish entirely unless the whole state has been clear.
+- Timers are used in combination with state variables, to ensure that the state is cleared at regular intervals of time. There are 2 types of times avaialble in Beam:
+  - Processing time timers are good for implementing timeouts. The time in processing time is relative to the previous messages and you will have periodic outputs based on that relative time
+  - event time timers are good for output based on data completeness. Event time timers are based on the timestamps of the messages being processed. Always make sure to clear the state after emitting the output. If you leave the state behind, then the function will keep waiting for new data and that will consume resources in your pipeline.
+
+    ![image](https://github.com/user-attachments/assets/a3687929-6057-4841-9d6c-96f231443a5c)
+ 
+- Depending on the kind of state that you want to accumulate, you can use a different type of state variables.
+  - Value: It can hold any kind of value of any type.
+  - Bag: If you want to add several elements, use a bag state for a more efficient pipeline. Bag will return the objects that were added previously, but with no guarantee of order. Appending objects to a bag is very fast.
+  - Combining: For any kind of aggregation that is associative and commutative, it is better to use the combining state.
+  - Map: if you are going to maintain a set of key values, a dictionary or map, use map state. With a map, you have random access given a key.Map state is more efficient than other state variables for retrieving specific keys.
+  - Set: available in the Apache Beam programming model, but not supported in data flow.
+
      ![image](https://user-images.githubusercontent.com/19702456/226947028-89465617-e588-425e-a7d6-dfbf8c1cc6a4.png)
 
      ![image](https://user-images.githubusercontent.com/19702456/226947218-53b5376f-fa2f-488e-b066-e096509d2e98.png)
+
+  - What can you do with state and timers:
+  ![image](https://github.com/user-attachments/assets/5a70a022-5a60-452e-858e-7bb7477e412a)
+
 
 > ### Dataflow Shuffle Service
 A shuffle is a Dataflow-based operation behind transforms such as GroupByKey, CoGroupByKey, and Combine. The Dataflow Shuffle operation partitions and groups data by key in a scalable, efficient, fault-tolerant manner. Currently, Dataflow uses a shuffle implementation that runs entirely on worker virtual machines and consumes worker CPU, memory, and persistent disk storage. The service-based Dataflow Shuffle feature available for batch pipelines only moves the shuffle operations out of the worker VMs and into the Dataflow service backend. The worker nodes will benefit from a reduction in consumed CPU, memory, and persistent disk storage resources, and your pipelines will have better autoscaling because the worker nodes VMs no longer hold any shuffle data, and can therefore be scaled down earlier. Also, because of the service, you will get better fault tolerance.An unhealthy VM holding Dataflow Shuffle data will not cause the entire job to fail, which would happen without the feature.
