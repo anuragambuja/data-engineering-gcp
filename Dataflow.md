@@ -83,22 +83,40 @@ By default, workers use your project's Compute Engine default service account as
 
     ![image](https://user-images.githubusercontent.com/19702456/226908783-9e76ca62-aa59-4a05-a8fa-d60742084cd4.png)
 
-> ### Watermark
+> # Watermark
 - Watermark keep tracks of lag time which can be due to network delays, system backlogs, processing delays, pubsub latency etc. The watermark is the relationship between the processing timestamp and the event. The processing timestamp is the moment the message arrives at the pipeline.  Any message that arrives before the watermark is said to be early. if it arrives right after the watermark is said to be on time and if it arrives later, then it is late. So, Dataflow is going to do is continuously compute the watermark, which is how far behind we are.
 - Data flow estimates the watermark as the oldest timestamp waiting to be processed. This estimation is continuously updated with every new message that is received. 
-- Data freshness is the amount of time between real time and the output watermark (timestamp of the oldest message waiting to be processed). 
-- System latency is the current maximum duration that an item of data has been processing or awaiting processing. Latency measures the time it takes to fully process a message.This includes any waiting time in the input source.
+- Data freshness is the amount of time between real time and the output watermark (timestamp of the oldest message waiting to be processed). So data freshness is a measurement of how far the oldest messages is from the current moment. When you see a monotonically increase in value it means that data has to wait at the input for more time waiting to start to be processed. There could be two reasons for the additional wait:
+   - It could be because the pipeline is busy processing messages
+   - It could be because the input has increased very quickly and data is accumulating at the input.
+  
+- System latency is the current maximum duration that an item of data has been processing or awaiting processing. Latency measures the time it takes to fully process a message.This includes any waiting time in the input source. So if system latency remains constant or reduces and does not monotonically increase and data freshness value is monotonically increasing, that could be because there are many more messages at the input.
+  
 - Dataflow ordinarily is going to wait until the watermark it has computed has elapsed. Beams default windowing configuration tries to determine when all data has arrived based on the type of data source, and then advances the watermark past the end of the window. This default configuration does not allow late data. The default behavior is to trigger at the watermark. If you don't specify a trigger, you are actually using the trigger after watermark. After watermark is an event time trigger. The message's time stamps are used to measure time with these triggers. But we could also add custom triggers.
+- The watermark is the relationship between the processing timestamp and the event timestamp. The processing timestamp is the moment the message arrives at the pipeline. Ideally, the both should be the same with no delays. However, this rarely happens. Any message that arrives before the watermark is set to be Everly. If it arrives right after the watermark is said to be on time and if it arrives later, then it is late data.
 
     ![image](https://user-images.githubusercontent.com/19702456/226929266-404bc908-c88f-4e0c-a7e5-0e740fbe7643.png)
 
     ![image](https://user-images.githubusercontent.com/19702456/226929604-0cc56331-7a73-4bc5-8115-b046c5cb8ecf.png)
     
-> ### Triggers
+> # Triggers
 - Triggers determine at what point during processing time results will be materialized. Each specific output for a window is referred to as a pane of the window. Triggers fire panes when the trigger’s conditions are met. In Apache Beam, those conditions include watermark progress, processing time progress (which will progress uniformly, regardless of how much data has actually arrived), element counts (such as when a certain amount of new data arrives), and data-dependent triggers, like when the end of a file is reached.
-- A trigger’s conditions may lead it to fire a pane many times. Consequently, it’s also necessary to specify how to accumulate these results. Apache Beam currently supports two accumulation modes, one which accumulates results together and the other which returns only the portions of the result that are new since the last pane fired. There are two accumulation modes in apache beam - accumulate and discard. With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far. With discard once some messages have been used for a calculation those messages are discarded. If new messages arrive later and there is a new trigger, the result will only include the new messages and those messages will be discarded again.
+- A trigger’s conditions may lead it to fire a pane many times. When you trigger the the window several times, you have to decide on the desired accumulation mode. Consequently, it’s also necessary to specify how to accumulate these results.
+- Apache Beam currently supports two accumulation modes:
+  - which accumulates results together
+  - other which returns only the portions of the result that are new since the last pane fired.
+- There are two accumulation modes in apache beam
+  - accumulate:  With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far.
+  - discard: With discard once some messages have been used for a calculation those messages are discarded. If new messages arrive later and there is a new trigger, the result will only include the new messages and those messages will be discarded again. If the calculation you need to make with the windows is associative and commutative, you can safely update that calculation using discard mode without any loss of accuracy. The main advantage of using the discard mode is that the performance will not suffer even if you use a very wide window, because no state, no accumulation is stored for very long, only until the next trigger is released.
 
-    ![image](https://user-images.githubusercontent.com/19702456/226931988-5604dea1-a983-4324-bfed-35d4e19efc5c.png)
+    ![image](https://user-images.githubusercontent.com/19702456/226931988-5604dea1-a983-4324-bfed-35d4e19efc5c.png)   
+
+    ![image](https://github.com/user-attachments/assets/eba2385a-37e3-4de3-aaf5-bdf1ecc02335)
+
+    ![image](https://github.com/user-attachments/assets/785a82e1-d2e8-4dc0-9225-18aa3d193357)
+
+![image](https://github.com/user-attachments/assets/f900834b-e57c-440d-bfb1-fc4dae2a9249)
+
 
 > ### State & Timers
 - With stateful ParDos, there are many aggregations that can be implemented without having to use a combiner or a GroupByKey. State is maintained per key. For streaming pipelines, the state is also maintained per window. The state can be read and mutated during the processing of each one of the elements. The state is local to each one of the transformers. For instance, two different keys process, and two different workers are not able to share a common state, but all elements in the same key can share a common state. The state variables allow you to batch the request by accumulating elements in a buffer and making batch calls to the external services, that, for example, you can make a call every 10 messages. It is important to remember to clear the state once it has been used. The DoFn will not finish entirely unless the whole state has been clear.
