@@ -214,4 +214,23 @@ We use unit tests in Beam to assert behavior of one small testable piece of your
 - Cross Language Transforms: no longer limited to a single language in a given pipeline
 ![image](https://github.com/user-attachments/assets/c0c6f522-32c1-4ac1-96db-3acb4f4f16d0)
 
+# Piepline Optimization:
+-  Filter data early in pipeline. Move any step that reduce data volume up in the pipeline
+-  Apply data transformations serially to let dataflow optimize the DAG. Whenever transformations are applied serially, they can be merged together in single stage, enabling them to be processed in the same worker nodes and reducing costly IO network operations.
+-  Enabling auto scaling for Dataflow pipelines is also a good idea. If for some reason your external system is backlogged, your Dataflow pipeline can scale down instead of underutilizing pipeline resources.
 
+# Beam SQL
+- Works with Stream and Batch Pipeline
+- Your SQL query is embedded using SQLTransforms, an encapsulated segment of a Beam pipeline similar to PTransforms, which can be mized with PTransform
+- It also supports User-Defined Functions. 
+- Supports multiple dialects:
+  - Beam Calcite SQL: The Beam Calcite SQL is a variant of Apache Calcite, a dialect widespread in big data processing, compatible with Apache Flink SQL. supports Java UDFs
+  - Google ZetaSQL: Beam ZetaSQL is more compatible with BigQuery, so it’s especially useful in pipelines that write to or read from BigQuery tables.
+-  it integrates Schema PCollections and supports windowing when aggregating unbounded data
+-  
+
+# Dataflow SQL
+- Dataflow SQL integrates with Apache Beam SQL and supports a variant of the ZetaSQL query syntax, using SQLTransforms in a Dataflow Flex template
+- It can be used as a long-running batch engine.
+- Dataflow SQL is not only restricted to GCP-native services like BigQuery or Pub/Sub. We are also planning to integrate with many others like Kafka and Bigtable.
+- A Dataflow Template can be implemented using either Calcite SQL or ZetaSQL dialects.
