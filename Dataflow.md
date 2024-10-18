@@ -21,6 +21,9 @@
   - Apache Spark
   - Cloud DataFlow
 - Job States: Running, Not Started, Queues, Cancelling/Cancelled, Draining/Drained, Updating/Updated, Succeeded, Failed
+![image](https://github.com/user-attachments/assets/c000bdeb-abe1-4ee9-8c95-49a7731458d2)
+
+  
 
 - When a Dataflow job is created, a cloud storage bucket is used to store binary files containing pipeline code. A cloud storage bucket is also used to temporarily store export or import data. By default, when data is stored in any of these locations, a Google-managed key is used to encrypt the data. When your pipeline starts and the data is loaded into the worker memory, data keys used in key-based operations, such as windowing, grouping, and joining, will be decrypted using your CMEK keys. Using CMEK requires both the Dataflow service account and the Controller Agent service account to have the cloud KMS CryptoKey Encrypter/Decrypter role. When you launch a job that uses CMEK, the region for your key and the regional input for your Dataflow job must be the same.
 While the job is running, persistent disks attached to Dataflow workers are used for persistent disk-based shuffle and streaming state storage. If a batch job is using Dataflow Shuffle, the backend stores the batch pipeline state during execution. If a job is using Dataflow Streaming Engine, the backend stores the streaming pipeline state during execution. By default, when data is stored in any of these locations, a Google-managed key is used to encrypt the data.
@@ -234,3 +237,13 @@ We use unit tests in Beam to assert behavior of one small testable piece of your
 - It can be used as a long-running batch engine.
 - Dataflow SQL is not only restricted to GCP-native services like BigQuery or Pub/Sub. We are also planning to integrate with many others like Kafka and Bigtable.
 - A Dataflow Template can be implemented using either Calcite SQL or ZetaSQL dialects.
+
+# Dataflow Performace:
+- Key Space and Parallelism: the maximum amount of parallelism is determined by the number of keys. More machines will not be able to do any more work if key space is limited.
+  - Too many keys: If the key space is very large, consider using hashes separating keys out internally. This is especially useful if keys carry date/time information. In this case you can "re-use" processing keys from the past that are no longer active, essentially for free.
+  - Limited keyspace will make it hard to share workload, and per-key ordering will kill performance. Increase number of keys eg. if windows are distinct, use composite(window + keys) keys. If reading from files, prefer reading from splittable compression formats like Avro
+ 
+# Dataflow Deployment Flowchart:
+-  if it's the first time deploying the pipeline, there's no existing state to consider. So you just deploy the pipeline
+-  If there's an existing pipeline, and you want to update it, you should take a snapshot of your pipeline.This ensures that you have a working state you can revert your pipeline to if you observe an issue with your new deployment.Once you’ve taken a snapshot, you’re ready to update your job. You need to account for any changes to the names of the pipeline's transformations by providing the mapping from old names to the new.If the updated pipeline is compatible, the update will succeed, and you'll get a new pipeline in place of the old, without losing the state of the previous version of the pipeline.
+-  If the update is not possible, then you’ll need to choose between drain and cancel options. If you can replay the source, then you can choose to cancel the pipeline, which will drop any in-flight data.You can then deploy the new pipeline, and replay the data from the source. If replay is not possible, then you can drain the pipeline. Ingestion stops immediately, windows are closed, and processing of in flight elements will be allowed to complete. This will not lose data, but you may end up with incomplete aggregations in your output sink.Once the pipeline has been drained, you can relaunch the pipeline.
