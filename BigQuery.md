@@ -255,7 +255,10 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
 
 
+![image](https://github.com/user-attachments/assets/7c491018-23ce-475b-805c-adec6271cfab)
 
+- For classification problems in ML, you want to minimize the False Positive Rate (predict that the user will return and purchase and they don't) and maximize the True Positive Rate (predict that the user will return and purchase and they do). This relationship is visualized with a ROC (Receiver Operating Characteristic) curve like the one shown here, where you try to maximize the area under the curve or AUC:
+![image](https://github.com/user-attachments/assets/17e5af1c-cd1c-4b8a-9f82-bded16a42616)
 
 
 
