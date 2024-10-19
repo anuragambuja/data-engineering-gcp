@@ -254,3 +254,11 @@ Dataflow snapshots saves the state of streaming pipeline:
 - No data loss with minimal downtime
 - Option to create a snapshot with pub/sub source 
 - However, Dataflow Snapshots cannot help migrate to a different region in the event of a regional outage.
+
+# Flex Templates
+- Classic Templates Challenges:
+  - Value providers support for beam IO transforms.
+  - lack of support for dynamic DAG.
+ 
+![image](https://github.com/user-attachments/assets/7a13ea1c-0a11-4c47-9f22-267f486aabf7)
+Templates allow you to call data flow pipelines by making an API call without the fuss of installing runtime dependencies in your development environment.
