@@ -247,3 +247,10 @@ We use unit tests in Beam to assert behavior of one small testable piece of your
 -  if it's the first time deploying the pipeline, there's no existing state to consider. So you just deploy the pipeline
 -  If there's an existing pipeline, and you want to update it, you should take a snapshot of your pipeline.This ensures that you have a working state you can revert your pipeline to if you observe an issue with your new deployment.Once you’ve taken a snapshot, you’re ready to update your job. You need to account for any changes to the names of the pipeline's transformations by providing the mapping from old names to the new.If the updated pipeline is compatible, the update will succeed, and you'll get a new pipeline in place of the old, without losing the state of the previous version of the pipeline.
 -  If the update is not possible, then you’ll need to choose between drain and cancel options. If you can replay the source, then you can choose to cancel the pipeline, which will drop any in-flight data.You can then deploy the new pipeline, and replay the data from the source. If replay is not possible, then you can drain the pipeline. Ingestion stops immediately, windows are closed, and processing of in flight elements will be allowed to complete. This will not lose data, but you may end up with incomplete aggregations in your output sink.Once the pipeline has been drained, you can relaunch the pipeline.
+
+# Dataflow Snapshots
+Dataflow snapshots saves the state of streaming pipeline:
+- Restart a pipeline without reprocessing in-flight data
+- No data loss with minimal downtime
+- Option to create a snapshot with pub/sub source 
+- However, Dataflow Snapshots cannot help migrate to a different region in the event of a regional outage.
