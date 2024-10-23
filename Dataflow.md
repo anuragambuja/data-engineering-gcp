@@ -101,6 +101,10 @@ By default, workers use your project's Compute Engine default service account as
     ![image](https://user-images.githubusercontent.com/19702456/226929266-404bc908-c88f-4e0c-a7e5-0e740fbe7643.png)
 
     ![image](https://user-images.githubusercontent.com/19702456/226929604-0cc56331-7a73-4bc5-8115-b046c5cb8ecf.png)
+- Apache Beam uses a number of heuristics to make an educated guess about what the watermark is. Instead of using general-purpose heuristics, pipeline designers need to thoughtfully consider the following questions in order to determine what tradeoffs are appropriate:
+  - Completeness: How important is it to have all of your data before you compute your result?
+  - Latency: How long do you want to wait for data? For example, do you wait until you think you have all data, or do you process data as it arrives?
+  - Cost: How much compute power and money are you willing to spend to lower the latency?
     
 > # Triggers
 - Triggers determine at what point during processing time results will be materialized. Each specific output for a window is referred to as a pane of the window. Triggers fire panes when the trigger’s conditions are met. In Apache Beam, those conditions include watermark progress, processing time progress (which will progress uniformly, regardless of how much data has actually arrived), element counts (such as when a certain amount of new data arrives), and data-dependent triggers, like when the end of a file is reached.
