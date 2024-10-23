@@ -16,6 +16,19 @@
 When you need a globally distributed relational Database and a multi-reginal or global scale. It is highly available and can store up to 2TB per node. It’s fully managed – automatic replication and no planned downtime. 
 Hot Spotting i.e. many read and write operations happen on same node is one of the problems with distributed database. It can happen with sequential primary keys – Auto increment values and timestamps. Consider using – had value of primary, Bit reverse sequential values and promote high cardinality attributes in muti attribute primary key. You can also use inter leaved tables with parent-child relationship (one-to many). 
 
+![image](https://github.com/user-attachments/assets/a620da07-f364-4f40-81ee-9a0738992f0d)
+
+- Availability takeaways
+  - High availability achieved via replication
+    - Data replicated via Paxos
+    - Zones failures handled transparently
+  - Regional instances provide 99.99% availability
+    - Data replicated to 3 zones
+    - Can handle single zone failure
+  - Multi-regional instances provide 99.999% availability
+    - Data replicated to 5+ zones
+    - Can handle single region failure
+
 ### Hot Spotting
 - Hot spots occur when many read and write operations happen on the same node
 - Can happen with sequential primary keys
