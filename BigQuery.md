@@ -125,22 +125,54 @@ Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery
 BigQuery pricing is divided in 2 main components: processing and storage. There are also additional charges for other operations such as ingestion or extraction. The cost of storage is fixed and at the time of writing is US$0.02 per GB per month; you may check the current storage pricing [in this link](https://cloud.google.com/bigquery/pricing#storage).
 
 Data processing has a [2-tier pricing model](https://cloud.google.com/bigquery/pricing#analysis_pricing_models):
--  On demand pricing (default): US$5 per TB per month; the first TB of the month is free.
--  Flat rate pricing: based on the number of pre-requested _slots_ (virtual CPUs).
-   -  A minimum of 100 slots is required for the flat-rate pricing which costs US$2,000 per month.
-   -  Queries take up slots. If you're running multiple queries and run out of slots, the additional queries must wait until other queries finish in order to free up the slot. On demand pricing does not have this issue.
-   -  The flat-rate pricing only makes sense when processing more than 400TB of data per month.
+- Bigquery On demand pricing (default): US$6.25 per TB per month; the first TB of the month is free.
+- BigQuery Editions: The idea with big query editions is that the consumer doesn't need to have to figure out all their reservations and how many Flex jobs or Flex slots they would need and variable loads they can configure this all in their bigquery Edition as an autoscaling solution autoscaling up and autoscaling down and the customer consumes the slots as required but also controls the volume and velocity if you will of those slots being used.
+  - Flexibility:
+    - Match workloads to tiers, so you only pay for
+    - Mix and match editions for the best price performance per workload
+  - Price Predictability:
+    - 1-year and 3-year commitments with higher discounts
+    - Leverage autoscale to pay only for what you use. No need to overpay for underused capacity
+    - Low cost storage
+  - Control:
+    - Autoscaling with baseline and max thresholds to intelligently manage costs.
+    - BigQuery BI Engine dynamically manages slots while queries are running!
+
+![image](https://github.com/user-attachments/assets/31f8fe67-b64e-46cd-85de-55d659dd2386)
+
+
+- BigQuery Autoscaler: Dynamically adjusts the capacity in response to planned or unplanned changes in demand to help ensure you pay only for what you use. Autoscaling is the core functionality available in a new
+commercial model
+
+  ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
+
+- Storage billing models
+  - When you create a dataset, the storage used by that dataset is billed to you using logical bytes as the default unit of consumption. However, you can choose to use physical bytes for billing instead. You can also change an existing dataset's storage billing model to use physical bytes.
+  - When you set your storage billing model to use physical bytes, the total active storage costs you are billed for include the bytes used for time travel and fail-safe storage. You can configure the time travel window to balance storage costs with your data retention needs. For more information on forecasting your storage costs, see Forecast storage billing.
+  - When you change a dataset's billing model, it takes 24 hours for the change to take effect.
+  - Once you change a dataset's storage billing model, you must wait 14 days before you can change the storage billing model again.
+
+- A rate limit limit or a quota it is a hard ceiling cost control but budgets are not a hard ceiling they are a guideline of how much money you are spending on variety of services
 - The cost of a query is always assigned to the active project from where the query is executed.
-- BigQuery Editions:
-  -   
-![image](https://github.com/user-attachments/assets/86ad7e36-49bb-40da-aee6-51929907898f)
+
 - Difference between Uncompresses and Compressed storage pricing
   ![image](https://github.com/user-attachments/assets/53a3571e-af71-4c28-9a75-2eb052e6575d)
 
+# Time Travel
+-  time travel is a background copy of all your data in your tables in your data set for a rolling seven days
+-  time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
+-  You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
+-  You set the time travel window at the dataset level, which then applies to all of the tables within the dataset.
+-  Using a shorter time travel window lets you save on storage costs when using the physical storage billing model. These savings don't apply when using the logical storage billing model.
+
+# Analytics Hub - Data share solution
+- Platform for secure data sharing with authorized users (internal and external)
+- Construct of data providers, subscribers and data exchange, data discovery
+- Built on top of BigQuery
+- Data Sharing through Bigquery:
+![image](https://github.com/user-attachments/assets/509b622e-de43-4461-88cc-f053a874f161)
 
 
-When running queries on BQ, the top-right corner of the window will display an approximation of the size of the data that will be processed by the query. Once the query has run, the actual amount of processed data will appear in the _Query results_ panel in the lower half of the window. This can be useful to quickly calculate the cost of the query.
-  
 ## Partitioning and Clustering  
 
 ### Partitions 
