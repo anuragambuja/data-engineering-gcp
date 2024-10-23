@@ -523,5 +523,9 @@ gcloud app regions list
 ## References
 - [Google Cloud Console](https://console.cloud.google.com/)
 
+# DataLake 
+Two modernization routes: Open fromat datalake or BigQuery based datalake
+![image](https://github.com/user-attachments/assets/07ec45e3-7463-450e-a62c-88c35f6c1de1)
+
 
 
