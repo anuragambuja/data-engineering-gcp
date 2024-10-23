@@ -19,10 +19,20 @@ Its Structurured data, predefined schema, ACID transactions, strong consistency,
 
 ![image](https://user-images.githubusercontent.com/19702456/222904899-8cffc71a-1a33-4ccb-bb9d-591961e17af3.png)
 
+- Cloud SQL Editions: Cloud SQL editions are only available for Cloud SQL for MySQL and Cloud SQL for PostgreSQL.
+![image](https://github.com/user-attachments/assets/9c6fad54-6a48-488a-92fa-0188eced80e8)
 
-Limitations:
+  
+- Limitations:
 Its for regional data store with multiple zones for high availability. Multi – region for backups only. Upto 30TB per database. It is managed service. Using one of PostgreSQL, MySQL and SQL server. 
 
+- Connecting to a Cloud SQL instance
+  
+  ![image](https://github.com/user-attachments/assets/bb8291eb-37e6-4458-b12b-256789882d52)
+
+- Replication Options
+
+![image](https://github.com/user-attachments/assets/7bfea9a2-a7e8-482a-befa-fcf58125542f)
 
 ### **Connect to MySQL instance**
 
