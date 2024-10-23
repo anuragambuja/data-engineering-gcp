@@ -387,7 +387,7 @@ gcloud app regions list
 
 ## Storage
 > ### Overview
-![image](https://user-images.githubusercontent.com/19702456/222907142-7afd4075-0ca9-40a0-a7cf-973eb2ab2672.png)
+![image](https://github.com/user-attachments/assets/040199d1-16b5-4630-845b-4a115e6ffb51)
 
 ![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
 
