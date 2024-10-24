@@ -7,7 +7,7 @@
   - Technical meta data being registered by catalog automatically
 - Business Metadata
   - Attach Tag to existing data asset
-  - Define some Tag template and attach metadata
+  - Define some Tag template and attach metadata. Using tag templates provides consistent metadata to make searching the catalog more successful
 
      ![image](https://user-images.githubusercontent.com/19702456/225636350-66717e1e-41f6-4def-a1b6-ac60042fb299.png)
 
