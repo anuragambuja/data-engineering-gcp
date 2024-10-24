@@ -1,6 +1,13 @@
-Dataplex is an intelligent data fabric that enables organizations to centrally discover, manage, monitor, and govern their data across data lakes, data warehouses, and data marts to power analytics at scale. Specifically, you can use Dataplex to build a data mesh architecture, which is an organizational and technical approach that decentralizes data ownership among domain data owners.
+# Dataplex
+
+![image](https://github.com/user-attachments/assets/79be532d-24f5-458e-93d8-17e56c4d3dac)
+
+- Dataplex is an intelligent data fabric that enables organizations to centrally discover, manage, monitor, and govern their data across data lakes, data warehouses, and data marts to power analytics at scale. Specifically, you can use Dataplex to build a data mesh architecture, which is an organizational and technical approach that decentralizes data ownership among domain data owners.
 
 Dataplex manages data in a way that doesn’t require data movement or duplication. As you add new data assets, Dataplex harvests the metadata for both structured and unstructured data, and automatically registers all metadata in a secure, unified metastore. Data and metadata can then be assessed via Google Cloud services such as Data Catalog and BigQuery.
+
+![image](https://github.com/user-attachments/assets/cb688470-b9d6-47d3-86d4-bc75190acda5)
+
 
 - After you create a lake, you can add zones to the lake. Zones are subdomains within a lake that you can use to categorize data further. Data stored in Cloud Storage buckets or BigQuery datasets can be attached as assets to zones within a Dataplex lake. To delete a lake, you must first detach assets and then delete the zones. There are two types of zones:
   - Raw zones contain data in raw formats (such as files in Cloud Storage buckets) and are not subject to strict type-checking.
@@ -43,8 +50,6 @@ After you create a tag template, you can use it to attach tags to any number of 
 To control access:
 1. Create/Add Lake , Zone and assets.
 2. Assign Dataplex role to the users (Dataplex > Secure >Dataplex resources >Grant access )
-
-
 
 
 
