@@ -43,6 +43,12 @@ Optimizing Dataproc:
   - You have I/O workloads that are especially sensitive to latency. For example, you require single-digit millisecond latency per storage operation.
 
 
+- Dataproc Serverless
+  - Dataproc Serverless lets you run Spark batch workloads without requiring you to provision and manage your own cluster.
+  - The service will run the workload on a managed compute infrastructure, autoscaling resources as needed.
+  - Dataproc Serverless charges apply only to the time when the workload is executing.
+  - Schedule Dataproc Serverless for Spark batch workloads: You can schedule a Spark batch workload as part of an Airflow or Cloud Composer workflow using an Airflow batch operator.
 
 
+![image](https://github.com/user-attachments/assets/683fc15f-179b-4a2d-9a27-25bcd8dd32c1)
 
