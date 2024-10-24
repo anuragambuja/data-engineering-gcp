@@ -18,3 +18,4 @@
 - Cloud Storage buckets are used for staging workflow DAGs, plugins, logs and data dependencies.
 - Redis is used as message broker for CeleryExecutor. Uses stateful sets to persist messages across container restarts. 
 
+![image](https://github.com/user-attachments/assets/4d466e6b-44f8-4dcc-9314-1c5470371c3e)
