@@ -5,19 +5,20 @@
 - Apply API on Cloud Storage, Big Query Data
 - DLP work upon Free form Text, Structured & Unstructured data (image)
 - What to do with this Data
-  - Identify sensitive data
-  - De-identify data
-    - Masking and Encryption
+  - Discover and classify sensitive data
+    - automatic DLP for BigQuery
+    - deep inspection for BigQuery and Cloud Storage
+    - support for structured and unstructured
+    - real-time and at rest 
+  - De-identify - to help protect data and reduce compliance risk. including masking, tokenization, bucketing, date-shifting, and more
+    - Redacation – remove sensitive data
+    - Replacement – replace with some tokens (Like Info_type)
+    - Masking – Replace one/more character with some other char
+    - Encryption – Encrypt Sensitive Data
   - re-identify (In case want to recover original data)
-
-### De-Identification of Data
-
-- Redacation – remove sensitive data
-- Replacement – replace with some tokens (Like Info_type)
-- Masking – Replace one/more character with some other char
-- Encryption – Encrypt Sensitive Data
-
-
+    - to understand statistical anomalies that can lead to increased privacy risk. 
+- Detectors can be customized to classify/redact new data items. E.g., social security numbers in a particular country’s format
+  
 ### Templates
 
 - Configuration which is define for:
