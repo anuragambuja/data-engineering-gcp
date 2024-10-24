@@ -3,15 +3,18 @@
 - Google Cloud Pub/Sub is a fully-managed real-time messaging service that allows you to send and receive messages between independent applications.
 - Pub/Sub is an asynchronous global messaging service. By decoupling senders and receivers, it allows for secure and highly available communication between independently written applications. Pub/Sub delivers low-latency, durable messaging.
 - Pub/Sub is a HIPAA compliant service, offering fine grained access controls and end to end encryption. Messages are encrypted in transit and at rest. Messages are stored in multiple locations for durability and availability.
-- The Pub/Sub client that creates the topic is called the publisher.
-- The Pub/Sub client that creates the subscription is called the subscriber.
+- Core Conceps:
+  - Topic: A named resource to which messages are sent by publishers. Pub/Sub just sends raw bites. So, you can text, images etc with the limit of 10 Megabytes. The Pub/Sub client that creates the topic is called the publisher.
+  - Subscription: A named resource representing the stream of messages from a single, specific topic, to be delivered to the subscribing application. The Pub/Sub client that creates the subscription is called the subscriber.
+  - Message: The combination of data and (optional) attributes that a publisher sends to a topic and is eventually delivered to subscribers.
+  - Message attribute: A key-value pair that a publisher can define for a message.
 - The subscription connects the topic to a subscriber application that receives and processes messages published to the topic. A topic can have multiple subscriptions, but a given subscription belongs to a single topic.
 - You don't incur egress fees for the messages that Pub/Sub automatically acknowledges you incur message delivery fees and seek related storage fees for these messages.
-- Pub/Sub just sends raw bites. So, you can text, images etc with the limit of 10 Megabytes.
+  
 - Scale to billions of message per day
 - Publisher – App send message to Topic
 - Push & Pull way to access messages
-  - Pull – Subscriber pull message
+  - Pull – Subscriber pull message. Pull is the default
   - Push – Message will be sent to subscriber via webhook
 - Publish / Subscribe Patterns
   - The first pattern is just a basic straight through flow, where one publisher publishes messages into a topic, which then get consumed by the one subscriber through the one subscription.
@@ -38,5 +41,10 @@ In the case of a push subscription, you only have one web endpoint so you will o
 When the Pub/Sub service redelivers the message with an ordering key, the Pub/Sub service also redelivers every subsequent message with the same ordering key, including acknowledged messages. If both message ordering and a dead letter topic are enabled on a subscription, the ordering may not be true, as Pub/Sub forwards messages to dead letter topics on a best effort basis. To receive the messages in order, set the message ordering property on the subscription you receive messages from.
 Dataflow will de-duplicate messages based on the message ID, because in Pub/Sub, if a message is delivered twice, it will have the same ID in both cases. Element Source adds a default date timestamp, or DTS, which is the time of entry to the system rather than the time the sensor data was captured. A PTransform extracts the date timestamp from the data portion of the element and modifies the DTS metadata so the time of data capture can be used in window processing.
 
+# Pub/Sub Lite
+- A zonal service
+- Run publisher, subscriber and topics in the same zone
+- Designed to minimize networking egress cost and latency
+- High speed replacement for Kafka and Spark structured streaming
 
-
+![image](https://github.com/user-attachments/assets/f5562b22-8885-4c9d-85d8-e51b12491431)
