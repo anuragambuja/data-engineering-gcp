@@ -30,17 +30,23 @@
 
 - Firestore is the next generation of Datastore
 - ACID Transactions
-- High availability of reads and writes
+- High availability of reads and writes. Multi-region replication
 - Highly scalable NoSQL database
 - Collection & Document Model
 - Two mode
-  - native Mode
-  - datastore mode
+  - native Mode: supports all Firebase features
+    - Uses Firebase API
+    - Not supported with older App Engine runtimes 
+  - datastore mode: does not support all Firestore features like offline support for mobile devices and synchronization
 - Real-time updates
-- Mobile and Web client libraries
+- Mobile, web, and IoT apps at global scale
+- Live synchronization and offline support
 - Limitations of Transactions type:
    - Maximum duration of 60 seconds and 10 second idle expiration after 30 seconds
    - Modify upto 500 entities in a single transaction
    - Transaction can fail due to too many concurrent modifications, exceeds resource limits or internal error
 ![image](https://user-images.githubusercontent.com/19702456/224506464-e6fd2383-82f4-4aec-aa31-a1a561ffaa88.png)
 
+- Choosing between Firestore and Bigtable
+  
+![image](https://github.com/user-attachments/assets/6bab4c08-0868-420d-b831-bf02b9377841)
