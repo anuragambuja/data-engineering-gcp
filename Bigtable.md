@@ -5,12 +5,30 @@
 - Scale horizontally with Multiple Nodes
 - Data stored at column wise. Columns are grouped into column family. Empty columns do not take any space.
 - Bigtable also provides Column Families. By accessing the Column Family, you can pull some of the data you need without pulling all of the data from the row or having to search for it and assemble it. Bigtable can handle up to 100 column families without losing performance.
-- Milli second latency.
+- Consistent sub-10ms latency
 - Handles millions of request per second.
+- Learns and adjusts to access patterns.
+- Ideal for Ad Tech, Fintech, and IoT
+- Easy integration with open source big data tools like HBase
+- Throughput scales linearly: Increase QPS (queries per second) by adding Cloud Bigtable nodes
+- Seamless cluster resizing: Dynamically add and remove Cloud Bigtable cluster nodes without restarting
+- Support 1-node production instances
 - Bigtable is ideal for applications that need very high throughput and scalability for non-structured key/value data, where each value is typically no larger than 10 MB. Bigtable is not well suited for highly structured data, transactional data, small data volumes less than 1 TB, and anything requiring SQL Queries and SQL-like joins.
 
   ![image](https://github.com/user-attachments/assets/eef740ec-786a-493c-a8a0-fb7a6d072003)
 
+- Storage Model
+  ![image](https://github.com/user-attachments/assets/d15e03af-0522-43b3-839a-440205b5e8f9)
+
+  - Characteristics
+  - Compression
+    - Data is compressed
+    - Not configurable
+  - Compactions
+    - Periodically rewrites data
+    - Not Configurable
+    - Mutations and deletions take up extra storage space until compaction
+      
 - How to access
   - cbt – command line (part of cloud sdk)
 
