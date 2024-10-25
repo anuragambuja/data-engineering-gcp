@@ -14,7 +14,8 @@
 - Point-in Time Recovery
 - Export data: gcloud utility or Cloud Console to SQL/CSV format
 - To failover, the sql instance should not reside in single zone
-
+- A Cloud SQL read replica is an exact copy of a primary Cloud SQL instance. Data and other changes on the primary instance are updated in almost real time on the read replica. You can manually increase the machine configuration of a Cloud SQL read replica after it is created. However, you cannot decrease the size of the read replica.
+  
 Its Structurured data, predefined schema, ACID transactions, strong consistency, used data structures – Tables, Indexes, views, constraints, partitions.
 
 ![image](https://user-images.githubusercontent.com/19702456/222904899-8cffc71a-1a33-4ccb-bb9d-591961e17af3.png)
