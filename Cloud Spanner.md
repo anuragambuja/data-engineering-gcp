@@ -1,7 +1,7 @@
 
 # Cloud Spanner
 - Distributed, Horizontally Scalable (Petabyte scale) and Fully managed solution for RDBMS in GCP.
-- Use when Data volume > 2 TB. Upto 2 TB per node
+- Use when Data volume > 2 TB. Upto 10 TB per node
 - Costlier than Cloud SQL
 - Cloud SQL has just Read replicas, where as in cloud spanner horizontal read/write across region
 - Data is strongly typed.
