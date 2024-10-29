@@ -571,7 +571,7 @@ Ans: C.
     - Create a Cloud SQL user for the developer with full database administrator privileges.
     - Remove the Cloud SQL external IP address, and replace it with an internal IP address.
 
-Ans:
+Ans: C, E
 
 72. What is the main advantage of using a VPC Service Control perimeter around the Cloud SQL instance?
     - Disable public access to the Cloud SQL instance completely.
@@ -579,7 +579,7 @@ Ans:
     - It isolates the Cloud SQL instance within a secure virtual network segment, restricting access to authorized services only.
     - It provides built-in data encryption for all communication within the perimeter.
 
-Ans:
+Ans: C.
 
 73. What is the default encoding for BigQuery?
     - UTF-7
@@ -587,7 +587,7 @@ Ans:
     - UTF-9
     - UTF-6
 
-Ans:
+Ans: B.
 
 74. During a BigQuery import of CSV files, all records were loaded successfully. Despite this, there's a byte-level difference between the source and imported data. What's the most probable explanation for this behavior?
     - Hidden characters could be affecting byte count unless filtered consistently.
@@ -595,7 +595,7 @@ Ans:
     - The CSV data had invalid rows that were skipped on import.
     - The CSV data loaded in BigQuery is not using BigQuery’s default encoding.
 
-Ans:
+Ans: D.
 
 75. CMEK stands for Customer-managed encryption keys. What does it mean to use CMEK?
     - Google manages your encryption keys, but you choose encryption algorithms.
@@ -603,7 +603,7 @@ Ans:
     - Google encrypts your data with special keys for additional security.
     - You can access and decrypt any data stored in Google Cloud services.
 
-Ans:
+Ans: B.
 
 76. When might using CMEK NOT be recommended?
     - When you need to follow strict data residency regulations.
@@ -611,7 +611,7 @@ Ans:
     - When you have limited expertise in managing encryption keys.
     - When you prioritize ease of use and minimal management overhead.
 
-Ans:
+Ans: C.
 
 77. Challenge: We're building a data lake on Google Cloud to power a website recommendation engine. We need to ingest diverse, ever-changing unstructured data from various sources and process it through pipelines to generate recommendations. Reprocessing the data might be necessary, so it's crucial to preserve its original structure. Desired Architecture: Design a flexible architecture that addresses these key points: What services should you use?
     - Store the data in a BigQuery table. Design the processing pipelines to retrieve the data from the table.
@@ -619,7 +619,7 @@ Ans:
     - Store the data in a Cloud Storage bucket. Design the processing pipelines to retrieve the data from the bucket.
     - Send the data through the processing pipeline, and then store the processed data in a Cloud Storage bucket for reprocessing.
 
-Ans:
+Ans: C.
 
 78. Your project necessitates a layered approach to access control in Google Cloud Platform to uphold two critical compliance requirements:
     - Add the finance team members to the default IAM Owner role. Add the developers to a custom role that allows them to see their own spend only.
@@ -627,7 +627,7 @@ Ans:
     - Add the developers and finance managers to the Viewer role for the Project.
     - Add the finance team to the Viewer role for the Project. Add the developers to the Security Reviewer role for each of the billing accounts.
 
-Ans:
+Ans: B.
 
 79. You decide to use Cloud SQL Proxy and Cloud IAM for access control. What additional security measure is recommended to further protect the Cloud SQL instance?
     - Add a second public IP address to load balance traffic.
@@ -635,7 +635,7 @@ Ans:
     - Configure the Cloud SQL Proxy to listen on a non-standard port.
     - Disable public access to the Cloud SQL instance completely.
 
-Ans:
+Ans: B.
 
 80. In Dataflow what is NOT part of a pipeline?
     - PCollections
@@ -643,6 +643,86 @@ Ans:
     - PTransformation
     - Pipeline Runner
 
+Ans: B.
+
+81. What is NOT a valid reason for modifying the BigQuery dataset number of days for Time Travel?
+    - Lower storage costs.
+    - Enforcing Data Governance data life.
+    - Faster data exports.
+    - Faster query performance.
+
 Ans:
 
-81. 
+82. GoogleSQL, used by both BigQuery and Spanner, supports what version of ANSI SQL?
+    - 2000
+    - 2020
+    - 2007
+    - 2011
+
+Ans:
+
+83. What is the default trigger type in Dataflow?
+    - AfterCount
+    - AfterComposite
+    - AfterWatermark
+    - AfterProcessingTime
+
+Ans:
+
+84. BigQuery storage supports two dataset storage billing models. What are they? Pick two.
+    - Active bytes
+    - Logical bytes
+    - Physical bytes
+    - Inactive bytes
+
+Ans:
+
+85. When choosing a side input pattern in Dataflow, what factors should you consider?
+    - The complexity of the DoFn logic is the primary consideration.
+    - The programming language used in your pipeline dictates the best pattern.
+    - The size and update frequency of side input data is irrelevant.
+    - Both the size/update frequency of the side input and the DoFn's processing needs are crucial.
+
+Ans: 
+
+86. What is the difference between BigQuery Slots and BigQuery BI Engine Slots?
+    - BigQuery Slots are stateful.
+    - No difference.
+    - BI Engine Slots are shorter.
+    - BI Engine Slots are stateful.
+
+Ans:
+
+87. What is NOT a windowing type in Apache Beam?
+    - Grouped
+    - Session
+    - Fixed
+    - Sliding
+
+Ans:
+
+88. You have a Dataflow pipeline analyzing website traffic logs. The main data stream tracks user actions, but you also want to enrich it with information about product categories accessed by each user. This information is stored in a separate, smaller dataset. How can you incorporate this product data into your pipeline?
+    - Use the product data to filter the traffic logs.
+    - Store the product data in a Cloud Storage bucket and access it within your DoFn using external calls.
+    - Directly merge the two datasets as a single PCollection.
+    - Utilize a side input to provide product information alongside each user action log.
+
+Ans:
+
+89. When creating a custom Dataflow template what language is NOT supported?
+    - GO
+    - Dataflow SQL
+    - Python
+    - Java
+
+Ans:
+
+90. What is the minimum and maximum number of days for BigQuery Time Travel?
+    - 1 and 10
+    - 1 and 8
+    - 2 and 9
+    - 2 and 7
+
+Ans:
+
+91. 
