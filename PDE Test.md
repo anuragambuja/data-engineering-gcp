@@ -410,7 +410,7 @@ Ans: B. Use Validation to assess the quality of data for the models when tuning 
     - Migrate to a Cloud SQL for PostgreSQL instance.
     - Migrate to bare metal machines in multiple Google Cloud Regional Data Centers with Oracle installed.
 
-Ans:
+Ans: A.
 
 52. Hey team, we have a juicy challenge! Our job is to design a system for tracking all the amazing stuff players can collect in our game. Whether they earn it through quests, buy it in the shop, or trade it with friends, we need to keep tabs on it all. What datastore will you recommend?
     - Wide column database
@@ -418,7 +418,7 @@ Ans:
     - Document database
     - Analytics database
 
-Ans:
+Ans: C. The requirement is for a SEMI STRUCTURED schema.
 
 53. For over two years, your data-driven online shopping site thrived thanks to a powerful BigQuery Machine Learning (BQML) model accurately predicting customer behavior. However, several market changes such as high inflation and increased interest rates have affected buying patterns and the model's accuracy has begun to suffer. Now, it's time to revitalize its performance and safeguard against future disruptions. What should you do?
     - Monitor data until usage patterns normalize, and then retrain the model.
@@ -426,7 +426,7 @@ Ans:
     - Retrain the model with a mix of newly collected data and older data. Add a step to continuously monitor model input data for changes, and retrain the model as new data arrives.
     - Retrain the model with all newly collected data. After one year, return to the older model.
 
-Ans:
+Ans: C.
 
 54. You have just received a large BigQuery dataset. You have comprehensive documentation on the dataset and ready to start analyzing. You will do some visualization and data filtering, but you also want to be able to run custom Python functions. As a Data Engineer you want to work interactively with the data. What Google Cloud Platform service will you use?
     - BigQuery Notebooks
@@ -434,7 +434,7 @@ Ans:
     - Vertex AI Workbench
     - Cloud Dataproc
 
-Ans:
+Ans: A.
 
 55. Your mission is to migrate a MongoDB database, which stores data in flexible documents, to Cloud Spanner. While Cloud Spanner offers similar functionality, you are aiming to retain specific aspects of the document organization originally created in MongoDB.
     - String
@@ -442,7 +442,7 @@ Ans:
     - STRUCT
     - JSON
 
-Ans:
+Ans: C. Use STRUCT to store ordered type fields.
 
 56. An audit of our company's Google Cloud Platform user permissions identified that some employees have more access than their job duties necessitate. Currently, all user accounts leverage predefined roles, which may grant broader permissions than what individual users require. To address this and adhere to audit findings, we're transitioning to custom roles that provide granular access control tailored to each user's specific needs. What permission is needed to create a custom role?
     - iam.custom.roles
@@ -450,7 +450,7 @@ Ans:
     - iam.roles.create
     - roles/iam.create.custom
 
-Ans:
+Ans: C.
 
 57. Your Cloud Spanner database stores customer order information across the tables customer, order, items and products. The four table joins are constantly being performed using existing primary and foreign keys. The customers table contains in excess of 75 million rows while both the Orders and items tables now contain billions of rows. The current architecture has performance issues. You want to follow Google-recommended practices to improve performance. What should you do?
     - Denormalize the data, and have a row for each customer, order, item and products combination.
@@ -466,7 +466,7 @@ Ans:
     - Regression
     - Classifier
 
-Ans:
+Ans: C. Sales price is a continuous value so Regression is the right value here.
 
 59. You have been asked to build a BigQuery machine learning (BQML) model that will predict if a news article story is about technology or another topic. Which of the following will you use?
     - Multiple linear regression
@@ -474,13 +474,175 @@ Ans:
     - K-means clustering
     - Logistic Regression
 
-Ans:
+Ans: A, D
 
 60. Your company recently acquired a smaller firm with 20 reporting analysts. All 20 analysts have excellent SQL skills but are new to using BigQuery. It could be several weeks or months until BigQuery training starts and you are noticing much greater slot usage on various BigQuery datasets. You need to control costs in BigQuery and ensure that there is no budget overrun while you maintain the quality of query results. What should you do?
     - Train the analysts to use the query validator or --dry_run to estimate costs so that the analysts can self-regulate usage.
     - Export the BigQuery daily costs, and visualize the data on Looker on a per-analyst basis so that the analysts can self-regulate usage.
     - Reduce the data in the BigQuery tables so that the analysts query less data, and then archive the remaining data.
-    -Set a customized project-level or user-level daily quota to acceptable values.
+    - Set a customized project-level or user-level daily quota to acceptable values.
+
+Ans: D.
+
+61. Currently, IT retrieves data from BigQuery, sends it as CSV files, and finance analyzes it in spreadsheets. Our finance team thrives on spreadsheets, but the current data transfer from BigQuery is manual and time-consuming. Can we improve this process using spreadsheets?
+    - Run the query in BigQuery. Give the finance team access to Looker Studio's data visualizations.
+    - Run the query in BigQuery, and give the finance team access to the results view, which can be analyzed using Google Sheets.
+    - Run the query in BigQuery, and save the results to a Google Sheets shared spreadsheet that can be accessed and analyzed by the finance team.
+    - Run the query in BigQuery, export the data to CSV, upload the file to a Cloud Storage bucket, and share the file with the finance team.
+
+Ans: B.
+
+62. Leveraging our extensive customer data, spanning years and containing sensitive information like addresses and credit card details, presents an exciting opportunity to unlock valuable insights through BigQuery Machine Learning (BQML) models. However, both ourselves and our management share a critical concern: data security. Breaches or inadvertent leaks of personally identifiable information (PII) could not only damage our reputation but also violate customer trust and potentially incur legal repercussions. We must prioritize addressing these data security concerns while harnessing the power of BQML responsibly. What should you do?
+    - Use libraries like SciPy to build the ML models on your local computer.
+    - Identify the rows that contain sensitive data, and apply SQL queries to remove only those rows.
+    - Remove any tables that contain sensitive data.
+    - Remove sensitive data using the Cloud Data Loss Prevention (DLP) API.
+
+Ans: D. DLP is now Sensitive Data Protection.
+
+63. Our healthcare application's user and device growth has triggered a data deluge overwhelming the current backend system designed for event intake from IoT devices. To guarantee no event losses and ensure efficient processing, a complete overhaul of the data pipeline is necessary. We aim to leverage Google's recommended practices for a robust and scalable solution. What should you do?
+    - Use Pub/Sub with pull mode and Dataflow.
+    - Use Pub/Sub with push mode and Dataflow.
+    - Run Cloud Scheduler at fixed intervals.
+    - Use Kafka with pull mode.
+
+Ans: A.
+
+64. Your scooter-sharing fleet generates a continuous stream of data, including location, battery levels, and speed. This data is displayed in real-time dashboards to monitor overall health and activity. To compensate for potential connectivity issues, scooters transmit key information repeatedly within a brief window. However, occasional errors have been detected, including messages with missing values. The data flows through a Pub/Sub messaging system and ultimately lands in BigQuery for long-term storage and analysis. It's crucial to ensure this data pipeline delivers clean, reliable information by eliminating duplicate messages and filtering out any records with incomplete fields. How can you filter out these incomplete records before storing them in BigQuery?
+    - Use Dataflow to subscribe to Pub/Sub, apply a custom transformation in the data pipeline, and store the data in BigQuery.
+    - Store the data in BigQuery, and run delete queries on erroneous and duplicate data.
+    - Create an application on Compute Engine with Managed Instance Groups that can remove duplicates and erroneous data. Then insert the data into BigQuery.
+    - Use Kubernetes to create a microservices application that can remove duplicates and erroneous data. Then insert the data into BigQuery.
+
+Ans: A.
+
+65. We're transitioning our data analytics to Google BigQuery while keeping our day-to-day operations on-premises. This migration involves: What should you do?
+    - Use a Transfer Appliance to move the existing data to Google Cloud. Set up a Dedicated or Partner Interconnect for daily transfers.
+    - As early as possible every day, use Cloud VPN to transfer the existing data over the internet.
+    - Use a Transfer Appliance to move the historical data to Google Cloud. Use BigQuery Data Transfer Service for daily appends.
+    - Use a Transfer Appliance to move the existing data to Google Cloud.. Use VPC Network Peering to transfer data daily.
+
+Ans: C.
+
+66. Your team leverages Dataproc for workloads where individual worker nodes process tasks in roughly 45 minutes. To reduce costs, you've investigated aggressively shutting down idle nodes. Unfortunately, metrics reveal this approach negatively impacts overall job completion time. You now seek a cost optimization strategy that doesn't compromise timely results. Which approach BEST balances cost optimization with timely results?
+    - Implement dynamic scaling to add and remove worker nodes based on real-time resource demands.
+    - Increase the number of vCPUs on each worker node so that the processing finishes sooner.
+    - Rewrite the processing in Cloud Data Fusion, and run the job automatically.
+    - Rewrite the processing in Dataflow, and use stream processing of the same data.
+
+Ans: A.
+
+67. A Bigtable installation has been running for over a year without any performance issues. Recently the company has opened a number of stores which has created a large influx of data and a sizable increase in queries. These changes may be the reason for a degradation in performance. The business needs answers fast and your boss tells you to investigate. What should you do?
+    - Use Cloud Trace to identify the performance issue.
+    - Add more nodes to the cluster to see if that resolves the performance issue.
+    - Use Key Visualizer to analyze performance.
+    - Add logging statements into the code to see which inserts cause the delay.
+
+Ans: C. 
+
+68. Your client currently leverages on-premises Hadoop and Spark for data analysis, with central access to primary data residing on hard disks. They seek a smooth, scalable migration to Google Cloud. To minimize migration effort, you aim to propose an architecture requiring minimal code changes and operational adjustments. What should you do?
+    - Use Dataproc to run Hadoop and Spark jobs. Move the data to Cloud Storage.
+    - Use Dataflow to recreate the jobs in a serverless approach. Retain the data on a Compute Engine VM with an attached persistent disk.
+    - Use Dataflow to recreate the jobs in a serverless approach. Move the data to Cloud Storage.
+    - Use Dataproc to run Hadoop and Spark jobs. Retain the data on a Compute Engine VM with an attached persistent disk.
+   
+Ans: A.
+
+69. The challenge: millions of traders are actively using a stock exchange, generating data at breakneck speed. We're building a visualization platform that displays this data in real-time, showing how stock prices behave and markets evolve. What Google Cloud storage solution can ensure rapid data retrieval for this high-performance requirement?
+    - Use Firestore.
+    - Use Bigtable.
+    - Use Memorystore.
+    - Use Cloud SQL.
+
+Ans: B.
+
+70. A client's 5 TB SQL Server database, projected to reach 25 TB, supports an internal reporting app used weekly. The goal is to migrate everything to Google Cloud for simplified management and cost optimization (maintaining or reducing current expenses). Which of the following is NOT a benefit of migrating to Google Cloud?
+    - Reduced costs.
+    - Increased scalability and performance.
+    - Increased vendor lock-in.
+    - Improved disaster recovery
+
+Ans: C.
+
+71. You need to grant secure access to a Cloud SQL instance with a public IP address to a remote developer. The developer will write code locally on their laptop, which will connect to a MySQL instance on Cloud SQL. The instance has an external (public) IP address. You want to follow Google-recommended practices when you give access to Cloud SQL to the new team member.
+    - Provide the developer direct access to the public IP address and root user credentials.
+    - Configure a VPN tunnel between the developer's machine and the Google Cloud network.
+    - Give instance access permissions in Identity and Access Management (IAM). Have the developer run Cloud SQL Auth proxy to connect to a MySQL instance.
+    - Create a Cloud SQL user for the developer with full database administrator privileges.
+    - Remove the Cloud SQL external IP address, and replace it with an internal IP address.
 
 Ans:
 
+72. What is the main advantage of using a VPC Service Control perimeter around the Cloud SQL instance?
+    - Disable public access to the Cloud SQL instance completely.
+    - It automatically scales to accommodate varying workloads on the Cloud SQL instance.
+    - It isolates the Cloud SQL instance within a secure virtual network segment, restricting access to authorized services only.
+    - It provides built-in data encryption for all communication within the perimeter.
+
+Ans:
+
+73. What is the default encoding for BigQuery?
+    - UTF-7
+    - UTF-8
+    - UTF-9
+    - UTF-6
+
+Ans:
+
+74. During a BigQuery import of CSV files, all records were loaded successfully. Despite this, there's a byte-level difference between the source and imported data. What's the most probable explanation for this behavior?
+    - Hidden characters could be affecting byte count unless filtered consistently.
+    - BigQuery's guess might be wrong.
+    - The CSV data had invalid rows that were skipped on import.
+    - The CSV data loaded in BigQuery is not using BigQuery’s default encoding.
+
+Ans:
+
+75. CMEK stands for Customer-managed encryption keys. What does it mean to use CMEK?
+    - Google manages your encryption keys, but you choose encryption algorithms.
+    - You create, manage, and control the encryption keys used to protect your data.
+    - Google encrypts your data with special keys for additional security.
+    - You can access and decrypt any data stored in Google Cloud services.
+
+Ans:
+
+76. When might using CMEK NOT be recommended?
+    - When you need to follow strict data residency regulations.
+    - When you require the highest level of data security for sensitive information.
+    - When you have limited expertise in managing encryption keys.
+    - When you prioritize ease of use and minimal management overhead.
+
+Ans:
+
+77. Challenge: We're building a data lake on Google Cloud to power a website recommendation engine. We need to ingest diverse, ever-changing unstructured data from various sources and process it through pipelines to generate recommendations. Reprocessing the data might be necessary, so it's crucial to preserve its original structure. Desired Architecture: Design a flexible architecture that addresses these key points: What services should you use?
+    - Store the data in a BigQuery table. Design the processing pipelines to retrieve the data from the table.
+    - Send the data through the processing pipeline, and then store the processed data in a BigQuery table for reprocessing.
+    - Store the data in a Cloud Storage bucket. Design the processing pipelines to retrieve the data from the bucket.
+    - Send the data through the processing pipeline, and then store the processed data in a Cloud Storage bucket for reprocessing.
+
+Ans:
+
+78. Your project necessitates a layered approach to access control in Google Cloud Platform to uphold two critical compliance requirements:
+    - Add the finance team members to the default IAM Owner role. Add the developers to a custom role that allows them to see their own spend only.
+    - Add the finance team members to the Billing Administrator role for each of the billing accounts they must manage. Add the developers to the Viewer role for the Project.
+    - Add the developers and finance managers to the Viewer role for the Project.
+    - Add the finance team to the Viewer role for the Project. Add the developers to the Security Reviewer role for each of the billing accounts.
+
+Ans:
+
+79. You decide to use Cloud SQL Proxy and Cloud IAM for access control. What additional security measure is recommended to further protect the Cloud SQL instance?
+    - Add a second public IP address to load balance traffic.
+    - Enable Cloud SQL Audit Logging to track all database activity.
+    - Configure the Cloud SQL Proxy to listen on a non-standard port.
+    - Disable public access to the Cloud SQL instance completely.
+
+Ans:
+
+80. In Dataflow what is NOT part of a pipeline?
+    - PCollections
+    - Cloud Storage
+    - PTransformation
+    - Pipeline Runner
+
+Ans:
+
+81. 
