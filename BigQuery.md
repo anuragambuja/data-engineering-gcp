@@ -11,7 +11,7 @@
 - This is for Analytical database and not for Transactional purpose. Alternative to OpenSource Apache Hive. Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
 - Built using BigTable + GCP Infrastructure
 - BigQuery is Columnar storage. Cloud SQL databases are RECORD-based storage, meaning the entire record must be opened on disk even if you just selected a single column in your query.
-
+- GoogleSQL, used by both BigQuery and Spanner uses 2011 ANSI SQL
 - Avro, ORC, and Parquet files are all now supported for federated querying.
 - Exabyte scale
 - BQ managed Transfer Service allows to move data into BQ from SaaS services. You can schedule loades and automatically scale and access other data sources through various connectors.
@@ -136,7 +136,7 @@ Data processing has a [2-tier pricing model](https://cloud.google.com/bigquery/p
     - Low cost storage
   - Control:
     - Autoscaling with baseline and max thresholds to intelligently manage costs.
-    - BigQuery BI Engine dynamically manages slots while queries are running!
+    - BigQuery BI Engine dynamically manages slots while queries are running! BI Engine Slots are stateful.
 
 ![image](https://github.com/user-attachments/assets/31f8fe67-b64e-46cd-85de-55d659dd2386)
 
@@ -147,6 +147,9 @@ commercial model
   ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
 
 - Storage billing models
+  - two dataset storage billing models:
+    - Logical bytes
+    - Physical bytes
   - When you create a dataset, the storage used by that dataset is billed to you using logical bytes as the default unit of consumption. However, you can choose to use physical bytes for billing instead. You can also change an existing dataset's storage billing model to use physical bytes.
   - When you set your storage billing model to use physical bytes, the total active storage costs you are billed for include the bytes used for time travel and fail-safe storage. You can configure the time travel window to balance storage costs with your data retention needs. For more information on forecasting your storage costs, see Forecast storage billing.
   - When you change a dataset's billing model, it takes 24 hours for the change to take effect.
@@ -164,7 +167,11 @@ commercial model
 -  You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
 -  You set the time travel window at the dataset level, which then applies to all of the tables within the dataset.
 -  Using a shorter time travel window lets you save on storage costs when using the physical storage billing model. These savings don't apply when using the logical storage billing model.
-
+- valid reason for modifying the BigQuery dataset number of days for Time Travel?
+  - Lower storage costs.
+  - Enforcing Data Governance data life.
+  - Faster data exports.
+  
 # Analytics Hub - Data share solution
 - Platform for secure data sharing with authorized users (internal and external)
 - Construct of data providers, subscribers and data exchange, data discovery
