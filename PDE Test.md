@@ -651,7 +651,7 @@ Ans: B.
     - Faster data exports.
     - Faster query performance.
 
-Ans:
+Ans: D
 
 82. GoogleSQL, used by both BigQuery and Spanner, supports what version of ANSI SQL?
     - 2000
@@ -659,7 +659,7 @@ Ans:
     - 2007
     - 2011
 
-Ans:
+Ans: D
 
 83. What is the default trigger type in Dataflow?
     - AfterCount
@@ -667,7 +667,7 @@ Ans:
     - AfterWatermark
     - AfterProcessingTime
 
-Ans:
+Ans: C
 
 84. BigQuery storage supports two dataset storage billing models. What are they? Pick two.
     - Active bytes
@@ -675,7 +675,7 @@ Ans:
     - Physical bytes
     - Inactive bytes
 
-Ans:
+Ans: B,C
 
 85. When choosing a side input pattern in Dataflow, what factors should you consider?
     - The complexity of the DoFn logic is the primary consideration.
@@ -683,7 +683,7 @@ Ans:
     - The size and update frequency of side input data is irrelevant.
     - Both the size/update frequency of the side input and the DoFn's processing needs are crucial.
 
-Ans: 
+Ans: D
 
 86. What is the difference between BigQuery Slots and BigQuery BI Engine Slots?
     - BigQuery Slots are stateful.
@@ -691,7 +691,7 @@ Ans:
     - BI Engine Slots are shorter.
     - BI Engine Slots are stateful.
 
-Ans:
+Ans: D.
 
 87. What is NOT a windowing type in Apache Beam?
     - Grouped
@@ -699,7 +699,7 @@ Ans:
     - Fixed
     - Sliding
 
-Ans:
+Ans: A
 
 88. You have a Dataflow pipeline analyzing website traffic logs. The main data stream tracks user actions, but you also want to enrich it with information about product categories accessed by each user. This information is stored in a separate, smaller dataset. How can you incorporate this product data into your pipeline?
     - Use the product data to filter the traffic logs.
@@ -707,7 +707,7 @@ Ans:
     - Directly merge the two datasets as a single PCollection.
     - Utilize a side input to provide product information alongside each user action log.
 
-Ans:
+Ans: D.
 
 89. When creating a custom Dataflow template what language is NOT supported?
     - GO
@@ -715,7 +715,7 @@ Ans:
     - Python
     - Java
 
-Ans:
+Ans: B.
 
 90. What is the minimum and maximum number of days for BigQuery Time Travel?
     - 1 and 10
@@ -723,6 +723,85 @@ Ans:
     - 2 and 9
     - 2 and 7
 
-Ans:
+Ans: D
 
-91. 
+91. When do budget alerts fire?
+    - When forecasted cost exceeds budgeted forecasted cost.
+    - When actual cost exceeds budgeted actual cost.
+    - When actual or forecasted cost exceeds percentage of budget.
+    - When an email alert is initiated by a trigger firing.
+
+Ans: C.
+
+92. Which data storage option can you export automated billing information to?
+    - Cloud SQL
+    - Cloud Storage
+    - Cloud Spanner
+    - BigQuery
+
+Ans: D.
+
+93. Which of the following controls are considered a hard ceiling cost control? Pick all that apply.
+    - Rate Limits
+    - Identity and Access Management (IAM)
+    - Budgets
+    - Quotas
+
+Ans: A, D.
+
+94. What is the purpose of Eventarc?
+    - Extend a project's IAM model to externally hosted services.
+    - Asynchronously deliver events from Google services, SaaS, and your own apps.
+    - Cost control of supported service.
+    - Higher SLA for supported services.
+
+Ans: B.
+
+95. Which Cloud Storage buckets support turbo replication?
+    - Autoclass
+    - Standard
+    - Dual-region
+    - Multi-region
+
+Ans: C.
+
+96. Which Cloud Storage Autoclass feature is NOT true?
+    - When an object's data is read, the object transitions to Standard storage if it's not already stored in Standard storage.
+    - You can define which storage classes Autoclass will work with.
+    - Moves data that is accessed to Standard storage to optimize future accesses.
+    - Moves data that is not accessed to colder storage classes to reduce storage cost.
+
+Ans: B.
+
+97. In a project which BigQuery features are NOT unlimited?
+    - Rows
+    - Columns
+    - Tables
+    - Datasets
+
+Ans: B. A table, query result, or view definition can have up to 10,000 columns.
+
+98. Which database does NOT have Query Insights?
+    - Cloud SQL MySQL
+    - Cloud Spanner
+    - Cloud SQL PostgreSQL
+    - Cloud SQL SQL Server
+
+Ans: D.
+
+99. What is the maximum size of a Memorystore Redis or Memcached data store?
+    - 300GB
+    - 750GB
+    - 64TB
+    - 1TB
+
+Ans: A
+
+100. What are the benefits of Cloud Functions? Pick all that apply.
+    - Auto Scalable
+    - Serverless
+    - HTTP and event driven
+    - Integration with Google Cloud databases
+
+Ans: A,B,C,D
+
