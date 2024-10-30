@@ -154,6 +154,18 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 		- Coldline --> Archive
 	- if versioned, deleting live version creates non current version but deleting non-current version deletes object permanently.
 
+## Autoclass 
+- The Autoclass feature automatically transitions objects in your bucket to appropriate storage classes based on each object's access pattern.
+- The feature moves data that is not accessed to colder storage classes to reduce storage cost and moves data that is accessed to Standard storage to optimize future accesses.
+- All objects added to the bucket begin in Standard storage, even if a different storage class is specified in the request.
+- By default, the terminal storage class for Autoclass is Nearline storage, which means objects transition to Nearline storage and remain in that storage class until they're accessed. Optionally, you can configure Autoclass so that the terminal storage class is Archive storage.
+- Objects smaller than 128 KiB don't transition to colder storage classes. Instead, they are permanently stored in Standard storage. Only object data, not object metadata, is considered when determining whether the object is smaller than 128 KiB.
+- Soft-deleted objects retain their existing storage classes until the end of their retention duration. When a soft-deleted object is restored, the resulting object begins in Standard storage, regardless of the storage class of the soft-deleted object.
+- When an object's data is read, the object transitions to Standard storage if it's not already stored in Standard storage. Reading or editing an object's metadata does not cause the object to transition to Standard storage. Any object that isn't accessed for 30 days transitions to Nearline storage.
+	- Any object that isn't accessed for 90 days transitions to Coldline storage. Such objects spent at least 30 days in Standard storage and 60 days in Nearline storage.
+	- Any object that isn't accessed for 365 days transitions to Archive storage. Such objects spent at least 30 days in Standard storage, 60 days in Nearline storage and 275 days in Coldline storage. 
+- There is no Class A operation charge when Autoclass transitions an object from Nearline storage to Standard storage. When Autoclass transitions an object from Coldline storage or Archive storage to Standard storage or Nearline storage, each such transition incurs a Class A operation charge.
+
 ## **Pricing**
 
 ## **Cloud Transfer Service**
