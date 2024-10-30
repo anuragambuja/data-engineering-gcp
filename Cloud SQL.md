@@ -41,9 +41,19 @@ Its for regional data store with multiple zones for high availability. Multi –
     - Migrating data between platforms
     - Migrating data from an on-premises database to Cloud SQL
     - Additionally, a replica could be promoted if the original instance becomes corrupted.
-
+  - Cloud SQL supports the following types of replicas:
+    - Read replicas: You use a read replica to offload work from a Cloud SQL instance. The read replica is an exact copy of the primary instance. Read replicas are read-only; you cannot write to them. 
+    - Cross-region read replicas: Cross-region replication lets you create a read replica in a different region from the primary instance.
+    - Cross-region replicas:
+      - Improve read performance by making replicas available closer to your application's region.
+      - Provide additional disaster recovery capability to guard against a regional failure.
+      - Let you migrate data from one region to another.
+    - Cascading read replicas: Cascading replication lets you create a read replica under another read replica in the same or a different region.
+      - The following scenarios are use cases for using cascading replicas: Disaster recovery, Performance improvements, Scale Reads, Cost reduction (You can reduce networking costs by using a single cascading replica with cross-region replication in other regions.)
+    
 ![image](https://github.com/user-attachments/assets/7bfea9a2-a7e8-482a-befa-fcf58125542f)
-
+  - A read replica is charged at the same rate as a standard Cloud SQL instance. There is no charge for the data replication. Pricing for a cross-region read replica is the same as for creating a new Cloud SQL instance in the region.
+  
 ### **Connect to MySQL instance**
 
 ```bash
