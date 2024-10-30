@@ -182,7 +182,7 @@ commercial model
 - Difference between Uncompresses and Compressed storage pricing
   ![image](https://github.com/user-attachments/assets/53a3571e-af71-4c28-9a75-2eb052e6575d)
 
-# Time Travel
+## Time Travel
 -  time travel is a background copy of all your data in your tables in your data set for a rolling seven days
 -  time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
 -  You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
@@ -192,7 +192,15 @@ commercial model
   - Lower storage costs.
   - Enforcing Data Governance data life.
   - Faster data exports.
-  
+- The table must be stored in BigQuery; it cannot be an external table. 
+- After you replace an existing table by using the CREATE OR REPLACE TABLE statement, you can use FOR SYSTEM_TIME AS OF to query the previous version of the table. If the table was deleted, then the query fails and returns an error. However, you can restore the table by copying from a point in time to a new table. To restore data from a deleted table, you need to have the bigquery.admin role on the corresponding table.
+- You can query a table's historical data from any point in time within the time travel window by using a FOR SYSTEM_TIME AS OF clause. There is no limit on table size when using SYSTEM_TIME AS OF. eg. query returns a historical version of the table from one hour ago:
+```
+SELECT *
+FROM `mydataset.mytable`
+  FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
+```
+
 # Analytics Hub - Data share solution
 - Platform for secure data sharing with authorized users (internal and external)
 - Construct of data providers, subscribers and data exchange, data discovery
