@@ -339,3 +339,15 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
     
   ![image](https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c)
 
+## Bigquery Notebooks
+- You can use notebooks to complete analysis and machine learning (ML) workflows by using SQL, Python, and other common packages and APIs.
+- Notebooks offer improved collaboration and management with the following options: 
+  - Share notebooks with specific users and groups by using Identity and Access Management (IAM).
+  - Review the notebook version history.
+  - Revert to or branch from previous versions of the notebook.
+- Notebooks in BigQuery offer the following benefits:
+  - BigQuery DataFrames is integrated into notebooks, no setup required. BigQuery DataFrames is a Python API that you can use to analyze BigQuery data at scale by using the pandas DataFrame and scikit-learn APIs.
+  - Assistive code development powered by Gemini generative AI.
+  - Auto-completion of SQL statements, the same as in the BigQuery editor.
+  - The ability to save, share, and manage versions of notebooks.
+  - The ability to use matplotlib, seaborn, and other popular libraries to visualize data at any point in your workflow.
