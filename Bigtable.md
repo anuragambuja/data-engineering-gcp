@@ -81,13 +81,29 @@ And when data is entered, it is organized lexicographically by the Row Key. Row 
   - Better design option: concatenate multiple attributes. Start with high cardinality attributes eg. IoT sensor ID, then add time such as date and hour i.e. low cardinality attributes near the end of the key. eg. sensor ID + reverse datetime: 12345 + (00|23|21|08|2023). By reversing the timestamp, you can design a row key where the most recent event appears at the start of the table instead of the end.
 
     ![image](https://user-images.githubusercontent.com/19702456/227277588-4a0d8fe4-fa0f-44d2-abce-5858958ce5cd.png)
+- Used for
+  - Financial data
+  - Time series Data eg. IoT
+
     
+### Key Visualizer
 - Key Visualizer is a tool that helps you analyze your Bigtable usage patterns. It generates visual reports for your tables that break down your usage based on the row keys that you access. The core of a Key Visualizer scan is the heat map, which shows the value of a metric over time broken down into contiguous ranges of row keys. The X-axis of the heat map represents time, and the Y-axis represents row keys. If the metric has a low value for a group of row keys at a point in time, the metric is cold, and it appears in a dark color. A high value is hot, and it appears in a bright color. The highest values appear in white. Key Visualizer automatically generates hourly and daily scans for every table in your instance that meets at least one of the following criteria:
   - During the previous 24 hours, the table contained at least 30 gigabytes of data at some point in time.
   - During the previous 24 hours, the average of all reads or all writes was at least 10,000 rows per second.
 
-- Used for
-  - Financial data
-  - Time series Data eg. IoT
+- Key Visualizer divides all of the row keys into 1,000 contiguous ranges, with roughly the same number of row keys in each range. These ranges are known as key buckets. Key Visualizer reports most metrics as averages over each key bucket, or as maximum values within each key bucket.
+
+- Uses for Key Visualizer include the following:
+  - Iteratively designing a schema or improving the design of an existing schema. In each iteration, you check Key Visualizer to spot problems your schema may be causing, then tweak your schema and check again.
+  - Troubleshooting performance issues.
+  - Getting a better understanding of how you access the data that you store in Bigtable.
+
+- To accomplish these goals, Key Visualizer can help you complete the following tasks:
+  - Check whether your reads or writes are creating hotspots on specific rows
+  - Find rows that contain too much data
+  - Look at whether your access patterns are balanced across all of the rows in a table
+
+- Key Visualizer data is available for the last 14 days. This limit also means that if you bookmark or share the URL for a Key Visualizer scan, the URL has a maximum life of 14 days.
+
 
 
