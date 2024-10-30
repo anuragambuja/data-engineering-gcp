@@ -34,6 +34,13 @@ Its for regional data store with multiple zones for high availability. Multi –
   ![image](https://github.com/user-attachments/assets/bb8291eb-37e6-4458-b12b-256789882d52)
 
 - Replication Options
+  - Replication is the ability to create copies of a Cloud SQL instance or an on-premises database, and offload work to the copies. When referring to a Cloud SQL instance, the instance that is replicated is called the primary instance and the copies are called read replicas.
+  - reason for using replication:
+    - scale the use of data in a database without degrading performance
+    - Migrating data between regions
+    - Migrating data between platforms
+    - Migrating data from an on-premises database to Cloud SQL
+    - Additionally, a replica could be promoted if the original instance becomes corrupted.
 
 ![image](https://github.com/user-attachments/assets/7bfea9a2-a7e8-482a-befa-fcf58125542f)
 
