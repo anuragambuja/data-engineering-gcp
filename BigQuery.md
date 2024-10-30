@@ -351,3 +351,31 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
   - Auto-completion of SQL statements, the same as in the BigQuery editor.
   - The ability to save, share, and manage versions of notebooks.
   - The ability to use matplotlib, seaborn, and other popular libraries to visualize data at any point in your workflow.
+
+## BigQuery Data Transfer Service
+- BigQuery Data Transfer Service automates data movement into BigQuery on a scheduled, managed basis.
+- You can access the BigQuery Data Transfer Service using the:
+  - Google Cloud console
+  - bq command-line tool
+  - BigQuery Data Transfer Service API
+- You cannot use the BigQuery Data Transfer Service to transfer data out of BigQuery.
+- The BigQuery Data Transfer Service supports loading data from the following data sources: (30-10-2024)
+  - Amazon S3
+  - Amazon Redshift
+  - Azure Blob Storage
+  - Campaign Manager
+  - Cloud Storage
+  - Display & Video 360
+  - Facebook Ads (Preview)
+  - Google Ad Manager
+  - Google Ads
+  - Google Merchant Center (Preview)
+  - Google Play
+  - Oracle (Preview)
+  - Salesforce (Preview)
+  - Salesforce Marketing Cloud (Preview)
+  - Search Ads 360
+  - ServiceNow (Preview)
+  - Teradata
+  - YouTube Channel
+  - YouTube Content Owner
