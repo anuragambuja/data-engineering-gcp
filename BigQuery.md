@@ -21,9 +21,30 @@
 - Query using
   - Standard SQL
   - legacy SQL
-- Big Query can query from external data source.
-  - Cloud storage, SQL, Big Table
-- Biquery can load data from various sources - CSV, JSONL, Avro, SQL and many more
+
+## External Tables
+- An external data source is a data source that you can query directly from BigQuery, even though the data is not stored in BigQuery storage. BigQuery has two different mechanisms for querying external data:
+
+  - external tables: External tables are similar to standard BigQuery tables, in that these tables store their metadata and schema in BigQuery storage. However, their data resides in an external source. There are four kinds of external tables:
+    - BigLake tables: BigLake tables let you query structured data in external data stores with access delegation. Access delegation decouples access to the BigLake table from access to the underlying data store. Because the service account handles retrieving data from the data store, you only have to grant users access to the BigLake table.
+    - BigQuery Omni tables: With BigQuery Omni, you can run BigQuery analytics on data stored in Amazon Simple Storage Service (Amazon S3) or Azure Blob Storage using BigLake tables.
+    - Object tables: Object tables let you analyze unstructured data in Cloud Storage. You can perform analysis with remote functions or perform inference by using BigQuery ML, and then join the results of these operations with the rest of your structured data in BigQuery. Like BigLake tables, object tables use access delegation, which decouples access to the object table from access to the Cloud Storage objects.
+    - Non-BigLake external tables: Non-BigLake external tables let you query structured data in external data stores. To query a non-BigLake external table, you must have permissions to both the external table and the external data source. 
+      - Bigtable
+      - Cloud Storage: If you create a non-BigLake external table based on Cloud Storage, then you can use multiple external data sources, provided those data sources have the same schema. This isn't supported for non-BigLake external table based on Bigtable or Google Drive. You can use non-BigLake external tables with the following data stores:
+      - Google Drive
+
+  - federated queries: Federated queries let you send a query statement to AlloyDB, Spanner, or Cloud SQL databases and get the result back as a temporary table.  You use the EXTERNAL_QUERY function to send a query statement to the external database, using that database's SQL dialect.
+
+![image](https://github.com/user-attachments/assets/e9c09763-a08b-49dc-8638-b74d4d06c6f2)
+
+## External datasets
+- In addition to BigQuery datasets, you can create external datasets (federated datasets), which are links to external data sources:
+  - Spanner external dataset
+  - AWS Glue federated dataset
+- Once created, external datasets contain tables from a referenced external data source. Data from these tables aren't copied into BigQuery, but queried every time they are used.
+- External datasets don't support table expiration, replicas, time travel, default collation, default rounding mode or the option to enable or disable case insensitive tables name.
+
 - How to access BigQuery
   - Cloud Console
   - bq – command line tool
