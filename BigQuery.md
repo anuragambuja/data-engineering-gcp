@@ -309,6 +309,12 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
     - Vectorized runtime: Using vectorized processing in an execution engine makes more efficient use of modern CPU architecture, by operating on batches of data at a time.
     - Seamless integration: BI Engine works with BigQuery features and metadata, including authorized views, column level security, and data masking.
     - Reservations: BI Engine reservations manage memory allocation at the project location level. BI Engine caches specific columns or partitions that are queried, prioritizing those in tables marked as preferred.
-      
+- BI Engine is useful in the following use cases:
+  - You use BI tools to analyze your data
+  - You have certain tables that are queried most frequently
+- BI Engine might not fit your needs in the following cases:
+  - You use wildcards in your queries
+  - You rely heavily on BigQuery features which BI Engine doesn't support
+    
   ![image](https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c)
 
