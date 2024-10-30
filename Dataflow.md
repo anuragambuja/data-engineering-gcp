@@ -108,6 +108,7 @@ By default, workers use your project's Compute Engine default service account as
   - Cost: How much compute power and money are you willing to spend to lower the latency?
     
 > # Triggers
+- When collecting and grouping data into windows, Beam uses triggers to determine when to emit the aggregated results of each window (referred to as a pane).
 - Triggers determine at what point during processing time results will be materialized. Each specific output for a window is referred to as a pane of the window. Triggers fire panes when the trigger’s conditions are met. In Apache Beam, those conditions include watermark progress, processing time progress (which will progress uniformly, regardless of how much data has actually arrived), element counts (such as when a certain amount of new data arrives), and data-dependent triggers, like when the end of a file is reached.
 - A trigger’s conditions may lead it to fire a pane many times. When you trigger the the window several times, you have to decide on the desired accumulation mode. Consequently, it’s also necessary to specify how to accumulate these results.
 - Apache Beam currently supports two accumulation modes:
@@ -116,7 +117,11 @@ By default, workers use your project's Compute Engine default service account as
 - There are two accumulation modes in apache beam
   - accumulate:  With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far.
   - discard: With discard once some messages have been used for a calculation those messages are discarded. If new messages arrive later and there is a new trigger, the result will only include the new messages and those messages will be discarded again. If the calculation you need to make with the windows is associative and commutative, you can safely update that calculation using discard mode without any loss of accuracy. The main advantage of using the discard mode is that the performance will not suffer even if you use a very wide window, because no state, no accumulation is stored for very long, only until the next trigger is released.
-
+- Beam provides a number of pre-built triggers that you can set:
+  - Event time triggers. These triggers operate on the event time, as indicated by the timestamp on each data element. Beam’s default trigger is event time-based.
+  - Processing time triggers. These triggers operate on the processing time – the time when the data element is processed at any given stage in the pipeline.
+  - Data-driven triggers. These triggers operate by examining the data as it arrives in each window, and firing when that data meets a certain property. Currently, data-driven triggers only support firing after a certain number of data elements.
+  - Composite triggers. These triggers combine multiple triggers in various ways.
     ![image](https://user-images.githubusercontent.com/19702456/226931988-5604dea1-a983-4324-bfed-35d4e19efc5c.png)   
 
     ![image](https://github.com/user-attachments/assets/eba2385a-37e3-4de3-aaf5-bdf1ecc02335)
