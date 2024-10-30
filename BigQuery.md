@@ -21,6 +21,10 @@
 - Query using
   - Standard SQL
   - legacy SQL
+- Schema auto-detection
+  - Schema auto-detection enables BigQuery to infer the schema for CSV, JSON, or Google Sheets data. 
+  - Schema auto-detection is available when you load data into BigQuery and when you query an external data source.
+  - You don't need to enable schema auto-detection for Avro, Parquet, ORC, Firestore export, or Datastore export files. These file formats are self-describing, so BigQuery automatically infers the table schema from the source data. For Parquet, Avro, and Orc files, you can optionally provide an explicit schema to override the inferred schema.
 
 ## External Tables
 - An external data source is a data source that you can query directly from BigQuery, even though the data is not stored in BigQuery storage. BigQuery has two different mechanisms for querying external data:
