@@ -10,7 +10,8 @@
   - Message attribute: A key-value pair that a publisher can define for a message.
 - The subscription connects the topic to a subscriber application that receives and processes messages published to the topic. A topic can have multiple subscriptions, but a given subscription belongs to a single topic.
 - You don't incur egress fees for the messages that Pub/Sub automatically acknowledges you incur message delivery fees and seek related storage fees for these messages.
-  
+- Pay for what you use
+
 - Scale to billions of message per day
 - Publisher – App send message to Topic
 - Push & Pull way to access messages
@@ -46,5 +47,11 @@ Dataflow will de-duplicate messages based on the message ID, because in Pub/Sub,
 - Run publisher, subscriber and topics in the same zone
 - Designed to minimize networking egress cost and latency
 - High speed replacement for Kafka and Spark structured streaming
+- Unlimited Retention period and storage
+- Pay for the capacity that you provision
 
 ![image](https://github.com/user-attachments/assets/f5562b22-8885-4c9d-85d8-e51b12491431)
+
+# Features comparison table
+  
+![image](https://github.com/user-attachments/assets/6628bf44-e4b3-4a9a-92b9-b90cbbd850f9)
