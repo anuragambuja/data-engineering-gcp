@@ -302,4 +302,13 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 ![image](https://github.com/user-attachments/assets/17e5af1c-cd1c-4b8a-9f82-bded16a42616)
 
 
+## BI Engine
+-  BI Engine can accelerate SQL queries from any source, including those written by data visualization tools, and can manage cached tables for on-going optimization.
+-  BI Engine provides the following advantages:
+    - BigQuery API: Any BI solution or custom application that works with the BigQuery API through standard mechanisms such as REST or JDBC and ODBC drivers can use BI Engine without modification.
+    - Vectorized runtime: Using vectorized processing in an execution engine makes more efficient use of modern CPU architecture, by operating on batches of data at a time.
+    - Seamless integration: BI Engine works with BigQuery features and metadata, including authorized views, column level security, and data masking.
+    - Reservations: BI Engine reservations manage memory allocation at the project location level. BI Engine caches specific columns or partitions that are queried, prioritizing those in tables marked as preferred.
+      
+  ![image](https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c)
 
