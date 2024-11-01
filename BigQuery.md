@@ -146,12 +146,28 @@ Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery
   * Place the table with the _largest_ number of rows first, followed by the table with the _fewest_ rows, and then place the remaining tables by decreasing size. This is due to how BigQuery works internally: the first table will be distributed evenly and the second table will be broadcasted to all the nodes.
 
 ## Pricing
+- BigQuery pricing has two main components:
+  - Storage pricing is the cost to store data that you load into BigQuery. The cost of storage is fixed and at the time of writing is US$0.02 per GB per month.
+  - Compute pricing:  Compute pricing is the cost to process queries, including SQL queries, user-defined functions, scripts, and certain data manipulation language (DML) and data definition language (DDL) statements.
+    - On-demand pricing (per TiB). With this pricing model, you are charged for the number of bytes processed by each query. US$6.25 per TB per month; the first TB of the month is free.
+    - Capacity pricing (per slot-hour). With this pricing model, you are charged for compute capacity used to run queries, measured in slots (virtual CPUs) over time. This model takes advantage of BigQuery editions. You can use the BigQuery autoscaler or purchase slot commitments, which are dedicated capacity that is always available for your workloads, at a lower price.
 
-BigQuery pricing is divided in 2 main components: processing and storage. There are also additional charges for other operations such as ingestion or extraction. The cost of storage is fixed and at the time of writing is US$0.02 per GB per month; you may check the current storage pricing [in this link](https://cloud.google.com/bigquery/pricing#storage).
+      - The idea with big query editions is that the consumer doesn't need to have to figure out all their reservations and how many Flex jobs or Flex slots they would need and variable loads they can configure this all in their bigquery Edition as an autoscaling solution autoscaling up and autoscaling down and the customer consumes the slots as required but also controls the volume and velocity if you will of those slots being used.
+        - BigQuery editions slot capacity:
+          - is available in 3 editions: Standard, Enterprise, and Enterprise Plus.
+          - applies to query costs, including BigQuery ML, DML, and DDL statements.
+          - does not apply to storage costs or BI Engine costs.
+          - does not apply to streaming inserts and using the BigQuery Storage API.
+          - can leverage the BigQuery autoscaler.
+          - is billed per second with a one minute minimum
+        - Optional BigQuery editions slot commitments:
+          - are available for one or three year periods.
+          - are available in Enterprise and Enterprise Plus editions.
+          - are regional capacity. Commitments in one region or multi-region cannot be used in another region or multi-region and cannot be moved.
+          - can be shared across your entire organization. There is no need to buy slot commitments for every project.
+          - are offered with a 100-slot minimum and increments of 100 slots.
+          - are automatically renewed unless set to cancel at the end of the period.
 
-Data processing has a [2-tier pricing model](https://cloud.google.com/bigquery/pricing#analysis_pricing_models):
-- Bigquery On demand pricing (default): US$6.25 per TB per month; the first TB of the month is free.
-- BigQuery Editions: The idea with big query editions is that the consumer doesn't need to have to figure out all their reservations and how many Flex jobs or Flex slots they would need and variable loads they can configure this all in their bigquery Edition as an autoscaling solution autoscaling up and autoscaling down and the customer consumes the slots as required but also controls the volume and velocity if you will of those slots being used.
   - Flexibility:
     - Match workloads to tiers, so you only pay for
     - Mix and match editions for the best price performance per workload
@@ -185,6 +201,16 @@ commercial model
 
 - Difference between Uncompresses and Compressed storage pricing
   ![image](https://github.com/user-attachments/assets/53a3571e-af71-4c28-9a75-2eb052e6575d)
+- Data Transfer Service pricing
+  - After data is transferred to BigQuery, standard BigQuery storage and query pricing applies.
+  - Extraction, uploading to a Cloud Storage bucket, and loading data into BigQuery is free.
+
+- Free operations
+  - Load data: Free using the shared slot pool. Customers can choose editions pricing for guaranteed capacity. Once the data is loaded into BigQuery, you are charged for storage. 
+  - Copy data: You are not charged for copying a table, but you do incur charges Data ingestion editions pricing or storing the new table and the table you copied.
+  - Export data: Free using the shared slot pool, but you do incur charges for storing the data in Cloud Storage. Customers can choose editions pricing for guaranteed capacity. When you use the EXPORT DATA SQL statement, you are charged for query processing.
+  - Delete operations:	You are not charged for deleting datasets or tables, deleting individual table partitions, deleting views, or deleting user-defined functions
+  - Metadata operations: You are not charged for list, get, patch, update and delete calls. Examples include (but are not limited to): listing datasets, updating a dataset's access control list, updating a table's description, or listing user-defined functions in a dataset. Metadata caching operations for BigLake tables aren't included in free operations.
 
 ## Time Travel
 -  time travel is a background copy of all your data in your tables in your data set for a rolling seven days
