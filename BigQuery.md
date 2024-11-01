@@ -212,6 +212,10 @@ commercial model
   - Delete operations:	You are not charged for deleting datasets or tables, deleting individual table partitions, deleting views, or deleting user-defined functions
   - Metadata operations: You are not charged for list, get, patch, update and delete calls. Examples include (but are not limited to): listing datasets, updating a dataset's access control list, updating a table's description, or listing user-defined functions in a dataset. Metadata caching operations for BigLake tables aren't included in free operations.
 
+- When BI Engine accelerates a query, the query stage that reads table data is free. Subsequent stages depend on the type of BigQuery pricing you're using:
+  - For on-demand pricing, stages that use BI Engine are charged for 0 scanned bytes. Subsequent stages will not incur additional on-demand charges.
+  - For editions pricing, the first stage consumes no BigQuery reservation slots. Subsequent stages use slots from the BigQuery reservation.
+
 ## Time Travel
 -  time travel is a background copy of all your data in your tables in your data set for a rolling seven days
 -  time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
