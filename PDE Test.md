@@ -942,19 +942,115 @@ Ans: Option A is correct because Dataproc is a fully managed service for hosting
 Ans: Option A is not correct because this model is not underfitting. Option B is correct because this model appears to be overfitting. Using cross-validation will run the validation on multiple folds of the data, which reduces the overfitting. Option C is not correct because adding new columns will not reduce the overfitting. Option D is not correct because duplicating the data will not reduce the overfitting.
 
 118. Your organization has been collecting information for many years about your customers, including their address and credit card details. You plan to use this customer data to build machine learning models on Google Cloud. You are concerned about private data leaking into the machine learning model. Your management is also concerned that direct leaks of personal data could damage the company's reputation. You need to address these concerns about data security. What should you do?
-    - Remove all the tables that contain sensitive data.
-    - Use libraries like SciPy to build the ML models on your local computer.
-    - Remove the sensitive data by using the Cloud Data Loss Prevention (DLP) API.
-    - Identify the rows that contain sensitive data, and apply SQL queries to remove only those rows.
 
-Ans: Option A is not correct because removing data, such as entire tables, could reduce the effectiveness of the resulting model. Option B is not correct because building machine learning models on individual computers is not a viable approach when it involves large amounts of data. Option C is correct because Cloud DLP is the recommended approach to redact, mask, tokenize, and transform text and images to help protect data privacy. Option D is not correct because removing data, such as full rows, could reduce the effectiveness of the resulting model.
+    A. Remove all the tables that contain sensitive data.
+    B. Use libraries like SciPy to build the ML models on your local computer.
+    C. Remove the sensitive data by using the Cloud Data Loss Prevention (DLP) API.
+    D. Identify the rows that contain sensitive data, and apply SQL queries to remove only those rows.
 
-119. Your healthcare application has a backend system that accepts event data directly from IoT devices. Recent increases of the application's users and devices are causing a sudden influx of data that overwhelms the system. You need to redesign the data pipeline to ensure that all data is processed and that no events are lost. You want to follow Google-recommended practices. What should you do?  
-    - Use Kafka with pull mode.
-    - Use Pub/Sub with pull mode.
-    - Use Pub/Sub with push mode.
-    - Run Cloud Scheduler at fixed intervals.
+    Ans: Option A is not correct because removing data, such as entire tables, could reduce the effectiveness of the resulting model. Option B is not correct because building machine learning models on individual computers is not a viable approach when it involves large amounts of data. Option C is correct because Cloud DLP is the recommended approach to redact, mask, tokenize, and transform text and images to help protect data privacy. Option D is not correct because removing data, such as full rows, could reduce the effectiveness of the resulting model.
 
-Ans:  Option A is not correct because Kafka is not a managed solution in Google Cloud. The Google-recommended option is Pub/Sub, a fully managed, serverless solution. Option B is correct because pull mode allows new event data to be pulled for processing on demand when the previous data is processed. Pub/Sub will absorb and retain new events in the interim without losing them. Option C is not correct because Pub/Sub in push mode could continue to overwhelm the system. Option D is not correct because new event data should be pulled for processing when the previous processing is completed, and that is not expected to be at fixed intervals.
+119. Your healthcare application has a backend system that accepts event data directly from IoT devices. Recent increases of the application's users and devices are causing a sudden influx of data that overwhelms the system. You need to redesign the data pipeline to ensure that all data is processed and that no events are lost. You want to follow Google-recommended practices. What should you do?
+     
+    A. Use Kafka with pull mode.
+    B. Use Pub/Sub with pull mode.
+    C. Use Pub/Sub with push mode.
+    D. Run Cloud Scheduler at fixed intervals.
 
-120. 
+    Ans:  Option A is not correct because Kafka is not a managed solution in Google Cloud. The Google-recommended option is Pub/Sub, a fully managed, serverless solution. Option B is correct because pull mode allows new event data to be pulled for processing on demand when the previous data is processed. Pub/Sub will absorb and retain new events in the interim without losing them. Option C is not correct because Pub/Sub in push mode could continue to overwhelm the system. Option D is not correct because new event data should be pulled for processing when the previous processing is completed, and that is not expected to be at fixed intervals.
+
+121. Your company built a TensorFlow neutral-network model with a large number of neurons and layers. The model fits well for the training data. However, when tested against new data, it performs poorly. What method can you employ to address this?
+     
+    A. Threading
+    B. Serialization
+    C. Dropout Methods
+    D. Dimensionality Reduction
+    
+    Answer: C. Bad performance of a model is either due to lack of relationship between dependent and independent variables used, or just overfit due to having used too many features and/or bad features. A: Threading parallelisation can reduce training time, but if the selected featuers are the same then the resulting performance won't have changed. B: Serialization is only changing data into byte streams. This won't be useful. C: This can show which features are bad. E.g. if it is one feature causing bad performance, then the dropout method will show it, so you can remove it from the model and retrain it. D: This would become clear if the model did not fit the training data well. But the question says that the model fits the training data well, so D is not the answer.
+
+121. You are building a model to make clothing recommendations. You know a user's fashion preference is likely to change over time, so you build a data pipeline to stream new data to the model as it becomes available. How should you use this data to train the model ?
+     
+    A. Continuously retrain the model on just the new data.
+    B. Continuously retrain the model on a combination of existing data and the new data.
+    C. Train on the existing data while using the new data as your test set.
+    D. Train on the new data while using the existing data as your set.
+    
+    Ans: B. As new data can be with new features. Hence the new data can be split to both training and test data to retrain as well as with existing data. 
+
+122. You designed a database for patient records as a pilot project to cover a few hundred patients in three clinics. Your design used a single database table to represent all patients and their visits, and you used self-joins to generate reports. The server resource utilization was at 50%. Since then, the scope of the project has expanded. The database must now store 100 times more patient records. You can no longer run the reports, because they either take too long or they encounter errors with insufficient compute resources. How should you adjust the database design?
+     
+    A. Add capacity (memory and disk space) to the database server by the order of 200.
+    B. Shard the tables into smaller ones based on date ranges, and only generate reports with prespecified date ranges.
+    C. Normalize the master patient-record table into the patient table and the visits table, and create other necessary tables to avoid self-join.
+    D. Partition the table into smaller tables, with one for each clinic. Run queries against the smaller table pairs, and use unions for consolidated reports.
+
+    Ans: C. Based on Google documentation, self-join is an anti-pattern because this option provides the least amount of inconvenience over using pre-specified date ranges or one table per clinic while also increasing performance due to avoiding self-joins.
+
+123. You create an important report for your large team in Data Studio 360. The report uses Bigquery as it's data source. You notice that visualizations are not showing data that is less than 1 hour old. what should you do ?
+     
+    A. Disable caching by editing the report settings.
+    B. Disable caching in BigQuery by editing table details.
+    C. Refresh you browser tab showing visualizations.
+    D. Clear your browser history for the past hour then reload the tab showing the virtualizations.
+    
+    Ans: A.
+
+125. An external customer provides you with a daily dump of data from their database. The data flows into Google Cloud Storage GCS as comma-separated values (CSV) files. You want to analyze this data in Google BigQuery, but the data could have rows that are formatted incorrectly or corrupted. How should you build this pipeline?
+     
+    A. Use federated data sources, and check data in the SQL query.
+    B. Enable BigQuery monitoring in Google Stackdriver and create an alert.
+    C. Import the data into BigQuery using the gcloud CLI and set max_bad_records to 0.
+    D. Run a Google Cloud Dataflow batch pipeline to import the data into BigQuery, and push errors to another dead-letter table for analysis.
+
+    Ans: D. Run a Google Cloud Dataflow batch pipeline to import the data into BigQuery, and push errors to another dead-letter table for analysis. By running a Cloud Dataflow pipeline to import the data, you can perform data validation, cleaning and transformation before it gets loaded into BigQuery. Dataflow allows you to handle corrupted or incorrectly formatted rows by pushing them to another dead-letter table for analysis. This way, you can ensure that only clean and correctly formatted data is loaded into BigQuery for analysis.
+
+125. Your weather app queries a database every 15 minutes to get the current temperature. The frontend is powered by Google App Engine and server millions of users. How should you design the frontend to respond to a database failure?
+     
+    A. Issue a command to restart the database servers.
+    B. Retry the query with exponential backoff, up to a cap of 15 minutes.
+    C. Retry the query every second until it comes back online to minimize staleness of data.
+    D. Reduce the query frequency to once every hour until the database comes back online.
+
+    Ans: B. App engine create applications that use Cloud SQL database connections effectively. If your application attempts to connect to the database and does not succeed, the database could be temporarily unavailable. In this case, sending too many simultaneous connection requests might waste additional database resources and increase the time needed to recover. Using exponential backoff prevents your application from sending an unresponsive number of connection requests when it can't connect to the database. This retry only makes sense when first connecting, or when first grabbing a connection from the pool. If errors happen in the middle of a transaction, the application must do the retrying, and it must retry from the beginning of a transaction. So even if your pool is configured properly, the application might still see errors if connections are lost.
+
+126. You are creating a model to predict housing prices. Due to budget constraints, you must run it on a single resourceconstrained virtual machine. Which learning algorithm should you use?
+
+    A. Linear regression
+    B. Logistic classification
+    C. Recurrent neural network
+    D. Feedforward neural network
+    
+    Ans: A. If you are forecasting that is the values in the column that you are predicting is numeric, it is always liner regression. If you are classifying, that is buy or no buy, yes or no, you will be using logistics regression.
+
+127. You are building new real-time data warehouse for your company and will use Google BigQuery streaming inserts. There is no guarantee that data will only be sent in once but you do have a unique ID for each row of data and an event timestamp. You want to ensure that duplicates are not included while interactively querying data. Which query type should you use?
+     
+    A. Include ORDER BY DESK on timestamp column and LIMIT to 1.
+    B. Use GROUP BY on the unique ID column and timestamp column and SUM on the values.
+    C. Use the LAG window function with PARTITION by unique ID along with WHERE LAG IS NOT NULL.
+    D. Use the ROW_NUMBER window function with PARTITION by unique ID along with WHERE row equals 1.
+    
+    Ans: D. Row Number equals 1 with partitioning will ensure only one record is fetched per partition
+
+128. Your company is using WILDCARD tables to query data across multiple tables with similar names. The SQL statement is currently failing with the following error:
+![image](https://github.com/user-attachments/assets/88816b0d-be36-4a4e-b20b-2de0681a5a0d)
+Which table name will make the SQL statement work correctly?
+
+    A. 'bigquery-public-data.noaa_gsod.gsod'
+    B. bigquery-public-data.noaa_gsod.gsod*
+    C. 'bigquery-public-data.noaa_gsod.gsod'*
+    D. `bigquery-public-data.noaa_gsod.gsod*`
+    
+    Ans: D. To restrict a query so that it scans only a specified set of tables, use the _TABLE_SUFFIX pseudo column in a WHERE clause with a condition that is a constant expression. ex. `bigquery-public-data.noaa_gsod.gsod194*` will scan all table in 1940s.
+
+129. Your company is in a highly regulated industry. One of your requirements is to ensure individual users have access only to the minimum amount of information required to do their jobs. You want to enforce this requirement with Google BigQuery. Which three approaches can you take? (Choose three.)
+     
+    A. Disable writes to certain tables.
+    B. Restrict access to tables by role.
+    C. Ensure that the data is encrypted at all times.
+    D. Restrict BigQuery API access to approved users.
+    E. Segregate data across multiple tables or databases.
+    F. Use Google Stackdriver Audit Logging to determine policy violations.
+
+    Ans: B, D, F
+
+130. 
