@@ -1202,4 +1202,14 @@ You use Google Cloud Dataflow to process the data and decide if a message should
 
     Ans: D. Using the Stack driver API, create a project sink with advanced log filter to export to Pub/Sub, and subscribe to the topic from your monitoring tool. A and B are wrong since don't notify anything to the monitoring tool. C has no filter on what will be notified. We want only some tables.
 
-145. 
+145. You are working on a sensitive project involving private user data. You have set up a project on Google Cloud Platform to house your work internally. An external consultant is going to assist with coding a complex
+transformation in a Google Cloud Dataflow pipeline for your project. How should you maintain users' privacy?
+
+    A. Grant the consultant the Viewer role on the project.
+    B. Grant the consultant the Cloud Dataflow Developer role on the project.
+    C. Create a service account and allow the consultant to log on with it.
+    D. Create an anonymized sample of the data for the consultant to work with in a different project.
+
+    Ans: B. As external consultant just going to assist with coding, it means he is not going to test pipeline himself most likely internal developer will perform this task(as project has private data) thus consultant does not need data access. B seems most appropriate option here as it will only allow consultant to verify logic or flow of the pipeline.
+
+146. 
