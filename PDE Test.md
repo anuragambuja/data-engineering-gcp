@@ -1053,4 +1053,153 @@ Which table name will make the SQL statement work correctly?
 
     Ans: B, D, F
 
-130. 
+130. You are designing a basket abandonment system for an ecommerce company. The system will send a message to a user based on these rules:
+     
+    - No interaction by the user on the site for 1 hour
+    - Has added more than $30 worth of products to the basket
+    - Has not completed a transaction
+You use Google Cloud Dataflow to process the data and decide if a message should be sent. How should you design the pipeline?
+    
+    A. Use a fixed-time window with a duration of 60 minutes.
+    B. Use a sliding time window with a duration of 60 minutes.
+    C. Use a session window with a gap time duration of 60 minutes.
+    D. Use a global window with a time based trigger with a delay of 60 minutes.
+
+    Ans: C.
+
+131. Your company handles data processing for a number of different clients. Each client prefers to use their own suite of analytics tools, with some allowing direct query access via Google BigQuery. You need to secure the data so that clients cannot see each other's data. You want to ensure appropriate access to the data. Which three steps should you take? (Choose three.)
+
+    A. Load data into different partitions.
+    B. Load data into a different dataset for each client.
+    C. Put each client's BigQuery dataset into a different table.
+    D. Restrict a client's dataset to approved users.
+    E. Only allow a service account to access the datasets.
+    F. Use the appropriate identity and access management (IAM) roles for each client's users.
+    
+    Ans: B, D, F. By loading each client's data into a separate dataset, you ensure that each client's data is isolated from the data of other clients. Restricting access to each client's dataset to only approved users, as specified in D, further enhances data security by ensuring that only authorized users can access the data. By using appropriate IAM roles for each client's users, as specified in F, you can grant different levels of access to different clients and their users, ensuring that each client has only the level of access required for their specific needs.
+
+132. You want to process payment transactions in a point-of-sale application that will run on Google Cloud Platform.Your user base could grow exponentially, but you do want to manage infrastructure scaling. Which Google database service should you use?
+
+    A. Cloud SQL
+    B. Bigquery
+    C. Bigtable
+    D. Datastore
+
+    Ans: D. Datastore. As user base grows, write transaction grows since we are dealing with OPS (that not for reading but writing). In order to accomodate more writes in transactional flovour which can be horizontally scaled, Datastore should be preferred. 
+
+133. You want to use a database of information about tissue samples to classify future tissue samples as either normal or mutated. You are evaluating an unsupervised anomaly detection method for classifying the tissue samples. Which two characteristic support this method? (Choose two.)
+     
+    A. There are very few occurrences of mutations relative to normal samples.
+    B. There are roughly equal occurrences of both normal and mutated samples in the database.
+    C. You expect future mutations to have different features from the mutated samples in the database.
+    D. You expect future mutations to have similar features to the mutated samples in the database.
+    E. You already have labels for which samples are mutated and which are normal in the database.
+
+    Ans: A, C. The objective of Unsupervised Anomaly Detection is to detect previously unseen rare objects or events without any prior knowledge about these. The only information available is that the percentage of anomalies in the dataset is small, usually less than 1%.
+
+134. You need to store and analyze social media postings in Google BigQuery at a rate of 10,000 messages per minute in near real-time. Initially, design the application to use streaming inserts for individual postings. Your application also performs data aggregations right after the streaming inserts. You discover that the queries after streaming inserts do not exhibit strong consistency, and reports from the queries might miss in-flight data. How can you adjust your application design?
+
+    A. Re-write the application to load accumulated data every 2 minutes.
+    B. Convert the streaming insert code to batch load for individual messages.
+    C. Load the original message to Google Cloud SQL, and export the table every hour to BigQuery via streaming
+    inserts.
+    D. Estimate the average latency for data availability after streaming inserts, and always run queries after
+    waiting twice as long.
+
+    Ans: D. The data first comes to buffer and then written to Storage. If we are running queries in buffer we will face above mentioned issues. If we wait for the bigquery to write the data to storage then we won’t face the issue. So We need to wait till it’s written to storage
+
+135. Your startup has never implemented a formal security policy. Currently, everyone in the company has access to the datasets stored in Google BigQuery. Teams have freedom to use the service as they see fit, and they have not documented their use cases. You have been asked to secure the data warehouse. You need to discover what everyone is doing. What should you do first?
+
+    A. Use Google Stackdriver Audit Logs to review data access.
+    B. Get the identity and access management IIAM) policy of each table
+    C. Use Stackdriver Monitoring to see the usage of BigQuery query slots.
+    D. Use the Google Cloud Billing API to see what account the warehouse is being billed to.
+
+    Ans: A. First we need to know who is accessing what then we can create suitable policies. Stackdriver is used to track access logs for Bigquery.
+
+136. Your company is migrating their 30-node Apache Hadoop cluster to the cloud. They want to reuse Hadoop jobs they have already created and minimize the management of the cluster as much as possible. They also want to persist data beyond the life of the cluster. What should you do ?
+     
+    A. Create a Google Cloud Dataflow job to process the data.
+    B. Create a Google Cloud Dataproc cluster that uses persistent disks for HDFS.
+    C. Create a Hadoop cluster on Google Compute Engine that uses persistent disks.
+    D. Create a Dataproc Cluster that uses the Google cloud Storage connector.
+    E. Create a Hadoop cluster on Google Compute Engine that uses Local SSD disks.
+    
+    Ans: D. Dataproc is used to migrate Hadoop and Spark jobs on GCP. Dataproc with GCS connected through Google Cloud Storage connector helps store data after the life of the cluster. When the job is high I/O intensive, then we need to create a small persistent disk.
+
+137. Business owners at your company have given you a database of bank transactions. Each row contains the user ID, transaction type, transaction location, and transaction amount. They ask you to investigate what type of machine learning can be applied to the data. Which three machine learning applications can you use? (Choose three.)
+
+    A. Supervised learning to determine which transactions are most likely to be fraudulent.
+    B. Unsupervised learning to determine which transactions are most likely to be fraudulent.
+    C. Clustering to divide the transactions into N categories based on feature similarity.
+    D. Supervised learning to predict the location of a transaction.
+    E. Reinforcement learning to predict the location of a transaction.
+    F. Unsupervised learning to predict the location of a transaction
+
+    Ans: B, C, D. Fraud is not a feature, so unsupervised, location is given so supervised, Clustering can be done looking at the done with same features BCD makes more sense to me. Its for sure not unsupervised, since locations are in the data already. Reinforcement also doesn't fit, as there no AI and no interactions with data from the observer.
+
+138. Your company's on-premises Apache Hadoop servers are approaching end-of-life, and IT has decided to migrate the cluster Google Dataproc. A like-for-like migration of the cluster would require 50TB of persistent disk per node. The CIO is concerned about the cost of usinf that much block storage. You want to minimize the storage cost of the migration. What should you do ?
+     
+    A. Put the data into Google Cloud Storage.
+    B. Use preemptible virtual machines (VMs) for the Cloud Dataproc cluster.
+    C. Tune the Cloud Dataproc cluster so that there is just enough disk for all data.
+    D. Migrate some of the cold data into Google Cloud Storage, and keep only the hot data in Persistent Disk.
+
+    Ans: A. First rule of dataproc is to keep data in GCS
+
+139. You work for a car manufacturer and have set up a data pipeline using Google Cloud Pub/Sub to capture anomalous sensor events. You are using a push subscription in Cloud Pub/Sub that calls a custom HTTPS endpoint that you have created to take action of these anomalous events as they occur. Your custom HTTPS endpoint keeps getting an inordinate amount of duplicate messages. What is the most likely cause of these duplicate messages?
+     
+    A. The message body for the sensor event is too large.
+    B. Your custom endpoint has an out-of-date SSL certificate.
+    C. The Cloud Pub/Sub topic has too many messages published to it.
+    D. Your custom endpoint is not acknowledging messages within the acknowledgement deadline
+
+    Ans: D. The custom endpoint is not acknowledging the message, that is the reason for Pub/Sub to send the message again and again. Not acknowledging a message makes Pub/Sub to think it has not been received, so it sends duplicate messages.
+
+140. Your company uses a proprietary system to send inventory data every 6 hours to a data ingestion service in the cloud. Transmitted data includes a payload of several fields and the timestamp of the transmission. If there are any concerns about a transmission, the system re-transmits the data. How should you deduplicate the data most efficiency?
+
+    A. Assign global unique identifiers (GUID) to each data entry.
+    B. Compute the hash value of each data entry, and compare it with all historical data.
+    C. Store each data entry as the primary key in a separate database and apply an index.
+    D. Maintain a database table to store the hash value and other metadata for each data entry.
+
+    Ans: A. Two messages sent at different can denote same inventory level (and thus have same hash). Adding sender timestamp to hash will defeat the purpose of using hash as now retried messages will have different timestamp and a different hash. 
+
+141. Your company has hired a new data scientist who wants to perform complicated analyses across very large datasets stored in Google Cloud Storage and in a Cassandra cluster on Google Compute Engine. The scientist primarily wants to create labelled data sets for machine learning projects, along with some visualization tasks. She reports that her laptop is not powerful enough to perform her tasks and it is slowing her down. You want to help her perform her tasks. What should you do?
+
+    A. Run a local version of Jupiter on the laptop.
+    B. Grant the user access to Google Cloud Shell.
+    C. Host a visualization tool on a VM on Google Compute Engine.
+    D. Deploy Google Cloud Datalab to a virtual machine (VM) on Google Compute Engine
+
+    Ans: D. 
+
+142. You are deploying 10,000 new Internet of Things devices to collect temperature data in your warehouses globally. You need to process, store and analyze these very large datasets in real time. What should you do?
+
+    A. Send the data to Google Cloud Datastore and then export to BigQuery.
+    B. Send the data to Google Cloud Pub/Sub, stream Cloud Pub/Sub to Google Cloud Dataflow, and store the data in Google BigQuery.
+    C. Send the data to Cloud Storage and then spin up an Apache Hadoop cluster as needed in Google Cloud Dataproc whenever analysis is required.
+    D. Export logs in batch to Google Cloud Storage and then spin up a Google Cloud SQL instance, import the data from Cloud Storage, and run an analysis as needed.
+
+    Ans: B. Pubsub for realtime, Dataflow for pipeline, Bigquery for analytics.You can use cloud data flow for both batch and streaming pipelines. Pub sub will be used to stream data into cloud data flow.
+
+143. You have spent a few days loading data from comma-separated values (CSV) files into the Google BigQuery table CLICK_STREAM. The column DT stores the epoch time of click events. For convenience, you chose a simple schema where every field is treated as the STRING type. Now, you want to compute web session durations of users who visit your site, and you want to change its data type to the TIMESTAMP. You want to minimize the migration effort without making future queries computationally expensive. What should you do?
+
+    A. Delete the table CLICK_STREAM, and then re-create it such that the column DT is of the TIMESTAMP type. Reload the data.
+    B. Add a column TS of the TIMESTAMP type to the table CLICK_STREAM, and populate the numeric values from the column TS for each row. Reference the column TS instead of the column DT from now on.
+    C. Create a view CLICK_STREAM_V, where strings from the column DT are cast into TIMESTAMP values. Reference the view CLICK_STREAM_V instead of the table CLICK_STREAM from now on.
+    D. Add two columns to the table CLICK STREAM: TS of the TIMESTAMP type and IS_NEW of the BOOLEAN type. Reload all data in append mode. For each appended row, set the value of IS_NEW to true. For future queries, reference the column TS instead of the column DT, with the WHERE clause ensuring that the value of IS_NEW must be true.
+    E. Construct a query to return every row of the table CLICK_STREAM, while using the built-in function to cast strings from the column DT into TIMESTAMP values. Run the query into a destination table NEW_CLICK_STREAM, in which the column TS is the TIMESTAMP type. Reference the table NEW_CLICK_STREAM instead of the table CLICK_STREAM from now on. In the future, new data is loaded into the table NEW_CLICK_STREAM.
+
+    Ans: E. more simple and reasonable. Also recommended if not concerned about cost but simplicity.
+
+144. You want to use Google Stackdriver Logging to monitor Google BigQuery usage. You need an instant notification to be sent to your monitoring tool when new data is appended to a certain table using an insert job, but you do not want to receive notifications for other tables. What should you do?
+
+    A. Make a call to the Stackdriver API to list all logs, and apply an advanced filter.
+    B. In the Stackdriver logging admin interface, and enable a log sink export to BigQuery.
+    C. In the Stackdriver logging admin interface, enable a log sink export to Google Cloud Pub/Sub, and subscribe to the topic from your monitoring tool.
+    D. Using the Stackdriver API, create a project sink with advanced log filter to export to Pub/Sub, and subscribe to the topic from your monitoring tool.
+
+    Ans: D. Using the Stack driver API, create a project sink with advanced log filter to export to Pub/Sub, and subscribe to the topic from your monitoring tool. A and B are wrong since don't notify anything to the monitoring tool. C has no filter on what will be notified. We want only some tables.
+
+145. 
