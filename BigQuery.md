@@ -395,7 +395,8 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
   - The ability to use matplotlib, seaborn, and other popular libraries to visualize data at any point in your workflow.
 
 ## BigQuery Data Transfer Service
-- BigQuery Data Transfer Service automates data movement into BigQuery on a scheduled, managed basis.
+- BigQuery Data Transfer Service is serverless service which enables seamless loading of structured data from diverse sources, like SaaS applications, object stores, and other data warehouses into BigQuery on a scheduled, managed basis.
+- 
 - You can access the BigQuery Data Transfer Service using the:
   - Google Cloud console
   - bq command-line tool
