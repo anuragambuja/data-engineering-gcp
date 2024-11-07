@@ -534,4 +534,6 @@ Two modernization routes: Open fromat datalake or BigQuery based datalake
 ![image](https://github.com/user-attachments/assets/07ec45e3-7463-450e-a62c-88c35f6c1de1)
 
 
+#$ Comparison of diffreent ETC tools
 
+![image](https://github.com/user-attachments/assets/0c78b2a1-fe37-45d9-9aa7-5be06db7be16)
