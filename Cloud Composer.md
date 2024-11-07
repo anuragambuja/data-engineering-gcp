@@ -19,3 +19,6 @@
 - Redis is used as message broker for CeleryExecutor. Uses stateful sets to persist messages across container restarts. 
 
 ![image](https://github.com/user-attachments/assets/4d466e6b-44f8-4dcc-9314-1c5470371c3e)
+
+
+![image](https://github.com/user-attachments/assets/cfa9ba9b-80b6-4eee-bbf0-ac192b9637a5)
