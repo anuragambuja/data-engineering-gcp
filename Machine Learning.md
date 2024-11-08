@@ -82,6 +82,9 @@
    
    ![image](https://user-images.githubusercontent.com/19702456/226695557-5685290e-fe5c-4f11-bc75-52e2690df9b3.png)
 
+   ![image](https://github.com/user-attachments/assets/a085686b-ee64-4788-94e8-48cc48e7d88d)
+
+
 - DataPrep
 
   - Intelligent Data Preparation tool
