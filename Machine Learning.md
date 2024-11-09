@@ -233,3 +233,18 @@
   - Features are scalable
   - Features are easy to use
   - 
+
+## Neural Networks
+- Artificial Neural Network (or ANN): ANNs are also referred to as neural networks or shallow neural networks.
+  ![image](https://github.com/user-attachments/assets/db8dbbed-9c58-48b3-b368-e1d0deb32f74)
+  - activation function is used to prevent linearity or add non-linearity. note that you don’t need to have the same activation function across different layers.
+    - rectified linear unit (or ReLU) function, which turns an input value to zero if it’s negative, or keeps the original value if it’s positive.
+    - sigmoid function, which turns the input to a value between 0 and 1. eg. binary classificaion if the mail is spam (1) or not spam (0)
+    - hyperbolic tangent (Tanh) function, which shifts the sigmoid curve and generates a value between -1 and +1.
+    - softmax: activation function for multi-class classification. It maps each output to a [0,1] range in a way that the total adds up to 1. Therefore, the output of softmax is a probability distribution. eg. multiple categories, such as GitHub, NYTimes, and TechCrunch
+  - Loss function is used to calculate errors for a single training instance, whereas cost function is used to calculate errors from the entire training set. Many different cost functions are used in practice. mean squared error, or MSE, is a common one used in linear regression models. For classification problems, cross-entropy is typically used to measure the difference between the predicted and actual probability distributions in logistic regression models.
+  - Weights or parameters are adjusted until the cost function reaches its optimum.
+- deep neural networks (or DNN)
+- convolutional neural networks (or CNN)
+- recurrent neural networks (or RNN)
+- large language models (LLMs)
