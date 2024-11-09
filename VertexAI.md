@@ -26,6 +26,15 @@
 - Phases of AutoML:
 ![image](https://github.com/user-attachments/assets/1d2535a7-bf57-423c-9445-245ba2adba17)
 
+![image](https://github.com/user-attachments/assets/9ecbf871-998f-4bfb-a2f4-5e502403f145)
+
+- Phases
+  - Phase one is data processing. After you upload a dataset, AutoML provides functions to automate part of the data preparation process. For example, it can covert numbers, datetime, text, categories, arrays of categories, and nested fields into a certain format of data so that it can be fed into an ML model.
+  - Phase two includes searching the best models and tuning the parameters. Two critical technologies support this auto search.
+    - neural architect search: which helps search the best models and tune the parameters automatically. The goal of neural architecture search is to find optimal models among many options.
+    - transfer learning: Transfer learning is a powerful technique that lets people with smaller datasets or less computational power achieve great results by using pre-trained models trained on similar, larger datasets.
+  - In phase three, the best models are assembled from phase 2 and prepared for prediction in phase 4. Note that AutoML does not rely on one single model, but on the top number of models. The number of models depends on the training budget, but is typically around 10.
+
 - AutoML Vision specializes in training models for image classification.
   - Training supports several file formats including JPEG, GIF, PNG, BMP, and ICO.
   - The images can be up to 30 megabytes in size.
