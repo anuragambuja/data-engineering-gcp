@@ -43,8 +43,9 @@
     - precision - percent of positive data points correctly classified. TP/(TP+FP)
     - Recall - Percent of Actual positive data points identified. TP /(TP+FN)
     - Mean Squared Error (Regression)
-    
-    ![image](https://user-images.githubusercontent.com/19702456/226649600-045a0da0-c2c4-4807-8435-852c6a0008f2.png)
+  - confusion matrix
+    ![image](https://github.com/user-attachments/assets/0feeb577-802f-4861-9749-138f3432381f)
+
     
 - Model troubleshooting
   - Underfitting - Model performs poorly on training and validation data. Increase complexity of model to correct it
