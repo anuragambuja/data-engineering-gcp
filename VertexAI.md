@@ -23,6 +23,7 @@
 ![image](https://github.com/user-attachments/assets/3d9e14b2-22a6-46e4-b2e2-303050fd3bdf)
 
 - AI Hub is a repository for ML components.
+- In Vertex AI, feature importance is displayed through a bar chart to illustrate how each feature contributes to a prediction. The longer the bar, or the larger the numerical value associated with a feature, the more important it is. This information helps decide which features are included in a machine learning model to predict the goal. Feature importance is just one example of Vertex AI’s comprehensive machine learning functionality called Explainable AI. Explainable AI is a set of tools and frameworks to help understand and interpret predictions made by machine learning models.
 
 # AutoML
 - The downside of using pre-trained models like Vision API, the Speech-to-Text API etc. is that they only yield good predictions when your data is relatively common-place, as in social media images or customer reviews. 
@@ -66,3 +67,24 @@
   
 - How to choose ebtween Bigquery ML, AutoML abd a custom Model
 ![image](https://github.com/user-attachments/assets/f549910a-601c-4480-9cdb-280a9be174e9)
+
+
+## Model Deployment
+- You have two primary options:
+  - Endpoint:
+    -  Deploy the model to an endpoint for real-time predictions (or often called online predictions).
+    -  This option is best when immediate results with low latency are needed, such as making instant recommendations based on a user’s browsing habits whenever they’re online.
+  - Batch prediction:
+    - This option is best when no immediate response is required. For example, sending out marketing campaigns every other week based on the user’s recent purchasing behavior and what’s currently popular on the market.
+    - Batch prediction does not require deploying the model to an endpoint. You can deploy a model either using the UI on Vertex AI or using code by calling APIs.
+- Vertex AI Pipelines
+  - It automates, monitors, and governs machine learning systems by orchestrating the workflow in a serverless manner.
+  - With Vertex AI Workbench, which is a notebook tool, you can define your own pipeline using SDKs. You can do this with prebuilt pipeline components, which means that you primarily need to specify how the pipeline is put together using components as building blocks.
+- MLOps
+  ![image](https://github.com/user-attachments/assets/e07514f5-9d2c-4c9a-ab19-d99b133373ad)
+
+  - The backbone of MLOps on Vertex AI is a tool kit called Vertex AI Pipelines, which supports both Kubeflow Pipelines, or KFP, and TensorFlow Extended, or TFX.
+
+![image](https://github.com/user-attachments/assets/5f2150a5-140f-4d62-9667-4063afa2a10a)
+
+
