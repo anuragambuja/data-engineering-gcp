@@ -46,7 +46,13 @@
   - confusion matrix
     ![image](https://github.com/user-attachments/assets/0feeb577-802f-4861-9749-138f3432381f)
 
-    
+  ![image](https://github.com/user-attachments/assets/4657dd6e-4d42-4ac2-9aaa-d75d281612d6)
+  ![image](https://github.com/user-attachments/assets/5d82a501-93c8-486e-85ff-6a8662f5b901)
+
+    - 100% true positive rate: this means the model perfectly identifies everyone who will repay their loan. It never misses a "good" borrower. 87% true negative rate: the model also correctly identifies 87% of people who won't repay (defaulters). 13% false positive rate: this means the model mistakenly identifies 13% of good borrowers (those who actually repay) as defaulters. This can lead to the bank rejecting potentially good customers, which is not ideal. Finally, 0% false negative rate: this means the model never incorrectly identifies a borrower who will repay their loan as a potential defaulter.
+    - Confidence Threshold: determines how a ML model counts the positive cases. A higher threshold increases the precision but decreases recall. A lower threshold decreases the precision, but increases recall. Moving the confidence threshold to zero produces the highest recall of 100% and the lowest precision of 50%. That means the model predicts that 100% of loan applicants will be able to repay a loan they take out. However, actually only 50% of people were able to repay the loan. Using this threshold to identify the default cases in this example can be risky, because it means that you can only get half of the loan investment back. Now let’s view the other extreme by moving the threshold to 1. This will produce the highest precision of 100% with the lowest recall of 1%. It means that of all the people who were predicted to repay the loan, 100% of them actually did. However, you rejected 99% of loan applicants by only offering loans to 1% of them.That’s a pretty big business loss for your company.
+ 
+      
 - Model troubleshooting
   - Underfitting - Model performs poorly on training and validation data. Increase complexity of model to correct it
   - Overfitting - Model performs well on trianing data and poorly on validation data. regularization can be used for correcting it
