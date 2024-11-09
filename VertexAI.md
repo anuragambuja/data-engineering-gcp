@@ -9,7 +9,11 @@
   - Split the cleaned dataset into a training and evaluation dataset.
   - Train a model on the training dataset.
   - Evaluate the model against the evaluation dataset.
-
+- Vertex AI provides a service called Vertex AI Feature Store, which is a centralized repository to manage, serve, and share features. It aggregates the features from different sources in BigQuery and makes them available for both real-time (often called online) and batch (often called offline) serving. benefits of Vertex AI Feature Store:
+  - features are shareable for training and serving. They are managed and served from a central repository, maintaining consistency across your organization.
+  - features are reusable. This helps to save time and reduces duplicated efforts.
+  - features are scalable. They automatically scale to provide low-latency serving, so you can focus on developing the logic to create them without worrying about deployment.
+  - features are easy to use.
  
  ![image](https://github.com/user-attachments/assets/30e743a5-b048-4608-a6b5-4424fd8d28ba)
 
@@ -23,6 +27,7 @@
 # AutoML
 - The downside of using pre-trained models like Vision API, the Speech-to-Text API etc. is that they only yield good predictions when your data is relatively common-place, as in social media images or customer reviews. 
 - Vertex AI AutoML sits somewhere inbetween these two. A model is trained specific to your data but you don’t need any code to train it.
+- AutoML supports four types of data: image, tabular, text, and video.
 - Phases of AutoML:
 ![image](https://github.com/user-attachments/assets/1d2535a7-bf57-423c-9445-245ba2adba17)
 
