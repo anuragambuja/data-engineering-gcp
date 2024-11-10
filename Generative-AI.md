@@ -1,8 +1,40 @@
+# Generative AI
 
-Gen AI is subset of deep learning which means it uses artificial neural networks, can process both labeled and unlabeled data using supervised, unsupervised and semi-supervised methods. 
+- Gen AI is subset of deep learning which means it uses artificial neural networks, can process both labeled and unlabeled data using supervised, unsupervised and semi-supervised methods. 
 LLM are also a subset of deep learning.
+- It’s a type of artificial intelligence that generates content for you. The generated content can be multi-modal, including text, code, images, speech, video, and even 3D.
 
-Deep Leaning models:
+![image](https://github.com/user-attachments/assets/0a6d1d38-b7ab-4c86-87e0-4001a2b3db86)
+
+- Gen AI workflow:
+
+![image](https://github.com/user-attachments/assets/378479b8-ac31-4527-a50a-af31882ebc59)
+
+1. Input prompt: Via the Vertex AI Studio UI, input a prompt—a natural language request to gen AI models.
+2. Responsible AI and safety measures: The prompt undergoes responsible AI and safety checks, configurable through the UI or code.
+3. Foundation models: The screened prompt proceeds to foundation models like Gemini multimodal or other gen AI models like Imagen and Codey based on your choices.
+4. Model customization: Optionally, customize gen AI models to fit your data and use cases by further tuning them.
+5. Results grounding: Gen AI models return results that undergo grounding (optional) and citation checks to prevent hallucinations.
+6. Final response: The final response appears on the Vertex AI Studio UI after a final check through responsible AI and safety measures.
+
+- lingos
+	
+	- multimodal model: It’s a large foundation model that is capable of processing information from multiple modalities, including text, image, and video. The generated content can also be in multiple modalities.
+	- prompt: a prompt is a natural language request submitted to a model in order to receive a response.
+ 	- temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
+  	- top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees. Top P allows the model to return a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
+
+- Zero-shot prompting is a method where the model is given a prompt that describes the task without additional examples. For example, if you want the LLM to answer a question, you just prompt "What is prompt design?"
+- One-shot prompting is a method where the LLM is given a single example of the task that it is being asked to perform. For example, if you want the LLM to write a poem, you might provide a single example poem.
+- Few-shot prompting is a method where the model is given a small number of examples of the task that it is being asked to perform. 
+
+- Model Tuning
+
+  ![image](https://github.com/user-attachments/assets/b3002888-d0b6-4ae3-b8a6-20aa08a7dc14)
+
+
+
+- Deep Leaning models:
 1. Discriminative model: used to classify or predict labels for data. These models are typically trainied on the data set of labeled data points and they learn the relationship between the features of the data points and the labels. Once it is tranined, it can be used to predict the label for new data points. 
 2. Generative Model: generated new data instances based on a leaned probability distribution of existing data. Generative models generate new contents. 
 
