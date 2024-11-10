@@ -32,7 +32,20 @@ LLM are also a subset of deep learning.
 
   ![image](https://github.com/user-attachments/assets/b3002888-d0b6-4ae3-b8a6-20aa08a7dc14)
 
+	- Adapter tuning, which is supervised tuning. It lets you use as few as one hundred examples to improve model performance.
+	- Reinforcement tuning, which is unsupervised reinforcement learning with human feedback.
+	- Distillation, a more technical tuning technique, enables training smaller task-specific models with less training data, and lower serving costs and latency than the original model. This technology transfers knowledge from a larger model to a smaller model to optimize performance, latency, and cost. The rationale is to use a larger teacher model that trains smaller student models to perform specific tasks better and with improved reasoning capabilities. Rationales are like asking the model to explain why examples are labeled the way they are.
 
+- Model Garden is like a model library, where you can search, discover, and interact with Google’s, third-parties’, and open-source gen AI models.
+	- Categories of models:
+ 		- foundation models: Foundation models are pretrained, multitask, large models that can be tuned or customized for specific tasks by using Vertex AI Studio, Vertex AI APIs and SDKs. Some of these models are Gemini for multimodal processing, Embeddings for creating text and multimodal embeddings, Imagen for image, Chirp for speech, and Codey for code generation.
+   		- task-specific solutions: Task-specific solutions are pre-trained models which are optimized to solve a specific problem. These include some tasks you practiced in the previous section by using Natural Language APIs, like entity analysis, sentiment analysis, and syntax analysis.
+     		- fine-tunable or open-source models.  
+
+- Vertex AI Studio: A tool that lets you quickly test and customize generative AI models so you can leverage their capabilities in your applications.
+- categories of AI solutions provided by Google Cloud:
+	- Vertical solutions, which focus on specific industries
+ 	- horizontal solutions, which solve problems across industries 
 
 - Deep Leaning models:
 1. Discriminative model: used to classify or predict labels for data. These models are typically trainied on the data set of labeled data points and they learn the relationship between the features of the data points and the labels. Once it is tranined, it can be used to predict the label for new data points. 
