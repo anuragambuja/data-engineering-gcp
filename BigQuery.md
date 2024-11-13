@@ -1,6 +1,7 @@
 
 # BigQuery
 
+## Overview
 ![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
 
 - Data warehouse solution in GCP just like Relational database – SQL schema. 
@@ -25,6 +26,25 @@
   - Schema auto-detection enables BigQuery to infer the schema for CSV, JSON, or Google Sheets data. 
   - Schema auto-detection is available when you load data into BigQuery and when you query an external data source.
   - You don't need to enable schema auto-detection for Avro, Parquet, ORC, Firestore export, or Datastore export files. These file formats are self-describing, so BigQuery automatically infers the table schema from the source data. For Parquet, Avro, and Orc files, you can optionally provide an explicit schema to override the inferred schema.
+
+## Architecture
+
+BigQuery is built on 4 infrastructure technologies.
+- ***Dremel***: the _compute_ part of BQ. It executes the SQL queries.
+  - Dremel turns SQL queries into _execution trees_. The leaves of these trees are called _slots_ and the branches are called _mixers_.
+  - The _slots_ are in charge of reading data from storage and perform calculations.
+  - The _mixers_ perform aggregation.
+  - Dremel dinamically apportions slots to queries as needed, while maintaining fairness for concurrent queries from multiple users.
+- ***Colossus***: Google's global storage system.
+  - BQ leverages a _columnar storage format_ and compression algorithms to store data.
+  - Colossus is optimized for reading large amounts of structured data.
+  - Colossus also handles replication, recovery and distributed management.
+- ***Jupiter***: the network that connects Dremel and Colossus.
+  - Jupiter is an in-house network technology created by Google which is used for interconnecting its datacenters.
+- ***Borg***: an orchestration solution that handles everything.
+  - Borg is a precursor of Kubernetes.
+  
+![image](https://user-images.githubusercontent.com/19702456/218378202-7a953293-4430-4091-b194-9471db807cb7.png)
 
 ## BI Engine
 -  BI Engine can accelerate SQL queries from any source, including those written by data visualization tools, and can manage cached tables for on-going optimization.
@@ -165,24 +185,7 @@ Right join: the reverse of a left join. Each row in the right table appears in t
   - It's own alias
   - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct (as shown above with the splits field).
 
-## Architecture
 
-BigQuery is built on 4 infrastructure technologies.
-- ***Dremel***: the _compute_ part of BQ. It executes the SQL queries.
-  - Dremel turns SQL queries into _execution trees_. The leaves of these trees are called _slots_ and the branches are called _mixers_.
-  - The _slots_ are in charge of reading data from storage and perform calculations.
-  - The _mixers_ perform aggregation.
-  - Dremel dinamically apportions slots to queries as needed, while maintaining fairness for concurrent queries from multiple users.
-- ***Colossus***: Google's global storage system.
-  - BQ leverages a _columnar storage format_ and compression algorithms to store data.
-  - Colossus is optimized for reading large amounts of structured data.
-  - Colossus also handles replication, recovery and distributed management.
-- ***Jupiter***: the network that connects Dremel and Colossus.
-  - Jupiter is an in-house network technology created by Google which is used for interconnecting its datacenters.
-- ***Borg***: an orchestration solution that handles everything.
-  - Borg is a precursor of Kubernetes.
-  
-![image](https://user-images.githubusercontent.com/19702456/218378202-7a953293-4430-4091-b194-9471db807cb7.png)
 
 ## Best practices
 
