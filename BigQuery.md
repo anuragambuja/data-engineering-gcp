@@ -2,6 +2,7 @@
 # BigQuery
 
 ## Overview
+
 ![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
 
 - Data warehouse solution in GCP just like Relational database – SQL schema. 
@@ -46,6 +47,7 @@ BigQuery is built on 4 infrastructure technologies.
   
 ![image](https://user-images.githubusercontent.com/19702456/218378202-7a953293-4430-4091-b194-9471db807cb7.png)
 
+
 ## BI Engine
 -  BI Engine can accelerate SQL queries from any source, including those written by data visualization tools, and can manage cached tables for on-going optimization.
 -  BI Engine provides the following advantages:
@@ -62,6 +64,7 @@ BigQuery is built on 4 infrastructure technologies.
     
   ![image](https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c)
 
+
 ## Bigquery Notebooks
 - You can use notebooks to complete analysis and machine learning (ML) workflows by using SQL, Python, and other common packages and APIs.
 - Notebooks offer improved collaboration and management with the following options: 
@@ -74,6 +77,7 @@ BigQuery is built on 4 infrastructure technologies.
   - Auto-completion of SQL statements, the same as in the BigQuery editor.
   - The ability to save, share, and manage versions of notebooks.
   - The ability to use matplotlib, seaborn, and other popular libraries to visualize data at any point in your workflow.
+
 
 ## BigQuery Data Transfer Service
 - BigQuery Data Transfer Service is serverless service which enables seamless loading of structured data from diverse sources, like SaaS applications, object stores, and other data warehouses into BigQuery on a scheduled, managed basis.
@@ -105,6 +109,24 @@ BigQuery is built on 4 infrastructure technologies.
   - YouTube Content Owner
 
 
+## Streaming in Bigquery
+- Streaming Inserts allows you to insert one item at a time into a table.
+- New tables can be created from a temporary table that identifies the schema to be copied. The data enters a streaming buffer where it is held briefly until it can be inserted into the table.
+- You can disable best effort de-duplication by not populating the insert ID field for each row inserted.
+  ![image](https://github.com/user-attachments/assets/9483f15d-597a-4b54-b182-fb23722c24e4)
+
+
+## ML in BigQuery
+- High precision means a low false positive rate, meaning you really punish a model's precision if it makes a ton of bad guesses. Recall, on the other hand, is the ratio of correctly predicted positive observations to the all observations in actual class. Accuracy is simply true positives plus true negatives over the entire set of observations.
+
+![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
+
+![image](https://github.com/user-attachments/assets/7c491018-23ce-475b-805c-adec6271cfab)
+
+- For classification problems in ML, you want to minimize the False Positive Rate (predict that the user will return and purchase and they don't) and maximize the True Positive Rate (predict that the user will return and purchase and they do). This relationship is visualized with a ROC (Receiver Operating Characteristic) curve like the one shown here, where you try to maximize the area under the curve or AUC:
+![image](https://github.com/user-attachments/assets/17e5af1c-cd1c-4b8a-9f82-bded16a42616)
+
+
 ## BigQuery Omni 
 - BigQuery Omni is a flexible, multi-cloud analytics solution powered by Anthos that lets you cost-effectively access and securely analyze data across Google Cloud, Amazon Web Services (AWS), and Azure, without leaving the BigQuery user interface (UI). Using standard SQL and familiar BigQuery APIs, you can break down data silos and gain critical business insights from a single pane of glass. 
 
@@ -113,6 +135,33 @@ BigQuery is built on 4 infrastructure technologies.
 
 ## Connected Sheets 
 - The native integration between Sheets and BigQuery makes it possible for all business stakeholders, who are already quite familiar with spreadsheet tools, to get their own up-to-date insights at any time.
+
+## Time Travel
+-  time travel is a background copy of all your data in your tables in your data set for a rolling seven days
+-  time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
+-  You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
+-  You set the time travel window at the dataset level, which then applies to all of the tables within the dataset.
+-  Using a shorter time travel window lets you save on storage costs when using the physical storage billing model. These savings don't apply when using the logical storage billing model.
+- valid reason for modifying the BigQuery dataset number of days for Time Travel?
+  - Lower storage costs.
+  - Enforcing Data Governance data life.
+  - Faster data exports.
+- The table must be stored in BigQuery; it cannot be an external table. 
+- After you replace an existing table by using the CREATE OR REPLACE TABLE statement, you can use FOR SYSTEM_TIME AS OF to query the previous version of the table. If the table was deleted, then the query fails and returns an error. However, you can restore the table by copying from a point in time to a new table. To restore data from a deleted table, you need to have the bigquery.admin role on the corresponding table.
+- You can query a table's historical data from any point in time within the time travel window by using a FOR SYSTEM_TIME AS OF clause. There is no limit on table size when using SYSTEM_TIME AS OF. eg. query returns a historical version of the table from one hour ago:
+```
+SELECT *
+FROM `mydataset.mytable`
+  FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
+```
+
+## Analytics Hub - Data share solution
+- Platform for secure data sharing with authorized users (internal and external)
+- Construct of data providers, subscribers and data exchange, data discovery
+- Built on top of BigQuery
+- Data Sharing through Bigquery:
+![image](https://github.com/user-attachments/assets/509b622e-de43-4461-88cc-f053a874f161)
+
 
 ## Pricing
 
@@ -291,34 +340,6 @@ Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery
   * Place the table with the _largest_ number of rows first, followed by the table with the _fewest_ rows, and then place the remaining tables by decreasing size. This is due to how BigQuery works internally: the first table will be distributed evenly and the second table will be broadcasted to all the nodes.
 
 
-
-## Time Travel
--  time travel is a background copy of all your data in your tables in your data set for a rolling seven days
--  time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
--  You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
--  You set the time travel window at the dataset level, which then applies to all of the tables within the dataset.
--  Using a shorter time travel window lets you save on storage costs when using the physical storage billing model. These savings don't apply when using the logical storage billing model.
-- valid reason for modifying the BigQuery dataset number of days for Time Travel?
-  - Lower storage costs.
-  - Enforcing Data Governance data life.
-  - Faster data exports.
-- The table must be stored in BigQuery; it cannot be an external table. 
-- After you replace an existing table by using the CREATE OR REPLACE TABLE statement, you can use FOR SYSTEM_TIME AS OF to query the previous version of the table. If the table was deleted, then the query fails and returns an error. However, you can restore the table by copying from a point in time to a new table. To restore data from a deleted table, you need to have the bigquery.admin role on the corresponding table.
-- You can query a table's historical data from any point in time within the time travel window by using a FOR SYSTEM_TIME AS OF clause. There is no limit on table size when using SYSTEM_TIME AS OF. eg. query returns a historical version of the table from one hour ago:
-```
-SELECT *
-FROM `mydataset.mytable`
-  FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
-```
-
-# Analytics Hub - Data share solution
-- Platform for secure data sharing with authorized users (internal and external)
-- Construct of data providers, subscribers and data exchange, data discovery
-- Built on top of BigQuery
-- Data Sharing through Bigquery:
-![image](https://github.com/user-attachments/assets/509b622e-de43-4461-88cc-f053a874f161)
-
-
 ## Partitioning and Clustering  
 
 ### Partitions 
@@ -421,23 +442,4 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 > Install bigquery api in notebook:  `! pip install google-cloud-bigquery==1.25.0 --use-feature=2020-resolver`  
   
   
-## Streaming in Bigquery
-- Streaming Inserts allows you to insert one item at a time into a table.
-- New tables can be created from a temporary table that identifies the schema to be copied. The data enters a streaming buffer where it is held briefly until it can be inserted into the table.
-- You can disable best effort de-duplication by not populating the insert ID field for each row inserted.
-  ![image](https://github.com/user-attachments/assets/9483f15d-597a-4b54-b182-fb23722c24e4)
-
-
-## ML in BigQuery
-- High precision means a low false positive rate, meaning you really punish a model's precision if it makes a ton of bad guesses. Recall, on the other hand, is the ratio of correctly predicted positive observations to the all observations in actual class. Accuracy is simply true positives plus true negatives over the entire set of observations.
-- 
-
-![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
-
-
-![image](https://github.com/user-attachments/assets/7c491018-23ce-475b-805c-adec6271cfab)
-
-- For classification problems in ML, you want to minimize the False Positive Rate (predict that the user will return and purchase and they don't) and maximize the True Positive Rate (predict that the user will return and purchase and they do). This relationship is visualized with a ROC (Receiver Operating Characteristic) curve like the one shown here, where you try to maximize the area under the curve or AUC:
-![image](https://github.com/user-attachments/assets/17e5af1c-cd1c-4b8a-9f82-bded16a42616)
-
 
