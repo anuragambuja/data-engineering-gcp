@@ -1,7 +1,4 @@
-> #####
-```sql
-
-```
+## SQL
 
 > ##### Get number of rows, last modified and creation time of all the tables in a dataset
 ```sql
