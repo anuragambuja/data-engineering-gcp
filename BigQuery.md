@@ -77,6 +77,48 @@
   - It's own alias
   - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct (as shown above with the splits field).
 
+## Partitioning and Clustering  
+
+### Partitions 
+
+- [Partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables) are very useful to improve performance and reduce costs, because BQ will not process as much data per query.
+- You may partition a table by:
+  - ***Time-unit column***: tables are partitioned based on a `TIMESTAMP`, `DATE`, or `DATETIME` column in the table. Special partitions: __NULL__ when nulls in partition column and __UNPARTITIONED__ when values in column outside allowed range
+  - ***Ingestion time***: tables are partitioned based on the timestamp when BigQuery ingests the data. Creates pseudo-column _PARTITIONTIME 
+  - ***Integer range***: tables are partitioned based on an integer column.
+  - For Time-unit and Ingestion time columns, the partition may be daily (the default option), hourly, monthly or yearly.
+  - BigQuery limits the amount of partitions to 4000 per table. If you need more partitions, consider clustering
+  - Requiring partition filter using _partitioning_filter parameter and is specified at table level
+  
+### Clustering 
+
+- ***Clustering*** consists of rearranging a table based on the values of its columns so that the table is ordered according to any criteria. Clustering can be done based on one or multiple columns up to 4; the ***order*** of the columns in which the clustering is specified is important in order to determine the column priority.
+- Clustering may improve performance and lower costs on big datasets for certain types of queries, such as queries that use filter clauses and queries that aggregate data.
+- tables with less than 1GB don't show significant improvement with partitioning and clustering; doing so in a small table could even lead to increased cost due to the additional metadata reads and maintenance needed for these features.
+- Clustering columns must be ***top-level***, ***non-repeated*** columns. The following datatypes are supported:
+  * `DATE`
+  * `BOOL`
+  * `GEOGRAPHY`
+  * `INT64`
+  * `NUMERIC`
+  * `BIGNUMERIC`
+  * `STRING`
+  * `TIMESTAMP`
+  * `DATETIME`
+- BigQuery supports clustering for both partitioned and non-partitioned tables. When you use clustering and partitioning together, the data can be partitioned by a date, date time or timestamp column, and then clustered on a different set of columns. A partitioned table can also be clustered.
+
+| Clustering | Partitioning |
+|---|---|
+| Cost benefit unknown. BQ cannot estimate the reduction in cost before running a query. | Cost known upfront. BQ can estimate the amount of data to be processed before running a query. |
+| High granularity. Multiple criteria can be used to sort the table. | Low granularity. Only a single column can be used to partition the table. |
+| Clusters are "fixed in place". | Partitions can be added, deleted, modified or even moved between storage options. |
+| Benefits from queries that commonly use filters or aggregation against multiple particular columns. | Benefits when you filter or aggregate on a single column. |
+| Unlimited amount of clusters; useful when the cardinality of the number of values in a column or group of columns is large. | Limited to 4000 partitions; cannot be used in columns with larger cardinality. |
+
+You may choose clustering over partitioning when partitioning results in a small amount of data per partition, when partitioning would result in over 4000 partitions or if your mutation operations modify the majority of partitions in the table frequently (for example, writing to the table every few minutes and writing to most of the partitions each time rather than just a handful).
+
+BigQuery has _automatic reclustering_: when new data is written to a table, it can be written to blocks that contain key ranges that overlap with the key ranges in previously written blocks, which weaken the sort property of the table. BQ will perform automatic reclustering in the background to restore the sort properties of the table. For partitioned tables, clustering is maintaned for data within the scope of each partition.
+
 ## External datasets
 - In addition to BigQuery datasets, you can create external datasets (federated datasets), which are links to external data sources:
   - Spanner external dataset
@@ -267,106 +309,21 @@
         ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
 
 
-## Partitioning and Clustering  
 
-### Partitions 
-  
-- Table is divided into segments called partitions  
-- [Partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables) are very useful to improve performance and reduce costs, because BQ will not process as much data per query.
-- You may partition a table by:
-  - ***Time-unit column***: tables are partitioned based on a `TIMESTAMP`, `DATE`, or `DATETIME` column in the table. Special partitions: __NULL__ when nulls in partition column and __UNPARTITIONED__ when values in column outside allowed range
-  - ***Ingestion time***: tables are partitioned based on the timestamp when BigQuery ingests the data. Creates pseudo-column _PARTITIONTIME 
-  - ***Integer range***: tables are partitioned based on an integer column.
-  - For Time-unit and Ingestion time columns, the partition may be daily (the default option), hourly, monthly or yearly.
-  - BigQuery limits the amount of partitions to 4000 per table. If you need more partitions, consider clustering
-  - Requiring partition filter using _partitioning_filter parameter and is specified at table level
-- The _Details_ tab of the table will specify the field which was used for partitioning the table and its datatype.
 
-Here's an example query for creating a partitioned table:
 
-```sql
-CREATE OR REPLACE TABLE taxi-rides-ny.nytaxi.yellow_tripdata_partitoned
-PARTITION BY
-  DATE(tpep_pickup_datetime) AS
-SELECT * FROM taxi-rides-ny.nytaxi.external_yellow_tripdata;
-```
 
-  You may check the amount of rows of each partition in a partitioned table with a query such as this:
 
-```sql
-SELECT table_name, partition_id, total_rows
-FROM `nytaxi.INFORMATION_SCHEMA.PARTITIONS`
-WHERE table_name = 'yellow_tripdata_partitoned'
-ORDER BY total_rows DESC;
-```
-  
-This is useful to check if there are data imbalances and/or biases in your partitions.  
-  
-### Clustering 
 
-- ***Clustering*** consists of rearranging a table based on the values of its columns so that the table is ordered according to any criteria. Clustering can be done based on one or multiple columns up to 4; the ***order*** of the columns in which the clustering is specified is important in order to determine the column priority.
-- Clustering may improve performance and lower costs on big datasets for certain types of queries, such as queries that use filter clauses and queries that aggregate data.
-- tables with less than 1GB don't show significant improvement with partitioning and clustering; doing so in a small table could even lead to increased cost due to the additional metadata reads and maintenance needed for these features.
-- Clustering columns must be ***top-level***, ***non-repeated*** columns. The following datatypes are supported:
-  * `DATE`
-  * `BOOL`
-  * `GEOGRAPHY`
-  * `INT64`
-  * `NUMERIC`
-  * `BIGNUMERIC`
-  * `STRING`
-  * `TIMESTAMP`
-  * `DATETIME`
-- BigQuery supports clustering for both partitioned and non-partitioned tables. When you use clustering and partitioning together, the data can be partitioned by a date, date time or timestamp column, and then clustered on a different set of columns.
-A partitioned table can also be clustered. Here's an example query for creating a partitioned and clustered table:
 
-```sql
-CREATE OR REPLACE TABLE taxi-rides-ny.nytaxi.yellow_tripdata_partitoned_clustered
-PARTITION BY DATE(tpep_pickup_datetime)
-CLUSTER BY VendorID AS
-SELECT * FROM taxi-rides-ny.nytaxi.external_yellow_tripdata;
-```
 
-Just like for partitioned tables, the _Details_ tab for the table will also display the fields by which the table is clustered.
 
-Here are 2 identical queries, one for a partitioned table and the other for a partitioned and clustered table:
 
-```sql
-SELECT count(*) as trips
-FROM taxi-rides-ny.nytaxi.yellow_tripdata_partitoned
-WHERE DATE(tpep_pickup_datetime) BETWEEN '2019-06-01' AND '2020-12-31'
-  AND VendorID=1;
-```
-* Query to non-clustered, partitioned table.
-* This will process about 1.1GB of data.
 
-```sql
-SELECT count(*) as trips
-FROM taxi-rides-ny.nytaxi.yellow_tripdata_partitoned_clustered
-WHERE DATE(tpep_pickup_datetime) BETWEEN '2019-06-01' AND '2020-12-31'
-  AND VendorID=1;
-```
-* Query to partitioned and clustered data.
-* This will process about 865MB of data.
 
-### Partitioning vs Clustering
 
-As mentioned before, you may combine both partitioning and clustering in a table, but there are important differences between both techniques that you need to be aware of in order to decide what to use for your specific scenario:
 
-| Clustering | Partitioning |
-|---|---|
-| Cost benefit unknown. BQ cannot estimate the reduction in cost before running a query. | Cost known upfront. BQ can estimate the amount of data to be processed before running a query. |
-| High granularity. Multiple criteria can be used to sort the table. | Low granularity. Only a single column can be used to partition the table. |
-| Clusters are "fixed in place". | Partitions can be added, deleted, modified or even moved between storage options. |
-| Benefits from queries that commonly use filters or aggregation against multiple particular columns. | Benefits when you filter or aggregate on a single column. |
-| Unlimited amount of clusters; useful when the cardinality of the number of values in a column or group of columns is large. | Limited to 4000 partitions; cannot be used in columns with larger cardinality. |
 
-You may choose clustering over partitioning when partitioning results in a small amount of data per partition, when partitioning would result in over 4000 partitions or if your mutation operations modify the majority of partitions in the table frequently (for example, writing to the table every few minutes and writing to most of the partitions each time rather than just a handful).
-
-BigQuery has _automatic reclustering_: when new data is written to a table, it can be written to blocks that contain key ranges that overlap with the key ranges in previously written blocks, which weaken the sort property of the table. BQ will perform automatic reclustering in the background to restore the sort properties of the table.
-* For partitioned tables, clustering is maintaned for data within the scope of each partition.
-  
-> Install bigquery api in notebook:  `! pip install google-cloud-bigquery==1.25.0 --use-feature=2020-resolver`  
   
 
 ## Best practices
