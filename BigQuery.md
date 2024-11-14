@@ -36,6 +36,24 @@
 
     ![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
 
+- Time Travel
+  -  Time travel is a background copy of all your data in your tables in your data set for a rolling seven days. You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
+  -  Time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
+  
+  -  You set the time travel window at the dataset level, which then applies to all of the tables within the dataset.
+  -  Using a shorter time travel window lets you save on storage costs when using the physical storage billing model. These savings don't apply when using the logical storage billing model.
+  - valid reason for modifying the BigQuery dataset number of days for Time Travel?
+    - Lower storage costs.
+    - Enforcing Data Governance data life.
+    - Faster data exports.
+  - The table must be stored in BigQuery; it cannot be an external table. 
+  - After you replace an existing table by using the CREATE OR REPLACE TABLE statement, you can use FOR SYSTEM_TIME AS OF to query the previous version of the table. If the table was deleted, then the query fails and returns an error. However, you can restore the table by copying from a point in time to a new table. To restore data from a deleted table, you need to have the bigquery.admin role on the corresponding table.
+  - You can query a table's historical data from any point in time within the time travel window by using a FOR SYSTEM_TIME AS OF clause. There is no limit on table size when using SYSTEM_TIME AS OF. eg. query returns a historical version of the table from one hour ago:
+          ```
+          SELECT *
+          FROM `mydataset.mytable`
+            FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
+          ```
 
 ## BI Engine
 
@@ -111,40 +129,12 @@
   ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
 
 
-## BigQuery Omni 
-- BigQuery Omni is a flexible, multi-cloud analytics solution powered by Anthos that lets you cost-effectively access and securely analyze data across Google Cloud, Amazon Web Services (AWS), and Azure, without leaving the BigQuery user interface (UI). Using standard SQL and familiar BigQuery APIs, you can break down data silos and gain critical business insights from a single pane of glass. 
-
-## Data QnA
-- Data QnA enables self-service analytics for business users on BigQuery data as well as federated data from Cloud Storage, Bigtable, Cloud SQL, or Google Drive. It uses Dialogflow and enables users to formulate free-form text analytical questions, with auto-suggested entities while users type a question.
-
-## Connected Sheets 
-- The native integration between Sheets and BigQuery makes it possible for all business stakeholders, who are already quite familiar with spreadsheet tools, to get their own up-to-date insights at any time.
-
-## Time Travel
--  time travel is a background copy of all your data in your tables in your data set for a rolling seven days
--  time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
--  You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
--  You set the time travel window at the dataset level, which then applies to all of the tables within the dataset.
--  Using a shorter time travel window lets you save on storage costs when using the physical storage billing model. These savings don't apply when using the logical storage billing model.
-- valid reason for modifying the BigQuery dataset number of days for Time Travel?
-  - Lower storage costs.
-  - Enforcing Data Governance data life.
-  - Faster data exports.
-- The table must be stored in BigQuery; it cannot be an external table. 
-- After you replace an existing table by using the CREATE OR REPLACE TABLE statement, you can use FOR SYSTEM_TIME AS OF to query the previous version of the table. If the table was deleted, then the query fails and returns an error. However, you can restore the table by copying from a point in time to a new table. To restore data from a deleted table, you need to have the bigquery.admin role on the corresponding table.
-- You can query a table's historical data from any point in time within the time travel window by using a FOR SYSTEM_TIME AS OF clause. There is no limit on table size when using SYSTEM_TIME AS OF. eg. query returns a historical version of the table from one hour ago:
-```
-SELECT *
-FROM `mydataset.mytable`
-  FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
-```
-
 ## Analytics Hub - Data share solution
 - Platform for secure data sharing with authorized users (internal and external)
 - Construct of data providers, subscribers and data exchange, data discovery
 - Built on top of BigQuery
-- Data Sharing through Bigquery:
-![image](https://github.com/user-attachments/assets/509b622e-de43-4461-88cc-f053a874f161)
+
+    ![image](https://github.com/user-attachments/assets/509b622e-de43-4461-88cc-f053a874f161)
 
 
 ## Pricing
@@ -226,7 +216,7 @@ commercial model
 
   - external tables: External tables are similar to standard BigQuery tables, in that these tables store their metadata and schema in BigQuery storage. However, their data resides in an external source. There are four kinds of external tables:
     - BigLake tables: BigLake tables let you query structured data in external data stores with access delegation. Access delegation decouples access to the BigLake table from access to the underlying data store. Because the service account handles retrieving data from the data store, you only have to grant users access to the BigLake table. The staleness for BigLake's metadata cache can be configured between 30 minutes to 7 days and can be refreshed automatically or manually.
-    - BigQuery Omni tables: With BigQuery Omni, you can run BigQuery analytics on data stored in Amazon Simple Storage Service (Amazon S3) or Azure Blob Storage using BigLake tables.
+    - BigQuery Omni tables: BigQuery Omni is a flexible, multi-cloud analytics solution powered by Anthos that lets you cost-effectively access and securely analyze data stored in Amazon Simple Storage Service (Amazon S3) or Azure Blob Storage using BigLake tables.
     - Object tables: Object tables let you analyze unstructured data in Cloud Storage. You can perform analysis with remote functions or perform inference by using BigQuery ML, and then join the results of these operations with the rest of your structured data in BigQuery. Like BigLake tables, object tables use access delegation, which decouples access to the object table from access to the Cloud Storage objects.
     - Non-BigLake external tables: Non-BigLake external tables let you query structured data in external data stores. To query a non-BigLake external table, you must have permissions to both the external table and the external data source. 
       - Bigtable
