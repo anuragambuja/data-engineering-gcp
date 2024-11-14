@@ -141,61 +141,9 @@
 
 ![image](https://github.com/user-attachments/assets/006ebf8a-c685-42b0-af62-43a49a0c1bc0)
 
-- BigQuery pricing has two main components:
-  - Storage pricing is the cost to store data that you load into BigQuery. The cost of storage is fixed and at the time of writing is US$0.02 per GB per month.
-  - Compute pricing:  Compute pricing is the cost to process queries, including SQL queries, user-defined functions, scripts, and certain data manipulation language (DML) and data definition language (DDL) statements.
-    - On-demand pricing (per TiB). With this pricing model, you are charged for the number of bytes processed by each query. US$6.25 per TB per month; the first TB of the month is free.
-    - Capacity pricing (per slot-hour). With this pricing model, you are charged for compute capacity used to run queries, measured in slots (virtual CPUs) over time. This model takes advantage of BigQuery editions. You can use the BigQuery autoscaler or purchase slot commitments, which are dedicated capacity that is always available for your workloads, at a lower price.
-
-      - The idea with big query editions is that the consumer doesn't need to have to figure out all their reservations and how many Flex jobs or Flex slots they would need and variable loads they can configure this all in their bigquery Edition as an autoscaling solution autoscaling up and autoscaling down and the customer consumes the slots as required but also controls the volume and velocity if you will of those slots being used.
-        - BigQuery editions slot capacity:
-          - is available in 3 editions: Standard, Enterprise, and Enterprise Plus.
-          - applies to query costs, including BigQuery ML, DML, and DDL statements.
-          - does not apply to storage costs or BI Engine costs.
-          - does not apply to streaming inserts and using the BigQuery Storage API.
-          - can leverage the BigQuery autoscaler.
-          - is billed per second with a one minute minimum
-        - Optional BigQuery editions slot commitments:
-          - are available for one or three year periods.
-          - are available in Enterprise and Enterprise Plus editions.
-          - are regional capacity. Commitments in one region or multi-region cannot be used in another region or multi-region and cannot be moved.
-          - can be shared across your entire organization. There is no need to buy slot commitments for every project.
-          - are offered with a 100-slot minimum and increments of 100 slots.
-          - are automatically renewed unless set to cancel at the end of the period.
-
-  - Flexibility:
-    - Match workloads to tiers, so you only pay for
-    - Mix and match editions for the best price performance per workload
-  - Price Predictability:
-    - 1-year and 3-year commitments with higher discounts
-    - Leverage autoscale to pay only for what you use. No need to overpay for underused capacity
-    - Low cost storage
-  - Control:
-    - Autoscaling with baseline and max thresholds to intelligently manage costs.
-    - BigQuery BI Engine dynamically manages slots while queries are running! BI Engine Slots are stateful.
-
-![image](https://github.com/user-attachments/assets/31f8fe67-b64e-46cd-85de-55d659dd2386)
-
-
-- BigQuery Autoscaler: Dynamically adjusts the capacity in response to planned or unplanned changes in demand to help ensure you pay only for what you use. Autoscaling is the core functionality available in a new
-commercial model
-
-  ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
-
-- Storage billing models
-  - two dataset storage billing models:
-    - Logical bytes
-    - Physical bytes
-  - When you create a dataset, the storage used by that dataset is billed to you using logical bytes as the default unit of consumption. However, you can choose to use physical bytes for billing instead. You can also change an existing dataset's storage billing model to use physical bytes.
-  - When you set your storage billing model to use physical bytes, the total active storage costs you are billed for include the bytes used for time travel and fail-safe storage. You can configure the time travel window to balance storage costs with your data retention needs. For more information on forecasting your storage costs, see Forecast storage billing.
-  - When you change a dataset's billing model, it takes 24 hours for the change to take effect.
-  - Once you change a dataset's storage billing model, you must wait 14 days before you can change the storage billing model again.
-
 - A rate limit limit or a quota it is a hard ceiling cost control but budgets are not a hard ceiling they are a guideline of how much money you are spending on variety of services
 - The cost of a query is always assigned to the active project from where the query is executed.
 
-- Difference between Uncompresses and Compressed storage pricing
-  ![image](https://github.com/user-attachments/assets/53a3571e-af71-4c28-9a75-2eb052e6575d)
 - Data Transfer Service pricing
   - After data is transferred to BigQuery, standard BigQuery storage and query pricing applies.
   - Extraction, uploading to a Cloud Storage bucket, and loading data into BigQuery is free.
@@ -210,6 +158,55 @@ commercial model
 - When BI Engine accelerates a query, the query stage that reads table data is free. Subsequent stages depend on the type of BigQuery pricing you're using:
   - For on-demand pricing, stages that use BI Engine are charged for 0 scanned bytes. Subsequent stages will not incur additional on-demand charges.
   - For editions pricing, the first stage consumes no BigQuery reservation slots. Subsequent stages use slots from the BigQuery reservation.
+  
+- BigQuery pricing has two main components:
+  - ***Storage pricing***: Storage pricing is the cost to store data that you load into BigQuery. The cost of storage is fixed and at the time of writing is US$0.02 per GB per month. Two dataset storage billing models are present in bigquery: Logical bytes and Physical bytes
+    - When you create a dataset, the storage used by that dataset is billed to you using logical bytes as the default unit of consumption. However, you can choose to use physical bytes for billing instead. You can also change an existing dataset's storage billing model to use physical bytes.
+    - When you set your storage billing model to use physical bytes, the total active storage costs you are billed for include the bytes used for time travel and fail-safe storage. You can configure the time travel window to balance storage costs with your data retention needs. For more information on forecasting your storage costs, see Forecast storage billing.
+    - When you change a dataset's billing model, it takes 24 hours for the change to take effect.
+    - Once you change a dataset's storage billing model, you must wait 14 days before you can change the storage billing model again.
+    - Difference between Uncompresses and Compressed storage pricing
+
+        ![image](https://github.com/user-attachments/assets/53a3571e-af71-4c28-9a75-2eb052e6575d)
+    
+  - ***Compute pricing***: Compute pricing is the cost to process queries, including SQL queries, user-defined functions, scripts, and certain data manipulation language (DML) and data definition language (DDL) statements.
+    - ***On-demand pricing (per TiB)***: With this pricing model, you are charged for the number of bytes processed by each query. US$6.25 per TB per month; the first TB of the month is free.
+    - ***Capacity pricing (per slot-hour)***: With this pricing model, you are charged for compute capacity used to run queries, measured in slots (virtual CPUs) over time. This model takes advantage of BigQuery editions. You can use the BigQuery autoscaler or purchase slot commitments, which are dedicated capacity that is always available for your workloads, at a lower price.
+
+      - The idea with big query editions is that the consumer doesn't need to have to figure out all their reservations and how many Flex jobs or Flex slots they would need. For variable loads they can configure this all in their bigquery Edition as an autoscaling solution (autoscaling up and autoscaling down) and the customer consumes the slots as required.
+        - BigQuery editions slot capacity:
+          - is available in 3 editions: Standard, Enterprise, and Enterprise Plus.
+          - applies to query costs, including BigQuery ML, DML, and DDL statements.
+          - does not apply to storage costs or BI Engine costs.
+          - does not apply to streaming inserts and using the BigQuery Storage API.
+          - can leverage the BigQuery autoscaler.
+          - is billed per second with a one minute minimum
+        - Optional BigQuery editions slot commitments:
+          - are available for one or three year periods with higher discounts
+          - are available in Enterprise and Enterprise Plus editions.
+          - are regional capacity. Commitments in one region or multi-region cannot be used in another region or multi-region and cannot be moved.
+          - can be shared across your entire organization. There is no need to buy slot commitments for every project.
+          - are offered with a 100-slot minimum and increments of 100 slots.
+          - are automatically renewed unless set to cancel at the end of the period.
+
+            ![image](https://github.com/user-attachments/assets/31f8fe67-b64e-46cd-85de-55d659dd2386)
+  
+- Flexibility:
+  - Match workloads to tiers, so you only pay for
+  - Mix and match editions for the best price performance per workload
+- Price Predictability:
+  - 1-year and 3-year commitments with higher discounts
+  - Leverage autoscale to pay only for what you use. No need to overpay for underused capacity
+  - Low cost storage
+- Control:
+  - Autoscaling with baseline and max thresholds to intelligently manage costs.
+  - BigQuery BI Engine dynamically manages slots while queries are running! BI Engine Slots are stateful.
+- BigQuery Autoscaler: Dynamically adjusts the capacity in response to planned or unplanned changes in demand to help ensure you pay only for what you use. Autoscaling is the core functionality available in a new
+commercial model
+
+  ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
+
+
 
 ## External Tables
 - An external data source is a data source that you can query directly from BigQuery, even though the data is not stored in BigQuery storage. BigQuery has two different mechanisms for querying external data:
@@ -286,32 +283,6 @@ Right join: the reverse of a left join. Each row in the right table appears in t
   - The same or different data types for each field
   - It's own alias
   - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct (as shown above with the splits field).
-
-
-
-## Best practices
-
-Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery/docs/best-practices-performance-overview):
-
-* Cost reduction
-  * Avoid `SELECT *` . Reducing the amount of columns to display will drastically reduce the amount of processed data and lower costs.
-  * Price your queries before running them.
-  * Use clustered and/or partitioned tables if possible.
-  * Use [streaming inserts](https://cloud.google.com/bigquery/streaming-data-into-bigquery) with caution. They can easily increase cost.
-  * [Materialize query results](https://cloud.google.com/bigquery/docs/materialized-views-intro) in different stages.
-* Query performance
-  * Filter on partitioned columns.
-  * [Denormalize data](https://cloud.google.com/blog/topics/developers-practitioners/bigquery-explained-working-joins-nested-repeated-data).
-  * Use [nested or repeated columns](https://cloud.google.com/blog/topics/developers-practitioners/bigquery-explained-working-joins-nested-repeated-data).
-  * Use external data sources appropiately. Constantly reading data from a bucket may incur in additional costs and has worse performance.
-  * Reduce data before using a `JOIN`.
-  * Do not threat `WITH` clauses as [prepared statements](https://www.wikiwand.com/en/Prepared_statement).
-  * Avoid [oversharding tables](https://cloud.google.com/bigquery/docs/partitioned-tables#dt_partition_shard).
-  * Avoid JavaScript user-defined functions.
-  * Use [approximate aggregation functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions) rather than complete ones such as [HyperLogLog++](https://cloud.google.com/bigquery/docs/reference/standard-sql/hll_functions).
-  * Order statements should be the last part of the query.
-  * [Optimize join patterns](https://cloud.google.com/bigquery/docs/best-practices-performance-compute#optimize_your_join_patterns).
-  * Place the table with the _largest_ number of rows first, followed by the table with the _fewest_ rows, and then place the remaining tables by decreasing size. This is due to how BigQuery works internally: the first table will be distributed evenly and the second table will be broadcasted to all the nodes.
 
 
 ## Partitioning and Clustering  
@@ -415,5 +386,28 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
   
 > Install bigquery api in notebook:  `! pip install google-cloud-bigquery==1.25.0 --use-feature=2020-resolver`  
   
-  
+
+## Best practices
+
+Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery/docs/best-practices-performance-overview):
+
+* Cost reduction
+  * Avoid `SELECT *` . Reducing the amount of columns to display will drastically reduce the amount of processed data and lower costs.
+  * Use clustered and/or partitioned tables if possible.
+  * Use [streaming inserts](https://cloud.google.com/bigquery/streaming-data-into-bigquery) with caution. They can easily increase cost.
+  * [Materialize query results](https://cloud.google.com/bigquery/docs/materialized-views-intro) in different stages.
+* Query performance
+  * Filter on partitioned columns.
+  * [Denormalize data](https://cloud.google.com/blog/topics/developers-practitioners/bigquery-explained-working-joins-nested-repeated-data).
+  * Use [nested or repeated columns](https://cloud.google.com/blog/topics/developers-practitioners/bigquery-explained-working-joins-nested-repeated-data).
+  * Use external data sources appropiately. Constantly reading data from a bucket may incur in additional costs and has worse performance.
+  * Reduce data before using a `JOIN`.
+  * Do not treat `WITH` clauses as [prepared statements](https://www.wikiwand.com/en/Prepared_statement).
+  * Avoid [oversharding tables](https://cloud.google.com/bigquery/docs/partitioned-tables#dt_partition_shard).
+  * Avoid JavaScript user-defined functions.
+  * Use [approximate aggregation functions](https://cloud.google.com/bigquery/docs/reference/standard-sql/approximate_aggregate_functions) rather than complete ones such as [HyperLogLog++](https://cloud.google.com/bigquery/docs/reference/standard-sql/hll_functions).
+  * Order statements should be the last part of the query.
+  * [Optimize join patterns](https://cloud.google.com/bigquery/docs/best-practices-performance-compute#optimize_your_join_patterns).
+  * Place the table with the _largest_ number of rows first, followed by the table with the _fewest_ rows, and then place the remaining tables by decreasing size. This is due to how BigQuery works internally: the first table will be distributed evenly and the second table will be broadcasted to all the nodes.
+
 
