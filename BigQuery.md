@@ -6,48 +6,42 @@
 ![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
 
 - BQ is ***serverless***, ***scalable***, ***high availaible*** SQL based ***data warehouse*** solution in GCP to analyse petabyte scale of data
-- BQ is for Analytical database and not for Transactional purpose. Alternative to OpenSource Apache Hive. Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
-- BigQuery is Columnar storage.  When performing queries, Dremel modifies them in order to create an _execution tree_: parts of the query are assigned to different mixers which in turn assign even smaller parts to different slots which will access Colossus and retrieve the data. The columnar storage format is perfect for this workflow as it allows very fast data retrieval from colossus by multiple workers, which then perform any needed computation on the retrieved datapoints and return them to the mixers, which will perform any necessary aggregation before returning that data to the root server, which will compose the final output of the query.
-
-    ![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
-
-- GoogleSQL, used by both BigQuery and Spanner uses 2011 ANSI SQL
-
-  
-- Avro, ORC, and Parquet files are all now supported for federated querying.
-
-- BQ managed Transfer Service allows to move data into BQ from SaaS services. You can schedule loades and automatically scale and access other data sources through various connectors.
+- BQ is analytical database and not for Transactional purpose alternative to OpenSource Apache Hive. Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
+- GoogleSQL, used by both BigQuery and Spanner uses 2011 ANSI SQL. You can query using Standand and legacy SQL in Bigquery.
 - Datasets are collections of tables that can be divided along business lines or a given analytical domain. Each dataset is tied to a Google Cloud project.
 - Identity and Access Management is used to grant permission to perform specific actions in BigQuery. This replaces the SQL GRANT and REVOKE statements that are used to manage access permissions in traditional SQL databases.
-- Storage resources are allocated as you consume them and deallocated as you remove data or drop tables. Query resources are allocated according to query type and complexity. Each query uses some number of slots, which are units of computation that comprise a certain amount of CPU and RAM.
-- Query using
-  - Standard SQL
-  - legacy SQL
 - Schema auto-detection
   - Schema auto-detection enables BigQuery to infer the schema for CSV, JSON, or Google Sheets data. 
   - Schema auto-detection is available when you load data into BigQuery and when you query an external data source.
   - You don't need to enable schema auto-detection for Avro, Parquet, ORC, Firestore export, or Datastore export files. These file formats are self-describing, so BigQuery automatically infers the table schema from the source data. For Parquet, Avro, and Orc files, you can optionally provide an explicit schema to override the inferred schema.
-- BQ has built-in features like Machine Learning, Geospatial Analysis and Business Intelligence among others.
-- BQ maximizes flexibility by separating data analysis and storage in different _compute engines_, thus allowing the customers to budget accordingly and reduce costs.
-  
-## Architecture
 
-BigQuery is built on 4 infrastructure technologies.
-- ***Dremel***: the _compute_ part of BQ. It executes the SQL queries.
-  - Dremel turns SQL queries into _execution trees_. The leaves of these trees are called _slots_ and the branches are called _mixers_.
-  - The _slots_ are in charge of reading data from storage and perform calculations.
-  - The _mixers_ perform aggregation.
-  - Dremel dinamically apportions slots to queries as needed, while maintaining fairness for concurrent queries from multiple users.
-- ***Colossus***: Google's global storage system.
-  - BQ leverages a _columnar storage format_ and compression algorithms to store data.
-  - Colossus is optimized for reading large amounts of structured data.
-  - Colossus also handles replication, recovery and distributed management.
-- ***Jupiter***: the network that connects Dremel and Colossus.
-  - Jupiter is an in-house network technology created by Google which is used for interconnecting its datacenters.
-- ***Borg***: an orchestration solution that handles everything.
-  - Borg is a precursor of Kubernetes.
+- BigQuery architecture is built on 4 infrastructure technologies.
+    - ***Dremel***: the _compute_ part of BQ. It executes the SQL queries.
+      - Dremel turns SQL queries into _execution trees_. The leaves of these trees are called _slots_ and the branches are called _mixers_.
+      - The _slots_ are in charge of reading data from storage and perform calculations.
+      - The _mixers_ perform aggregation.
+      - Dremel dinamically apportions slots to queries as needed, while maintaining fairness for concurrent queries from multiple users.
+    - ***Colossus***: Google's global storage system.
+      - BQ leverages a _columnar storage format_ and compression algorithms to store data.
+      - Colossus is optimized for reading large amounts of structured data.
+      - Colossus also handles replication, recovery and distributed management.
+    - ***Jupiter***: the network that connects Dremel and Colossus.
+      - Jupiter is an in-house network technology created by Google which is used for interconnecting its datacenters.
+    - ***Borg***: an orchestration solution that handles everything.
+      - Borg is a precursor of Kubernetes.
   
-![image](https://user-images.githubusercontent.com/19702456/218378202-7a953293-4430-4091-b194-9471db807cb7.png)
+        ![image](https://user-images.githubusercontent.com/19702456/218378202-7a953293-4430-4091-b194-9471db807cb7.png)
+
+- BigQuery is Columnar storage.  When performing queries, Dremel modifies them in order to create an _execution tree_: parts of the query are assigned to different mixers which in turn assign even smaller parts to different slots which will access Colossus and retrieve the data. The columnar storage format is perfect for this workflow as it allows very fast data retrieval from colossus by multiple workers, which then perform any needed computation on the retrieved datapoints and return them to the mixers, which will perform any necessary aggregation before returning that data to the root server, which will compose the final output of the query.
+
+    ![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
+
+
+- Avro, ORC, and Parquet files are all now supported for federated querying.
+- BQ managed Transfer Service allows to move data into BQ from SaaS services. You can schedule loades and automatically scale and access other data sources through various connectors.
+- Storage resources are allocated as you consume them and deallocated as you remove data or drop tables. Query resources are allocated according to query type and complexity. Each query uses some number of slots, which are units of computation that comprise a certain amount of CPU and RAM.
+- BQ has built-in features like Machine Learning, Geospatial Analysis and Business Intelligence among others.
+
 
 
 ## BI Engine
