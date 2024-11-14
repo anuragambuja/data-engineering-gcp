@@ -133,6 +133,14 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 
     ![image](https://github.com/user-attachments/assets/e9c09763-a08b-49dc-8638-b74d4d06c6f2)
 
+
+## BigLake API
+- BigLake is a storage engine that unifies data warehouses and lakes, by providing uniform fine-grained access control, performance acceleration across multi-cloud storage and open formats.
+- The BigLake API provides access to BigLake Metastore, a serverless, fully managed, highly available metastore for open-source data that can be used for quesrying Apache Iceberg tables in Bigquery.
+
+    ![image](https://github.com/user-attachments/assets/1c927258-8443-415b-b0cb-a0d8a2bfc8cb)
+
+
 ## Time Travel
   -  Time travel is a background copy of all your data in your tables in your data set for a rolling seven days. You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
   -  Time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
