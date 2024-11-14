@@ -36,7 +36,71 @@
 
     ![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
 
-- Time Travel
+- Data Types
+  - Avro is the preferred format for loading data into BigQuery. Compresed Avro files not supported but compressed Avro data blocks are supported. Parquet has better compression ratio and smaller files. For CSV and JSON, BQ can load uncompressed files significantly faster than compressed
+  - Array Type
+    - Arrays of arrays not allowed
+    - Arrays of structs allowed
+    - Declare as ARRAY<T>
+  - Struct Type
+    - Declare as STRUCT<T> eg. STRUCT<a int64, b string>
+    - Structs can be directly compared using equality operators: =, != or <>, [NOT] IN
+- Data Access Controls
+  - Organization or project level for all project's BQ resources
+  - dataset level for access to a specific data set
+  - table or view level for access to specific tables or views in a dataset
+- Column Level Security
+  - Restrict access to sensitive information in a table
+  - Define Taxonomy of tags in Data Catalog and assign tags to columns in Bigquery
+  - USe IAM roles to restrict access to each policy tag
+- Row Level Security
+  - Filter data in a table based on user conditions
+  - Row level policy is applied to table
+  ![image](https://user-images.githubusercontent.com/19702456/224623322-b8b93a8c-3087-4a03-9c2a-552ec7f3d6ab.png)
+- Query caching is based on exact string comparison. So even whitespaces can cause a cache miss. Queries are never cached if they exhibit non-deterministic behavior (for example, they use CURRENT_TIMESTAMP or RAND), if the table or view being queried has changed (even if the columns/rows of interest to the query are unchanged), if the table is associated with a streaming buffer (even if there are no new rows), if the query uses DML statements, or queries external data sources.
+- You can recover a deleted table only if another table with the same ID in the dataset has not been created. In particular, this means you cannot recover a deleted table if it is being streamed to, chances are that the streaming pipeline would have already created an empty table and started pushing rows into it. using Create or Replace table because this makes the table irrecoverable.
+- BigQuery supports user-defined functions or UDF. Java Script is currently the only external language supported. BigQuery can optimize the execution of SQL much better than it can for JavaScript.
+  
+      ```bash
+      # Get details
+      $ bq show --format=prettyjson dataset:tablename
+      ```
+- BigQuery natively supports arrays. Array values must share a data type. Arrays are called REPEATED fields in BigQuery.
+  - finding the number of elements with ARRAY_LENGTH(<array>)
+  - deduplicating elements with ARRAY_AGG(DISTINCT <field>)
+  - ordering elements with ARRAY_AGG(<field> ORDER BY <field>)
+  - limiting ARRAY_AGG(<field> LIMIT 5)
+
+- A STRUCT can have:
+  - One or many fields in it
+  - The same or different data types for each field
+  - It's own alias
+  - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct (as shown above with the splits field).
+
+## External datasets
+- In addition to BigQuery datasets, you can create external datasets (federated datasets), which are links to external data sources:
+  - Spanner external dataset
+  - AWS Glue federated dataset
+- Once created, external datasets contain tables from a referenced external data source. Data from these tables aren't copied into BigQuery, but queried every time they are used.
+- External datasets don't support table expiration, replicas, time travel, default collation, default rounding mode or the option to enable or disable case insensitive tables name.
+
+## External Tables
+- An external data source is a data source that you can query directly from BigQuery, even though the data is not stored in BigQuery storage. BigQuery has two different mechanisms for querying external data:
+
+  - ***External Tables***: External tables are similar to standard BigQuery tables, in that these tables store their metadata and schema in BigQuery storage. However, their data resides in an external source. There are four kinds of external tables:
+    - BigLake tables: BigLake tables let you query structured data in external data stores with access delegation. Access delegation decouples access to the BigLake table from access to the underlying data store. Because the service account handles retrieving data from the data store, you only have to grant users access to the BigLake table. The staleness for BigLake's metadata cache can be configured between 30 minutes to 7 days and can be refreshed automatically or manually.
+    - BigQuery Omni tables: BigQuery Omni is a flexible, multi-cloud analytics solution powered by Anthos that lets you cost-effectively access and securely analyze data stored in Amazon Simple Storage Service (Amazon S3) or Azure Blob Storage using BigLake tables.
+    - Object tables: Object tables let you analyze unstructured data in Cloud Storage. You can perform analysis with remote functions or perform inference by using BigQuery ML, and then join the results of these operations with the rest of your structured data in BigQuery. Like BigLake tables, object tables use access delegation, which decouples access to the object table from access to the Cloud Storage objects.
+    - Non-BigLake external tables: Non-BigLake external tables let you query structured data in external data stores. To query a non-BigLake external table, you must have permissions to both the external table and the external data source. 
+      - Bigtable
+      - Cloud Storage: If you create a non-BigLake external table based on Cloud Storage, then you can use multiple external data sources, provided those data sources have the same schema. This isn't supported for non-BigLake external table based on Bigtable or Google Drive. You can use non-BigLake external tables with the following data stores:
+      - Google Drive
+
+  - ***Federated Queries***: Federated queries let you send a query statement to AlloyDB, Spanner, or Cloud SQL databases and get the result back as a temporary table.  You use the EXTERNAL_QUERY function to send a query statement to the external database, using that database's SQL dialect.
+
+    ![image](https://github.com/user-attachments/assets/e9c09763-a08b-49dc-8638-b74d4d06c6f2)
+
+## Time Travel
   -  Time travel is a background copy of all your data in your tables in your data set for a rolling seven days. You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
   -  Time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
   
@@ -72,7 +136,6 @@
   - You use wildcards in your queries
   - You rely heavily on BigQuery features which BI Engine doesn't support
     
-
 ## Bigquery Notebooks
 - You can use notebooks to complete analysis and machine learning (ML) workflows by using SQL, Python, and other common packages and APIs.
 - Notebooks offer improved collaboration and management with the following options: 
@@ -85,7 +148,6 @@
   - Auto-completion of SQL statements, the same as in the BigQuery editor.
   - The ability to save, share, and manage versions of notebooks.
   - The ability to use matplotlib, seaborn, and other popular libraries to visualize data at any point in your workflow.
-
 
 ## BigQuery Data Transfer Service
 - BigQuery Data Transfer Service is serverless service which enables seamless loading of structured data from diverse sources, like SaaS applications, object stores, and other data warehouses into BigQuery on a scheduled, managed basis.
@@ -115,7 +177,6 @@
   - YouTube Channel
   - YouTube Content Owner
 
-
 ## Streaming in Bigquery
 - Streaming Inserts allows you to insert one item at a time into a table.
 - New tables can be created from a temporary table that identifies the schema to be copied. The data enters a streaming buffer where it is held briefly until it can be inserted into the table.
@@ -123,11 +184,9 @@
   
     ![image](https://github.com/user-attachments/assets/9483f15d-597a-4b54-b182-fb23722c24e4)
 
-
 ## ML in BigQuery
   
   ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
-
 
 ## Analytics Hub - Data share solution
 - Platform for secure data sharing with authorized users (internal and external)
@@ -135,7 +194,6 @@
 - Built on top of BigQuery
 
     ![image](https://github.com/user-attachments/assets/509b622e-de43-4461-88cc-f053a874f161)
-
 
 ## Pricing
 
@@ -207,83 +265,6 @@
       commercial model
       
         ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
-
-
-## External Tables
-- An external data source is a data source that you can query directly from BigQuery, even though the data is not stored in BigQuery storage. BigQuery has two different mechanisms for querying external data:
-
-  - external tables: External tables are similar to standard BigQuery tables, in that these tables store their metadata and schema in BigQuery storage. However, their data resides in an external source. There are four kinds of external tables:
-    - BigLake tables: BigLake tables let you query structured data in external data stores with access delegation. Access delegation decouples access to the BigLake table from access to the underlying data store. Because the service account handles retrieving data from the data store, you only have to grant users access to the BigLake table. The staleness for BigLake's metadata cache can be configured between 30 minutes to 7 days and can be refreshed automatically or manually.
-    - BigQuery Omni tables: BigQuery Omni is a flexible, multi-cloud analytics solution powered by Anthos that lets you cost-effectively access and securely analyze data stored in Amazon Simple Storage Service (Amazon S3) or Azure Blob Storage using BigLake tables.
-    - Object tables: Object tables let you analyze unstructured data in Cloud Storage. You can perform analysis with remote functions or perform inference by using BigQuery ML, and then join the results of these operations with the rest of your structured data in BigQuery. Like BigLake tables, object tables use access delegation, which decouples access to the object table from access to the Cloud Storage objects.
-    - Non-BigLake external tables: Non-BigLake external tables let you query structured data in external data stores. To query a non-BigLake external table, you must have permissions to both the external table and the external data source. 
-      - Bigtable
-      - Cloud Storage: If you create a non-BigLake external table based on Cloud Storage, then you can use multiple external data sources, provided those data sources have the same schema. This isn't supported for non-BigLake external table based on Bigtable or Google Drive. You can use non-BigLake external tables with the following data stores:
-      - Google Drive
-
-  - federated queries: Federated queries let you send a query statement to AlloyDB, Spanner, or Cloud SQL databases and get the result back as a temporary table.  You use the EXTERNAL_QUERY function to send a query statement to the external database, using that database's SQL dialect.
-
-![image](https://github.com/user-attachments/assets/e9c09763-a08b-49dc-8638-b74d4d06c6f2)
-
-## External datasets
-- In addition to BigQuery datasets, you can create external datasets (federated datasets), which are links to external data sources:
-  - Spanner external dataset
-  - AWS Glue federated dataset
-- Once created, external datasets contain tables from a referenced external data source. Data from these tables aren't copied into BigQuery, but queried every time they are used.
-- External datasets don't support table expiration, replicas, time travel, default collation, default rounding mode or the option to enable or disable case insensitive tables name.
-
-- How to access BigQuery
-  - Cloud Console
-  - bq – command line tool
-  - Client library - written in C#, Go, Java, Node.js, PHP, Python, and Ruby
-- Data organization: `project.dataset.table`
-- Support for AI/ML, GIS data
-- Data Types
-  - Avro is the preferred format for loading data into BigQuery. Compresed Avro files not supported but compressed Avro data blocks are supported. Parquet has better compression ratio and smaller files. For CSV and JSON, BQ can load uncompressed files significantly faster than compressed
-  - Array Type
-    - Arrays of arrays not allowed
-    - Arrays of structs allowed
-    - Declare as ARRAY<T>
-  - Struct Type
-    - Declare as STRUCT<T> eg. STRUCT<a int64, b string>
-    - Structs can be directly compared using equality operators: =, != or <>, [NOT] IN
-- Data Access Controls
-  - Organization or project level for all project's BQ resources
-  - dataset level for access to a specific data set
-  - table or view level for access to specific tables or views in a dataset
-- Column Level Security
-  - Restrict access to sensitive information in a table
-  - Define Taxonomy of tags in Data Catalog and assign tags to columns in Bigquery
-  - USe IAM roles to restrict access to each policy tag
-- Row Level Security
-  - Filter data in a table based on user conditions
-  - Row level policy is applied to table
-  ![image](https://user-images.githubusercontent.com/19702456/224623322-b8b93a8c-3087-4a03-9c2a-552ec7f3d6ab.png)
-- Query caching is based on exact string comparison. So even whitespaces can cause a cache miss. Queries are never cached if they exhibit non-deterministic behavior (for example, they use CURRENT_TIMESTAMP or RAND), if the table or view being queried has changed (even if the columns/rows of interest to the query are unchanged), if the table is associated with a streaming buffer (even if there are no new rows), if the query uses DML statements, or queries external data sources.
-- You can recover a deleted table only if another table with the same ID in the dataset has not been created. In particular, this means you cannot recover a deleted table if it is being streamed to, chances are that the streaming pipeline would have already created an empty table and started pushing rows into it. using Create or Replace table because this makes the table irrecoverable.
-- BigQuery supports user-defined functions or UDF. Java Script is currently the only external language supported. BigQuery can optimize the execution of SQL much better than it can for JavaScript.
-  
-```bash
-# Get details
-$ bq show --format=prettyjson dataset:tablename
-```
-
-Cross join: combines each row of the first dataset with each row of the second dataset, where every combination is represented in the output.
-Inner join: requires that key values exist in both tables for the records to appear in the results table. Records appear in the merge only if there are matches in both tables for the key values.
-Left join: Each row in the left table appears in the results, regardless of whether there are matches in the right table.
-Right join: the reverse of a left join. Each row in the right table appears in the results, regardless of whether there are matches in the left table.
-
-- BigQuery natively supports arrays. Array values must share a data type. Arrays are called REPEATED fields in BigQuery.
-  - finding the number of elements with ARRAY_LENGTH(<array>)
-  - deduplicating elements with ARRAY_AGG(DISTINCT <field>)
-  - ordering elements with ARRAY_AGG(<field> ORDER BY <field>)
-  - limiting ARRAY_AGG(<field> LIMIT 5)
-
-- A STRUCT can have:
-  - One or many fields in it
-  - The same or different data types for each field
-  - It's own alias
-  - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct (as shown above with the splits field).
 
 
 ## Partitioning and Clustering  
