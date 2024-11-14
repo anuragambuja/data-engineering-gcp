@@ -1,17 +1,43 @@
 # Contents 
 
-## History and Architecture
+## Terminologies
+- Fully Managed: No setup, Automated backups,updates, replication 
+- Serverless: No server management, Fully managed security, pay only for usage
+  
+## History
 
 ![image](https://user-images.githubusercontent.com/19702456/222905593-f0e0471b-def3-4df9-9e1a-38394d5e74ec.png)
 
 ![image](https://github.com/user-attachments/assets/e299837a-7bf3-4eda-9a20-c349eeb014ab)
 
 
-![image](https://user-images.githubusercontent.com/19702456/222905584-a8066c4c-df25-412b-9854-e9094c29fd5b.png)
+## Comparison of different ETL tools
 
-![image](https://user-images.githubusercontent.com/19702456/222905595-4d6ad300-4175-440e-b251-ba255316fd56.png)
+  ![image](https://github.com/user-attachments/assets/0c78b2a1-fe37-45d9-9aa7-5be06db7be16)
 
-![image](https://user-images.githubusercontent.com/19702456/222907236-509e4398-71aa-4aae-b5d9-1c5ce4a3a116.png)
+## Compare Automation Options
+
+  ![image](https://github.com/user-attachments/assets/c50a43c9-4e7e-4802-9076-7f644656c3e9)
+
+## Comparison between Cloud SQL and Cloud Spanner
+
+  ![image](https://github.com/user-attachments/assets/82ba95ab-0c18-4823-99b2-591ac1f8eafb)
+
+## Comparison between Storage Options
+
+  ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
+
+##
+
+
+
+
+
+
+
+
+
+
 
 ## Compute
 > ### Overview
@@ -372,11 +398,7 @@ gcloud app regions list
   
 ## Database
 > ### Overview
-> ### Comparison of different Database services
 
-![image](https://github.com/user-attachments/assets/82ba95ab-0c18-4823-99b2-591ac1f8eafb)
-
-![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
   
 > ## Cloud Function
 - Server less
@@ -476,11 +498,4 @@ Two modernization routes: Open fromat datalake or BigQuery based datalake
 ![image](https://github.com/user-attachments/assets/07ec45e3-7463-450e-a62c-88c35f6c1de1)
 
 
-## Comparison of diffreent ETC tools
-
-![image](https://github.com/user-attachments/assets/0c78b2a1-fe37-45d9-9aa7-5be06db7be16)
-
-## Compare Automation Options
-
-![image](https://github.com/user-attachments/assets/c50a43c9-4e7e-4802-9076-7f644656c3e9)
 
