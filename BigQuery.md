@@ -3,7 +3,7 @@
 
 ## Overview
 
-![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
+  ![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
 
 - BQ is ***serverless***, ***scalable***, ***high availaible*** SQL based ***data warehouse*** solution in GCP to analyse petabyte scale of data
 - BQ is analytical database and not for Transactional purpose alternative to OpenSource Apache Hive. Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
@@ -36,7 +36,11 @@
 
     ![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
 
+
 ## BI Engine
+
+  ![image](https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c)
+  
 -  BI Engine can accelerate SQL queries from any source, including those written by data visualization tools, and can manage cached tables for on-going optimization.
 -  BI Engine provides the following advantages:
     - BigQuery API: Any BI solution or custom application that works with the BigQuery API through standard mechanisms such as REST or JDBC and ODBC drivers can use BI Engine without modification.
@@ -50,8 +54,6 @@
   - You use wildcards in your queries
   - You rely heavily on BigQuery features which BI Engine doesn't support
     
-  ![image](https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c)
-
 
 ## Bigquery Notebooks
 - You can use notebooks to complete analysis and machine learning (ML) workflows by using SQL, Python, and other common packages and APIs.
@@ -69,7 +71,6 @@
 
 ## BigQuery Data Transfer Service
 - BigQuery Data Transfer Service is serverless service which enables seamless loading of structured data from diverse sources, like SaaS applications, object stores, and other data warehouses into BigQuery on a scheduled, managed basis.
-- 
 - You can access the BigQuery Data Transfer Service using the:
   - Google Cloud console
   - bq command-line tool
@@ -101,18 +102,13 @@
 - Streaming Inserts allows you to insert one item at a time into a table.
 - New tables can be created from a temporary table that identifies the schema to be copied. The data enters a streaming buffer where it is held briefly until it can be inserted into the table.
 - You can disable best effort de-duplication by not populating the insert ID field for each row inserted.
-  ![image](https://github.com/user-attachments/assets/9483f15d-597a-4b54-b182-fb23722c24e4)
+  
+    ![image](https://github.com/user-attachments/assets/9483f15d-597a-4b54-b182-fb23722c24e4)
 
 
 ## ML in BigQuery
-- High precision means a low false positive rate, meaning you really punish a model's precision if it makes a ton of bad guesses. Recall, on the other hand, is the ratio of correctly predicted positive observations to the all observations in actual class. Accuracy is simply true positives plus true negatives over the entire set of observations.
-
-![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
-
-![image](https://github.com/user-attachments/assets/7c491018-23ce-475b-805c-adec6271cfab)
-
-- For classification problems in ML, you want to minimize the False Positive Rate (predict that the user will return and purchase and they don't) and maximize the True Positive Rate (predict that the user will return and purchase and they do). This relationship is visualized with a ROC (Receiver Operating Characteristic) curve like the one shown here, where you try to maximize the area under the curve or AUC:
-![image](https://github.com/user-attachments/assets/17e5af1c-cd1c-4b8a-9f82-bded16a42616)
+  
+  ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
 
 
 ## BigQuery Omni 
