@@ -27,7 +27,20 @@
 
   ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
 
-##
+## Which Storage option to select ?
+  ![image](https://github.com/user-attachments/assets/040199d1-16b5-4630-845b-4a115e6ffb51)
+  
+  ![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
+    
+  ![image](https://github.com/user-attachments/assets/933d50a0-63f6-4c82-90e7-4f0d9ccda273)
+
+
+
+
+
+
+## References
+- [Google Cloud Console](https://console.cloud.google.com/)
 
 
 
@@ -355,14 +368,6 @@ gcloud app regions list
 
 ## Storage
 > ### Overview
-![image](https://github.com/user-attachments/assets/040199d1-16b5-4630-845b-4a115e6ffb51)
-
-![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
-
-
-
-![image](https://github.com/user-attachments/assets/933d50a0-63f6-4c82-90e7-4f0d9ccda273)
-
 
 > ### [Cloud Storage](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Cloud%20Storage.md)
 
@@ -490,8 +495,7 @@ gcloud app regions list
 
 > ### [Codelines](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
 
-## References
-- [Google Cloud Console](https://console.cloud.google.com/)
+
 
 ## DataLake 
 Two modernization routes: Open fromat datalake or BigQuery based datalake
