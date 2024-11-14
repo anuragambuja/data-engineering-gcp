@@ -58,7 +58,7 @@ eg. For classification problems in ML, you want to minimize the False Positive R
 
   ![image](https://github.com/user-attachments/assets/17e5af1c-cd1c-4b8a-9f82-bded16a42616)
 
-  ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
+ ![image](https://github.com/user-attachments/assets/7c491018-23ce-475b-805c-adec6271cfab)
   
 - Model troubleshooting
   - Underfitting - Model performs poorly on training and validation data. Increase complexity of model to correct it
