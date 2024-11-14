@@ -181,6 +181,7 @@
           - does not apply to streaming inserts and using the BigQuery Storage API.
           - can leverage the BigQuery autoscaler.
           - is billed per second with a one minute minimum
+            
         - Optional BigQuery editions slot commitments:
           - are available for one or three year periods with higher discounts
           - are available in Enterprise and Enterprise Plus editions.
@@ -190,22 +191,22 @@
           - are automatically renewed unless set to cancel at the end of the period.
 
             ![image](https://github.com/user-attachments/assets/31f8fe67-b64e-46cd-85de-55d659dd2386)
-  
-- Flexibility:
-  - Match workloads to tiers, so you only pay for
-  - Mix and match editions for the best price performance per workload
-- Price Predictability:
-  - 1-year and 3-year commitments with higher discounts
-  - Leverage autoscale to pay only for what you use. No need to overpay for underused capacity
-  - Low cost storage
-- Control:
-  - Autoscaling with baseline and max thresholds to intelligently manage costs.
-  - BigQuery BI Engine dynamically manages slots while queries are running! BI Engine Slots are stateful.
-- BigQuery Autoscaler: Dynamically adjusts the capacity in response to planned or unplanned changes in demand to help ensure you pay only for what you use. Autoscaling is the core functionality available in a new
-commercial model
 
-  ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
-
+    - Advantages of using Bigquery Editions:
+      - Flexibility:
+        - Match workloads to tiers, so you only pay for
+        - Mix and match editions for the best price performance per workload
+      - Price Predictability:
+        - 1-year and 3-year commitments with higher discounts
+        - Leverage autoscale to pay only for what you use. No need to overpay for underused capacity
+        - Low cost storage
+      - Control:
+        - Autoscaling with baseline and max thresholds to intelligently manage costs.
+        - BigQuery BI Engine dynamically manages slots while queries are running! BI Engine Slots are stateful.
+      - BigQuery Autoscaler: Dynamically adjusts the capacity in response to planned or unplanned changes in demand to help ensure you pay only for what you use. Autoscaling is the core functionality available in a new
+      commercial model
+      
+        ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
 
 
 ## External Tables
