@@ -5,20 +5,17 @@
 
 ![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
 
-- Data warehouse solution in GCP just like Relational database – SQL schema. 
-- BQ is ***serverless***. There are no servers to manage or database software to install; this is managed by Google and it's transparent to the customers.
-- BQ is ***scalable*** and has ***high availability***. Google takes care of the underlying software and infrastructure.
-- BQ has built-in features like Machine Learning, Geospatial Analysis and Business Intelligence among others.
-- BQ maximizes flexibility by separating data analysis and storage in different _compute engines_, thus allowing the customers to budget accordingly and reduce costs.
-- This is for Analytical database and not for Transactional purpose. Alternative to OpenSource Apache Hive. Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
-- Built using BigTable + GCP Infrastructure
-- BigQuery is Columnar storage. Cloud SQL databases are RECORD-based storage, meaning the entire record must be opened on disk even if you just selected a single column in your query. When performing queries, Dremel modifies them in order to create an _execution tree_: parts of the query are assigned to different mixers which in turn assign even smaller parts to different slots which will access Colossus and retrieve the data.
-The columnar storage format is perfect for this workflow as it allows very fast data retrieval from colossus by multiple workers, which then perform any needed computation on the retrieved datapoints and return them to the mixers, which will perform any necessary aggregation before returning that data to the root server, which will compose the final output of the query.
-![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
+- BQ is ***serverless***, ***scalable***, ***high availaible*** SQL based ***data warehouse*** solution in GCP to analyse petabyte scale of data
+- BQ is for Analytical database and not for Transactional purpose. Alternative to OpenSource Apache Hive. Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
+- BigQuery is Columnar storage.  When performing queries, Dremel modifies them in order to create an _execution tree_: parts of the query are assigned to different mixers which in turn assign even smaller parts to different slots which will access Colossus and retrieve the data. The columnar storage format is perfect for this workflow as it allows very fast data retrieval from colossus by multiple workers, which then perform any needed computation on the retrieved datapoints and return them to the mixers, which will perform any necessary aggregation before returning that data to the root server, which will compose the final output of the query.
+
+    ![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
 
 - GoogleSQL, used by both BigQuery and Spanner uses 2011 ANSI SQL
+
+  
 - Avro, ORC, and Parquet files are all now supported for federated querying.
-- Exabyte scale
+
 - BQ managed Transfer Service allows to move data into BQ from SaaS services. You can schedule loades and automatically scale and access other data sources through various connectors.
 - Datasets are collections of tables that can be divided along business lines or a given analytical domain. Each dataset is tied to a Google Cloud project.
 - Identity and Access Management is used to grant permission to perform specific actions in BigQuery. This replaces the SQL GRANT and REVOKE statements that are used to manage access permissions in traditional SQL databases.
@@ -30,7 +27,9 @@ The columnar storage format is perfect for this workflow as it allows very fast 
   - Schema auto-detection enables BigQuery to infer the schema for CSV, JSON, or Google Sheets data. 
   - Schema auto-detection is available when you load data into BigQuery and when you query an external data source.
   - You don't need to enable schema auto-detection for Avro, Parquet, ORC, Firestore export, or Datastore export files. These file formats are self-describing, so BigQuery automatically infers the table schema from the source data. For Parquet, Avro, and Orc files, you can optionally provide an explicit schema to override the inferred schema.
-
+- BQ has built-in features like Machine Learning, Geospatial Analysis and Business Intelligence among others.
+- BQ maximizes flexibility by separating data analysis and storage in different _compute engines_, thus allowing the customers to budget accordingly and reduce costs.
+  
 ## Architecture
 
 BigQuery is built on 4 infrastructure technologies.
