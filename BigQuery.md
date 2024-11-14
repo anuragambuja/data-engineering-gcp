@@ -42,9 +42,15 @@
     - Arrays of arrays not allowed
     - Arrays of structs allowed
     - Declare as ARRAY<T>
+    - BigQuery natively supports arrays. Array values must share a data type. Arrays are called REPEATED fields in BigQuery.
+      - finding the number of elements with ARRAY_LENGTH(<array>)
+      - deduplicating elements with ARRAY_AGG(DISTINCT <field>)
+      - ordering elements with ARRAY_AGG(<field> ORDER BY <field>)
+      - limiting ARRAY_AGG(<field> LIMIT 5)
   - Struct Type
-    - Declare as STRUCT<T> eg. STRUCT<a int64, b string>
+    - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct. Declare as STRUCT<T> eg. STRUCT<a int64, b string>
     - Structs can be directly compared using equality operators: =, != or <>, [NOT] IN
+
 - Data Access Controls
   - Organization or project level for all project's BQ resources
   - dataset level for access to a specific data set
@@ -61,21 +67,6 @@
 - You can recover a deleted table only if another table with the same ID in the dataset has not been created. In particular, this means you cannot recover a deleted table if it is being streamed to, chances are that the streaming pipeline would have already created an empty table and started pushing rows into it. using Create or Replace table because this makes the table irrecoverable.
 - BigQuery supports user-defined functions or UDF. Java Script is currently the only external language supported. BigQuery can optimize the execution of SQL much better than it can for JavaScript.
   
-      ```bash
-      # Get details
-      $ bq show --format=prettyjson dataset:tablename
-      ```
-- BigQuery natively supports arrays. Array values must share a data type. Arrays are called REPEATED fields in BigQuery.
-  - finding the number of elements with ARRAY_LENGTH(<array>)
-  - deduplicating elements with ARRAY_AGG(DISTINCT <field>)
-  - ordering elements with ARRAY_AGG(<field> ORDER BY <field>)
-  - limiting ARRAY_AGG(<field> LIMIT 5)
-
-- A STRUCT can have:
-  - One or many fields in it
-  - The same or different data types for each field
-  - It's own alias
-  - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct (as shown above with the splits field).
 
 ## Partitioning and Clustering  
 
@@ -126,7 +117,7 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 - Once created, external datasets contain tables from a referenced external data source. Data from these tables aren't copied into BigQuery, but queried every time they are used.
 - External datasets don't support table expiration, replicas, time travel, default collation, default rounding mode or the option to enable or disable case insensitive tables name.
 
-## External Tables
+### External Tables
 - An external data source is a data source that you can query directly from BigQuery, even though the data is not stored in BigQuery storage. BigQuery has two different mechanisms for querying external data:
 
   - ***External Tables***: External tables are similar to standard BigQuery tables, in that these tables store their metadata and schema in BigQuery storage. However, their data resides in an external source. There are four kinds of external tables:
@@ -307,23 +298,6 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
       commercial model
       
         ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
 
 ## Best practices
