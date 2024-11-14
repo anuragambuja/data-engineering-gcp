@@ -36,14 +36,6 @@
 
     ![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
 
-
-- Avro, ORC, and Parquet files are all now supported for federated querying.
-- BQ managed Transfer Service allows to move data into BQ from SaaS services. You can schedule loades and automatically scale and access other data sources through various connectors.
-- Storage resources are allocated as you consume them and deallocated as you remove data or drop tables. Query resources are allocated according to query type and complexity. Each query uses some number of slots, which are units of computation that comprise a certain amount of CPU and RAM.
-- BQ has built-in features like Machine Learning, Geospatial Analysis and Business Intelligence among others.
-
-
-
 ## BI Engine
 -  BI Engine can accelerate SQL queries from any source, including those written by data visualization tools, and can manage cached tables for on-going optimization.
 -  BI Engine provides the following advantages:
