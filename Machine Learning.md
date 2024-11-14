@@ -52,7 +52,14 @@
     - 100% true positive rate: this means the model perfectly identifies everyone who will repay their loan. It never misses a "good" borrower. 87% true negative rate: the model also correctly identifies 87% of people who won't repay (defaulters). 13% false positive rate: this means the model mistakenly identifies 13% of good borrowers (those who actually repay) as defaulters. This can lead to the bank rejecting potentially good customers, which is not ideal. Finally, 0% false negative rate: this means the model never incorrectly identifies a borrower who will repay their loan as a potential defaulter.
     - Confidence Threshold: determines how a ML model counts the positive cases. A higher threshold increases the precision but decreases recall. A lower threshold decreases the precision, but increases recall. Moving the confidence threshold to zero produces the highest recall of 100% and the lowest precision of 50%. That means the model predicts that 100% of loan applicants will be able to repay a loan they take out. However, actually only 50% of people were able to repay the loan. Using this threshold to identify the default cases in this example can be risky, because it means that you can only get half of the loan investment back. Now let’s view the other extreme by moving the threshold to 1. This will produce the highest precision of 100% with the lowest recall of 1%. It means that of all the people who were predicted to repay the loan, 100% of them actually did. However, you rejected 99% of loan applicants by only offering loans to 1% of them.That’s a pretty big business loss for your company.
  
-      
+- High precision means a low false positive rate, meaning you really punish a model's precision if it makes a ton of bad guesses. Recall, on the other hand, is the ratio of correctly predicted positive observations to the all observations in actual class. Accuracy is simply true positives plus true negatives over the entire set of observations.
+
+eg. For classification problems in ML, you want to minimize the False Positive Rate (predict that the user will return and purchase and they don't) and maximize the True Positive Rate (predict that the user will return and purchase and they do). This relationship is visualized with a ROC (Receiver Operating Characteristic) curve like the one shown here, where you try to maximize the area under the curve or AUC:
+
+  ![image](https://github.com/user-attachments/assets/17e5af1c-cd1c-4b8a-9f82-bded16a42616)
+
+  ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
+  
 - Model troubleshooting
   - Underfitting - Model performs poorly on training and validation data. Increase complexity of model to correct it
   - Overfitting - Model performs well on trianing data and poorly on validation data. regularization can be used for correcting it
