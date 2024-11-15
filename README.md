@@ -11,7 +11,7 @@
 ![image](https://github.com/user-attachments/assets/e299837a-7bf3-4eda-9a20-c349eeb014ab)
 
 
-> ## Comparison of different ETL tools
+> ## Compare ETL tools
 
   ![image](https://github.com/user-attachments/assets/0c78b2a1-fe37-45d9-9aa7-5be06db7be16)
 
@@ -19,45 +19,30 @@
 
   ![image](https://github.com/user-attachments/assets/c50a43c9-4e7e-4802-9076-7f644656c3e9)
 
-> ## Comparison between Cloud SQL and Cloud Spanner
+> ## Compare Cloud SQL and Cloud Spanner
 
   ![image](https://github.com/user-attachments/assets/82ba95ab-0c18-4823-99b2-591ac1f8eafb)
+
+> ## Compare Firestore and Bigtable
+  
+  ![image](https://github.com/user-attachments/assets/6bab4c08-0868-420d-b831-bf02b9377841)
 
 > ## Comparison between Storage Options
 
   ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
-
-> ## Which Storage option to select ?
+  
   ![image](https://github.com/user-attachments/assets/040199d1-16b5-4630-845b-4a115e6ffb51)
   
   ![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
     
   ![image](https://github.com/user-attachments/assets/933d50a0-63f6-4c82-90e7-4f0d9ccda273)
 
-- Cloud Storage
-  - Unstructured data storage
-  - Video stream, Image
-  - Staging environment
-  - Compliance
-  - Backup
-  - Data lake
-- Persistent Disk
-  - Attach Disk with VM & Containers
-  - Share read-only disk with multiple VM
-  - Database storage
-- Local Disk
-  - Temporary high performance attach Disk
-- File Store
-  - FUlly managed, High performance filestorage, easy fileshare
-  - Network attached storage (NAS) for compute Engine and GKE instances
-  - Minimum 1 TB, can scale upto 64 TB
-  - Supports both HDD and SSD
-  - Costly copared to cloud storage
-  - Lift-shift millions of Files
 
-> ## Choosing between Firestore and Bigtable
-  
-  ![image](https://github.com/user-attachments/assets/6bab4c08-0868-420d-b831-bf02b9377841)
+> ## Which Storage to use ?
+
+  ![image](https://github.com/user-attachments/assets/09bc17a1-5615-41af-8d5f-cb0f4258161d)
+
+
 
 
 > ## Commands and SQLs
