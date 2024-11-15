@@ -65,12 +65,6 @@
 
 
 
-## Data Governance
-> ### Overview
-- One solution for data governance is the Cloud data catalog and the data loss prevention API.
-
-> ### [Data Catalog](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Catalog.md)
-> ### [Data Loss Prevention](https://github.com/anuragambuja/data-engineering-gcp/blob/main/Data%20Loss%20Prevention.md)
 
 ## Logging & Monitoring
 
