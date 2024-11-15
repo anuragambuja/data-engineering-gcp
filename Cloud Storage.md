@@ -10,7 +10,9 @@
 - Cloud Storage supports multithreaded, resumable loads.
 - Object Versioning helps to prevent accidental deletion of object. It is enabled/disabled at bucket level
 - Retention Policy defines the minimum duration for which bucket will be protected from Deletion or modification
-  
+- Global unique name for bucket. Bucket level lock with data retention policy. Object are immutable and can be versioned. Choosing a region close to where the data will be processed will reduce latency. And if you are processing the data using cloud services within the region, it will save you on network egress charges.
+- For a multi-region bucket, the objects are replicated across regions. And for a single-region bucket, the objects are replicated across zones. In any case, when the object is retrieved, it is served up from the closest replica to the requester, and that is how low latency occurs. Multiple requesters could be retrieving the objects at the same time from different replicas, and that is how high throughput is achieved.
+
 - Storage Class - How frequently access data ?
   
 	![image](https://user-images.githubusercontent.com/19702456/222905739-d7f76fb3-d1db-4625-95f5-1ad3473b26a4.png)
@@ -23,6 +25,29 @@
   - Customer supplied Encryption keys (CSEK): Using CSEK comes with some additional risk of data loss, as Google cannot help you decrypt data if you lose your encryption keys.
 
 	![image](https://user-images.githubusercontent.com/19702456/222905716-a129c097-4409-4e49-babf-97a12ef02bbb.png)
+
+> ## Controlling access
+- IAM is standard across the Google Cloud. It is set at the bucket level and applies uniform access rules to all objects within a bucket. Access control lists can be applied at the bucket level or on individual objects, so it provides more fine-grained access control. IAM provides project roles and bucket roles, including bucket reader, bucket writer and bucket owner. The ability to create or change access control lists is an IAM bucket role and the ability to create and delete buckets and to set IAM policy is a project level role. When you create a bucket, you are offered the option of disabling access lists and only using IAM. You can disable access lists even if they were in-force previously. As an example, you might give some bob@example.com reader access to a bucket through IAM, and also give them write access to a specific file in that bucket through access control lists.
+- Uniform level access
+	- Apply at Bucket level
+	- No Object level permission
+	- Apply uniform at all object inside bucket
+- Fine grained permission
+	- Legacy access control method
+	- Access Control List – ACL For Each object Separately
+- Signed URL
+	- Temporary access
+	- you can give read or write access on objects to user who doesn’t have Google Account.
+	- URL expired after time period defined.
+	- Max period for which URL is valid is 7 days.
+	```
+	pip install pyopenssl
+	gsutil signurl -d 10m -u gs://<bucket>/<object>
+	```
+- Signed Policy Documnets
+	- Specify what can be uploaded to a bucket
+	- Control - Size, Type and other upload characteristics
+
 
 > ## Lifecycle management
 - Object Lifecycle: What action like delete or transition to different storage class should be performed based on certain condition like age or type of object
@@ -71,64 +96,3 @@
 	- Capacity: 100 TB and 480 TB
 
 ![image](https://user-images.githubusercontent.com/19702456/224366561-bced85de-a512-4aba-aea7-6801762c21a5.png)
-
-
-
-
-
-
-
-
-
-- Global unique name for bucket. Bucket level lock with data retention policy. Object are immutable and can be versioned. Choosing a region close to where the data will be processed will reduce latency. And if you are processing the data using cloud services within the region, it will save you on network egress charges.
-- For a multi-region bucket, the objects are replicated across regions.And for a single-region bucket, the objects are replicated across zones. In any case, when the object is retrieved, it is served up from the closest replica to the requester, and that is how low latency occurs. Multiple requesters could be retrieving the objects at the same time from different replicas, and that is how high throughput is achieved.
-
-- IAM is standard across the Google Cloud. It is set at the bucket level and applies uniform access rules to all objects within a bucket. Access control lists can be applied at the bucket level or on individual objects, so it provides more fine-grained access control. IAM provides project roles and bucket roles, including bucket reader, bucket writer and bucket owner. The ability to create or change access control lists is an IAM bucket role and the ability to create and delete buckets and to set IAM policy is a project level role. When you create a bucket, you are offered the option of disabling access lists and only using IAM. You can disable access lists even if they were in-force previously. As an example, you might give some bob@example.com reader access to a bucket through IAM, and also give them write access to a specific file in that bucket through access control lists.
-
-
-
-
-## **Controlling access**
-
-- ### **Uniform level access**
-	- Apply at Bucket level
-	- No Object level permission
-	- Apply uniform at all object inside bucket
-
-- ### **Fine grained permission**
-	- Legacy access control method
-	- Access Control List – ACL For Each object Separately
-
-- ### **Signed URL**
-	- Temporary access
-	- you can give read or write access on objects to user who doesn’t have Google Account.
-	- URL expired after time period defined.
-	- Max period for which URL is valid is 7 days.
-	
-	```
-	pip install pyopenssl
-	gsutil signurl -d 10m -u gs://<bucket>/<object>
-	```
-- ### **Signed Policy Documnets**
-	- Specify what can be uploaded to a bucked
-	- Control - Size, Type and other upload characteristics
-
-
-- Apply Project level
-	- IAM
-	- Different Predefined Role
-		- Storage Admin
-		- Storage Object Admin
-		- Storage Object Creator
-		- Storage Object Viewer
-	- Create Custom Role
-- Assign Bucket level Role
-	- Select bucket & assign role too users or to other GCP services or product
-
-
-
-
-
-
-
-
