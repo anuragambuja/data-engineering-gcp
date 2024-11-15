@@ -8,12 +8,14 @@
 - Cloud Storage allows world-wide storage and retrieval of any amount of data at any time. You can use Cloud Storage for a range of scenarios including serving website content, storing data for archival and disaster recovery, or distributing large data objects to users via direct download.
 - The site, storage.cloud.google.com, uses TLS HTTPS to transport your data, which protects credentials as well as data in transit.
 - Cloud Storage supports multithreaded, resumable loads.
+- Object Versioning helps to prevent accidental deletion of object. It is enabled/disabled at bucket level
+- Retention Policy defines the minimum duration for which bucket will be protected from Deletion or modification
   
 - Storage Class - How frequently access data ?
   
 	![image](https://user-images.githubusercontent.com/19702456/222905739-d7f76fb3-d1db-4625-95f5-1ad3473b26a4.png)
 	
-- Data Security
+> ## Data Security
   - By default 100% of data in Cloud Storage is automatically encrypted at rest and in transit with no configuration required by customers.
   - Two levels of encryption. First, the data is encrypted using a data encryption key. Then the data encryption key itself is encrypted using a key encryption key, or KEK. The KEKs are automatically rotated on a schedule, and the current KEK is stored in Cloud KMS, Cloud Key Management Service.
   - Google managed Encryption keys (GMEK): No Configuration and Fully managed by Google
@@ -50,6 +52,27 @@
 	- Any object that isn't accessed for 365 days transitions to Archive storage. Such objects spent at least 30 days in Standard storage, 60 days in Nearline storage and 275 days in Coldline storage. 
 - There is no Class A operation charge when Autoclass transitions an object from Nearline storage to Standard storage. When Autoclass transitions an object from Coldline storage or Archive storage to Standard storage or Nearline storage, each such transition incurs a Class A operation charge.
 
+> ## Cloud Transfer Service
+
+- gsutil
+	- Online mode of transfer
+	- install locally Google Cloud SDK
+	- gsutil -m cp large_number_of_small_files (-m for parallel upload) 
+
+- Transfer Service
+	- Transfer Jobs
+		- Quickly and securely transfer data to, from, and between cloud and on-premises storage systems. Sources include Google Cloud Storage, Amazon S3, Azure Storage, filesystems, and more.
+	- Agent Pools
+		- Agent pools enable you to transfer data to/from POSIX filesystems and from S3-compatible object storage, with control over deployment, network path, and bandwidth to optimize performance and cost. Each pool consists of one or more self-hosted agents that work in parallel to move data for a particular source or destination
+
+- Transfer Appliance
+	- High capacity storage server shipped to your data center and physically attached to your network to copy data and shipped back to Google Cloud to be copied to cloud storage 
+	- Physical device which securely transfer large amounts of data to Google Cloud Platform
+	- Capacity: 100 TB and 480 TB
+
+![image](https://user-images.githubusercontent.com/19702456/224366561-bced85de-a512-4aba-aea7-6801762c21a5.png)
+
+
 
 
 
@@ -64,23 +87,6 @@
 
 
 
-> Object Versioning
-- Help to prevent accidental deletion of object
-- Enable/Disable versioning at bucket level
-```
-$ gsutil versioning get gs://proven-audio-376216-testing
-gs://proven-audio-376216-testing: Suspended
-
-$ gsutil versioning set on  gs://proven-audio-376216-testing
-Enabling versioning for gs://proven-audio-376216-testing/...
-
-$ gsutil versioning get gs://proven-audio-376216-testing
-gs://proven-audio-376216-testing: Enabled
-
-$ gsutil ls -a gs://proven-audio-376216-testing/filename.txt
-$ gsutil ls -cat gs://proven-audio-376216-testing/filename.txt#12345
-$ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
-```
 
 ## **Controlling access**
 
@@ -120,41 +126,9 @@ $ gsutil ls -rm gs://proven-audio-376216-testing/filename.txt#12345
 	- Select bucket & assign role too users or to other GCP services or product
 
 
-## **Retention Policy**
-- Minimum duration for which bucket will be protected from Deletion or modification
 
 
 
-## **Pricing**
-
-## **Cloud Transfer Service**
-
-### **gsutil**
-- Online mode of transfer
-- install locally Google Cloud SDK
-- gsutil -m cp large_number_of_small_files (-m for parallel upload)
-
-### **Transfer Service**
-- Transfer Jobs
-	- Quickly and securely transfer data to, from, and between cloud and on-premises storage systems. Sources include Google Cloud Storage, Amazon S3, Azure Storage, filesystems, and more.
-- Agent Pools
-	- Agent pools enable you to transfer data to/from POSIX filesystems and from S3-compatible object storage, with control over deployment, network path, and bandwidth to optimize performance and cost. Each pool consists of one or more self-hosted agents that work in parallel to move data for a particular source or destination
-
-### **Transfer Appliance**
-- Physical device which securely transfer large amounts of data to Google Cloud Platform
-- When data that exceeds 20 TB or would take more than a week to upload.
-
-![image](https://user-images.githubusercontent.com/19702456/224366561-bced85de-a512-4aba-aea7-6801762c21a5.png)
-
-![image](https://user-images.githubusercontent.com/19702456/224348225-b7ad8464-3a93-4b34-be45-4192827635ef.png)
-
-![image](https://user-images.githubusercontent.com/19702456/224348396-6d69edc7-84c4-43a8-87b9-848233aa4e12.png)
 
 
-
-## Commands
-```bash
-$ gsutil mb gs://bucket-name
-$ gsutil cp filename gs://bucket-name
-```
 
