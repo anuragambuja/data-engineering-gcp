@@ -1,33 +1,33 @@
 # Contents 
 
-### Terminologies
+> ## Terminologies
 - Fully Managed: No setup, Automated backups,updates, replication 
 - Serverless: No server management, Fully managed security, pay only for usage
   
-### History
+> ## History
 
 ![image](https://user-images.githubusercontent.com/19702456/222905593-f0e0471b-def3-4df9-9e1a-38394d5e74ec.png)
 
 ![image](https://github.com/user-attachments/assets/e299837a-7bf3-4eda-9a20-c349eeb014ab)
 
 
-### Comparison of different ETL tools
+> ## Comparison of different ETL tools
 
   ![image](https://github.com/user-attachments/assets/0c78b2a1-fe37-45d9-9aa7-5be06db7be16)
 
-### Compare Automation Options
+> ## Compare Automation Options
 
   ![image](https://github.com/user-attachments/assets/c50a43c9-4e7e-4802-9076-7f644656c3e9)
 
-### Comparison between Cloud SQL and Cloud Spanner
+> ## Comparison between Cloud SQL and Cloud Spanner
 
   ![image](https://github.com/user-attachments/assets/82ba95ab-0c18-4823-99b2-591ac1f8eafb)
 
-### Comparison between Storage Options
+> ## Comparison between Storage Options
 
   ![image](https://user-images.githubusercontent.com/19702456/222908281-cb761edb-11df-4bc7-b653-d2b2475f53c6.png)
 
-### Which Storage option to select ?
+> ## Which Storage option to select ?
   ![image](https://github.com/user-attachments/assets/040199d1-16b5-4630-845b-4a115e6ffb51)
   
   ![image](https://user-images.githubusercontent.com/19702456/222905632-043fd232-cb69-40b4-8e17-f2915877e2ce.png)
@@ -39,7 +39,7 @@
 
 
 
-### References
+> ## References
 - [Google Cloud Console](https://console.cloud.google.com/)
 
 
