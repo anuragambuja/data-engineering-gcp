@@ -61,7 +61,7 @@
 
 
 > ## Commands and SQLs
-> 
+
 - ### gcloud commands 
   ```shell
   # Get project id
@@ -119,6 +119,20 @@
   FROM `project.region-REGION`.INFORMATION_SCHEMA.TABLES
   ORDER BY 1, 2, 3
   ;
+  ```
+
+- ### gsutil
+> ##### Customer supplied Encryption keys
+  ```bash
+  # generate your key 
+  $ openssl rand -base64 32
+  =+kkqTwwF+yrL2+WTG2ToHN5ZuT/q8OFOXppM7jUfpbM=
+  
+  # copy file to bucket
+  $ gsutil -o 'GSUtil:encryption_key='=+kkqTwwF+yrL2+WTG2ToHN5ZuT/q8OFOXppM7jUfpbM= cp README.txt gs://proven-audio-376216-testing
+  
+  # Get the content of file
+  $ gsutil -o 'GSUtil:encryption_key='=+kkqTwwF+yrL2+WTG2ToHN5ZuT/q8OFOXppM7jUfpbM= cat gs://proven-audio-376216-testing/README.txt
   ```
 
 
