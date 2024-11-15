@@ -55,11 +55,9 @@
   - Costly copared to cloud storage
   - Lift-shift millions of Files
 
-
-
-
-
-
+> ## Choosing between Firestore and Bigtable
+  
+  ![image](https://github.com/user-attachments/assets/6bab4c08-0868-420d-b831-bf02b9377841)
 
 
 > ## Commands and SQLs
