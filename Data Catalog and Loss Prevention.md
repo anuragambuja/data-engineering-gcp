@@ -3,7 +3,7 @@
 
 One solution for data governance is the Cloud data catalog and the data loss prevention API.
 
-# Data Catalog
+## Data Catalog
 
 - A fully managed and highly scalable data discovery and metadata management service.
 - Single place to discover all data, asset across all project
@@ -19,7 +19,7 @@ One solution for data governance is the Cloud data catalog and the data loss pre
 
 Data Catalog is a fully managed, scalable metadata management service within Dataplex that you can use to tag data assets and search for assets to which you have access. Tags allow you to attach custom metadata fields to specific data assets for easy identification and retrieval (such as tagging certain assets as containing protected or sensitive data); you can also create reusable tag templates to rapidly assign the same tags to different data assets.
 
-# Data Loss Prevention API
+## Data Loss Prevention API
 
 - Fully managed service designed to help you discover, classify, and protect your most sensitive data.
   - PII data: Person’s name, Credit Card Number, SSN
