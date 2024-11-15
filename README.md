@@ -65,41 +65,66 @@
 
 
 
-## Codes
+> ## Commands and SQLs
+- ### gcloud commands 
 
-> ### gcloud
+```shell
+# Get project id
+gcloud info --format='value(config.project)'
 
-- gcloud command structure 
-  - gcloud GROUP SUBGROUP ACTION ...
-    - GROUP - config or compute or container or dataflow or functions or iam or ..
-      - Which service group are you playing with?
-    - SUBGROUP - instances or images or instance-templates or machine-types or regions or zones
-      - Which sub group of the service do you want to play with?
-    - ACTION - create or list or start or stop or describe or ...
-      - What do you want to do?
+# Refresh token/session, and verify authentication
+gcloud auth application-default login # user authentication
+gcloud auth activate-service-account --key-file <path/to/your/service-account-authkeys.json> # service account authentication
 
-- Set environment variable to point to your downloaded GCP keys:
-   ```shell
-   export GOOGLE_APPLICATION_CREDENTIALS="<path/to/your/service-account-authkeys>.json"
-   
-   # Refresh token/session, and verify authentication
-   gcloud auth application-default login
-   
-   OR, gcloud auth activate-service-account --key-file $GOOGLE_APPLICATION_CREDENTIALS
-   ```
-- Get project id: `gcloud info --format='value(config.project)'`
-- Enable/Disable service: `gcloud services enable/disable dataflow.googleapis.com --force`
-  ```
-  gcloud compute instances list
-  gcloud compute zones list
-  gcloud compute regions list
-  gcloud compute machine-types list
-  gcloud compute machine-types list --filter="zone:us-central1-b"
-  gcloud compute machine-types list --filter="zone:( us-central1-b europe-west1-d )"
-  ```
+# compute commands
+gcloud compute instances list
+gcloud compute zones list
+gcloud compute regions list
+gcloud compute machine-types list
+gcloud compute machine-types list --filter="zone:us-central1-b"
+gcloud compute machine-types list --filter="zone:( us-central1-b europe-west1-d )"
 
-> ### [Codelines](https://github.com/anuragambuja/data-engineering-gcp/tree/main/codelines)
+# Enable/Disable service
+gcloud services enable/disable dataflow.googleapis.com --force
+```
 
+- ### SQL
+> ##### Get number of rows, last modified and creation time of all the tables in a dataset
+```sql
+SELECT
+   project_id
+  ,dataset_id
+  ,table_id AS table_name
+  ,TIMESTAMP_MILLIS(creation_time) AS creation_tm
+  ,TIMESTAMP_MILLIS(last_modified_time) AS last_modified_tm
+  ,row_count AS record_count
+FROM `project.dataset.__TABLES__`
+ORDER BY 1, 2, 3
+;
+```
+
+> ##### Get region details of all datasets in the project 
+```sql
+SELECT
+   catalog_name
+  ,schema_name
+  ,location
+FROM `project`.INFORMATION_SCHEMA.SCHEMATA
+ORDER BY 1, 2
+;
+```
+
+> ##### Get list of all tables in the region
+```sql
+SELECT
+   table_catalog
+  ,table_schema
+  ,table_name
+  ,table_type
+FROM `project.region-REGION`.INFORMATION_SCHEMA.TABLES
+ORDER BY 1, 2, 3
+;
+```
 
 
 ## DataLake 
