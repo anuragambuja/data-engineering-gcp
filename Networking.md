@@ -7,7 +7,7 @@ A region is a specific geographical location where you can run your resources. E
 
 ![image](https://github.com/anuragambuja/data-engineering-gcp/assets/19702456/e726ba05-ff2d-42f0-b724-04db01d6b400)
 
-- Zones – Independent data Center. Each Zone has one or more discrete clusters.
+- Zones – Independent data Center. Each Zone has one or more discrete clusters. Failures in one zone do not affect the other zones in a region. Resources in different zones have no common points of failure
 - Region – Specific geographical location to host your resources
 - Multi-region - Geographical Collection
 - Global - Anywhere
