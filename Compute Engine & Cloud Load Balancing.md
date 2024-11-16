@@ -33,7 +33,7 @@ manually detach it.
 ![image](https://user-images.githubusercontent.com/19702456/230639657-628833a5-e7a7-40e7-b126-dcbf4052a8f0.png)
 - Instance Group - Group of VM instances managed as a single entity.
   - Managed: Identical VMs created using a template. Instance template is mandatory
-    - Features: Auto scaling, auto healing and managed releases
+    - Features: Auto scaling, auto healing, regional (multiple zone) deployment, automatic updating and managed releases
       - Rolling updates: Release new version step by step (gradually). Update a percentage of instances to the new version at a time.
       - Canary Deployment: Test new version with a group of instances before releasing it across all instances.
   - Unmanaged: Different configuration for VMs in same group:
