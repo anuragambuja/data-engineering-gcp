@@ -311,6 +311,20 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
         ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
   
 
+## Data Lineage API
+- Lineage is a record of data being transformed from sources to targets
+- The API collects that information and organizes it into a hierarchy of processes, runs, and events
+   - A process is a data transformation within a dataset
+   - A run is an execution of a process
+   - An event represents a point in time when the process took place
+- BigQuery automatically tracks lineage
+   - Copy jobs
+   - Load jobs
+   - CREATE TABLE queries
+   - CREATE VIEW queries
+   - DML statements such as INSERT, UPDATE, MERGE, DELETE
+- You can programmatically track lineage for custom sources by using the API
+
 ## Best practices
 
 Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery/docs/best-practices-performance-overview):
