@@ -113,6 +113,11 @@ An internal load balancer consists of a:
 
 
 
+## Subnet
+- Each VPC network consists of one or more IP address ranges called subnets. Subnets are regional resources, and have IP address ranges associated with them.
+- A network must have at least one subnet before you can use it. Auto mode VPC networks create subnets in each region automatically. 
+
+  ![image](https://github.com/user-attachments/assets/c38a2344-e814-4bec-9c1b-f0b52b0192d1)
 
 
 
