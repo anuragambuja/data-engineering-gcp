@@ -16,15 +16,43 @@ One solution for data governance is the Cloud data catalog and the data loss pre
 
      ![image](https://user-images.githubusercontent.com/19702456/225636350-66717e1e-41f6-4def-a1b6-ac60042fb299.png)
 
+- Technical metadata (automatically ingested from data source)
+  - Table names, column names
+  - Table descriptions, column descriptions
+  - Date created, date modified
+- Business metadata (user provided / inferred)
+  - Table has PII
+  - Data quality owner
+  - ‘Delete by’ date
+  - ‘Retain till’ date
+  - Business logic used for computing a column
+  - Data quality score
 
-Data Catalog is a fully managed, scalable metadata management service within Dataplex that you can use to tag data assets and search for assets to which you have access. Tags allow you to attach custom metadata fields to specific data assets for easy identification and retrieval (such as tagging certain assets as containing protected or sensitive data); you can also create reusable tag templates to rapidly assign the same tags to different data assets.
+- Data Catalog is a fully managed, scalable metadata management service within Dataplex that you can use to tag data assets and search for assets to which you have access. Tags allow you to attach custom metadata fields to specific data assets for easy identification and retrieval (such as tagging certain assets as containing protected or sensitive data); you can also create reusable tag templates to rapidly assign the same tags to different data assets.
+
+- Features:
+  - Provides a simple search interface for data discovery
+  - Supports UI and API for all metadata operations
+  - Supports business metadata through schematized tags
+  - Auto-ingests technical metadata from GCP data assets
+  - Enforces ACL controls on metadata. Providing column-level security for BigQuery tables
+  - Auto-tags PII data through DLP integration
+- To catalog metadata from non-Google Cloud systems in your organization, you can use the following:
+  - Community-contributed connectors to multiple popular on-premises data sources
+  - Manually leverage the Data Catalog APIs for custom entries
+
+- In Data Catalog, you can search for datasets using labels or tags. All Google Cloud resources can have labels applied to them. Labels are simple key-value pairs. Tags are used to define what business metadata to track eg. Data Governance, Data Quality, Geo Context etc. 
+
 
 ## Sensitive Data Protection (renamed from Data Loss Prevention) 
 
-- Fully managed service designed to help you discover, classify, and protect your most sensitive data.
+  ![image](https://github.com/user-attachments/assets/7b333994-ebea-4640-8aaa-da456d7ab838)
+
+- Fully managed service designed to help you discover, classify, and protect your most sensitive data. DLP uses Pattern Plus Context to identify PII.
   - PII data: Person’s name, Credit Card Number, SSN
-- Apply API on Cloud Storage, Big Query Data
+- API can also be used with other cloud providers as well as on-premise. Built-in support is provided for BigQuery, Datastore, and Cloud Storage.
 - DLP work upon Free form Text, Structured & Unstructured data (image)
+- DLP is a stateless service, which means it’s not storing your sensitive data
 - What to do with this Data
   - Discover and classify sensitive data
     - automatic DLP for BigQuery
@@ -39,7 +67,10 @@ Data Catalog is a fully managed, scalable metadata management service within Dat
   - re-identify (In case want to recover original data)
     - to understand statistical anomalies that can lead to increased privacy risk. 
 - Detectors can be customized to classify/redact new data items. E.g., social security numbers in a particular country’s format
-  
+- When working with databases, we might not want to do a full table scan, which can be spendy. With DLP we can scan a % of row, select top or random rows, exclude fields and more.
+
+  ![image](https://github.com/user-attachments/assets/0e1919fa-6ee6-4528-9b7a-e07b43fcb434)
+
 ### Templates
 
 - Configuration which is define for:
