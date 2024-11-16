@@ -52,7 +52,17 @@ To control access:
 2. Assign Dataplex role to the users (Dataplex > Secure >Dataplex resources >Grant access )
 
 
+> ## Data mesh with Dataplex
+- In Dataplex, a data domain is represented by a data lake
+  - A lake is a container for data from different data sources
+  - A data lake is created within a Google Cloud region
+- Lakes contain one or more zones
+  - Zones are either regional or multi-regional
+  - Zones can contain either raw or curated data
+- Zones contain assets
+  - Assets represent the data being shared
+  - Assets represent data in Cloud Storage buckets or BigQuery datasets
 
+    ![image](https://github.com/user-attachments/assets/f3d3f629-6c56-4936-91e4-cccf61e19166)
 
-
-
+> ## 
