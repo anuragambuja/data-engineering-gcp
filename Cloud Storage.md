@@ -67,6 +67,7 @@
 			- Nearline --> Coldline, Archive
 			- Coldline --> Archive
 		- if versioned, deleting live version creates non current version but deleting non-current version deletes object permanently.
+- Object inspection occurs in asynchronous batches, so rules may not be applied immediately. Also, updates to your lifecycle configuration may take up to 24 hours to go into effect.
 
 > ## Autoclass 
 - The Autoclass feature automatically transitions objects in your bucket to appropriate storage classes based on each object's access pattern.
