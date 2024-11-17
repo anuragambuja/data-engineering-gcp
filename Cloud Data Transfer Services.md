@@ -1,10 +1,15 @@
 # Cloud Data Transfer Services
 
+  ![image](https://github.com/user-attachments/assets/b27488b4-2c16-472d-baf4-1a630bc087d2)
+
 - Google provides a range of data transfer methods to get data into the Cloud
   - Web console, gsutil, gcloud storage, REST API
   - Storage Transfer Service: service specifically built to bring files and objects into Google Cloud Storage
   - BigQuery Data Transfer Service: specifically bring data into big query tables
-  - Transfer Appliance: physical object that is sent to a customer's location 
+  - Transfer Appliance: physical object that is sent to a customer's location. Once data transfer is complete, the appliance is erased per NIST 800-88 standards for media sanitization. The Transfer Appliance has two modes:
+    - Offline transfer: Data is copied to the appliance until it is full. The appliance is shipped back to Google and the copied data is moved to your Cloud Storage bucket.
+    - Online transfer: Data copied to the appliance is streamed to your Cloud Storage bucket. After the data is uploaded to your Cloud Storage bucket, it is removed from the appliance. Online transfer compresses and encrypts the data in transit and accelerates data transfer compared to gsutil and other command-line tools. You can toggle between offline and online mode
+
 
 
 ## Datastream
