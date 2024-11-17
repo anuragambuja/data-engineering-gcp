@@ -1,5 +1,6 @@
 ## IAM
 > ### Overview
+- With Identity Access Management, you first identify the caller to the API. The caller could be identified as a human, a computer, or an application. Once identified, the caller is known as a member. Members are assigned one or more roles.
 - Roles are collection of permissions. One can assign Role to identity, but Can not assign permission directly. So, permissions are assigned to identities via roles.
 - Service Account is identity for Compute engine. Max 10 keys per Service Account and Max 100 Service Account per project.
 - Roles are attached to identities; policies are attached to resources.
