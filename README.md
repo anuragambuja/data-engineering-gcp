@@ -20,6 +20,8 @@
 
   ![image](https://github.com/user-attachments/assets/0c78b2a1-fe37-45d9-9aa7-5be06db7be16)
 
+  ![image](https://github.com/user-attachments/assets/79263686-8ed5-4621-b10b-832c8df4d1a0)
+
 > ## Compare Automation Options
 
   ![image](https://github.com/user-attachments/assets/c50a43c9-4e7e-4802-9076-7f644656c3e9)
