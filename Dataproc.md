@@ -24,7 +24,9 @@
     -  Built-in fault tolerance, error handling
     -  Data integrity check using CRC32C checksum and byte to byte comparison
 
-      [image](https://github.com/user-attachments/assets/82a9f059-b377-44a4-9068-1ef7046a77f9)
+    ![image](https://github.com/user-attachments/assets/82a9f059-b377-44a4-9068-1ef7046a77f9)
+
+
 
 
 ![image](https://user-images.githubusercontent.com/19702456/222905812-b96b7e40-6a27-4dd8-ae91-341dd2125dfc.png)
