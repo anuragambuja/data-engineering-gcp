@@ -3,6 +3,9 @@
 > ## Terminologies
 - Fully Managed: No setup, Automated backups,updates, replication 
 - Serverless: No server management, Fully managed security, pay only for usage
+- Multi-Region: A multi-region is a large geographic area, such as the United States, that contains two or more geographic places.
+- Dual-Region: A dual-region is a specific pair of regions, such as Finland and the Netherlands.
+- Region: A region is a specific geographic place, such as London.
   
 > ## History
 
