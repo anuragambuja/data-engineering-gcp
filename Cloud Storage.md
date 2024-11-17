@@ -16,6 +16,9 @@
 - Storage Class - How frequently access data ?
   
 	![image](https://user-images.githubusercontent.com/19702456/222905739-d7f76fb3-d1db-4625-95f5-1ad3473b26a4.png)
+
+	![image](https://github.com/user-attachments/assets/6be28b8c-b1c8-4ddc-af56-5186a074b376)
+
 	
 > ## Data Security
   - By default 100% of data in Cloud Storage is automatically encrypted at rest and in transit with no configuration required by customers.
