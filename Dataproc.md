@@ -13,6 +13,19 @@
   - Cloud Monotoring - can monitor the cluster's CPU, disk, network usage and Yarn resources.
   - Cloud Logging - provides a consolidated and concise view of all logs so that you don't need to spend time browsing among container logs to find errors.
 
+- The Pub/Sub Lite Spark Connector is an open-source Java client library that supports the use of Pub/Sub Lite as an input and output source for Apache Spark Structured Streaming. Supports read/write Spark Streaming functionality including pyspark.sql.
+
+- Migration Tools
+  - DistCp tool: Distributed copy tool from Hadoop.
+  - Dataproc Templates: Ready to use, open sourced, customizable templates based on serverless Spark (Dataproc).
+  - Cloud Storage connector for Hadoop: A complete, end-to-end, data transfer solution for Hadoop-based data lakes to Cloud Storage.
+    -  Zero Coding effort
+    -  Support for push and pull models
+    -  Built-in fault tolerance, error handling
+    -  Data integrity check using CRC32C checksum and byte to byte comparison
+
+      [image](https://github.com/user-attachments/assets/82a9f059-b377-44a4-9068-1ef7046a77f9)
+
 
 ![image](https://user-images.githubusercontent.com/19702456/222905812-b96b7e40-6a27-4dd8-ae91-341dd2125dfc.png)
 
@@ -46,13 +59,37 @@ Optimizing Dataproc:
 
 - Dataproc Serverless
   - Dataproc Serverless lets you run Spark batch workloads without requiring you to provision and manage your own cluster.
-  - The service will run the workload on a managed compute infrastructure, autoscaling resources as needed.
+  - The service will run the workload on a managed compute infrastructure, autoscaling resources as needed. Estimating the correct number of worker nodes for a current and ongoing cluster can be challenging and prone to repetitive experiments. Dataproc Auto Scaling automates the process.
+    - Requires an Autoscale Policy to be defined.
+    - Autoscaling can be added to an existing cluster or as part of the definition before a cluster is created.
+    - Only applies to workers not masters.
+    - Best results when applying to Secondary workers.
   - Dataproc Serverless charges apply only to the time when the workload is executing.
   - Schedule Dataproc Serverless for Spark batch workloads: You can schedule a Spark batch workload as part of an Airflow or Cloud Composer workflow using an Airflow batch operator.
-  - Dataproc Serverless for Spark offers two main execution modes: Serverless for batches and Serverless for interactive notebook sessions. Batches are submitted using the gcloud command-line tool and are ideal for automated or scheduled jobs. Interactive sessions leverage JupyterLab, either locally or within the Google Cloud environment, for interactive development and exploration.
+  - Dataproc Serverless lets you run Spark batch workloads without requiring you to provision and manage your own cluster. There are two ways to run Dataproc Serverless workloads:
+    - Dataproc Serverless for Spark Batch: Use the Google Cloud console, Google Cloud CLI, or Dataproc API to submit a batch workload to the Dataproc Serverless service  and are ideal for automated or scheduled jobs
+    - Dataproc Serverless for Spark Interactive: Interactive sessions leverage JupyterLab, either locally or within the Google Cloud environment, for interactive development and exploration.
  
     ![image](https://github.com/user-attachments/assets/890297d5-c81c-43a4-a70e-caabd37ae6ee)
 
 
 ![image](https://github.com/user-attachments/assets/683fc15f-179b-4a2d-9a27-25bcd8dd32c1)
 
+- Enhanced Flexibility Mode
+  - When nodes are removed, either manually or autoscaled, data may be required to be shuffled from one node to another. This can add processing delays to running jobs. EFM manages shuffling data between workers to minimize job progress delays. Two user-selectable modes:
+    - Primary-worker shuffle. Mappers write data to primary workers. This mode is only available to Spark jobs.
+    - HCFS (Hadoop Compatible File System). This mode can benefit jobs with small amounts of data.
+
+- Dataproc Metastore
+  - Dataproc Metastore is a fully managed, highly available, autohealing serverless Apache Hive metastore that runs on Google Cloud.
+  - A centralized metadata repository that can be shared across multiple Dataproc Clusters running different open source engines such as Hive, Spark and Presto.
+  - Provides a unified view of open source tables, providing interoperability between cloud-native services and various other open source-based offerings.
+
+- Internals
+
+    ![image](https://github.com/user-attachments/assets/2c218d2f-1a85-46f6-a624-ef201a7ba889)
+
+- Hadoop Ecosystem Component Migration Mappings
+
+  ![image](https://github.com/user-attachments/assets/40150989-1190-4bed-9e63-99d431392170)
+  ![image](https://github.com/user-attachments/assets/560003cd-752b-4b11-9f73-6afa451ddb31)
