@@ -1,5 +1,7 @@
 # Dataproc
 
+  ![image](https://github.com/user-attachments/assets/74cc36c1-0274-4c6e-af6e-151297c89c72)
+
 - Dataproc is fully managed service for running Hadoop and Spark data processing workloads. 
 - Cluster type
   - Standard (1 master, N workers)
@@ -17,7 +19,6 @@
 
 - Migration Tools
   - DistCp tool: Distributed copy tool from Hadoop.
-  - Dataproc Templates: Ready to use, open sourced, customizable templates based on serverless Spark (Dataproc).
   - Cloud Storage connector for Hadoop: A complete, end-to-end, data transfer solution for Hadoop-based data lakes to Cloud Storage.
     -  Zero Coding effort
     -  Support for push and pull models
@@ -26,6 +27,17 @@
 
     ![image](https://github.com/user-attachments/assets/82a9f059-b377-44a4-9068-1ef7046a77f9)
 
+  - Dataproc Templates: Ready to use, open sourced, customizable templates based on serverless Spark (Dataproc).
+    - Tasks include data import, data export, data backup and data restore as well as bulk API operations
+    - Offers simplified event-based scheduling of Dataproc jobs via Cloud Functions or Cloud Scheduler
+    - Parameterization enables the reusability of the workflow templates for different environments- DEV, STAGE, PROD
+    - Workflows are ideal for complex job flows. You can create job dependencies so that a job starts only after its dependencies complete successfully
+    - Supports automated provisioning of Ephemeral cluster or submitting jobs to long-lived clusters
+    - Templates are provided in the following language and execution environments:
+      - Airflow Orchestration templates: Run Spark jobs from DAGs in Airflow
+      - Java templates: Run Spark batch workloads or jobs on Dataproc Serverless or an existing Dataproc cluster
+      - Python templates: Run PySpark batch workloads on Dataproc Serverless
+      - Notebook templates: Run Spark jobs using Vertex AI Notebooks
 
 
 
