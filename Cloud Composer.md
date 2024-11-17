@@ -9,7 +9,9 @@
 
 # Cloud Composer
 
-- Fully Managed Apache Airflow which in GCP
+  ![image](https://github.com/user-attachments/assets/b7ac3a75-102a-4de1-8317-56e80a374733)
+
+- Fully Managed Apache Airflow and Can orchestrate workloads across Google Cloud, on-prem, or other clouds
 - Airflow is a workflow & orchestration engine
   - With Airflow, one can programmatically schedule and monitor workflows
   - Workflows are defined as directed acyclic graphs (DAGs)
