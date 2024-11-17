@@ -1,5 +1,7 @@
 # PubSub
 
+  ![image](https://github.com/user-attachments/assets/545f1bd4-4350-40ff-9517-58f7fc78fd42)
+
 - Google Cloud Pub/Sub is a fully-managed real-time messaging service that allows you to send and receive messages between independent applications.
 - Pub/Sub is an asynchronous global messaging service. By decoupling senders and receivers, it allows for secure and highly available communication between independently written applications. Pub/Sub delivers low-latency, durable messaging.
 - Pub/Sub is a HIPAA compliant service, offering fine grained access controls and end to end encryption. Messages are encrypted in transit and at rest. Messages are stored in multiple locations for durability and availability.
@@ -15,12 +17,13 @@
 - Scale to billions of message per day
 - Publisher – App send message to Topic
 - Push & Pull way to access messages
-  - Pull – Subscriber pull message. Pull is the default
-  - Push – Message will be sent to subscriber via webhook
+  - Pull – Subscriber pull message. Pull is the default. eg. Dataflow jobs are pull subscribers
+  - Push – Message will be sent to subscriber via webhook. Acknowledgement of the messages is implied by a response code 200. App Engine and Cloud Run applications are ideal push subscribers
 - Publish / Subscribe Patterns
   - The first pattern is just a basic straight through flow, where one publisher publishes messages into a topic, which then get consumed by the one subscriber through the one subscription.
   - The second pattern is fan-in or load balancing, multiple publishers can publish the same topic, and multiple subscribers can pull from the same subscription, leveraging parallel processing.
   - The second pattern is fan-in or load balancing, multiple publishers can publish the same topic, and multiple subscribers can pull from the same subscription, leveraging parallel processing.
+  - (Fan out) Multiple subscribers, where you have multiple use case for same piece of data, and all data is sent to multiple different subscribers. 
 ![image](https://github.com/user-attachments/assets/62483277-4b46-4ccd-8166-7ce183315cd5)
 
 - One topic – Multiple Subscriber
@@ -46,6 +49,8 @@ Dataflow will de-duplicate messages based on the message ID, because in Pub/Sub,
   - Ordering key: This is a string that is used in the Pub/Sub message metadata and represents the entity for which messages must be ordered. The ordering key can be up to 1 KB in length. To receive a set of ordered messages in a region, you must publish all messages with the same ordering key in the same region. Some examples of ordering keys are customer IDs and the primary key of a row in a database. An ordering key is not equivalent to a partition in a partition-based messaging system as ordering keys are expected to have a much higher cardinality than partitions.
   - Enable message ordering: This is a subscription setting. When a subscription has message ordering enabled, the subscriber clients receive messages published in the same region with the same ordering key in the order in which they were received by the service. You must enable this setting in the subscription.
 
+  ![image](https://github.com/user-attachments/assets/f6dd3e73-f17d-413c-8580-054bf261db07)
+
 # Pub/Sub Lite
 - A zonal service
 - Run publisher, subscriber and topics in the same zone
@@ -54,8 +59,11 @@ Dataflow will de-duplicate messages based on the message ID, because in Pub/Sub,
 - Unlimited Retention period and storage
 - Pay for the capacity that you provision
 
-![image](https://github.com/user-attachments/assets/f5562b22-8885-4c9d-85d8-e51b12491431)
+  ![image](https://github.com/user-attachments/assets/f5562b22-8885-4c9d-85d8-e51b12491431)
 
 # Features comparison table
   
-![image](https://github.com/user-attachments/assets/6628bf44-e4b3-4a9a-92b9-b90cbbd850f9)
+  ![image](https://github.com/user-attachments/assets/6628bf44-e4b3-4a9a-92b9-b90cbbd850f9)
+  
+  ![image](https://github.com/user-attachments/assets/737c1ee9-ca1d-415a-929b-a2e043e31262)
+
