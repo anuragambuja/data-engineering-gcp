@@ -52,6 +52,9 @@
   ![image](https://github.com/user-attachments/assets/c4366373-dba0-41d6-b491-3abb3699e268)
 
 
+> ## Mapping of different cloud services with on-prem
+
+  ![image](https://github.com/user-attachments/assets/f371f7e1-cf26-4e02-92be-e41534064d3b)
 
 
 > ## Commands and SQLs
