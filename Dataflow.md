@@ -115,7 +115,7 @@ By default, workers use your project's Compute Engine default service account as
   - which accumulates results together
   - other which returns only the portions of the result that are new since the last pane fired.
 - There are two accumulation modes in apache beam
-  - accumulate:  With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far.
+  - accumulate:  With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far. If your window is very wide, using accumulate as the accumulation mode may consume considerable resources, as the accumulated output has to be stored while the window is still open.
   - discard: With discard once some messages have been used for a calculation those messages are discarded. If new messages arrive later and there is a new trigger, the result will only include the new messages and those messages will be discarded again. If the calculation you need to make with the windows is associative and commutative, you can safely update that calculation using discard mode without any loss of accuracy. The main advantage of using the discard mode is that the performance will not suffer even if you use a very wide window, because no state, no accumulation is stored for very long, only until the next trigger is released.
 - Beam provides a number of pre-built triggers that you can set:
   - Event time triggers. These triggers operate on the event time, as indicated by the timestamp on each data element. Beam’s default trigger is event time-based.
