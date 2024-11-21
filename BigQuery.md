@@ -125,7 +125,10 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 
   - ***External Tables***: External tables are similar to standard BigQuery tables, in that these tables store their metadata and schema in BigQuery storage. However, their data resides in an external source. There are four kinds of external tables:
     - BigLake tables: BigLake tables let you query structured data in external data stores with access delegation. Access delegation decouples access to the BigLake table from access to the underlying data store. Because the service account handles retrieving data from the data store, you only have to grant users access to the BigLake table. The staleness for BigLake's metadata cache can be configured between 30 minutes to 7 days and can be refreshed automatically or manually.
-    - BigQuery Omni tables: BigQuery Omni is a flexible, multi-cloud analytics solution powered by Anthos that lets you cost-effectively access and securely analyze data stored in Amazon Simple Storage Service (Amazon S3) or Azure Blob Storage using BigLake tables.
+    - BigQuery Omni tables: BigQuery Omni is a flexible, multi-cloud analytics solution powered by Anthos that lets you cost-effectively access and securely analyze data stored in Amazon Simple Storage Service (Amazon S3) or Azure Blob Storage using BigLake tables. Single pane of glass to view all your data
+
+      ![image](https://github.com/user-attachments/assets/f92cdf02-8409-4dcb-8195-4351672922ae)
+
     - Object tables: Object tables let you analyze unstructured data in Cloud Storage. You can perform analysis with remote functions or perform inference by using BigQuery ML, and then join the results of these operations with the rest of your structured data in BigQuery. Like BigLake tables, object tables use access delegation, which decouples access to the object table from access to the Cloud Storage objects.
     - Non-BigLake external tables: Non-BigLake external tables let you query structured data in external data stores. To query a non-BigLake external table, you must have permissions to both the external table and the external data source. 
       - Bigtable
@@ -133,9 +136,25 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
       - Google Drive
 
   - ***Federated Queries***: Federated queries let you send a query statement to AlloyDB, Spanner, or Cloud SQL databases and get the result back as a temporary table.  You use the EXTERNAL_QUERY function to send a query statement to the external database, using that database's SQL dialect.
+     - Federated queries are subject to the optimization technique known as SQL pushdowns. They improve the performance of a query by delegating operations like filtering down to the external data source instead of performing them in BigQuery. Reducing the amount of data transferred from the external data source can reduce query execution time and lower costs.
+     - You can perform federated queries to PostgreSQL and MySQL on instances that have Private IP only
 
     ![image](https://github.com/user-attachments/assets/e9c09763-a08b-49dc-8638-b74d4d06c6f2)
 
+- External tables – performance considerations
+- Amount of data being queried
+   - The benefit of using Parquet as opposed to CSV or Avro only grows as the amount of data being queried gets larger and the query complexity increases.
+- Compression
+   - CSV.gzip and ORC.snappy take up nearly equal amounts of space. Compressing Parquet with snappy does very little to reduce the amount of space that the data takes up in Cloud Storage.     - With larger payloads (>50 GB), the CSV files compressed with GZIP performs better than uncompressed when the chunks of data are about 50 MB each. For smaller payloads (5 GB), uncompressed performs better.
+- File format
+   - ORC files seem to take less storage space followed by Parquet, Avro, and CSV file types.
+- Region
+   - Using a single region Cloud Storage bucket with a single region external table offers the fastest run time. When using this combination, your external table and your Cloud Storage
+bucket must be in the same region.
+   - Avoid using multi-region buckets with external tables to avoid cross region issues.
+   - If data redundancy is critical, use dual-region.
+- Slot allocation
+   - In general, it would be expected, especially for more complex queries, that as the slot allocation goes up, the run time will decrease.
 
 ## BigLake API
 - BigLake is a storage engine that unifies data warehouses and lakes, by providing uniform fine-grained access control, performance acceleration across multi-cloud storage and open formats.
