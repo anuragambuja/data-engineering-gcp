@@ -69,10 +69,17 @@
 - Query caching is based on exact string comparison. So even whitespaces can cause a cache miss. Queries are never cached if they exhibit non-deterministic behavior (for example, they use CURRENT_TIMESTAMP or RAND), if the table or view being queried has changed (even if the columns/rows of interest to the query are unchanged), if the table is associated with a streaming buffer (even if there are no new rows), if the query uses DML statements, or queries external data sources.
 - You can recover a deleted table only if another table with the same ID in the dataset has not been created. In particular, this means you cannot recover a deleted table if it is being streamed to, chances are that the streaming pipeline would have already created an empty table and started pushing rows into it. using Create or Replace table because this makes the table irrecoverable.
 - BigQuery supports user-defined functions or UDF. Java Script is currently the only external language supported. BigQuery can optimize the execution of SQL much better than it can for JavaScript.
-  
+
+
+## Views vs Authorized Views
+- The main difference between a regular view and an authorized view is which authority is used for controlling access to the source table data
+- A regular view's access to source table data is checked on behalf of the end user's authority. The view's SQL query can be used to restrict the columns (fields) the users are able to query
+- An authorized view's access to source table data is checked using the authorized view's own authority
+   - The view's SQL query can be used to restrict the columns (fields) the users are able to query ○
+   - Authorized views enables us to mask the restricted columns data, without changing the underlying tables data
+
 
 ## Partitioning and Clustering  
-
 ### Partitions 
 
 - [Partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables) are very useful to improve performance and reduce costs, because BQ will not process as much data per query.
