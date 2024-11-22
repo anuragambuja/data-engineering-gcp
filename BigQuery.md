@@ -194,6 +194,9 @@ bucket must be in the same region.
   ![image](https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c)
   
 -  BI Engine can accelerate SQL queries from any source, including those written by data visualization tools, and can manage cached tables for on-going optimization.
+-  BI Engine doesn’t require you to build OLAP cubes on your own, it handles that for you.
+-  It works on top of the same storage, same network, same shuffle layer and working alongside BigQuery workers (which are Slots). Stateful workers, persist unlike standard BQ slots that get unallocated after they are used makes it possible for BI Engine to get such dramatic performance improvements
+-  Full visibility into metrics including aggregate refresh time, cache hit ratios, query latency inside Google Operations
 -  BI Engine provides the following advantages:
     - BigQuery API: Any BI solution or custom application that works with the BigQuery API through standard mechanisms such as REST or JDBC and ODBC drivers can use BI Engine without modification.
     - Vectorized runtime: Using vectorized processing in an execution engine makes more efficient use of modern CPU architecture, by operating on batches of data at a time.
