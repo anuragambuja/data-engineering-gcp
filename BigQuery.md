@@ -18,6 +18,8 @@
   - Schema auto-detection is available when you load data into BigQuery and when you query an external data source.
   - You don't need to enable schema auto-detection for Avro, Parquet, ORC, Firestore export, or Datastore export files. These file formats are self-describing, so BigQuery automatically infers the table schema from the source data. For Parquet, Avro, and Orc files, you can optionally provide an explicit schema to override the inferred schema.
 
+- BigQuery writes all query results to a table. The table is either explicitly identified by the user (a destination table), or it is a temporary, cached results table. Temporary, cached results tables are maintained per-user, per-project. There are no storage costs for temporary tables
+
 - BigQuery architecture is built on 4 infrastructure technologies.
     - ***Dremel***: the _compute_ part of BQ. It executes the SQL queries.
       - Dremel turns SQL queries into _execution trees_. The leaves of these trees are called _slots_ and the branches are called _mixers_.
@@ -90,6 +92,13 @@
   - For Time-unit and Ingestion time columns, the partition may be daily (the default option), hourly, monthly or yearly.
   - BigQuery limits the amount of partitions to 4000 per table. If you need more partitions, consider clustering
   - Requiring partition filter using _partitioning_filter parameter and is specified at table level
+- Partition limits:
+   - Number of partitions per partitioned table = 10,000 partitions
+   - Number of partitions modified by a single job (query or load) = 10,000 partitions
+   - Number of partition modifications per ingestion-time partitioned table per day = 5,000 modifications
+   - Number of partition modifications per column-partitioned table per day = 30,000 modifications
+   - Project can run up to 50 modifications per partitioned table every 10 seconds
+   - A range-partitioned table can have up to 10,000 possible ranges
   
 ### Clustering 
 
@@ -107,6 +116,8 @@
   * `TIMESTAMP`
   * `DATETIME`
 - BigQuery supports clustering for both partitioned and non-partitioned tables. When you use clustering and partitioning together, the data can be partitioned by a date, date time or timestamp column, and then clustered on a different set of columns. A partitioned table can also be clustered.
+- columns that contain more distinct values (high cardinality) or, columns which are frequently used in WHERE filters or JOIN conditions are the columns which should be used for clustering.
+- A table can be clustered on four columns at most.
 
 | Clustering | Partitioning |
 |---|---|
@@ -173,9 +184,10 @@ bucket must be in the same region.
 ## Time Travel
   -  Time travel is a background copy of all your data in your tables in your data set for a rolling seven days. You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
   -  Time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
-  
-  -  You set the time travel window at the dataset level, which then applies to all of the tables within the dataset.
-  -  Using a shorter time travel window lets you save on storage costs when using the physical storage billing model. These savings don't apply when using the logical storage billing model.
+  - Time Travel SELECTs are considered as Query jobs and billed on the bytes read. These SELECTs can be executed in the console or at the bq command prompt as the table has not
+been deleted.
+  - You set the time travel window at the dataset level, which then applies to all of the tables within the dataset.
+  - Using a shorter time travel window lets you save on storage costs when using the physical storage billing model. These savings don't apply when using the logical storage billing model.
   - valid reason for modifying the BigQuery dataset number of days for Time Travel?
     - Lower storage costs.
     - Enforcing Data Governance data life.
@@ -188,6 +200,11 @@ bucket must be in the same region.
           FROM `mydataset.mytable`
             FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
           ```
+
+## Table Snapshots
+- Table snapshots are point-in-time copies of tables.
+- Table snapshots are read-only, but you can restore a table from a table snapshot.
+- BigQuery only stores the delta between a table snapshot and its base table.
 
 ## BI Engine
 
@@ -296,6 +313,7 @@ bucket must be in the same region.
     - When you set your storage billing model to use physical bytes, the total active storage costs you are billed for include the bytes used for time travel and fail-safe storage. You can configure the time travel window to balance storage costs with your data retention needs. For more information on forecasting your storage costs, see Forecast storage billing.
     - When you change a dataset's billing model, it takes 24 hours for the change to take effect.
     - Once you change a dataset's storage billing model, you must wait 14 days before you can change the storage billing model again.
+    - The dataset storage billing model is only available for your datasets if your organization does not have any existing flat-rate slot commitments located in the same region as the dataset. Your organization can enroll datasets for physical storage billing when there are no flat-rate commitments located in the same region as the dataset.
     - Difference between Uncompresses and Compressed storage pricing
 
         ![image](https://github.com/user-attachments/assets/53a3571e-af71-4c28-9a75-2eb052e6575d)
@@ -353,6 +371,12 @@ bucket must be in the same region.
    - CREATE VIEW queries
    - DML statements such as INSERT, UPDATE, MERGE, DELETE
 - You can programmatically track lineage for custom sources by using the API
+
+
+## Interpreting the query plan
+- If there is a significant difference between avg and max time for workers consider using APPROX_TOP_COUNT to check 
+- If there are a lot of reads in intermediate steps consider filtering early
+- For long periods of time spent on CPU tasks consider approx functions  filtering early and optimize your UDF usage with a persistent UDF or avoid using all together
 
 ## Best practices
 
