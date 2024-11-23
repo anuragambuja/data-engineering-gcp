@@ -1,6 +1,8 @@
 
 # **Cloud SQL**  
 
+  ![image](https://github.com/user-attachments/assets/5a094bab-96e0-4f42-be72-e64f9b4bf259)
+
 - Fully managed Relational database services for MySQL, PostgreSQL & SQL Server. No maintenance & auto update. Generally used for storing Transactional database
 - Regional Database with 99.95% SLA. Multiple zones for high availability and multi-region for backups only. 
 - Storage up to 64 TB per instance
@@ -80,6 +82,20 @@ Its for regional data store with multiple zones for high availability. Multi –
   - Regional persistent disk
 
       ![image](https://github.com/user-attachments/assets/d7e7cfc7-17a3-4fd9-8d79-720097b468d3)
+
+## Query insights
+- Query insights helps you detect, diagnose, and prevent query performance problems for Cloud SQL databases. 
+- With Query insights, you can monitor performance at an application level and trace the source of a problematic query across the application stack by model, view, controller, route, user, and host.
+- The Query insights tool can integrate with your existing application monitoring (APM) tools and Google Cloud services by using open standards and APIs. 
+- There is no additional cost for Query Insights
+- Metrics available through the console, gcloud commands and REST API
+
+## Cloud SQL Studio
+
+
+
+
+
 
 
 ### **Connect to MySQL instance**
