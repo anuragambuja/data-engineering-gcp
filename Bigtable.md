@@ -2,6 +2,9 @@
 
   ![image](https://github.com/user-attachments/assets/0a51b2a5-7fa5-487b-a4a4-0cdf9ed31f77)
 
+
+- Cloud Bigtable stores data in massively scalable tables, each of which is a sorted key/value map. Each row is indexed by a single row key, and columns that are related to one another are typically grouped together into a column family. Each column is identified by a combination of the column family and a column qualifier, which is a unique name within the column family. Cloud Bigtable tables are sparse; if a cell does not contain any data, it does not take up any space. Columns can be unused in a row.
+
 - Fully managed but Not serverless (you need to start cluster with provided number of nodes, region, or SSD/HDDD)
 - Wide column NOSQL database. Better to store data in one table than many. Small tables are problematic since querying multiple tables increases connection overhead and latency and is more difficult to load balance. 
 - Scale horizontally with Multiple Nodes
@@ -24,6 +27,12 @@
   ![image](https://github.com/user-attachments/assets/d15e03af-0522-43b3-839a-440205b5e8f9)
 
   - Characteristics
+    - Only one index (row-key)
+    - Atomic single-row transactions
+    - Empty cells take no space
+    - All values in a single row
+      - Recommended limit 100 MB
+      - Hard limit 256 MB
   - Compression
     - Data is compressed
     - Not configurable
@@ -60,14 +69,15 @@ And when data is entered, it is organized lexicographically by the Row Key. Row 
   ![image](https://github.com/user-attachments/assets/ece04843-5896-4bcd-82eb-d328bd1cab9f)
 
 
-- Bigtable writes data to multiple servers (nodes) which handles a subset of workload. Within nodes there are multiple sorted-string tables(SSTables). Data is sharded into blocks of continuous rows, called tablets. Tablets are stored in Colossus file system. So, metadata is stored on node and data is stored in Colossus.
+- Bigtable writes data to multiple servers (nodes) which handles a subset of workload. Within nodes there are multiple sorted-string tables(SSTables). Data is sharded into blocks of continuous rows, called tablets. Tablets are similar to HBase regions. Tablets are stored in Colossus file system. So, metadata is stored on node and data is stored in Colossus. An SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings.
   
     ![image](https://user-images.githubusercontent.com/19702456/224545732-62e08dd3-da7b-4f24-8fb2-436fbc54fa19.png)
        
 - Bigtable is a learning system. It detects hot stops, where a lot of activity is going through a single tablet and splits the tablet in two. It can also re-balance the processing by moving the pointer to a tablet to a different VM in the cluster. 
 
 - When a node is lost in the cluster, no data is lost, and recovery is fast because only the metadata needs to be copied to the replacement node.
-
+- Bigtable limits you to 1000 tables per instance. Avoid creating many small tables as it Increases backend connection overhead and Disrupt the load balancing
+  
 - When you delete data, the row is marked for deletion and skipped during subsequent processing. It is not immediately removed. If you make a change to data, the new row is upended sequentially to the end of the table, and the previous version is marked for deletion. So both rows exist for a period of time. Periodically, Bigtable compacts the table, removing rows marked for deletion and reorganizing the data for read and write efficiency.
  ![image](https://github.com/user-attachments/assets/5bc8e2e6-4fc3-4753-b60e-64801a27933d)
       
@@ -88,8 +98,11 @@ And when data is entered, it is organized lexicographically by the Row Key. Row 
   - Financial data
   - Time series Data eg. IoT
 
+- Throughput scales linearly to thousands of nodesy, so for every single node that you do add, you're going to see a linear scale of throughput performance, up to hundreds of nodes. 
+- The Cloud Bigtable cluster uses HDD disks. Using HDD disks instead of SSD disks means slower response times and a significantly lower cap on the number of read requests handled per second (500 QPS for HDD disks vs. 10,000 QPS for SSD disks). 
+
     
-### Key Visualizer
+## Key Visualizer
 - Key Visualizer is a tool that helps you analyze your Bigtable usage patterns. It generates visual reports for your tables that break down your usage based on the row keys that you access. The core of a Key Visualizer scan is the heat map, which shows the value of a metric over time broken down into contiguous ranges of row keys. The X-axis of the heat map represents time, and the Y-axis represents row keys. If the metric has a low value for a group of row keys at a point in time, the metric is cold, and it appears in a dark color. A high value is hot, and it appears in a bright color. The highest values appear in white. Key Visualizer automatically generates hourly and daily scans for every table in your instance that meets at least one of the following criteria:
   - During the previous 24 hours, the table contained at least 30 gigabytes of data at some point in time.
   - During the previous 24 hours, the average of all reads or all writes was at least 10,000 rows per second.
@@ -107,6 +120,21 @@ And when data is entered, it is organized lexicographically by the Row Key. Row 
   - Look at whether your access patterns are balanced across all of the rows in a table
 
 - Key Visualizer data is available for the last 14 days. This limit also means that if you bookmark or share the URL for a Key Visualizer scan, the URL has a maximum life of 14 days.
+
+## Row keys
+- The most efficient Bigtable queries retrieve data using one of the following:
+  - Row key
+  - Row key prefix
+  - Range of rows defined by starting and ending row keys 
+- A row key must be 4 KB or less
+- Store multiple delimited values in each row key. Row key segments are usually separated by a delimiter, such as a colon, slash, or hash symbol.
+- Design to retrieve a well-defined range of rows. Well-planned row key prefixes let you take advantage of Bigtable's built-in sorting order to store related data in contiguous rows. Bigtable stores data lexicographically. Pad the integers with leading zeroes
+- Examples to avoid
+  - Standard, non-reversed domain names: services.company.com will be in separate range than product.company.com instead reverse → com.company.product
+  - Sequential numeric IDs For example, UserID – New users might be more active than older ones (hotspotting on one node)
+  - Non-defined range of rows. For example, monitoring performance metrics of machines: 1425330757685#machine_42234 No way to select a machine and get performance metrics --> instead reverse
+  - Hashed-values: No longer recommended as debugging becomes difficult with non-readable keys
+
 
 
 
