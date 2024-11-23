@@ -118,6 +118,10 @@
 - BigQuery supports clustering for both partitioned and non-partitioned tables. When you use clustering and partitioning together, the data can be partitioned by a date, date time or timestamp column, and then clustered on a different set of columns. A partitioned table can also be clustered.
 - columns that contain more distinct values (high cardinality) or, columns which are frequently used in WHERE filters or JOIN conditions are the columns which should be used for clustering.
 - A table can be clustered on four columns at most.
+- Clustering - Best Practices
+   - Do not use clustered columns in complex filter expressions. If you use a clustered column in a complex filter expression, the performance of the query is not optimized because block pruning cannot be applied. eg. `CAST(customer_id AS STRING) = "10000"`.  The query will not prune blocks because a clustered column—customer_id—is used in a function in the filter expression.
+   - Filter clustered columns by sort order
+   - Do not compare clustered columns to other columns. If a filter expression compares a clustered column to another column (either a clustered column or a non-clustered column), the performance of the query is not optimized because block pruning cannot be applied.
 
 | Clustering | Partitioning |
 |---|---|
@@ -125,7 +129,12 @@
 | High granularity. Multiple criteria can be used to sort the table. | Low granularity. Only a single column can be used to partition the table. |
 | Clusters are "fixed in place". | Partitions can be added, deleted, modified or even moved between storage options. |
 | Benefits from queries that commonly use filters or aggregation against multiple particular columns. | Benefits when you filter or aggregate on a single column. |
-| Unlimited amount of clusters; useful when the cardinality of the number of values in a column or group of columns is large. | Limited to 4000 partitions; cannot be used in columns with larger cardinality. |
+| Unlimited amount of clusters; useful when the cardinality of the number of values in a column or group of columns is large. | Limited to 10,000 partitions; cannot be used in columns with larger cardinality. |
+| Can cluster the table up to four columns | Single partition column |
+| No limit on DML statements | Partitioning limits DML statements to max 10 K affected partitions per statement) |
+| Clustering supports: INT64, TIMESTAMP, DATE, DATETIME, BOOL, GEOGRAPHY, NUMERIC, BIGNUMERIC, STRING | Partitioning supports: INT64, TIMESTAMP, DATE, and DATETIME |
+| Clustering enables pruning data down to block-level | (partitioning prunes down to file-level |
+
 
 You may choose clustering over partitioning when partitioning results in a small amount of data per partition, when partitioning would result in over 4000 partitions or if your mutation operations modify the majority of partitions in the table frequently (for example, writing to the table every few minutes and writing to most of the partitions each time rather than just a handful).
 
