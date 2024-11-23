@@ -14,8 +14,11 @@
 
 ## Datastream
 
-![image](https://github.com/user-attachments/assets/ae85c89c-bf75-4e48-b04f-e1d4dce3fa28)
+  ![image](https://github.com/user-attachments/assets/afc94e3d-a840-4b6c-83f5-cb313a21399c)
 
+  ![image](https://github.com/user-attachments/assets/ae85c89c-bf75-4e48-b04f-e1d4dce3fa28)
+
+- Datastream provides seamless replication from operational databases directly into BigQuery, reliably and with minimal latency, to support real-time analytics, enhance operational efficiencies, and improve customer experiences
 - supports direct replication into BigQuery for analytics
 - allows custom data processing in Dataflow before loading into BigQuery
 - facilitates event-driven architectures
