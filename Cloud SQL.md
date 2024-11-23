@@ -1,5 +1,6 @@
 
 # **Cloud SQL**  
+
 - Fully managed Relational database services for MySQL, PostgreSQL & SQL Server. No maintenance & auto update. Generally used for storing Transactional database
 - Regional Database with 99.95% SLA. Multiple zones for high availability and multi-region for backups only. 
 - Storage up to 64 TB per instance
@@ -9,6 +10,7 @@
   - External MySQL instances replicating from a Cloud SQL primary instance.
 - Data is encrypted with Google managed key or CMEK
 - Back-up Database: On-demand Backup and Scheduled backup
+- Cloud SQL is SSAE 16, ISO 27001, PCI DSS v3.0, and HIPAA compliant
 - Database migration service (DMS)
   - migrate data from different SQL system to Cloud SQL
 - Point-in Time Recovery
@@ -29,9 +31,7 @@ Its Structurured data, predefined schema, ACID transactions, strong consistency,
 - Limitations:
 Its for regional data store with multiple zones for high availability. Multi – region for backups only. Upto 30TB per database. It is managed service. Using one of PostgreSQL, MySQL and SQL server. 
 
-- Connecting to a Cloud SQL instance
-  
-  ![image](https://github.com/user-attachments/assets/bb8291eb-37e6-4458-b12b-256789882d52)
+
 
 - Replication Options
   - Replication is the ability to create copies of a Cloud SQL instance or an on-premises database, and offload work to the copies. When referring to a Cloud SQL instance, the instance that is replicated is called the primary instance and the copies are called read replicas.
@@ -53,7 +53,35 @@ Its for regional data store with multiple zones for high availability. Multi –
     
 ![image](https://github.com/user-attachments/assets/7bfea9a2-a7e8-482a-befa-fcf58125542f)
   - A read replica is charged at the same rate as a standard Cloud SQL instance. There is no charge for the data replication. Pricing for a cross-region read replica is the same as for creating a new Cloud SQL instance in the region.
+
+
+## Backup and restore
+- Backups
+  - Incremental disk-level snapshots
+  - Automated and on-demand with a customizable retention period
+  - Schedule on-demand backups with Cloud Scheduler
+  - Default location is the closest Cloud Storage multiregional bucket. Custom locations available to make data residency compliance easier
+
+- Restore
+  - Restore to the same or a different Cloud SQL instance
+  - Point-in-time recovery at a microsecond granularity, up to 7 days.
+
+## Connecting to a Cloud SQL instance
   
+  ![image](https://github.com/user-attachments/assets/bb8291eb-37e6-4458-b12b-256789882d52)
+  
+## High availability (HA)
+- 99.95% Uptime SLA for HA instances. During an incident in Zone A, Cloud SQL automatically fails over to the standby in Zone B
+- Synchronous replication with Regional Persistent Disk offers zero data loss.
+- High-availability-configured instance is charged at double the price of a standalone instance (this includes CPU, RAM, and storage)
+- HA instance components:
+  - Primary and standby instances
+  - Health checking agents
+  - Regional persistent disk
+
+      ![image](https://github.com/user-attachments/assets/d7e7cfc7-17a3-4fd9-8d79-720097b468d3)
+
+
 ### **Connect to MySQL instance**
 
 ```bash
