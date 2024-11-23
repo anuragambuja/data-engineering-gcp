@@ -1,6 +1,8 @@
 # Dataprep
 
 - Cloud Dataprep by Trifacta is an intelligent data service for visually exploring, cleaning, and preparing data for analysis.
+- With Alteryx / Dataprep, you can get a visual representation of the data and use wranglers andrecipes to remove out of scope and erroneous data.
+
 - Serverless, runs on top of Dataflow
 
 - Alteryx / Dataprep ELT pipeline architecture
