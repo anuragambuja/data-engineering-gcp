@@ -1,14 +1,17 @@
 # Bigtable
 
+  ![image](https://github.com/user-attachments/assets/0a51b2a5-7fa5-487b-a4a4-0cdf9ed31f77)
+
 - Fully managed but Not serverless (you need to start cluster with provided number of nodes, region, or SSD/HDDD)
 - Wide column NOSQL database. Better to store data in one table than many. Small tables are problematic since querying multiple tables increases connection overhead and latency and is more difficult to load balance. 
 - Scale horizontally with Multiple Nodes
+- Strongly consistent in a single cluster; replication adds eventual consistency across two to four clusters. Eventual consistency is a consistency model used in distributed computing to achieve high availability that informally guarantees that, if no new updates are made to a given data item, eventually all accesses to that item will return the last updated value. Strong consistency means data will get passed on to all the replicas as soon as a write request comes to one of the replicas of the database.
 - Data stored at column wise. Columns are grouped into column family. Empty columns do not take any space.
 - Bigtable also provides Column Families. By accessing the Column Family, you can pull some of the data you need without pulling all of the data from the row or having to search for it and assemble it. Bigtable can handle up to 100 column families without losing performance.
 - Consistent sub-10ms latency
 - Handles millions of request per second.
 - Learns and adjusts to access patterns.
-- Ideal for Ad Tech, Fintech, and IoT
+- Ideal for Ad Tech, Fintech, and IoT. y. It’s also a great storage engine for machine learning applications. 
 - Easy integration with open source big data tools like HBase
 - Throughput scales linearly: Increase QPS (queries per second) by adding Cloud Bigtable nodes
 - Seamless cluster resizing: Dynamically add and remove Cloud Bigtable cluster nodes without restarting
