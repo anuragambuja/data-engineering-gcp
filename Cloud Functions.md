@@ -1,6 +1,8 @@
 # Cloud Function
-- Server less
-- Fully managed
+
+- Fully managed serverless execution environment
+- Scalable functions-as-a-service (FaaS) platform
+- Can be invoked directly from an HTTP request or event
 - Build small micro service
 - Auto scaling as traffic increase
 - Events are triggered from
@@ -19,12 +21,15 @@
   - Number of invocations
   - Compute time of the invocations
   - Memory and CPU provisioned
+    
 - Key Enhancements in 2nd gen:
   - Longer Request timeout: Up to 60 minutes for HTTP-triggered functions
   - Larger instance sizes: Up to 16GiB RAM with 4 vCPU (v1: Up to 8GB RAM with 2 vCPU)
   - Concurrency: Upto 1000 concurrent requests per function instance (v1: 1 concurrent request per function instance)
   - Multiple Function Revisions and Traffic splitting supported (v1: NOT supported)
   - Support for 90+ event types - enabled by Eventarc (v1: Only 7)
+  - With Eventarc, event-driven functions can be triggered from more than 125 Google, external SaaS event sources, and custom sources by publishing to Pub/Sub.
+
 
 
 # Cloud Run Functions
