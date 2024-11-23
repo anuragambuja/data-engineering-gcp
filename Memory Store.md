@@ -1,5 +1,7 @@
 # Memory Store - Redis and Memcached
 
+   ![image](https://github.com/user-attachments/assets/4f291770-1252-47dd-8de6-0a4e7c2f6359)
+
 - Fully managed Inmemory database. High availability, failover, patching, and monitoring. Highly available with 99.9% SLA
 - sub-millisecond data access
 - Instances up to 300 GB
@@ -8,11 +10,16 @@
   - Redis
     - Strings, Lists, Sets, Sorted Sets, Hashes, Bitmaps (based on Strings), HyperLogLogs (based on Strings, approx. number of distinct elements in list)
     - Scale upto 30 GB storage and 12 GPS network throughput
+    - Secure with only an internal IP address
+      - Available only from within the same VPC
+      - Use IAM roles to control access
     - Basic Tier
+      - Basic tier has a single instance
       - Cache with no replication
       - No cross zone replication
       - No automatic failover
     - Standard Tier
+      - Standard tier deploys a failover replica in another zone.
       - Cache with replication
       - Cross zone replication
       - Automatic failover
