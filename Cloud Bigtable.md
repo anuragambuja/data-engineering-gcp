@@ -1,4 +1,4 @@
-# Bigtable
+# Cloud Bigtable
 
   ![image](https://github.com/user-attachments/assets/0a51b2a5-7fa5-487b-a4a4-0cdf9ed31f77)
 
