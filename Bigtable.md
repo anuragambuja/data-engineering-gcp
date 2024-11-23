@@ -16,6 +16,7 @@
 - Learns and adjusts to access patterns.
 - Ideal for Ad Tech, Fintech, and IoT. y. It’s also a great storage engine for machine learning applications. 
 - Easy integration with open source big data tools like HBase
+- Integrates with big data tools like Hadoop, Dataflow, and Dataproc.
 - Throughput scales linearly: Increase QPS (queries per second) by adding Cloud Bigtable nodes
 - Seamless cluster resizing: Dynamically add and remove Cloud Bigtable cluster nodes without restarting
 - Support 1-node production instances
@@ -23,6 +24,7 @@
 
   ![image](https://github.com/user-attachments/assets/eef740ec-786a-493c-a8a0-fb7a6d072003)
 
+- BigTable does not support security restrictions on Row-level or, Column-level or, Cell-level 
 - Storage Model
   ![image](https://github.com/user-attachments/assets/d15e03af-0522-43b3-839a-440205b5e8f9)
 
@@ -95,8 +97,11 @@ And when data is entered, it is organized lexicographically by the Row Key. Row 
 
     ![image](https://user-images.githubusercontent.com/19702456/227277588-4a0d8fe4-fa0f-44d2-abce-5858958ce5cd.png)
 - Used for
-  - Financial data
-  - Time series Data eg. IoT
+  - Time-series data, such as CPU and memory usage over time for multiple servers.
+  - Marketing data, such as purchase histories and customer preferences.
+  - Financial data, such as transaction histories, stock prices, and currency exchange rates.
+  - Internet of Things data, such as usage reports from energy meters and home appliances.
+  - Graph data, such as information about how users are connected to one another.
 
 - Throughput scales linearly to thousands of nodesy, so for every single node that you do add, you're going to see a linear scale of throughput performance, up to hundreds of nodes. 
 - The Cloud Bigtable cluster uses HDD disks. Using HDD disks instead of SSD disks means slower response times and a significantly lower cap on the number of read requests handled per second (500 QPS for HDD disks vs. 10,000 QPS for SSD disks). 
@@ -135,6 +140,16 @@ And when data is entered, it is organized lexicographically by the Row Key. Row 
   - Non-defined range of rows. For example, monitoring performance metrics of machines: 1425330757685#machine_42234 No way to select a machine and get performance metrics --> instead reverse
   - Hashed-values: No longer recommended as debugging becomes difficult with non-readable keys
 
+## Application Profiles
+- If an instance uses replication, you use application profiles to specify routing policies. Application profile routing policies let you control which clusters handle incoming requests from your applications.
+- Differnet Routing Policies:
+  - Single-cluster routing: Sends all requests to a single cluster.
+  - Multi-cluster routing to any cluster: Sends requests to the nearest available cluster in an instance.
+  - Cluster group routing: Sends requests to the nearest available cluster within a selected group of clusters in an instance.
+- Application profiles also determine whether you can perform single-row transactions, which include read-modify-write operations (including increments and appends) and check-and-mutate operations (also known as conditional mutations or conditional writes).
 
+
+## Bigtable Studio
+- 
 
 
