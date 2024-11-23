@@ -31,8 +31,8 @@ Find the updated zones and regions [here](https://cloud.google.com/about/locatio
 ![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
 
 > ## Virtual Private Cloud
-A Virtual Private Cloud (VPC) network is a virtual version of a physical network that is implemented inside of Google's production network by using Andromeda (Google Cloud Platform’s network virtualization
-stack). It is a managed networking service for Google Cloud infrastructure. A single VPC can span across multiple regions all over the workd, securely, without communicating across the public internet. VPCs are sharable across projects and with organizations in some cases. Each Google Cloud project has a default network to get you started. A VPC network is a global resource which consists of a list of regional virtual subnetworks (subnets) in data centers, all connected by a global wide area network (WAN). VPC networks are logically isolated from each other in Google Cloud. Each subnet is associated with a Google Cloud region and a private RFC 1918 CIDR block for its internal IP addresses range and a gateway.
+
+A Virtual Private Cloud (VPC) network is a virtual version of a physical network that is implemented inside of Google's production network by using Andromeda (Google Cloud Platform’s network virtualization stack). It is a managed networking service for Google Cloud infrastructure. A single VPC can span across multiple regions all over the workd, securely, without communicating across the public internet. VPCs are sharable across projects and with organizations in some cases. Each Google Cloud project has a default network to get you started. A VPC network is a global resource which consists of a list of regional virtual subnetworks (subnets) in data centers, all connected by a global wide area network (WAN). VPC networks are logically isolated from each other in Google Cloud. Each subnet is associated with a Google Cloud region and a private RFC 1918 CIDR block for its internal IP addresses range and a gateway.
 
 Note: The deny-all-ingress and allow-all-egress rules are also displayed, but you cannot check or uncheck them as they are implied. These two rules have a lower Priority (higher integers indicate lower priorities) so that the allow ICMP, custom, RDP and SSH rules are considered first.
 
@@ -115,9 +115,36 @@ An internal load balancer consists of a:
 
 ## Subnet
 - Each VPC network consists of one or more IP address ranges called subnets. Subnets are regional resources, and have IP address ranges associated with them.
-- A network must have at least one subnet before you can use it. Auto mode VPC networks create subnets in each region automatically. 
+- A network must have at least one subnet before you can use it. Auto mode VPC networks create subnets in each region automatically.
+- Machines in the same network can communicate via their private IPs regardless of their region. By default, VMs in different networks can only communicate with public IPs
+- Shared VPC allows a network to be shared across multiple projects
+
 
   ![image](https://github.com/user-attachments/assets/c38a2344-e814-4bec-9c1b-f0b52b0192d1)
+
+## VPC Network Peering
+- Two VPC networks can be privately connected with VPC Network Peering
+  - Allows machines in different networks to communicate with private IPs
+  - The subnet IP ranges in peered VPC networks cannot overlap
+  - The two networks can even be in different projects and organizations
+- VPC Network Peering can: 
+  - Reduce latency: Connecting via private IPs will have lower latency than public IPs
+  - Reduce cost: Google Cloud charges egress bandwidth when using public IPs to communicate
+  - Increase security: VMs may no longer require public access
+
+
+## Shared VPC
+- Shared VPCs allows you to connect resources from multiple projects to a common VPC network
+- The host project is the single point of control for all the service projects that you link to the host project.
+- From the host project, consistent access control policies can be applied at the organization level.
+- Share resources from one VPC to other VPCs
+
+
+
+
+
+
+
 
 
 
