@@ -6,6 +6,13 @@
 - Multi-Region: A multi-region is a large geographic area, such as the United States, that contains two or more geographic places.
 - Dual-Region: A dual-region is a specific pair of regions, such as Finland and the Netherlands.
 - Region: A region is a specific geographic place, such as London.
+- Data Lake
+  - A data lake is a scalable and secure platform that allows enterprises to:
+    - Ingest any data from any system (on-prem, cloud, or at the edge)
+    - Store any type of data in full-fidelity ( It’s native raw format without thinking about the schema first: anything from logs, images, videos, csvs etc...)
+    - Explore and Process that data in real-time or batch using various processing tools and technologies
+    - And, analyze that data using SQL, Python, R, or any other language. Data Lake which is not well connected is not a full Data Lake!
+
   
 > ## History
 
