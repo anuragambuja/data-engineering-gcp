@@ -71,6 +71,10 @@ Its for regional data store with multiple zones for high availability. Multi –
 ## Connecting to a Cloud SQL instance
   
   ![image](https://github.com/user-attachments/assets/bb8291eb-37e6-4458-b12b-256789882d52)
+
+  If your are connecting an application that is hosted within the same Google Cloud project as your Cloud SQL instance, and it is collocated in the same region, choosing the Private IP connection will provide you with the most performant and secure connection using private connectivity. In other words, traffic is never exposed to the public internet.
+ 
+  If the application is hosted in another region or project, or if you are trying to connect to your Cloud SQL instance from outside of Google Cloud, you have 3 options. In this case, we recommend using Cloud Proxy, which handles authentication, encryption, and key rotation for you. If you need manual control over the SSL connection, you can generate and periodically rotate the certificates yourself. Otherwise, you can use an unencrypted connection by authorizing a specific IP address to connect to your SQL server over its external IP address. 
   
 ## High availability (HA)
 - 99.95% Uptime SLA for HA instances. During an incident in Zone A, Cloud SQL automatically fails over to the standby in Zone B
