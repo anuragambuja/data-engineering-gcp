@@ -42,11 +42,12 @@
 
   # Eventarc
 
-- Eventarc enables the creation of a unified event-driven architecture for loosely coupled services.
+- Eventarc offers a standardized solution to manage the flow of state changes, called events, between decoupled microservices. An event is a data record expressing an occurrence and its context. For example, an event might be a change to data in a database, a file added to a storage system, or a scheduled job.
 - Eventarc offers a standardized solution to manage the flow of state changes, called events, between decoupled microservices. When triggered, Eventarc routes these events to various destinations (Event destinations) while managing delivery, security, authorization, observability, and error-handling for you.
-
-- Eventarc connects various event sources, including Google Cloud services, third-party systems, and custom events via Pub/Sub to a range of event targets like Cloud Run functions, and more.
-  ![image](https://github.com/user-attachments/assets/4ba0c11c-9251-4a01-aa70-bb91636e90b4)
-  
 - Eventarc enables deep monitoring of logging and other events which occur less frequently on Google Cloud.
+- Eventarc connects various event sources, including Google Cloud services, third-party systems, and custom events via Pub/Sub to a range of event targets like Cloud Run functions, and more.
+
+  ![image](https://github.com/user-attachments/assets/c910dcfd-3b86-4c68-a28d-d7df47bfeb60)
+  
+
 
