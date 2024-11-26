@@ -8,8 +8,7 @@
 
 # Cloud Logging
 
-- Centralized repository for ingesting logs
-- System and application logs
+- Centralized repository for ingesting System and application logs
 - managed Service
 - Uses Google-customized FluentD agent
 - Retains logs for 30 days
@@ -19,6 +18,8 @@
   - BigQuery
   - Cloud Storage
   - Pub/Sub
+
+    ![image](https://github.com/user-attachments/assets/4656fd68-530a-4f3c-b9ae-824296715918)
 
 
 # Billing, Budgets and Alerts
