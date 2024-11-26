@@ -51,6 +51,13 @@
 - Eventarc connects various event sources, including Google Cloud services, third-party systems, and custom events via Pub/Sub to a range of event targets like Cloud Run functions, and more.
 
      ![image](https://github.com/user-attachments/assets/c910dcfd-3b86-4c68-a28d-d7df47bfeb60)
-  
 
+- Eventarc is offered in two editions:
+  - Eventarc Advanced: It lets you collect events that occur in a system and publish them to a central bus. Interested services can subscribe to specific messages by creating enrollments. You can use the bus to route events from multiple sources in real time and publish them to multiple destinations, and optionally transform events prior to delivery to a target. By providing administrators with enhanced and centralized visibility and control, Eventarc Advanced enables organizations to connect multiple teams across different projects.
+
+    <img src="https://github.com/user-attachments/assets/ea47f250-6fe8-46ea-bb00-1832660f161b" width="700" height="400">
+
+  - Eventarc Standard: Eventarc Standard is recommended for applications where the focus is on simply delivering events from event provider to event destination. It lets you quickly and easily consume Google events by defining triggers that filter inbound events according to their source, type, and other attributes, and then route them to a specified destination.
+
+    <img src="https://github.com/user-attachments/assets/bc6ace70-b822-4ab2-a549-15ffcd604c04" width="700" height="400" >
 
