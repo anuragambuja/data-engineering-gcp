@@ -65,6 +65,10 @@
 
   ![image](https://github.com/user-attachments/assets/f371f7e1-cf26-4e02-92be-e41534064d3b)
 
+> ## Compare migration and replication options
+
+  ![image](https://github.com/user-attachments/assets/d84d9a46-1e75-4a87-9691-9610c4091486)
+
 
 > ## Commands and SQLs
 
