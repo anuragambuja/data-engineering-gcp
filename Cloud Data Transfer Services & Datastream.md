@@ -13,25 +13,21 @@
         ![image](https://github.com/user-attachments/assets/b80d28c1-0668-46c4-b73d-d7a4cef2569f)
 
 
-## Datastream
+# Datastream
 
-  ![image](https://github.com/user-attachments/assets/afc94e3d-a840-4b6c-83f5-cb313a21399c)
+  ![image](https://github.com/user-attachments/assets/c0e8e97a-2f0e-458d-9d48-ba375c0ad067)
 
-  ![image](https://github.com/user-attachments/assets/ae85c89c-bf75-4e48-b04f-e1d4dce3fa28)
+- Datastream provides seamless replication from operational databases directly into BigQuery, reliably and with minimal latency, to support real-time analytics, enhance operational efficiencies, and improve customer experiences.
+- Facilitates event-driven architectures. Datastream event messages contain two main sections: generic metadata and payload. Metadata provides context about the data, like source table, timestamps, and related information. Payload contains the actual data changes in a key-value format, reflecting column names and their corresponding values.
 
-- Datastream provides seamless replication from operational databases directly into BigQuery, reliably and with minimal latency, to support real-time analytics, enhance operational efficiencies, and improve customer experiences
-- supports direct replication into BigQuery for analytics
-- allows custom data processing in Dataflow before loading into BigQuery
-- facilitates event-driven architectures
-- eg. Datastream can be used with Dataflow templates for seamless database replication and migration tasks
+- Also, allows custom data processing in Dataflow. eg. Datastream can be used with Dataflow templates for seamless database replication and migration tasks
 
-  ![image](https://github.com/user-attachments/assets/e4612ff7-8c21-4e84-8bf9-58cda20c348f)
+    ![image](https://github.com/user-attachments/assets/e4612ff7-8c21-4e84-8bf9-58cda20c348f)
 
 - Datastream taps into the source database's write-ahead log (WAL) to capture and process changes for propagation downstream. Datastream supports reading the logging mechanisms for the specific source database such as LogMiner for Oracle, binary log for MySQL, PostgreSQL's logical decoding, and transaction logs from SQL Server.
 
-![image](https://github.com/user-attachments/assets/557041a1-4178-42ce-9bdc-cf9f937c52cf)
+    ![image](https://github.com/user-attachments/assets/557041a1-4178-42ce-9bdc-cf9f937c52cf)
 
-- Datastream event messages contain two main sections: generic metadata and payload. Metadata provides context about the data, like source table, timestamps, and related information. Payload contains the actual data changes in a key-value format, reflecting column names and their corresponding values.
 
-## Compare migration and replication options
-![image](https://github.com/user-attachments/assets/d84d9a46-1e75-4a87-9691-9610c4091486)
+
+
