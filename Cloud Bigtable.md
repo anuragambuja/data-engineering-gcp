@@ -11,6 +11,30 @@
 - Bigtable is ideal for applications that need very high throughput and scalability for non-structured key/value data, where each value is typically no larger than 10 MB. Bigtable is not well suited for highly structured data, transactional data, small data volumes less than 1 TB, and anything requiring SQL Queries and SQL-like joins. Ideal for Ad Tech, Fintech, and IoT. It’s also a great storage engine for machine learning applications.
 - Easy integration with open source big data tools like HBase. Integrates with big data tools like Hadoop, Dataflow, and Dataproc.
 - BigTable does not support security restrictions on Row-level or, Column-level or, Cell-level
+- Used for
+  - Time-series data, such as CPU and memory usage over time for multiple servers.
+  - Marketing data, such as purchase histories and customer preferences.
+  - Financial data, such as transaction histories, stock prices, and currency exchange rates.
+  - Internet of Things data, such as usage reports from energy meters and home appliances.
+  - Graph data, such as information about how users are connected to one another.
+
+> ## Row keys
+- The most efficient Bigtable queries retrieve data using one of the following:
+  - Row key
+  - Row key prefix
+  - Range of rows defined by starting and ending row keys 
+- A row key must be 4 KB or less
+- Store multiple delimited values in each row key. Row key segments are usually separated by a delimiter, such as a colon, slash, or hash symbol.
+- Design to retrieve a well-defined range of rows. Well-planned row key prefixes let you take advantage of Bigtable's built-in sorting order to store related data in contiguous rows. Bigtable stores data lexicographically. Pad the integers with leading zeroes
+- Examples to avoid
+  - Standard, non-reversed domain names: services.company.com will be in separate range than product.company.com instead reverse → com.company.product
+  - Sequential numeric IDs For example, UserID – New users might be more active than older ones (hotspotting on one node)
+  - Non-defined range of rows. For example, monitoring performance metrics of machines: 1425330757685#machine_42234 No way to select a machine and get performance metrics --> instead reverse
+  - Hashed-values: No longer recommended as debugging becomes difficult with non-readable keys
+  - Avoid low cardinality attributes
+- Better design option: concatenate multiple attributes. Start with high cardinality attributes eg. IoT sensor ID, then add time such as date and hour i.e. low cardinality attributes near the end of the key. eg. sensor ID + reverse datetime: 12345 + (00|23|21|08|2023). By reversing the timestamp, you can design a row key where the most recent event appears at the start of the table instead of the end.
+
+  <img src="https://user-images.githubusercontent.com/19702456/227277588-4a0d8fe4-fa0f-44d2-abce-5858958ce5cd.png" width="600" height="300">
 
 
 > ## Storage Model
@@ -99,53 +123,5 @@
   $ cbt help
   ```
 - Hbase API
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-  
-- Design Row key by keeping in your mind
-  - Avoid using monotonically increasing key to avoid Hot spotting
-  - Avoid low cardinality attributes
-  - Better design option: concatenate multiple attributes. Start with high cardinality attributes eg. IoT sensor ID, then add time such as date and hour i.e. low cardinality attributes near the end of the key. eg. sensor ID + reverse datetime: 12345 + (00|23|21|08|2023). By reversing the timestamp, you can design a row key where the most recent event appears at the start of the table instead of the end.
-
-    ![image](https://user-images.githubusercontent.com/19702456/227277588-4a0d8fe4-fa0f-44d2-abce-5858958ce5cd.png)
-- Used for
-  - Time-series data, such as CPU and memory usage over time for multiple servers.
-  - Marketing data, such as purchase histories and customer preferences.
-  - Financial data, such as transaction histories, stock prices, and currency exchange rates.
-  - Internet of Things data, such as usage reports from energy meters and home appliances.
-  - Graph data, such as information about how users are connected to one another.
-
-- Throughput scales linearly to thousands of nodesy, so for every single node that you do add, you're going to see a linear scale of throughput performance, up to hundreds of nodes. 
-- The Cloud Bigtable cluster uses HDD disks. Using HDD disks instead of SSD disks means slower response times and a significantly lower cap on the number of read requests handled per second (500 QPS for HDD disks vs. 10,000 QPS for SSD disks). 
-
-## Row keys
-- The most efficient Bigtable queries retrieve data using one of the following:
-  - Row key
-  - Row key prefix
-  - Range of rows defined by starting and ending row keys 
-- A row key must be 4 KB or less
-- Store multiple delimited values in each row key. Row key segments are usually separated by a delimiter, such as a colon, slash, or hash symbol.
-- Design to retrieve a well-defined range of rows. Well-planned row key prefixes let you take advantage of Bigtable's built-in sorting order to store related data in contiguous rows. Bigtable stores data lexicographically. Pad the integers with leading zeroes
-- Examples to avoid
-  - Standard, non-reversed domain names: services.company.com will be in separate range than product.company.com instead reverse → com.company.product
-  - Sequential numeric IDs For example, UserID – New users might be more active than older ones (hotspotting on one node)
-  - Non-defined range of rows. For example, monitoring performance metrics of machines: 1425330757685#machine_42234 No way to select a machine and get performance metrics --> instead reverse
-  - Hashed-values: No longer recommended as debugging becomes difficult with non-readable keys
-
-
-
-
 
 
