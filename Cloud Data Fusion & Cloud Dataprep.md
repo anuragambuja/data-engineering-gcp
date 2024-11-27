@@ -27,16 +27,14 @@
     - Data flow is the movement of data, in the form of records, from one step of a pipeline to another. When data arrives at a stage, it triggers that stage's processing of the data and then the transference of results (if any) to the next stage.
     - Control flow is a parallel process that triggers a stage based on the result from another process, independent of the pipeline. Currently, control flow can be applied only to the initial stages (before any data flow stages run) and final stages (after all other data flow stages run) of a pipeline. A post-run stage is available after each pipeline run, successful or otherwise.
 
-    <img src="https://github.com/user-attachments/assets/3bff3abd-5a48-4918-b251-7b428f72e134" >
-  
+        <img src="https://github.com/user-attachments/assets/3bff3abd-5a48-4918-b251-7b428f72e134" >
+
+
 
 # Cloud Dataprep
-
 - Cloud Dataprep by Trifacta is an intelligent data service for visually exploring, cleaning, and preparing data for analysis.
 - With Alteryx / Dataprep, you can get a visual representation of the data and use wranglers andrecipes to remove out of scope and erroneous data.
-
 - Serverless, runs on top of Dataflow
-
 - Alteryx / Dataprep ELT pipeline architecture
 
-![image](https://github.com/user-attachments/assets/708b9cdb-955b-48db-a06e-ff5fc9807fb7)
+  ![image](https://github.com/user-attachments/assets/708b9cdb-955b-48db-a06e-ff5fc9807fb7)
