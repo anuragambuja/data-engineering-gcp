@@ -1,9 +1,6 @@
+# Data Catalog
 
-# Data Governance
-
-One solution for data governance is the Cloud data catalog and the data loss prevention API.
-
-## Data Catalog
+  ![image](https://github.com/user-attachments/assets/7acf14e3-484e-4d0e-b9f1-3c018763e496)
 
 - A fully managed and highly scalable data discovery and metadata management service.
 - Single place to discover all data, asset across all project
