@@ -49,14 +49,14 @@
   - re-identify (In case want to recover original data)
     - to understand statistical anomalies that can lead to increased privacy risk. 
 
-> ## Templates
+> ### Templates
 
 - Configuration which is defined for:
   - Identification: Find Sensitive Data
   - De-identification: Remove sensitive Data
 - Once Template defined, it can be reused for other Jobs
 
-> ## InfoTypes
+> ### InfoTypes
 - Pattern detectors to idenity sensitive information. Ex. date of birth, Passwords, US SSN, Authentication Tokens, Indian AADHAR etc
 - Inspection Job applies InfoTypes to a dataset. When API matches a pattern, it returns 
   - InfoType
