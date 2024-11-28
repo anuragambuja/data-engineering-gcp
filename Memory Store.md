@@ -1,4 +1,4 @@
-# Memory Store - Redis and Memcached
+# Memory Store
 
    ![image](https://github.com/user-attachments/assets/4f291770-1252-47dd-8de6-0a4e7c2f6359)
 
