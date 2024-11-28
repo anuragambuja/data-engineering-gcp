@@ -1,4 +1,6 @@
-## IAM
+# IAM
+
+  ![image](https://github.com/user-attachments/assets/6fe32403-ce6b-497c-982a-ad40593ac1f0)
 
 - With Identity Access Management, you first identify the caller to the API. The caller could be identified as a human, a computer, or an application. Once identified, the caller is known as a member. Members are assigned one or more roles.
 - Inheritance Model
