@@ -87,3 +87,45 @@
   
 
 
+# Vision API
+
+  ![image](https://github.com/user-attachments/assets/ba56f1a2-d6e8-43a1-858a-7e6e82aa6bd0)
+
+# Video API
+
+  ![image](https://github.com/user-attachments/assets/da913068-9c04-42bc-a835-9193cc81b932)
+
+# Speech to text API
+- Automatic speech recognition
+- Real-time transcription
+- Enhanced phone call models in Google Contact Center AI
+
+  ![image](https://github.com/user-attachments/assets/e850058e-9629-40bc-9c2e-dc4a133f0999)
+
+# Translation AI
+- Real-time translation
+- Compelling localization of your content
+- Internationalizing your products
+
+  ![image](https://github.com/user-attachments/assets/fa70e31d-f8b5-409a-a3a1-9c92fce9ce86)
+
+# Natural Language AI
+- Derive insights from unstructured text using Google machine learning.
+- Applying natural language understanding to apps with the Natural Language API.
+- Training your open ML models to classify, extract, and detect sentiment.
+  
+  ![image](https://github.com/user-attachments/assets/ad113a6e-c9a7-461e-9429-918864e1ac13)
+
+# Contact Center AI
+
+  ![image](https://github.com/user-attachments/assets/27c8ffe7-9abb-4c84-b7ad-c51cca78170a)
+
+# Document AI
+
+  ![image](https://github.com/user-attachments/assets/5af5dd8e-0f4d-4550-b0b2-cc43e7394756)
+
+# Recommendations AI
+
+![image](https://github.com/user-attachments/assets/45aaa1b4-45cb-4be5-a1e8-43bddc6d1e94)
+
+
