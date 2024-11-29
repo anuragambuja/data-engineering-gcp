@@ -73,11 +73,14 @@
 
   ![image](https://github.com/user-attachments/assets/f549910a-601c-4480-9cdb-280a9be174e9)
 
-> ## Hadoop to GCP
+> ## Hadoop Ecosystem Component Migration Mappings to GCP
 
   ![image](https://github.com/user-attachments/assets/683fc15f-179b-4a2d-9a27-25bcd8dd32c1)
 
+  ![image](https://github.com/user-attachments/assets/40150989-1190-4bed-9e63-99d431392170)
+  ![image](https://github.com/user-attachments/assets/560003cd-752b-4b11-9f73-6afa451ddb31)
 
+  
 > ## Commands and SQLs
 
 - ### gcloud commands 
