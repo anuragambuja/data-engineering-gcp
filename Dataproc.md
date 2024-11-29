@@ -2,6 +2,62 @@
 
   ![image](https://github.com/user-attachments/assets/74cc36c1-0274-4c6e-af6e-151297c89c72)
 
+- Internals
+
+    ![image](https://github.com/user-attachments/assets/2c218d2f-1a85-46f6-a624-ef201a7ba889)
+
+
+> ### Dataproc Metastore
+  - Dataproc Metastore is a fully managed, highly available, autohealing serverless Apache Hive metastore that runs on Google Cloud.
+  - A centralized metadata repository that can be shared across multiple Dataproc Clusters running different open source engines such as Hive, Spark and Presto.
+  - Provides a unified view of open source tables, providing interoperability between cloud-native services and various other open source-based offerings.
+
+> ### Enhanced Flexibility Mode
+  - When nodes are removed, either manually or autoscaled, data may be required to be shuffled from one node to another. This can add processing delays to running jobs. EFM manages shuffling data between workers to minimize job progress delays. Two user-selectable modes:
+    - Primary-worker shuffle. Mappers write data to primary workers. This mode is only available to Spark jobs.
+    - HCFS (Hadoop Compatible File System). This mode can benefit jobs with small amounts of data.
+
+> ### Optimizing Dataproc
+- Make sure that the Cloud storage bucket is in the same regional location as your Dataproc region.
+- Be sure that you do not have any network rules or roots that funnel Cloud storage traffic through a small number of VPN gateways before it reaches your cluster.
+- Make sure you are not dealing with more than around 10,000 input files. If you find yourself in this situation try to combine or union the data into larger file sizes.
+- If this file volume reduction means that now you are working with larger datasets more than approximately 50,000 Hadoop partitions you should consider adjusting the setting fs.gs.block.size to a larger value accordingly.
+- Is the size of your persistent disk limiting your throughput? Often times when getting started with Google Cloud you may have just a small table that you want to benchmark. This is generally a good approach as long as you do not choose a persistent disk that assigns to such a small quantity of data, it will most likely limit your performance. Standard persistent disk scale linearly with volume size.
+- Did you allocate enough virtual machines to your cluster? Running prototypes and benchmarking with real data and real jobs is crucial to informing the actual VM allocation decision. Employing job scoped clusters is a common strategy for Dataproc clusters
+- Local HDFS is a good option if:
+  - Your jobs require a lot of metadata operations—for example, you have thousands of partitions and directories, and each file size is relatively small.
+  - You modify the HDFS data frequently or you rename directories. Cloud Storage objects are immutable, so renaming a directory is an expensive operation because it consists of copying all objects to a new key and deleting them afterwards.
+  - You heavily use the append operation on HDFS files.
+  - You have workloads that involve heavy I/O. For example, you have a lot of partitioned writes, such as in this example `spark.read.write.partitionBy(...).parquet("gs://")`
+  - You have I/O workloads that are especially sensitive to latency. For example, you require single-digit millisecond latency per storage operation.
+
+> ### Dataproc Serverless
+  - Dataproc Serverless lets you run Spark batch workloads without requiring you to provision and manage your own cluster.
+  - The service will run the workload on a managed compute infrastructure, autoscaling resources as needed. Estimating the correct number of worker nodes for a current and ongoing cluster can be challenging and prone to repetitive experiments. Dataproc Auto Scaling automates the process.
+    - Requires an Autoscale Policy to be defined.
+    - Autoscaling can be added to an existing cluster or as part of the definition before a cluster is created.
+    - Only applies to workers not masters.
+    - Best results when applying to Secondary workers.
+  - Dataproc Serverless charges apply only to the time when the workload is executing.
+  - Schedule Dataproc Serverless for Spark batch workloads: You can schedule a Spark batch workload as part of an Airflow or Cloud Composer workflow using an Airflow batch operator.
+  - There are two ways to run Dataproc Serverless workloads:
+    - Dataproc Serverless for Spark Batch: Use the Google Cloud console, Google Cloud CLI, or Dataproc API to submit a batch workload to the Dataproc Serverless service  and are ideal for automated or scheduled jobs
+    - Dataproc Serverless for Spark Interactive: Interactive sessions leverage JupyterLab, either locally or within the Google Cloud environment, for interactive development and exploration.
+
+      ![image](https://github.com/user-attachments/assets/890297d5-c81c-43a4-a70e-caabd37ae6ee)
+
+
+
+
+
+
+
+
+
+
+
+
+
 - Dataproc is fully managed service for running Hadoop and Spark data processing workloads. 
 - Cluster type
   - Standard (1 master, N workers)
@@ -56,54 +112,18 @@ To get the most from Dataproc, customers need to move to an ephemeral model of o
 
 <img width="440" alt="image" src="https://github.com/user-attachments/assets/72750345-3462-45dc-802c-24076c9aedb8">
 
-Optimizing Dataproc:
-- Make sure that the Cloud storage bucket is in the same regional location as your Dataproc region.
-- Be sure that you do not have any network rules or roots that funnel Cloud storage traffic through a small number of VPN gateways before it reaches your cluster.
-- Make sure you are not dealing with more than around 10,000 input files. If you find yourself in this situation try to combine or union the data into larger file sizes.
-- If this file volume reduction means that now you are working with larger datasets more than approximately 50,000 Hadoop partitions you should consider adjusting the setting fs.gs.block.size to a larger value accordingly.
-- Is the size of your persistent disk limiting your throughput? Oftentimes when getting started with Google Cloud you may have just a small table that you want to benchmark. This is generally a good approach as long as you do not choose a persistent disk that assigns to such a small quantity of data, it will most likely limit your performance. Standard persistent disk scale linearly with volume size.
-- Did you allocate enough virtual machines to your cluster? Running prototypes and benchmarking with real data and real jobs is crucial to informing the actual VM allocation decision. Employing job scoped clusters is a common strategy for Dataproc clusters
-- Local HDFS is a good option if:
-  - Your jobs require a lot of metadata operations—for example, you have thousands of partitions and directories, and each file size is relatively small.
-  - You modify the HDFS data frequently or you rename directories. Cloud Storage objects are immutable, so renaming a directory is an expensive operation because it consists of copying all objects to a new key and deleting them afterwards.
-  - You heavily use the append operation on HDFS files.
-  - You have workloads that involve heavy I/O. For example, you have a lot of partitioned writes, such as in this example `spark.read.write.partitionBy(...).parquet("gs://")`
-  - You have I/O workloads that are especially sensitive to latency. For example, you require single-digit millisecond latency per storage operation.
 
 
-- Dataproc Serverless
-  - Dataproc Serverless lets you run Spark batch workloads without requiring you to provision and manage your own cluster.
-  - The service will run the workload on a managed compute infrastructure, autoscaling resources as needed. Estimating the correct number of worker nodes for a current and ongoing cluster can be challenging and prone to repetitive experiments. Dataproc Auto Scaling automates the process.
-    - Requires an Autoscale Policy to be defined.
-    - Autoscaling can be added to an existing cluster or as part of the definition before a cluster is created.
-    - Only applies to workers not masters.
-    - Best results when applying to Secondary workers.
-  - Dataproc Serverless charges apply only to the time when the workload is executing.
-  - Schedule Dataproc Serverless for Spark batch workloads: You can schedule a Spark batch workload as part of an Airflow or Cloud Composer workflow using an Airflow batch operator.
-  - Dataproc Serverless lets you run Spark batch workloads without requiring you to provision and manage your own cluster. There are two ways to run Dataproc Serverless workloads:
-    - Dataproc Serverless for Spark Batch: Use the Google Cloud console, Google Cloud CLI, or Dataproc API to submit a batch workload to the Dataproc Serverless service  and are ideal for automated or scheduled jobs
-    - Dataproc Serverless for Spark Interactive: Interactive sessions leverage JupyterLab, either locally or within the Google Cloud environment, for interactive development and exploration.
+
+
  
-    ![image](https://github.com/user-attachments/assets/890297d5-c81c-43a4-a70e-caabd37ae6ee)
+    
 
 
-![image](https://github.com/user-attachments/assets/683fc15f-179b-4a2d-9a27-25bcd8dd32c1)
 
-- Enhanced Flexibility Mode
-  - When nodes are removed, either manually or autoscaled, data may be required to be shuffled from one node to another. This can add processing delays to running jobs. EFM manages shuffling data between workers to minimize job progress delays. Two user-selectable modes:
-    - Primary-worker shuffle. Mappers write data to primary workers. This mode is only available to Spark jobs.
-    - HCFS (Hadoop Compatible File System). This mode can benefit jobs with small amounts of data.
 
-- Dataproc Metastore
-  - Dataproc Metastore is a fully managed, highly available, autohealing serverless Apache Hive metastore that runs on Google Cloud.
-  - A centralized metadata repository that can be shared across multiple Dataproc Clusters running different open source engines such as Hive, Spark and Presto.
-  - Provides a unified view of open source tables, providing interoperability between cloud-native services and various other open source-based offerings.
 
-- Internals
 
-    ![image](https://github.com/user-attachments/assets/2c218d2f-1a85-46f6-a624-ef201a7ba889)
 
-- Hadoop Ecosystem Component Migration Mappings
 
-  ![image](https://github.com/user-attachments/assets/40150989-1190-4bed-9e63-99d431392170)
-  ![image](https://github.com/user-attachments/assets/560003cd-752b-4b11-9f73-6afa451ddb31)
+  
