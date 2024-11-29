@@ -18,6 +18,9 @@
 
 
 # AutoML
+
+  ![image](https://github.com/user-attachments/assets/f8d8a3e4-6e0e-4b05-9841-f87949f47839)
+
 - The downside of using pre-trained models like Vision API, the Speech-to-Text API etc. is that they only yield good predictions when your data is relatively common-place, as in social media images or customer reviews. 
 - Vertex AI AutoML sits somewhere inbetween these two. A model is trained specific to your data but you don’t need any code to train it.
 - AutoML supports four types of data: image, tabular, text, and video.
