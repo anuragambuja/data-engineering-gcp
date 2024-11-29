@@ -2,7 +2,7 @@
 
   <img src="https://github.com/user-attachments/assets/b7d3df57-61f1-48c5-9f69-563473e923a2" width="900" height="500" >
 
-  ![image](https://github.com/user-attachments/assets/4e907192-24eb-4e36-87d8-c122eea19f5a)
+  
     
 - It's a fully managed service for custom machine learning models, both training and serving predictions.
 - VertexAI (your model, your data), AutoML ( our model, your data)
@@ -23,6 +23,9 @@
   - Evaluate the model against the evaluation dataset.
 - Kubeflow Pipelines is a Kubernetes-native, open source product, that has grown into the industry standard for running ML pipelines over the years.
 
+  ![image](https://github.com/user-attachments/assets/4e907192-24eb-4e36-87d8-c122eea19f5a)
+
+
 
 
 - Key Capabilities:
@@ -36,16 +39,13 @@
 - Vertex AI AutoML sits somewhere inbetween these two. A model is trained specific to your data but you don’t need any code to train it.
 - AutoML supports four types of data: image, tabular, text, and video.
 - Phases of AutoML:
-![image](https://github.com/user-attachments/assets/1d2535a7-bf57-423c-9445-245ba2adba17)
-
-![image](https://github.com/user-attachments/assets/9ecbf871-998f-4bfb-a2f4-5e502403f145)
-
-- Phases
   - Phase one is data processing. After you upload a dataset, AutoML provides functions to automate part of the data preparation process. For example, it can covert numbers, datetime, text, categories, arrays of categories, and nested fields into a certain format of data so that it can be fed into an ML model.
   - Phase two includes searching the best models and tuning the parameters. Two critical technologies support this auto search.
     - neural architect search: which helps search the best models and tune the parameters automatically. The goal of neural architecture search is to find optimal models among many options.
     - transfer learning: Transfer learning is a powerful technique that lets people with smaller datasets or less computational power achieve great results by using pre-trained models trained on similar, larger datasets.
   - In phase three, the best models are assembled from phase 2 and prepared for prediction in phase 4. Note that AutoML does not rely on one single model, but on the top number of models. The number of models depends on the training budget, but is typically around 10.
+ 
+    ![image](https://github.com/user-attachments/assets/9ecbf871-998f-4bfb-a2f4-5e502403f145)
 
 - AutoML Vision specializes in training models for image classification.
   - Training supports several file formats including JPEG, GIF, PNG, BMP, and ICO.
@@ -63,7 +63,7 @@
  
 - AutoML Tables for tabular data. Tabular data is what you might find in a spreadsheet for example.
   - The development of AutoML Table was a collaboration between Google Cloud and the Google Brain Team.
-  - your data must have between 1,000 and 100 million rows, between two and 1,000 columns, and be 100 gigabytes or less in size.
+  - Your data must have between 1,000 and 100 million rows, between two and 1,000 columns, and be 100 gigabytes or less in size.
   - You can make batch predictions on either BigQuery Tables or CSV files. However, the BigQuery data source tables must be no larger than 100 gigabytes. For CSV files, each data source file can be no larger than 10 gigabytes. And if you include multiple files, the sum of all files cannot exceed 100 gigabytes.
 
 - To improve AutoML Vision and AutoML Natural Language models
@@ -71,8 +71,6 @@
   - Increase the amount of training data
   - Ensure consistent labeling
   
-- How to choose ebtween Bigquery ML, AutoML abd a custom Model
-![image](https://github.com/user-attachments/assets/f549910a-601c-4480-9cdb-280a9be174e9)
 
 
 ## Model Deployment
