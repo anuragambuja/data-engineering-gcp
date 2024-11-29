@@ -276,25 +276,31 @@ been deleted.
   - YouTube Channel
   - YouTube Content Owner
 
-## Streaming in Bigquery
+
+> ### Streaming in Bigquery
 - Streaming Inserts allows you to insert one item at a time into a table.
 - New tables can be created from a temporary table that identifies the schema to be copied. The data enters a streaming buffer where it is held briefly until it can be inserted into the table.
 - You can disable best effort de-duplication by not populating the insert ID field for each row inserted.
   
     ![image](https://github.com/user-attachments/assets/9483f15d-597a-4b54-b182-fb23722c24e4)
 
-## ML in BigQuery
-  
+
+> ### ML in BigQuery
+
+  ![image](https://github.com/user-attachments/assets/0dd88997-05bf-4864-ae3d-6e4cf198186e)
+
   ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
 
-## Analytics Hub - Data share solution
+
+> ### Analytics Hub - Data share solution
 - Platform for secure data sharing with authorized users (internal and external)
 - Construct of data providers, subscribers and data exchange, data discovery
 - Built on top of BigQuery
 
     ![image](https://github.com/user-attachments/assets/509b622e-de43-4461-88cc-f053a874f161)
 
-## Pricing
+
+> ### Pricing
 
 ![image](https://github.com/user-attachments/assets/006ebf8a-c685-42b0-af62-43a49a0c1bc0)
 
@@ -364,10 +370,10 @@ been deleted.
       - BigQuery Autoscaler: Dynamically adjusts the capacity in response to planned or unplanned changes in demand to help ensure you pay only for what you use. Autoscaling is the core functionality available in a new
       commercial model
       
-        ![image](https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291)
+        <img src="https://github.com/user-attachments/assets/96797479-f758-4493-861e-f0cc909e6291" width="500" height="500" >
   
 
-## Data Lineage API
+> ### Data Lineage API
 - Lineage is a record of data being transformed from sources to targets
 - The API collects that information and organizes it into a hierarchy of processes, runs, and events
    - A process is a data transformation within a dataset
@@ -380,17 +386,12 @@ been deleted.
    - CREATE VIEW queries
    - DML statements such as INSERT, UPDATE, MERGE, DELETE
 - You can programmatically track lineage for custom sources by using the API
+- Interpreting the query plan
+   - If there is a significant difference between avg and max time for workers consider using APPROX_TOP_COUNT to check 
+   - If there are a lot of reads in intermediate steps consider filtering early
+   - For long periods of time spent on CPU tasks consider approx functions  filtering early and optimize your UDF usage with a persistent UDF or avoid using all together
 
-
-## Interpreting the query plan
-- If there is a significant difference between avg and max time for workers consider using APPROX_TOP_COUNT to check 
-- If there are a lot of reads in intermediate steps consider filtering early
-- For long periods of time spent on CPU tasks consider approx functions  filtering early and optimize your UDF usage with a persistent UDF or avoid using all together
-
-## Best practices
-
-Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery/docs/best-practices-performance-overview):
-
+> ### Best practices
 * Cost reduction
   * Avoid `SELECT *` . Reducing the amount of columns to display will drastically reduce the amount of processed data and lower costs.
   * Use clustered and/or partitioned tables if possible.
@@ -412,7 +413,6 @@ Here's a list of [best practices for BigQuery](https://cloud.google.com/bigquery
 
 
 # Dataform 
-
 - Dataform is a service for data analysts to develop, test, version control, and schedule complex SQL workflows for data transformation in BigQuery.
 - Dataform lets you perform the following data transformation actions:
   - Develop and execute SQL workflows for data transformation.
