@@ -61,7 +61,7 @@
 
 # Vertex AI Pipelines
 
-  ![image](https://github.com/user-attachments/assets/5f2150a5-140f-4d62-9667-4063afa2a10a)
+  ![image](https://github.com/user-attachments/assets/fa2fe7c5-83a6-432f-90df-cac4896b3afe)
     
 - The backbone of MLOps on Vertex AI is a tool kit called Vertex AI Pipelines, which supports both Kubeflow Pipelines, or KFP, and TensorFlow Extended, or TFX. Kubeflow Pipelines is a Kubernetes-native, open source product, that has grown into the industry standard for running ML pipelines over the years.
 
