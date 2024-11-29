@@ -41,7 +41,12 @@
 
     ![image](https://user-images.githubusercontent.com/19702456/218378411-6f62d0c2-670a-4783-96d4-0f38c20bdb05.png)
 
-- Data Types
+- Query caching is based on exact string comparison. So even whitespaces can cause a cache miss. Queries are never cached if they exhibit non-deterministic behavior (for example, they use CURRENT_TIMESTAMP or RAND), if the table or view being queried has changed (even if the columns/rows of interest to the query are unchanged), if the table is associated with a streaming buffer (even if there are no new rows), if the query uses DML statements, or queries external data sources.
+- You can recover a deleted table only if another table with the same ID in the dataset has not been created. In particular, this means you cannot recover a deleted table if it is being streamed to, chances are that the streaming pipeline would have already created an empty table and started pushing rows into it. using Create or Replace table because this makes the table irrecoverable.
+- BigQuery supports user-defined functions or UDF. Java Script is currently the only external language supported. BigQuery can optimize the execution of SQL much better than it can for JavaScript.
+
+
+> ### Data Types
   - Avro is the preferred format for loading data into BigQuery. Compresed Avro files not supported but compressed Avro data blocks are supported. Parquet has better compression ratio and smaller files. For CSV and JSON, BQ can load uncompressed files significantly faster than compressed
   - Array Type
     - Arrays of arrays not allowed
@@ -56,7 +61,8 @@
     - Structs are containers that can have multiple field names and data types nested inside. Arrays can be one of the field types inside of a Struct. Declare as STRUCT<T> eg. STRUCT<a int64, b string>
     - Structs can be directly compared using equality operators: =, != or <>, [NOT] IN
 
-- Data Access Controls
+
+> ### Data Access Controls
   - Organization or project level for all project's BQ resources
   - dataset level for access to a specific data set
   - table or view level for access to specific tables or views in a dataset
@@ -68,9 +74,6 @@
   - Filter data in a table based on user conditions
   - Row level policy is applied to table
   ![image](https://user-images.githubusercontent.com/19702456/224623322-b8b93a8c-3087-4a03-9c2a-552ec7f3d6ab.png)
-- Query caching is based on exact string comparison. So even whitespaces can cause a cache miss. Queries are never cached if they exhibit non-deterministic behavior (for example, they use CURRENT_TIMESTAMP or RAND), if the table or view being queried has changed (even if the columns/rows of interest to the query are unchanged), if the table is associated with a streaming buffer (even if there are no new rows), if the query uses DML statements, or queries external data sources.
-- You can recover a deleted table only if another table with the same ID in the dataset has not been created. In particular, this means you cannot recover a deleted table if it is being streamed to, chances are that the streaming pipeline would have already created an empty table and started pushing rows into it. using Create or Replace table because this makes the table irrecoverable.
-- BigQuery supports user-defined functions or UDF. Java Script is currently the only external language supported. BigQuery can optimize the execution of SQL much better than it can for JavaScript.
 
 
 > ### Views vs Authorized Views
