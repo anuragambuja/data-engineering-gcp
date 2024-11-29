@@ -1,12 +1,11 @@
 
 # BigQuery
 
-## Overview
+   ![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
+
 - Two modernization routes: Open fromat datalake and BigQuery based datalake
 
    ![image](https://github.com/user-attachments/assets/07ec45e3-7463-450e-a62c-88c35f6c1de1)
-
-  ![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
 
 - BQ is ***serverless***, ***scalable***, ***high availaible*** SQL based ***data warehouse*** solution in GCP to analyse petabyte scale of data
 - BQ is analytical database and not for Transactional purpose alternative to OpenSource Apache Hive. Some alternatives to BigQuery from other cloud providers would be AWS Redshift or Azure Synapse Analytics.
