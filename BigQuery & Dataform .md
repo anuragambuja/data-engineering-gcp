@@ -73,7 +73,7 @@
 - BigQuery supports user-defined functions or UDF. Java Script is currently the only external language supported. BigQuery can optimize the execution of SQL much better than it can for JavaScript.
 
 
-## Views vs Authorized Views
+> ### Views vs Authorized Views
 - The main difference between a regular view and an authorized view is which authority is used for controlling access to the source table data
 - A regular view's access to source table data is checked on behalf of the end user's authority. The view's SQL query can be used to restrict the columns (fields) the users are able to query
 - An authorized view's access to source table data is checked using the authorized view's own authority
@@ -81,8 +81,8 @@
    - Authorized views enables us to mask the restricted columns data, without changing the underlying tables data
 
 
-## Partitioning and Clustering  
-### Partitions 
+> ### Partitioning and Clustering  
+#### Partitioning 
 
 - [Partition tables](https://cloud.google.com/bigquery/docs/partitioned-tables) are very useful to improve performance and reduce costs, because BQ will not process as much data per query.
 - You may partition a table by:
@@ -100,7 +100,7 @@
    - Project can run up to 50 modifications per partitioned table every 10 seconds
    - A range-partitioned table can have up to 10,000 possible ranges
   
-### Clustering 
+#### Clustering 
 
 - ***Clustering*** consists of rearranging a table based on the values of its columns so that the table is ordered according to any criteria. Clustering can be done based on one or multiple columns up to 4; the ***order*** of the columns in which the clustering is specified is important in order to determine the column priority.
 - Clustering may improve performance and lower costs on big datasets for certain types of queries, such as queries that use filter clauses and queries that aggregate data.
@@ -140,14 +140,16 @@ You may choose clustering over partitioning when partitioning results in a small
 
 BigQuery has _automatic reclustering_: when new data is written to a table, it can be written to blocks that contain key ranges that overlap with the key ranges in previously written blocks, which weaken the sort property of the table. BQ will perform automatic reclustering in the background to restore the sort properties of the table. For partitioned tables, clustering is maintaned for data within the scope of each partition.
 
-## External datasets
+
+> ### External datasets
 - In addition to BigQuery datasets, you can create external datasets (federated datasets), which are links to external data sources:
   - Spanner external dataset
   - AWS Glue federated dataset
 - Once created, external datasets contain tables from a referenced external data source. Data from these tables aren't copied into BigQuery, but queried every time they are used.
 - External datasets don't support table expiration, replicas, time travel, default collation, default rounding mode or the option to enable or disable case insensitive tables name.
 
-### External Tables
+
+> ### External Tables
 - An external data source is a data source that you can query directly from BigQuery, even though the data is not stored in BigQuery storage. BigQuery has two different mechanisms for querying external data:
 
   - ***External Tables***: External tables are similar to standard BigQuery tables, in that these tables store their metadata and schema in BigQuery storage. However, their data resides in an external source. There are four kinds of external tables:
@@ -168,29 +170,25 @@ BigQuery has _automatic reclustering_: when new data is written to a table, it c
 
     ![image](https://github.com/user-attachments/assets/e9c09763-a08b-49dc-8638-b74d4d06c6f2)
 
-- External tables – performance considerations
-- Amount of data being queried
-   - The benefit of using Parquet as opposed to CSV or Avro only grows as the amount of data being queried gets larger and the query complexity increases.
-- Compression
-   - CSV.gzip and ORC.snappy take up nearly equal amounts of space. Compressing Parquet with snappy does very little to reduce the amount of space that the data takes up in Cloud Storage.     - With larger payloads (>50 GB), the CSV files compressed with GZIP performs better than uncompressed when the chunks of data are about 50 MB each. For smaller payloads (5 GB), uncompressed performs better.
-- File format
-   - ORC files seem to take less storage space followed by Parquet, Avro, and CSV file types.
-- Region
-   - Using a single region Cloud Storage bucket with a single region external table offers the fastest run time. When using this combination, your external table and your Cloud Storage
-bucket must be in the same region.
-   - Avoid using multi-region buckets with external tables to avoid cross region issues.
-   - If data redundancy is critical, use dual-region.
-- Slot allocation
-   - In general, it would be expected, especially for more complex queries, that as the slot allocation goes up, the run time will decrease.
+- Performance considerations
+   - Amount of data being queried: The benefit of using Parquet as opposed to CSV or Avro only grows as the amount of data being queried gets larger and the query complexity increases.
+   - Compression: CSV.gzip and ORC.snappy take up nearly equal amounts of space. Compressing Parquet with snappy does very little to reduce the amount of space that the data takes up in Cloud Storage. With larger payloads (>50 GB), the CSV files compressed with GZIP performs better than uncompressed when the chunks of data are about 50 MB each. For smaller payloads (5 GB), uncompressed performs better.
+   - File format: ORC files seem to take less storage space followed by Parquet, Avro, and CSV file types.
+   - Region:
+      - Using a single region Cloud Storage bucket with a single region external table offers the fastest run time. When using this combination, your external table and your Cloud Storage bucket must be in the same region.
+      - Avoid using multi-region buckets with external tables to avoid cross region issues.
+      - If data redundancy is critical, use dual-region.
+   - Slot allocation: In general, it would be expected, especially for more complex queries, that as the slot allocation goes up, the run time will decrease.
 
-## BigLake API
+
+> ### BigLake API
 - BigLake is a storage engine that unifies data warehouses and lakes, by providing uniform fine-grained access control, performance acceleration across multi-cloud storage and open formats.
 - The BigLake API provides access to BigLake Metastore, a serverless, fully managed, highly available metastore for open-source data that can be used for quesrying Apache Iceberg tables in Bigquery.
 
     ![image](https://github.com/user-attachments/assets/1c927258-8443-415b-b0cb-a0d8a2bfc8cb)
 
 
-## Time Travel
+> ### Time Travel
   -  Time travel is a background copy of all your data in your tables in your data set for a rolling seven days. You can set the duration of the time travel window, from a minimum of two days to a maximum of seven days.
   -  Time travel lets you query data that was updated or deleted, restore a table that was deleted, or restore a table that expired. you cannot retrieve deleted table through the console you have to do that through the cloudshell `bq` command
   - Time Travel SELECTs are considered as Query jobs and billed on the bytes read. These SELECTs can be executed in the console or at the bq command prompt as the table has not
@@ -210,15 +208,13 @@ been deleted.
             FOR SYSTEM_TIME AS OF TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR);
           ```
 
-## Table Snapshots
+> ### Table Snapshots
 - Table snapshots are point-in-time copies of tables.
 - Table snapshots are read-only, but you can restore a table from a table snapshot.
 - BigQuery only stores the delta between a table snapshot and its base table.
 
-## BI Engine
 
-  ![image](https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c)
-  
+> ### BI Engine
 -  BI Engine can accelerate SQL queries from any source, including those written by data visualization tools, and can manage cached tables for on-going optimization.
 -  BI Engine doesn’t require you to build OLAP cubes on your own, it handles that for you.
 -  It works on top of the same storage, same network, same shuffle layer and working alongside BigQuery workers (which are Slots). Stateful workers, persist unlike standard BQ slots that get unallocated after they are used makes it possible for BI Engine to get such dramatic performance improvements
@@ -235,7 +231,10 @@ been deleted.
   - You use wildcards in your queries
   - You rely heavily on BigQuery features which BI Engine doesn't support
     
-## Bigquery Notebooks
+     <img src="https://github.com/user-attachments/assets/bf22f8c1-97d1-4b36-b5ba-11016af5145c" width="400" height="300" >
+  
+
+> ### Bigquery Notebooks
 - You can use notebooks to complete analysis and machine learning (ML) workflows by using SQL, Python, and other common packages and APIs.
 - Notebooks offer improved collaboration and management with the following options: 
   - Share notebooks with specific users and groups by using Identity and Access Management (IAM).
@@ -248,7 +247,8 @@ been deleted.
   - The ability to save, share, and manage versions of notebooks.
   - The ability to use matplotlib, seaborn, and other popular libraries to visualize data at any point in your workflow.
 
-## BigQuery Data Transfer Service
+
+> ### BigQuery Data Transfer Service
 - BigQuery Data Transfer Service is serverless service which enables seamless loading of structured data from diverse sources, like SaaS applications, object stores, and other data warehouses into BigQuery on a scheduled, managed basis.
 - You can access the BigQuery Data Transfer Service using the:
   - Google Cloud console
