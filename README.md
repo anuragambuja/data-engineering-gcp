@@ -73,6 +73,9 @@
 
   ![image](https://github.com/user-attachments/assets/f549910a-601c-4480-9cdb-280a9be174e9)
 
+> ## Hadoop to GCP
+
+  ![image](https://github.com/user-attachments/assets/683fc15f-179b-4a2d-9a27-25bcd8dd32c1)
 
 
 > ## Commands and SQLs
