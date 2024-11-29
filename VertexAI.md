@@ -1,29 +1,35 @@
 # Vertex AI
 
+  <img src="https://github.com/user-attachments/assets/b7d3df57-61f1-48c5-9f69-563473e923a2" width="900" height="500" >
+
+  ![image](https://github.com/user-attachments/assets/4e907192-24eb-4e36-87d8-c122eea19f5a)
+    
 - It's a fully managed service for custom machine learning models, both training and serving predictions.
 - VertexAI (your model, your data), AutoML ( our model, your data)
 - It can scale from the experimentation stage all the way to production.
+- Vertex AI provides a service called Vertex AI Feature Store, which is a centralized repository to manage, serve, and share features. It aggregates the features from different sources in BigQuery and makes them available for both real-time (often called online) and batch (often called offline) serving. Benefits of Vertex AI Feature Store:
+  - features are shareable for training and serving. They are managed and served from a central repository, maintaining consistency across your organization.
+  - features are reusable. This helps to save time and reduces duplicated efforts.
+  - features are scalable. They automatically scale to provide low-latency serving, so you can focus on developing the logic to create them without worrying about deployment.
+- AI Hub is a repository for ML components.
+- In Vertex AI, feature importance is displayed through a bar chart to illustrate how each feature contributes to a prediction. The longer the bar, or the larger the numerical value associated with a feature, the more important it is. This information helps decide which features are included in a machine learning model to predict the goal. Feature importance is just one example of Vertex AI’s comprehensive machine learning functionality called Explainable AI. Explainable AI is a set of tools and frameworks to help understand and interpret predictions made by machine learning models.
+   
+> ### MLOps
 - A simple ML pipeline might do the following.
   - Load a dataset from a comma-separated value file.
   - Analyze the dataset to identify and remove outliers.
   - Split the cleaned dataset into a training and evaluation dataset.
   - Train a model on the training dataset.
   - Evaluate the model against the evaluation dataset.
-- Vertex AI provides a service called Vertex AI Feature Store, which is a centralized repository to manage, serve, and share features. It aggregates the features from different sources in BigQuery and makes them available for both real-time (often called online) and batch (often called offline) serving. benefits of Vertex AI Feature Store:
-  - features are shareable for training and serving. They are managed and served from a central repository, maintaining consistency across your organization.
-  - features are reusable. This helps to save time and reduces duplicated efforts.
-  - features are scalable. They automatically scale to provide low-latency serving, so you can focus on developing the logic to create them without worrying about deployment.
-  - features are easy to use.
- 
- ![image](https://github.com/user-attachments/assets/30e743a5-b048-4608-a6b5-4424fd8d28ba)
-
 - Kubeflow Pipelines is a Kubernetes-native, open source product, that has grown into the industry standard for running ML pipelines over the years.
-  ![image](https://github.com/user-attachments/assets/4e907192-24eb-4e36-87d8-c122eea19f5a)
+
+
+
 - Key Capabilities:
 ![image](https://github.com/user-attachments/assets/3d9e14b2-22a6-46e4-b2e2-303050fd3bdf)
 
-- AI Hub is a repository for ML components.
-- In Vertex AI, feature importance is displayed through a bar chart to illustrate how each feature contributes to a prediction. The longer the bar, or the larger the numerical value associated with a feature, the more important it is. This information helps decide which features are included in a machine learning model to predict the goal. Feature importance is just one example of Vertex AI’s comprehensive machine learning functionality called Explainable AI. Explainable AI is a set of tools and frameworks to help understand and interpret predictions made by machine learning models.
+
+
 
 # AutoML
 - The downside of using pre-trained models like Vision API, the Speech-to-Text API etc. is that they only yield good predictions when your data is relatively common-place, as in social media images or customer reviews. 
