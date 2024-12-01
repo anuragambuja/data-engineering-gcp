@@ -4,6 +4,12 @@
 
 
 
+> ### Schema
+- A schema describe a type in terms of fields and values
+- Fields can be int, long, string etc
+- Some fields can be marked as optional,  sometimes referred to as nullable or requited.
+- Often records have a nested structure. These structure records have some commonly feature array or map type fields.
+
 
 > ### State & Timers
 - With stateful ParDos, there are many aggregations that can be implemented without having to use a combiner or a GroupByKey. State is maintained per key. For streaming pipelines, the state is also maintained per window.
@@ -21,18 +27,19 @@
   - Map: if you are going to maintain a set of key values, a dictionary or map, use map state. With a map, you have random access given a key.Map state is more efficient than other state variables for retrieving specific keys.
   - Set: available in the Apache Beam programming model, but not supported in data flow.
 
-     ![image](https://user-images.githubusercontent.com/19702456/226947028-89465617-e588-425e-a7d6-dfbf8c1cc6a4.png)
-
-     ![image](https://user-images.githubusercontent.com/19702456/226947218-53b5376f-fa2f-488e-b066-e096509d2e98.png)
+       ![image](https://user-images.githubusercontent.com/19702456/226947028-89465617-e588-425e-a7d6-dfbf8c1cc6a4.png)
+  
+       ![image](https://user-images.githubusercontent.com/19702456/226947218-53b5376f-fa2f-488e-b066-e096509d2e98.png)
 
   - What can you do with state and timers:
-  ![image](https://github.com/user-attachments/assets/5a70a022-5a60-452e-858e-7bb7477e412a)
+  
+      ![image](https://github.com/user-attachments/assets/5a70a022-5a60-452e-858e-7bb7477e412a)
 
 
 > ### Dataflow Shuffle Service
 A shuffle is a Dataflow-based operation behind transforms such as GroupByKey, CoGroupByKey, and Combine. The Dataflow Shuffle operation partitions and groups data by key in a scalable, efficient, fault-tolerant manner. Currently, Dataflow uses a shuffle implementation that runs entirely on worker virtual machines and consumes worker CPU, memory, and persistent disk storage. The service-based Dataflow Shuffle feature available for batch pipelines only moves the shuffle operations out of the worker VMs and into the Dataflow service backend. The worker nodes will benefit from a reduction in consumed CPU, memory, and persistent disk storage resources, and your pipelines will have better autoscaling because the worker nodes VMs no longer hold any shuffle data, and can therefore be scaled down earlier. Also, because of the service, you will get better fault tolerance.An unhealthy VM holding Dataflow Shuffle data will not cause the entire job to fail, which would happen without the feature.
 
-  ![image](https://user-images.githubusercontent.com/19702456/226877535-90a1d25e-df87-46da-b2d2-65272b7cf680.png)
+   ![image](https://user-images.githubusercontent.com/19702456/226877535-90a1d25e-df87-46da-b2d2-65272b7cf680.png)
 
 
 > ### Dataflow Streaming Engine
@@ -99,19 +106,23 @@ When you submit a FlexRS job, the Dataflow service places the job into a queue a
   - other which returns only the portions of the result that are new since the last pane fired.
 - There are two accumulation modes in apache beam
   - accumulate:  With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far. If your window is very wide, using accumulate as the accumulation mode may consume considerable resources, as the accumulated output has to be stored while the window is still open.
+
+       ![image](https://github.com/user-attachments/assets/eba2385a-37e3-4de3-aaf5-bdf1ecc02335)
+    
   - discard: With discard once some messages have been used for a calculation those messages are discarded. If new messages arrive later and there is a new trigger, the result will only include the new messages and those messages will be discarded again. If the calculation you need to make with the windows is associative and commutative, you can safely update that calculation using discard mode without any loss of accuracy. The main advantage of using the discard mode is that the performance will not suffer even if you use a very wide window, because no state, no accumulation is stored for very long, only until the next trigger is released.
+
+      ![image](https://github.com/user-attachments/assets/785a82e1-d2e8-4dc0-9225-18aa3d193357)
+  
 - Beam provides a number of pre-built triggers that you can set:
   - Event time triggers. These triggers operate on the event time, as indicated by the timestamp on each data element. Beam’s default trigger is event time-based.
   - Processing time triggers. These triggers operate on the processing time – the time when the data element is processed at any given stage in the pipeline.
   - Data-driven triggers. These triggers operate by examining the data as it arrives in each window, and firing when that data meets a certain property. Currently, data-driven triggers only support firing after a certain number of data elements.
   - Composite triggers. These triggers combine multiple triggers in various ways.
-    ![image](https://user-images.githubusercontent.com/19702456/226931988-5604dea1-a983-4324-bfed-35d4e19efc5c.png)   
+    
+      ![image](https://user-images.githubusercontent.com/19702456/226931988-5604dea1-a983-4324-bfed-35d4e19efc5c.png)   
 
-    ![image](https://github.com/user-attachments/assets/eba2385a-37e3-4de3-aaf5-bdf1ecc02335)
-
-    ![image](https://github.com/user-attachments/assets/785a82e1-d2e8-4dc0-9225-18aa3d193357)
-
-![image](https://github.com/user-attachments/assets/f900834b-e57c-440d-bfb1-fc4dae2a9249)
+  
+      ![image](https://github.com/user-attachments/assets/f900834b-e57c-440d-bfb1-fc4dae2a9249)
 
 
 > ### Dataflow SQL
@@ -251,29 +262,14 @@ By default, workers use your project's Compute Engine default service account as
   - Timing:  latency of the data. eg. what if the network has a delay or a sensor goes bad and messages can't be sent?
 
 
-# Schema
-- A schema describe a type in terms of fields and values
-- Fields can be int, long, string etc
-- Some fields can be marked as optional,  sometimes referred to as nullable or requited.
-- Often records have a nested structure. These structure records have some commonly feature array or map type fields.
 
 
-> ### Beam SQL
-- Works with stream and batch inputs.
-- Can be embedded in an existing pipeline using SqlTransform, which can be mixed with PTransforms.
-- Supports UDFs in Java
-- Supports multiple dialects
-    - Beam Calcite SQL
-        - Provides compatibility with other OSS SQL dialects (e.g. Flink SQL). Copy-paste queries may require changes to table names, array indexing
-        - Supports Java UDFs
-    - Google ZetaSQL
-        - Provides BigQuery compatibility. Copy-paste queries may require changes to table names
-- Integrated with Schemas
-    - Uses Row
-- Stream aggregations support windows
 
-## Testing
-We use unit tests in Beam to assert behavior of one small testable piece of your production pipeline. These small portions are usually either individual DoFns or PTransforms. These tests should complete quickly, and they should run locally with no dependencies on external systems. Beam uses JUnit 4 for unit testing. Test pipeline is a class included in the beam SDK specifically for testing transforms.
+
+
+
+
+
 
 
 
@@ -295,15 +291,20 @@ We use unit tests in Beam to assert behavior of one small testable piece of your
 -  Apply data transformations serially to let dataflow optimize the DAG. Whenever transformations are applied serially, they can be merged together in single stage, enabling them to be processed in the same worker nodes and reducing costly IO network operations.
 -  Enabling auto scaling for Dataflow pipelines is also a good idea. If for some reason your external system is backlogged, your Dataflow pipeline can scale down instead of underutilizing pipeline resources.
 
-# Beam SQL
+> ### Beam SQL
 - Works with Stream and Batch Pipeline
 - Your SQL query is embedded using SQLTransforms, an encapsulated segment of a Beam pipeline similar to PTransforms, which can be mized with PTransform
 - It also supports User-Defined Functions. 
 - Supports multiple dialects:
   - Beam Calcite SQL: The Beam Calcite SQL is a variant of Apache Calcite, a dialect widespread in big data processing, compatible with Apache Flink SQL. supports Java UDFs
   - Google ZetaSQL: Beam ZetaSQL is more compatible with BigQuery, so it’s especially useful in pipelines that write to or read from BigQuery tables.
--  it integrates Schema PCollections and supports windowing when aggregating unbounded data
--  
+-  it integrates Schema PCollections
+-  supports windowing when aggregating unbounded data
+
+## Testing
+We use unit tests in Beam to assert behavior of one small testable piece of your production pipeline. These small portions are usually either individual DoFns or PTransforms. These tests should complete quickly, and they should run locally with no dependencies on external systems. Beam uses JUnit 4 for unit testing. Test pipeline is a class included in the beam SDK specifically for testing transforms.
+
+
 
 
 
