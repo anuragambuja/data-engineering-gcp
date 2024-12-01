@@ -4,6 +4,45 @@
 
 
 
+
+> ### State & Timers
+- With stateful ParDos, there are many aggregations that can be implemented without having to use a combiner or a GroupByKey. State is maintained per key. For streaming pipelines, the state is also maintained per window.
+- The state can be read and mutated during the processing of each one of the elements. The state is local to each one of the transformers. For instance, two different keys process, and two different workers are not able to share a common state, but all elements in the same key can share a common state. The state variables allow you to batch the request by accumulating elements in a buffer and making batch calls to the external services, that, for example, you can make a call every 10 messages. It is important to remember to clear the state once it has been used. The DoFn will not finish entirely unless the whole state has been clear.
+- Timers are used in combination with state variables, to ensure that the state is cleared at regular intervals of time. There are 2 types of times avaialble in Beam:
+  - Processing time timers are good for implementing timeouts. The time in processing time is relative to the previous messages and you will have periodic outputs based on that relative time
+  - event time timers are good for output based on data completeness. Event time timers are based on the timestamps of the messages being processed. Always make sure to clear the state after emitting the output. If you leave the state behind, then the function will keep waiting for new data and that will consume resources in your pipeline.
+
+    ![image](https://github.com/user-attachments/assets/a3687929-6057-4841-9d6c-96f231443a5c)
+ 
+- Depending on the kind of state that you want to accumulate, you can use a different type of state variables.
+  - Value: It can hold any kind of value of any type.
+  - Bag: If you want to add several elements, use a bag state for a more efficient pipeline. Bag will return the objects that were added previously, but with no guarantee of order. Appending objects to a bag is very fast.
+  - Combining: For any kind of aggregation that is associative and commutative, it is better to use the combining state.
+  - Map: if you are going to maintain a set of key values, a dictionary or map, use map state. With a map, you have random access given a key.Map state is more efficient than other state variables for retrieving specific keys.
+  - Set: available in the Apache Beam programming model, but not supported in data flow.
+
+     ![image](https://user-images.githubusercontent.com/19702456/226947028-89465617-e588-425e-a7d6-dfbf8c1cc6a4.png)
+
+     ![image](https://user-images.githubusercontent.com/19702456/226947218-53b5376f-fa2f-488e-b066-e096509d2e98.png)
+
+  - What can you do with state and timers:
+  ![image](https://github.com/user-attachments/assets/5a70a022-5a60-452e-858e-7bb7477e412a)
+
+
+> ### Dataflow Shuffle Service
+A shuffle is a Dataflow-based operation behind transforms such as GroupByKey, CoGroupByKey, and Combine. The Dataflow Shuffle operation partitions and groups data by key in a scalable, efficient, fault-tolerant manner. Currently, Dataflow uses a shuffle implementation that runs entirely on worker virtual machines and consumes worker CPU, memory, and persistent disk storage. The service-based Dataflow Shuffle feature available for batch pipelines only moves the shuffle operations out of the worker VMs and into the Dataflow service backend. The worker nodes will benefit from a reduction in consumed CPU, memory, and persistent disk storage resources, and your pipelines will have better autoscaling because the worker nodes VMs no longer hold any shuffle data, and can therefore be scaled down earlier. Also, because of the service, you will get better fault tolerance.An unhealthy VM holding Dataflow Shuffle data will not cause the entire job to fail, which would happen without the feature.
+
+  ![image](https://user-images.githubusercontent.com/19702456/226877535-90a1d25e-df87-46da-b2d2-65272b7cf680.png)
+
+
+> ### Dataflow Streaming Engine
+Just like shuffle component in batch, the streaming engine offloads the window state storage from the persistent disks attached to worker VMs to a back-end service. It also implements an efficient shuffle for streaming cases. Worker nodes continue running your user code and implements data transforms and transparently communicate with a streaming engine to source state. Streaming engine works best with smaller worker machine types like n1-standard-2, and does not require persistent disks beyond a smaller worker boot disk. With streaming engine, your pipeline will be more responsive to variations to incoming data volume.
+
+
+> ### Flexible Resource Scheduling (FlexRS)
+When you submit a FlexRS job, the Dataflow service places the job into a queue and submits it for execution within six hours from job creation. This makes FlexRS suitable for workloads that are not time-critical, such as daily or weekly jobs that can be completed within a certain time window. As soon as you submit your FlexRS job, Dataflow records a job ID and performs an early validation run to verify execution parameters, configurations, quota and permissions. FlexRS leverages a mix of preemptible and normal VMs.
+
+
 > ### Sources and Sinks
 - A source is when you read input data into a Beam pipeline. A sink is where you would write output data from your Beam pipeline. A sink is a PTransform that performs a write to the specified destination.
 - bounded source: A bounded source is a source that reads a finite amount of input commonly associated with batch processing. A bounded source will be responsible for splitting up the work of reading an input into bundles. Bundles are groupings of elements in the pipeline for a unit of work. If the bundles can be broken down into smaller chunks, Dataflow will dynamically rebalance work to achieve better performance.
@@ -30,7 +69,7 @@
     ![image](https://user-images.githubusercontent.com/19702456/226908783-9e76ca62-aa59-4a05-a8fa-d60742084cd4.png)
 
 
-> # Watermark
+> ### Watermark
 - Watermark keep tracks of lag time which can be due to network delays, system backlogs, processing delays, pubsub latency etc. The watermark is the relationship between the processing timestamp and the event. The processing timestamp is the moment the message arrives at the pipeline.  Any message that arrives before the watermark is said to be early. if it arrives right after the watermark is said to be on time and if it arrives later, then it is late. So, Dataflow is going to do is continuously compute the watermark, which is how far behind we are.
 - Data flow estimates the watermark as the oldest timestamp waiting to be processed. This estimation is continuously updated with every new message that is received. 
 - Data freshness is the amount of time between real time and the output watermark (timestamp of the oldest message waiting to be processed). So data freshness is a measurement of how far the oldest messages is from the current moment. When you see a monotonically increase in value it means that data has to wait at the input for more time waiting to start to be processed. There could be two reasons for the additional wait:
@@ -51,7 +90,7 @@
   - Cost: How much compute power and money are you willing to spend to lower the latency?
 
 
-> # Triggers
+> ### Triggers
 - When collecting and grouping data into windows, Beam uses triggers to determine when to emit the aggregated results of each window (referred to as a pane).
 - Triggers determine at what point during processing time results will be materialized. Each specific output for a window is referred to as a pane of the window. Triggers fire panes when the trigger’s conditions are met. In Apache Beam, those conditions include watermark progress, processing time progress (which will progress uniformly, regardless of how much data has actually arrived), element counts (such as when a certain amount of new data arrives), and data-dependent triggers, like when the end of a file is reached.
 - A trigger’s conditions may lead it to fire a pane many times. When you trigger the the window several times, you have to decide on the desired accumulation mode. Consequently, it’s also necessary to specify how to accumulate these results.
@@ -113,14 +152,17 @@
     ![image](https://user-images.githubusercontent.com/19702456/226887770-31f995d2-b42f-4fc8-811d-1e4170d763af.png)
 
 
-> ### Dataflow Performace:
+> ### Dataflow Performace
 - Key Space and Parallelism: the maximum amount of parallelism is determined by the number of keys. More machines will not be able to do any more work if key space is limited.
   - Too many keys: If the key space is very large, consider using hashes separating keys out internally. This is especially useful if keys carry date/time information. In this case you can "re-use" processing keys from the past that are no longer active, essentially for free.
   - Limited keyspace will make it hard to share workload, and per-key ordering will kill performance. Increase number of keys eg. if windows are distinct, use composite(window + keys) keys. If reading from files, prefer reading from splittable compression formats like Avro
 - Consider using combine when you can instead of GroupByKey, especially if your data is heavily skewed.
 
 
-
+> ### Dataframe differences from standard Pandas
+- Operations are deferred, and the result of a given operation may not be available for control flow or interactive visualizations. For example, you can compute a sum, but you can't branch on the result.
+- Result columns must be computable without access to the data. For example, you can't use transpose.
+- PCollections in Beam are inherently unordered, so Pandas operations that are sensitive to the ordering rows are unsupported. For example, head and tail are not supported. 
 
 
 
@@ -209,54 +251,12 @@ By default, workers use your project's Compute Engine default service account as
   - Timing:  latency of the data. eg. what if the network has a delay or a sensor goes bad and messages can't be sent?
 
 
-
-
-
 # Schema
 - A schema describe a type in terms of fields and values
 - Fields can be int, long, string etc
 - Some fields can be marked as optional,  sometimes referred to as nullable or requited.
 - Often records have a nested structure. These structure records have some commonly feature array or map type fields.
 
-> ### State & Timers
-- With stateful ParDos, there are many aggregations that can be implemented without having to use a combiner or a GroupByKey. State is maintained per key. For streaming pipelines, the state is also maintained per window.
-- The state can be read and mutated during the processing of each one of the elements. The state is local to each one of the transformers. For instance, two different keys process, and two different workers are not able to share a common state, but all elements in the same key can share a common state. The state variables allow you to batch the request by accumulating elements in a buffer and making batch calls to the external services, that, for example, you can make a call every 10 messages. It is important to remember to clear the state once it has been used. The DoFn will not finish entirely unless the whole state has been clear.
-- Timers are used in combination with state variables, to ensure that the state is cleared at regular intervals of time. There are 2 types of times avaialble in Beam:
-  - Processing time timers are good for implementing timeouts. The time in processing time is relative to the previous messages and you will have periodic outputs based on that relative time
-  - event time timers are good for output based on data completeness. Event time timers are based on the timestamps of the messages being processed. Always make sure to clear the state after emitting the output. If you leave the state behind, then the function will keep waiting for new data and that will consume resources in your pipeline.
-
-    ![image](https://github.com/user-attachments/assets/a3687929-6057-4841-9d6c-96f231443a5c)
- 
-- Depending on the kind of state that you want to accumulate, you can use a different type of state variables.
-  - Value: It can hold any kind of value of any type.
-  - Bag: If you want to add several elements, use a bag state for a more efficient pipeline. Bag will return the objects that were added previously, but with no guarantee of order. Appending objects to a bag is very fast.
-  - Combining: For any kind of aggregation that is associative and commutative, it is better to use the combining state.
-  - Map: if you are going to maintain a set of key values, a dictionary or map, use map state. With a map, you have random access given a key.Map state is more efficient than other state variables for retrieving specific keys.
-  - Set: available in the Apache Beam programming model, but not supported in data flow.
-
-     ![image](https://user-images.githubusercontent.com/19702456/226947028-89465617-e588-425e-a7d6-dfbf8c1cc6a4.png)
-
-     ![image](https://user-images.githubusercontent.com/19702456/226947218-53b5376f-fa2f-488e-b066-e096509d2e98.png)
-
-  - What can you do with state and timers:
-  ![image](https://github.com/user-attachments/assets/5a70a022-5a60-452e-858e-7bb7477e412a)
-
-
-> ### Dataflow Shuffle Service
-A shuffle is a Dataflow-based operation behind transforms such as GroupByKey, CoGroupByKey, and Combine. The Dataflow Shuffle operation partitions and groups data by key in a scalable, efficient, fault-tolerant manner. Currently, Dataflow uses a shuffle implementation that runs entirely on worker virtual machines and consumes worker CPU, memory, and persistent disk storage. The service-based Dataflow Shuffle feature available for batch pipelines only moves the shuffle operations out of the worker VMs and into the Dataflow service backend. The worker nodes will benefit from a reduction in consumed CPU, memory, and persistent disk storage resources, and your pipelines will have better autoscaling because the worker nodes VMs no longer hold any shuffle data, and can therefore be scaled down earlier. Also, because of the service, you will get better fault tolerance.An unhealthy VM holding Dataflow Shuffle data will not cause the entire job to fail, which would happen without the feature.
-
-![image](https://user-images.githubusercontent.com/19702456/226877535-90a1d25e-df87-46da-b2d2-65272b7cf680.png)
-
-> ### Dataflow Streaming Engine
-Just like shuffle component in batch, the streaming engine offloads the window state storage from the persistent disks attached to worker VMs to a back-end service. It also implements an efficient shuffle for streaming cases. Worker nodes continue running your user code and implements data transforms and transparently communicate with a streaming engine to source state. Streaming engine works best with smaller worker machine types like n1-standard-2, and does not require persistent disks beyond a smaller worker boot disk. With streaming engine, your pipeline will be more responsive to variations to incoming data volume.
-
-> ### Flexible Resource Scheduling (FlexRS)
-When you submit a FlexRS job, the Dataflow service places the job into a queue and submits it for execution within six hours from job creation. This makes FlexRS suitable for workloads that are not time-critical, such as daily or weekly jobs that can be completed within a certain time window. As soon as you submit your FlexRS job, Dataflow records a job ID and performs an early validation run to verify execution parameters, configurations, quota and permissions. FlexRS leverages a mix of preemptible and normal VMs.
-
-> ### Dataframe differences from standard Pandas
-- Operations are deferred, and the result of a given operation may not be available for control flow or interactive visualizations. For example, you can compute a sum, but you can't branch on the result.
-- Result columns must be computable without access to the data. For example, you can't use transpose.
-- PCollections in Beam are inherently unordered, so Pandas operations that are sensitive to the ordering rows are unsupported. For example, head and tail are not supported. 
 
 > ### Beam SQL
 - Works with stream and batch inputs.
@@ -274,8 +274,6 @@ When you submit a FlexRS job, the Dataflow service places the job into a queue a
 
 ## Testing
 We use unit tests in Beam to assert behavior of one small testable piece of your production pipeline. These small portions are usually either individual DoFns or PTransforms. These tests should complete quickly, and they should run locally with no dependencies on external systems. Beam uses JUnit 4 for unit testing. Test pipeline is a class included in the beam SDK specifically for testing transforms.
-
-
 
 
 
