@@ -2,6 +2,137 @@
 
   ![image](https://github.com/user-attachments/assets/a602c48b-f31e-4beb-ba39-e5e7039aa4e9)
 
+
+
+> ### Sources and Sinks
+- A source is when you read input data into a Beam pipeline. A sink is where you would write output data from your Beam pipeline. A sink is a PTransform that performs a write to the specified destination.
+- bounded source: A bounded source is a source that reads a finite amount of input commonly associated with batch processing. A bounded source will be responsible for splitting up the work of reading an input into bundles. Bundles are groupings of elements in the pipeline for a unit of work. If the bundles can be broken down into smaller chunks, Dataflow will dynamically rebalance work to achieve better performance.
+- unbounded source: An unbounded source is a source that reads from an unbounded amount of input commonly associated with streaming. Checkpoints allow for the ability to bookmark where the data has been read in the source, which means that data that has been processed in the stream doesn’t need to be re-read. Some unbounded sources, for example PubSub IO, have the ability to pass a record ID to allow deduplication of messages.
+- IOs
+  - Text IO & File IO
+  - Bigquery IO:
+  - PubSub IO:
+  - Kafka IO: Kafka IO is built in Java. Python's Kafka IO module uses the cross-language transform to enable Kafka IO on Python.
+  - BigTable IO: Big table IO serves as the module that will communicate between big table and dataflow. You are able to include a row filter when reading from Big Table.
+  - Avro IO: Avro IO allows you to read and write to that file type. Avro files provide the schema and the data so the files can be self-describing.
+
+
+> ### Windows
+- In Dataflow, when you are reading messages from Pub/Sub, every message will have a timestamp that is a Pub/Sub message timestamp.
+- Windows divides data into time-based finite chunks. It is required when doing aggregations over unbounded data using Beam primitives (GroupBy Key, Combiners). 
+- Types of windows
+    - Fixed windows (Tumbling in Dataflow) - are those that are divided into time slices. For example, hourly, daily, monthly. Fixed time windows consist of consistent, non-overlapping intervals.
+    - Sliding windows (Hopping in Dataflow) - represent intervals in the data stream. Sliding time windows can overlap. For example, in a running average. The frequency with which a sliding windows begin is called a period. For example, give me 30 minutes' worth of data and compute that every 5 minutes. 
+    - Session windows - are for situations where the communication is bursty. It might correspond to a web session. An example might be if a user comes in and uses four to five pages and leaves. It will have a time-out period, and it will flush the window at the end of that time out period.
+
+    ![image](https://user-images.githubusercontent.com/19702456/226908765-bbc317d5-c411-42cd-9197-3c72de9954d6.png)
+
+    ![image](https://user-images.githubusercontent.com/19702456/226908783-9e76ca62-aa59-4a05-a8fa-d60742084cd4.png)
+
+
+> # Watermark
+- Watermark keep tracks of lag time which can be due to network delays, system backlogs, processing delays, pubsub latency etc. The watermark is the relationship between the processing timestamp and the event. The processing timestamp is the moment the message arrives at the pipeline.  Any message that arrives before the watermark is said to be early. if it arrives right after the watermark is said to be on time and if it arrives later, then it is late. So, Dataflow is going to do is continuously compute the watermark, which is how far behind we are.
+- Data flow estimates the watermark as the oldest timestamp waiting to be processed. This estimation is continuously updated with every new message that is received. 
+- Data freshness is the amount of time between real time and the output watermark (timestamp of the oldest message waiting to be processed). So data freshness is a measurement of how far the oldest messages is from the current moment. When you see a monotonically increase in value it means that data has to wait at the input for more time waiting to start to be processed. There could be two reasons for the additional wait:
+   - It could be because the pipeline is busy processing messages
+   - It could be because the input has increased very quickly and data is accumulating at the input.
+  
+- System latency is the current maximum duration that an item of data has been processing or awaiting processing. Latency measures the time it takes to fully process a message.This includes any waiting time in the input source. So if system latency remains constant or reduces and does not monotonically increase and data freshness value is monotonically increasing, that could be because there are many more messages at the input.
+  
+- Dataflow ordinarily is going to wait until the watermark it has computed has elapsed. Beams default windowing configuration tries to determine when all data has arrived based on the type of data source, and then advances the watermark past the end of the window. This default configuration does not allow late data. The default behavior is to trigger at the watermark. If you don't specify a trigger, you are actually using the trigger after watermark. After watermark is an event time trigger. The message's time stamps are used to measure time with these triggers. But we could also add custom triggers.
+- The watermark is the relationship between the processing timestamp and the event timestamp. The processing timestamp is the moment the message arrives at the pipeline. Ideally, the both should be the same with no delays. However, this rarely happens. Any message that arrives before the watermark is set to be Everly. If it arrives right after the watermark is said to be on time and if it arrives later, then it is late data.
+
+    ![image](https://user-images.githubusercontent.com/19702456/226929266-404bc908-c88f-4e0c-a7e5-0e740fbe7643.png)
+
+    ![image](https://user-images.githubusercontent.com/19702456/226929604-0cc56331-7a73-4bc5-8115-b046c5cb8ecf.png)
+- Apache Beam uses a number of heuristics to make an educated guess about what the watermark is. Instead of using general-purpose heuristics, pipeline designers need to thoughtfully consider the following questions in order to determine what tradeoffs are appropriate:
+  - Completeness: How important is it to have all of your data before you compute your result?
+  - Latency: How long do you want to wait for data? For example, do you wait until you think you have all data, or do you process data as it arrives?
+  - Cost: How much compute power and money are you willing to spend to lower the latency?
+
+
+> # Triggers
+- When collecting and grouping data into windows, Beam uses triggers to determine when to emit the aggregated results of each window (referred to as a pane).
+- Triggers determine at what point during processing time results will be materialized. Each specific output for a window is referred to as a pane of the window. Triggers fire panes when the trigger’s conditions are met. In Apache Beam, those conditions include watermark progress, processing time progress (which will progress uniformly, regardless of how much data has actually arrived), element counts (such as when a certain amount of new data arrives), and data-dependent triggers, like when the end of a file is reached.
+- A trigger’s conditions may lead it to fire a pane many times. When you trigger the the window several times, you have to decide on the desired accumulation mode. Consequently, it’s also necessary to specify how to accumulate these results.
+- Apache Beam currently supports two accumulation modes:
+  - which accumulates results together
+  - other which returns only the portions of the result that are new since the last pane fired.
+- There are two accumulation modes in apache beam
+  - accumulate:  With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far. If your window is very wide, using accumulate as the accumulation mode may consume considerable resources, as the accumulated output has to be stored while the window is still open.
+  - discard: With discard once some messages have been used for a calculation those messages are discarded. If new messages arrive later and there is a new trigger, the result will only include the new messages and those messages will be discarded again. If the calculation you need to make with the windows is associative and commutative, you can safely update that calculation using discard mode without any loss of accuracy. The main advantage of using the discard mode is that the performance will not suffer even if you use a very wide window, because no state, no accumulation is stored for very long, only until the next trigger is released.
+- Beam provides a number of pre-built triggers that you can set:
+  - Event time triggers. These triggers operate on the event time, as indicated by the timestamp on each data element. Beam’s default trigger is event time-based.
+  - Processing time triggers. These triggers operate on the processing time – the time when the data element is processed at any given stage in the pipeline.
+  - Data-driven triggers. These triggers operate by examining the data as it arrives in each window, and firing when that data meets a certain property. Currently, data-driven triggers only support firing after a certain number of data elements.
+  - Composite triggers. These triggers combine multiple triggers in various ways.
+    ![image](https://user-images.githubusercontent.com/19702456/226931988-5604dea1-a983-4324-bfed-35d4e19efc5c.png)   
+
+    ![image](https://github.com/user-attachments/assets/eba2385a-37e3-4de3-aaf5-bdf1ecc02335)
+
+    ![image](https://github.com/user-attachments/assets/785a82e1-d2e8-4dc0-9225-18aa3d193357)
+
+![image](https://github.com/user-attachments/assets/f900834b-e57c-440d-bfb1-fc4dae2a9249)
+
+
+> ### Dataflow SQL
+- Dataflow SQL integrates with Apache Beam SQL and supports a variant of the ZetaSQL query syntax, using SQLTransforms in a Dataflow Flex template
+- It can be used as a long-running batch engine.
+- Dataflow SQL is not only restricted to GCP-native services like BigQuery or Pub/Sub.
+- A Dataflow Template can be implemented using either Calcite SQL or ZetaSQL dialects.
+
+
+> ### Dataflow Snapshots
+- Dataflow snapshots saves the state of streaming pipeline
+- Restart a pipeline without reprocessing in-flight data
+- No data loss with minimal downtime
+- Option to create a snapshot with pub/sub source 
+- However, Dataflow Snapshots cannot help migrate to a different region in the event of a regional outage.
+
+
+> ### Dataflow Templates
+- Templates allow you to call data flow pipelines by making an API call without the fuss of installing runtime dependencies in your development environment.
+- Classic Templates: staged as execution graphs on Cloud Storage
+- Flex Templates: package the pipeline as a docker image and stage these images on your project's container registry or artifact registry 
+
+- Classic Templates Challenges:
+  - Value providers support for beam IO transforms.
+  - lack of support for dynamic DAG.
+
+   ![image](https://github.com/user-attachments/assets/4b9064b0-ee1d-49c6-8585-b579116548af)
+
+
+> ### Dataflow Deployment strategy
+
+  ![image](https://user-images.githubusercontent.com/19702456/226887738-61e7b35b-8f34-4367-8786-644ed6b8b155.png)
+  
+-  if it's the first time deploying the pipeline, there's no existing state to consider. So you just deploy the pipeline
+-  If there's an existing pipeline, and you want to update it, you should take a snapshot of your pipeline.This ensures that you have a working state you can revert your pipeline to if you observe an issue with your new deployment.Once you’ve taken a snapshot, you’re ready to update your job. You need to account for any changes to the names of the pipeline's transformations by providing the mapping from old names to the new.If the updated pipeline is compatible, the update will succeed, and you'll get a new pipeline in place of the old, without losing the state of the previous version of the pipeline.
+-  If the update is not possible, then you’ll need to choose between drain and cancel options. If you can replay the source, then you can choose to cancel the pipeline, which will drop any in-flight data.You can then deploy the new pipeline, and replay the data from the source. If replay is not possible, then you can drain the pipeline. Ingestion stops immediately, windows are closed, and processing of in flight elements will be allowed to complete. This will not lose data, but you may end up with incomplete aggregations in your output sink.Once the pipeline has been drained, you can relaunch the pipeline.
+
+    ![image](https://user-images.githubusercontent.com/19702456/226887770-31f995d2-b42f-4fc8-811d-1e4170d763af.png)
+
+
+> ### Dataflow Performace:
+- Key Space and Parallelism: the maximum amount of parallelism is determined by the number of keys. More machines will not be able to do any more work if key space is limited.
+  - Too many keys: If the key space is very large, consider using hashes separating keys out internally. This is especially useful if keys carry date/time information. In this case you can "re-use" processing keys from the past that are no longer active, essentially for free.
+  - Limited keyspace will make it hard to share workload, and per-key ordering will kill performance. Increase number of keys eg. if windows are distinct, use composite(window + keys) keys. If reading from files, prefer reading from splittable compression formats like Avro
+- Consider using combine when you can instead of GroupByKey, especially if your data is heavily skewed.
+
+
+
+
+
+
+
+
+
+-----------------------------
+
+
+
+  
+
 - Fully managed Managed service for both batch + stream Processing. Horizontal autoscaling of worker
 <img width="424" alt="image" src="https://github.com/user-attachments/assets/0b413927-8525-4c92-85ec-031135af3d0b">
 
@@ -77,71 +208,9 @@ By default, workers use your project's Compute Engine default service account as
   - Model:  is the model being used--streaming or repeated batch.
   - Timing:  latency of the data. eg. what if the network has a delay or a sensor goes bad and messages can't be sent?
 
-> ### Windows
-- In Dataflow, when you are reading messages from Pub/Sub, every message will have a timestamp that is a Pub/Sub message timestamp.
-- Windows divides data into time-based finite chunks. It is required when doing aggregations over unbounded data using Beam primitives (GroupBy Key, Combiners). 
-- Types of windows
-    - Fixed windows (Tumbling in Dataflow) - are those that are divided into time slices. For example, hourly, daily, monthly. Fixed time windows consist of consistent, non-overlapping intervals.
-    - Sliding windows (Hopping in Dataflow) - represent intervals in the data stream. Sliding time windows can overlap. For example, in a running average. The frequency with which a sliding windows begin is called a period. For example, give me 30 minutes' worth of data and compute that every 5 minutes. 
-    - Session windows - are for situations where the communication is bursty. It might correspond to a web session. An example might be if a user comes in and uses four to five pages and leaves. It will have a time-out period, and it will flush the window at the end of that time out period.
 
-    ![image](https://user-images.githubusercontent.com/19702456/226908765-bbc317d5-c411-42cd-9197-3c72de9954d6.png)
 
-    ![image](https://user-images.githubusercontent.com/19702456/226908783-9e76ca62-aa59-4a05-a8fa-d60742084cd4.png)
 
-> # Watermark
-- Watermark keep tracks of lag time which can be due to network delays, system backlogs, processing delays, pubsub latency etc. The watermark is the relationship between the processing timestamp and the event. The processing timestamp is the moment the message arrives at the pipeline.  Any message that arrives before the watermark is said to be early. if it arrives right after the watermark is said to be on time and if it arrives later, then it is late. So, Dataflow is going to do is continuously compute the watermark, which is how far behind we are.
-- Data flow estimates the watermark as the oldest timestamp waiting to be processed. This estimation is continuously updated with every new message that is received. 
-- Data freshness is the amount of time between real time and the output watermark (timestamp of the oldest message waiting to be processed). So data freshness is a measurement of how far the oldest messages is from the current moment. When you see a monotonically increase in value it means that data has to wait at the input for more time waiting to start to be processed. There could be two reasons for the additional wait:
-   - It could be because the pipeline is busy processing messages
-   - It could be because the input has increased very quickly and data is accumulating at the input.
-  
-- System latency is the current maximum duration that an item of data has been processing or awaiting processing. Latency measures the time it takes to fully process a message.This includes any waiting time in the input source. So if system latency remains constant or reduces and does not monotonically increase and data freshness value is monotonically increasing, that could be because there are many more messages at the input.
-  
-- Dataflow ordinarily is going to wait until the watermark it has computed has elapsed. Beams default windowing configuration tries to determine when all data has arrived based on the type of data source, and then advances the watermark past the end of the window. This default configuration does not allow late data. The default behavior is to trigger at the watermark. If you don't specify a trigger, you are actually using the trigger after watermark. After watermark is an event time trigger. The message's time stamps are used to measure time with these triggers. But we could also add custom triggers.
-- The watermark is the relationship between the processing timestamp and the event timestamp. The processing timestamp is the moment the message arrives at the pipeline. Ideally, the both should be the same with no delays. However, this rarely happens. Any message that arrives before the watermark is set to be Everly. If it arrives right after the watermark is said to be on time and if it arrives later, then it is late data.
-
-    ![image](https://user-images.githubusercontent.com/19702456/226929266-404bc908-c88f-4e0c-a7e5-0e740fbe7643.png)
-
-    ![image](https://user-images.githubusercontent.com/19702456/226929604-0cc56331-7a73-4bc5-8115-b046c5cb8ecf.png)
-- Apache Beam uses a number of heuristics to make an educated guess about what the watermark is. Instead of using general-purpose heuristics, pipeline designers need to thoughtfully consider the following questions in order to determine what tradeoffs are appropriate:
-  - Completeness: How important is it to have all of your data before you compute your result?
-  - Latency: How long do you want to wait for data? For example, do you wait until you think you have all data, or do you process data as it arrives?
-  - Cost: How much compute power and money are you willing to spend to lower the latency?
-    
-> # Triggers
-- When collecting and grouping data into windows, Beam uses triggers to determine when to emit the aggregated results of each window (referred to as a pane).
-- Triggers determine at what point during processing time results will be materialized. Each specific output for a window is referred to as a pane of the window. Triggers fire panes when the trigger’s conditions are met. In Apache Beam, those conditions include watermark progress, processing time progress (which will progress uniformly, regardless of how much data has actually arrived), element counts (such as when a certain amount of new data arrives), and data-dependent triggers, like when the end of a file is reached.
-- A trigger’s conditions may lead it to fire a pane many times. When you trigger the the window several times, you have to decide on the desired accumulation mode. Consequently, it’s also necessary to specify how to accumulate these results.
-- Apache Beam currently supports two accumulation modes:
-  - which accumulates results together
-  - other which returns only the portions of the result that are new since the last pane fired.
-- There are two accumulation modes in apache beam
-  - accumulate:  With accumulate every time you trigger it again in the same window, the calculation is just repeated with all the messages that have been included in the window so far. If your window is very wide, using accumulate as the accumulation mode may consume considerable resources, as the accumulated output has to be stored while the window is still open.
-  - discard: With discard once some messages have been used for a calculation those messages are discarded. If new messages arrive later and there is a new trigger, the result will only include the new messages and those messages will be discarded again. If the calculation you need to make with the windows is associative and commutative, you can safely update that calculation using discard mode without any loss of accuracy. The main advantage of using the discard mode is that the performance will not suffer even if you use a very wide window, because no state, no accumulation is stored for very long, only until the next trigger is released.
-- Beam provides a number of pre-built triggers that you can set:
-  - Event time triggers. These triggers operate on the event time, as indicated by the timestamp on each data element. Beam’s default trigger is event time-based.
-  - Processing time triggers. These triggers operate on the processing time – the time when the data element is processed at any given stage in the pipeline.
-  - Data-driven triggers. These triggers operate by examining the data as it arrives in each window, and firing when that data meets a certain property. Currently, data-driven triggers only support firing after a certain number of data elements.
-  - Composite triggers. These triggers combine multiple triggers in various ways.
-    ![image](https://user-images.githubusercontent.com/19702456/226931988-5604dea1-a983-4324-bfed-35d4e19efc5c.png)   
-
-    ![image](https://github.com/user-attachments/assets/eba2385a-37e3-4de3-aaf5-bdf1ecc02335)
-
-    ![image](https://github.com/user-attachments/assets/785a82e1-d2e8-4dc0-9225-18aa3d193357)
-
-![image](https://github.com/user-attachments/assets/f900834b-e57c-440d-bfb1-fc4dae2a9249)
-
-# Sources and Sinks
-- A source is when you read input data into a Beam pipeline. A sink is where you would write output data from your Beam pipeline. A sink is a PTransform that performs a write to the specified destination.
-- bounded source: A bounded source is a source that reads a finite amount of input commonly associated with batch processing. A bounded source will be responsible for splitting up the work of reading an input into bundles. Bundles are groupings of elements in the pipeline for a unit of work. If the bundles can be broken down into smaller chunks, Dataflow will dynamically rebalance work to achieve better performance.
-- unbounded source: An unbounded source is a source that reads from an unbounded amount of input commonly associated with streaming. Checkpoints allow for the ability to bookmark where the data has been read in the source, which means that data that has been processed in the stream doesn’t need to be re-read. Some unbounded sources, for example PubSub IO, have the ability to pass a record ID to allow deduplication of messages.
-- Text IO & File IO
-- Bigquery IO:
-- PubSub IO:
-- Kafka IO: Kafka IO is built in Java. Python's Kafka IO module uses the cross-language transform to enable Kafka IO on Python.
-- BigTable IO: Big table IO serves as the module that will communicate between big table and dataflow. You are able to include a row filter when reading from Big Table.
-- Avro IO: Avro IO allows you to read and write to that file type. Avro files provide the schema and the data so the files can be self-describing.
 
 # Schema
 - A schema describe a type in terms of fields and values
@@ -206,15 +275,9 @@ When you submit a FlexRS job, the Dataflow service places the job into a queue a
 ## Testing
 We use unit tests in Beam to assert behavior of one small testable piece of your production pipeline. These small portions are usually either individual DoFns or PTransforms. These tests should complete quickly, and they should run locally with no dependencies on external systems. Beam uses JUnit 4 for unit testing. Test pipeline is a class included in the beam SDK specifically for testing transforms.
 
-## Deployment
-
-![image](https://user-images.githubusercontent.com/19702456/226887738-61e7b35b-8f34-4367-8786-644ed6b8b155.png)
-
-![image](https://user-images.githubusercontent.com/19702456/226887770-31f995d2-b42f-4fc8-811d-1e4170d763af.png)
 
 
-## Note
-- Consider using combine when you can instead of GroupByKey, especially if your data is heavily skewed.
+
 
 # Apache Beam
 - comprehensive portability framework for data processing pipelines, one that allows you to write your pipeline once in the programming language of your choice and run it with minimal effort on the execution engine of your choice.
@@ -244,38 +307,7 @@ We use unit tests in Beam to assert behavior of one small testable piece of your
 -  it integrates Schema PCollections and supports windowing when aggregating unbounded data
 -  
 
-# Dataflow SQL
-- Dataflow SQL integrates with Apache Beam SQL and supports a variant of the ZetaSQL query syntax, using SQLTransforms in a Dataflow Flex template
-- It can be used as a long-running batch engine.
-- Dataflow SQL is not only restricted to GCP-native services like BigQuery or Pub/Sub. We are also planning to integrate with many others like Kafka and Bigtable.
-- A Dataflow Template can be implemented using either Calcite SQL or ZetaSQL dialects.
 
-# Dataflow Performace:
-- Key Space and Parallelism: the maximum amount of parallelism is determined by the number of keys. More machines will not be able to do any more work if key space is limited.
-  - Too many keys: If the key space is very large, consider using hashes separating keys out internally. This is especially useful if keys carry date/time information. In this case you can "re-use" processing keys from the past that are no longer active, essentially for free.
-  - Limited keyspace will make it hard to share workload, and per-key ordering will kill performance. Increase number of keys eg. if windows are distinct, use composite(window + keys) keys. If reading from files, prefer reading from splittable compression formats like Avro
- 
-# Dataflow Deployment Flowchart:
--  if it's the first time deploying the pipeline, there's no existing state to consider. So you just deploy the pipeline
--  If there's an existing pipeline, and you want to update it, you should take a snapshot of your pipeline.This ensures that you have a working state you can revert your pipeline to if you observe an issue with your new deployment.Once you’ve taken a snapshot, you’re ready to update your job. You need to account for any changes to the names of the pipeline's transformations by providing the mapping from old names to the new.If the updated pipeline is compatible, the update will succeed, and you'll get a new pipeline in place of the old, without losing the state of the previous version of the pipeline.
--  If the update is not possible, then you’ll need to choose between drain and cancel options. If you can replay the source, then you can choose to cancel the pipeline, which will drop any in-flight data.You can then deploy the new pipeline, and replay the data from the source. If replay is not possible, then you can drain the pipeline. Ingestion stops immediately, windows are closed, and processing of in flight elements will be allowed to complete. This will not lose data, but you may end up with incomplete aggregations in your output sink.Once the pipeline has been drained, you can relaunch the pipeline.
 
-# Dataflow Snapshots
-Dataflow snapshots saves the state of streaming pipeline:
-- Restart a pipeline without reprocessing in-flight data
-- No data loss with minimal downtime
-- Option to create a snapshot with pub/sub source 
-- However, Dataflow Snapshots cannot help migrate to a different region in the event of a regional outage.
-
-# Dataflow Templates
-- Templates allow you to call data flow pipelines by making an API call without the fuss of installing runtime dependencies in your development environment.
-- Classic Templates: staged as execution graphs on Cloud Storage
-- Flex Templates: package the pipeline as a Docker image and stage these images on your project's Container Registry or Artifact Registry 
-
-- Classic Templates Challenges:
-  - Value providers support for beam IO transforms.
-  - lack of support for dynamic DAG.
-
-   ![image](https://github.com/user-attachments/assets/4b9064b0-ee1d-49c6-8585-b579116548af)
 
 
