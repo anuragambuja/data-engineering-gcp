@@ -52,6 +52,10 @@
   ![image](https://github.com/user-attachments/assets/933d50a0-63f6-4c82-90e7-4f0d9ccda273)
 
 
+> ## Types of Storage
+
+  ![image](https://github.com/user-attachments/assets/f1d1f82b-8844-4b22-9eee-636d6e7310e9)
+
 > ## Which Storage to use ?
 
   ![image](https://github.com/user-attachments/assets/09bc17a1-5615-41af-8d5f-cb0f4258161d)
