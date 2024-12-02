@@ -91,6 +91,7 @@ Google Cloud Network Intelligence Center provides a comprehensive suite of tools
 
 - Standard Tier:
   - Standard tier is priced lower than Premium because your traffic between Google Cloud and your end-user (Internet) is delivered over transit (ISP) networks instead of Google’s network.
+  - Standard tier is priced lower than Premium because your traffic between Google Cloud and your end-user (Internet) is delivered over transit (ISP) networks instead of Google’s network.
   - Regional network with cost-effectiveness: Utilize a regional network with lower costs for less demanding workloads.
   - Suitable for development, testing, and non-production environments.
   - Choose Standard Tier for cost-sensitive scenarios.
