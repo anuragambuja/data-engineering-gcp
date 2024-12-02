@@ -81,15 +81,21 @@ Google Cloud Network Intelligence Center provides a comprehensive suite of tools
 
 
  Network Service Tiers
- - Premium Tier:
+- Premium Tier:
+  - Premium Tier delivers traffic over Google’s well-provisioned, low latency, highly reliable global network. This network consists of an extensive global private fiber network with over 100 points of presence (POPs) across the globe.
   - Global network with low latency: Leverage Google's high-performance global network for global reach and consistent performance.
   - High availability and scalability: Ensure continuous availability and seamless scaling for mission-critical applications.
   - Ideal for production workloads and demanding applications.
+
+    ![image](https://github.com/user-attachments/assets/5388c6c5-6f93-4b62-99cd-e951ffb14000)
+
 - Standard Tier:
+  - Standard tier is priced lower than Premium because your traffic between Google Cloud and your end-user (Internet) is delivered over transit (ISP) networks instead of Google’s network.
   - Regional network with cost-effectiveness: Utilize a regional network with lower costs for less demanding workloads.
   - Suitable for development, testing, and non-production environments.
   - Choose Standard Tier for cost-sensitive scenarios.
-  
+
+      ![image](https://github.com/user-attachments/assets/1d7b214e-ef1c-435e-b09e-59568588bb78)
 
 > Load Balancer 
 - Network Load Balancer
