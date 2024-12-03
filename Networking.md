@@ -122,6 +122,9 @@ An internal load balancer consists of a:
 
 ## Subnet
 - Each VPC network consists of one or more IP address ranges called subnets. Subnets are regional resources, and have IP address ranges associated with them.
+- A subnetwork can be in auto mode or custom mode.
+  - An auto mode network has one subnet per region, each with a predetermined IP range and gateway. These subnets are created automatically when you create the auto mode network, and each subnet has the same name as the overall network.
+  - A custom mode network has no subnets at creation. To create an instance in a custom mode network, you must first create a subnetwork in that region and specify its IP range. A custom mode network can have zero, one, or many subnets per region.
 - A network must have at least one subnet before you can use it. Auto mode VPC networks create subnets in each region automatically.
 - Machines in the same network can communicate via their private IPs regardless of their region. By default, VMs in different networks can only communicate with public IPs
 - Shared VPC allows a network to be shared across multiple projects
