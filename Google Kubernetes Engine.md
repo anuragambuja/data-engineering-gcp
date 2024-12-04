@@ -9,6 +9,7 @@ When you run a GKE cluster, you also gain the benefit of advanced cluster manage
   -	Automatic upgrades for your cluster's node software
   -	Node auto-repair to maintain node health and availability
   -	Logging and Monitoring with Cloud Monitoring for visibility into your cluster
+- A multi-tenancy cluster allows for multiple users or teams to share one cluster for their workloads while maintaining isolation and fair resource sharing. This is achieved by creating namespaces. Namespaces allow multiple virtual clusters to exist on the same physical cluster.
 - Cluster : Group of Compute Engine instances:
   - Master Node(s) (Control plane) - Manages the cluster
     - Components:
@@ -34,6 +35,16 @@ When you run a GKE cluster, you also gain the benefit of advanced cluster manage
 
   ![image](https://user-images.githubusercontent.com/19702456/230727936-260be543-2676-4505-9ae4-153597a17deb.png)
 
+- Access Control
+  - When managing access control for Kubernetes, Identity and Access Management (IAM) is used to manage access and permissions on a higher organization and project levels.
+  -  RBAC's granular permissions build on the access already provided by IAM and cannot restrict access granted by it. As a result, for multi-tenant namespaced clusters, the assigned IAM role should grant minimal access.
+  -  common GKE IAM roles
+ 
+      ![image](https://github.com/user-attachments/assets/a699e890-86fc-49b7-a76e-a3a4624cc8d2)
+
+  - Within a cluster, access to any resource type (pods, services, deployments, etc) is defined by either a role or a cluster role. Only roles are allowed to be scoped to a namespace. While a role will indicate the resources and the action allowed for each resource, a role binding will indicate to what user accounts or groups to assign that access to.
+
+    
 - Deployment vs Replica Set
   - A deployment is created for each microservice:
     - kubectl create deployment m1 --image=m1:v1
