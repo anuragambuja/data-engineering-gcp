@@ -48,7 +48,8 @@
     - Basic / Primitive Roles: Are project-wide roles
       - Viewer can see everything in a project
       - Editor can change everything in a project
-      - Owner has all rights of editor and can add principals
+      - Owner has all rights of editor and can add principals.
+      - Billing administrator control the billing for a project but not be able to change the resources in the project.
 
     - Predefined Roles
       - Google defines these roles and assigns what it thinks are sensible permissions for principals working in that role
@@ -57,7 +58,8 @@
     
     - Custom Roles
       - Custom roles are ones that you can define.
-      - Custom roles provide very fine-grained control over what principals can do. 
+      - Custom roles provide very fine-grained control over what principals can do.
+      - custom roles can only be applied to either the project level or organization level. They can’t be applied to the folder level.
 - In production environments, do not grant basic roles unless there is no alternative. Instead, grant the most limited predefined roles or custom roles that meet your needs.
 
 > ## Deny Policies
