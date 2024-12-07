@@ -3,15 +3,36 @@
   ![image](https://github.com/anuragambuja/data-engineering-gcp/assets/19702456/e726ba05-ff2d-42f0-b724-04db01d6b400)
 
 
-- A network must have at least one subnet before you can use it.
 - Machines in the same network can communicate via their private IPs regardless of their region. By default, VMs in different networks can only communicate with public IPs
-- Shared VPC allows a network to be shared across multiple projects
+
 
   ![image](https://github.com/user-attachments/assets/c38a2344-e814-4bec-9c1b-f0b52b0192d1)
 
+- What is RTO & RPO ?
+  - RTO (Recovery Time objective): Maximum time for which system can be down
+  - RPO (Recovery Point objective): Maximum time for which organization can tolerate Dataloss
+
+    ![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
+
+
+> ## Zone & Region
+    
+  ![image](https://user-images.githubusercontent.com/19702456/222907494-543244ac-2303-470b-8db1-240333a0c5e4.png)
+  
+- Zones: Independent data Center. Each Zone has one or more discrete clusters. Failures in one zone do not affect the other zones in a region. Resources in different zones have no common points of failure
+- Region: Specific geographical location to host your resources. Each region has one or more zones. For example, the us-central1 region denotes a region in the Central United States that has zones us-central1-a, us-central1-b, us-central1-c, and us-central1-f.
+- Resources that live in a zone are referred to as zonal resources. Virtual machine Instances and persistent disks live in a zone. To attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP.
+- Point of presence (PoP) - Connects public internet to Google Cloud. Provides services like CDN, Media CDN, Interconnects.
+- Why Zones & Regions ?
+  - Low latency
+  - Adhere to government regulations
+  - High availability
+  - Disaster recovery
+  - Global Footprint
+
 
 > ## Subnet
-- Each VPC network consists of one or more IP address ranges called subnets.
+- Each VPC network consists of one or more IP address ranges called subnets. A network must have at least one subnet before you can use it.
 - Subnets are regional resources, and have IP address ranges associated with them.
 - Three types of network:
   - Default: Every project is provided with a default VPC network with preset subnets and firewall rules. Specifically, a subnet is allocated for each region with non-overlapping CIDR blocks and firewall rules that allow ingress traffic for ICMP, RDP, and SSH traffic from anywhere, as well as ingress traffic from within the default network for all protocols and ports. 
@@ -26,31 +47,9 @@
 
 
 
-> ## Zone & Region
-- A region is a specific geographical location where you can run your resources. Each region has one or more zones. For example, the us-central1 region denotes a region in the Central United States that has zones us-central1-a, us-central1-b, us-central1-c, and us-central1-f. Resources that live in a zone are referred to as zonal resources. Virtual machine Instances and persistent disks live in a zone. To attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP.
 
-- Zones – Independent data Center. Each Zone has one or more discrete clusters. Failures in one zone do not affect the other zones in a region. Resources in different zones have no common points of failure
-- Region – Specific geographical location to host your resources
-- Multi-region - Geographical Collection
-- Global - Anywhere
-- Point of presence (PoP) - Connects public internet to Google Cloud. Provides services like CDN, Media CDN, Interconnects.
 
-![image](https://user-images.githubusercontent.com/19702456/222907494-543244ac-2303-470b-8db1-240333a0c5e4.png)
 
-> ### Why Zones & Regions ?
-- Low latency
-- Adhere to government regulations
-- High availability
-- Disaster recovery
-- Global Footprint
-
-Find the updated zones and regions [here](https://cloud.google.com/about/locations).
-
-> ### What is RTO & RPO ?
-- RTO – Recovery Time objective: Maximum time for which system can be down
-- RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
-
-![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
 
 
 
@@ -127,13 +126,6 @@ Google Cloud Network Intelligence Center provides a comprehensive suite of tools
 - Network Load Balancer
 - HTTP(s) Load Balancer: HTTP(S) Load Balancing is implemented on Google Front End (GFE). GFEs are distributed globally and operate together using Google's global network and control plane. You can configure URL rules to route some URLs to one set of instances and route other URLs to other instances. Requests are always routed to the instance group that is closest to the user, if that group has enough capacity and is appropriate for the request. If the closest group does not have enough capacity, the request is sent to the closest group that does have capacity. To set up a load balancer with a Compute Engine backend, your VMs need to be in an instance group.
 
-- 
-
-
-
-
-
-
 
 An internal load balancer consists of a:
 - Forwarding rule which binds an internal IP address.
@@ -144,10 +136,7 @@ An internal load balancer consists of a:
 
 
 
-
-
-
-## VPC Network Peering
+> ## VPC Network Peering
 - Two VPC networks can be privately connected with VPC Network Peering
   - Allows machines in different networks to communicate with private IPs
   - The subnet IP ranges in peered VPC networks cannot overlap
@@ -158,12 +147,12 @@ An internal load balancer consists of a:
   - Increase security: VMs may no longer require public access
 
 
-## Shared VPC
+> ## Shared VPC
 - Shared VPCs allows you to connect resources from multiple projects to a common VPC network
 - The host project is the single point of control for all the service projects that you link to the host project.
 - From the host project, consistent access control policies can be applied at the organization level.
 - Share resources from one VPC to other VPCs
-
+- Shared VPC allows a network to be shared across multiple projects
 
 
 
