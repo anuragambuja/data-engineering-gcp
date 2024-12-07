@@ -1,11 +1,17 @@
+# Networking
 
+  ![image](https://github.com/anuragambuja/data-engineering-gcp/assets/19702456/e726ba05-ff2d-42f0-b724-04db01d6b400)
 
+- Three types of network:
+  - Default: Every project is provided with a default VPC network with preset subnets and firewall rules. Specifically, a subnet is allocated for each region with non-overlapping CIDR blocks and firewall rules that allow ingress traffic for ICMP, RDP, and SSH traffic from anywhere, as well as ingress traffic from within the default network for all protocols and ports. 
+  - Auto: In an auto mode network, one subnet from each region is automatically created within it. The default network is actually an auto mode network. These automatically created subnets use a set of predefined IP ranges with a /20 mask that can be expanded to /16. All of these subnets fit within the 10.128.0.0/9 CIDR block.
+  - Custom: A custom mode network does not automatically create subnets. You decide which subnets to create, in regions you choose, and using IP ranges you specify. These IP ranges cannot overlap between subnets of the same network. You can convert an auto mode network to a custom mode network to take advantage of the control that custom mode networks provide. However, this conversion is one way, meaning that custom mode networks cannot be changed to auto mode networks.
+    
+> ## Zone & Region
 
-## Zone & Region
-> ### Overview
 A region is a specific geographical location where you can run your resources. Each region has one or more zones. For example, the us-central1 region denotes a region in the Central United States that has zones us-central1-a, us-central1-b, us-central1-c, and us-central1-f. Resources that live in a zone are referred to as zonal resources. Virtual machine Instances and persistent disks live in a zone. To attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP.
 
-![image](https://github.com/anuragambuja/data-engineering-gcp/assets/19702456/e726ba05-ff2d-42f0-b724-04db01d6b400)
+
 
 - Zones – Independent data Center. Each Zone has one or more discrete clusters. Failures in one zone do not affect the other zones in a region. Resources in different zones have no common points of failure
 - Region – Specific geographical location to host your resources
