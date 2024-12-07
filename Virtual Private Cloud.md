@@ -1,4 +1,4 @@
-# Virtual Private Cloud
+![image](https://github.com/user-attachments/assets/fcc5efcb-cf5e-4632-abf5-f3a004b2f502)# Virtual Private Cloud
 
   ![image](https://github.com/anuragambuja/data-engineering-gcp/assets/19702456/e726ba05-ff2d-42f0-b724-04db01d6b400)
 
@@ -40,10 +40,41 @@
   - Custom: A custom mode network does not automatically create subnets. You decide which subnets to create, in regions you choose, and using IP ranges you specify. These IP ranges cannot overlap between subnets of the same network. You can convert an auto mode network to a custom mode network to take advantage of the control that custom mode networks provide. However, this conversion is one way, meaning that custom mode networks cannot be changed to auto mode networks. To create an instance in a custom mode network, you must first create a subnetwork in that region and specify its IP range. A custom mode network can have zero, one, or many subnets per region.
 
 
+> ## Routes and Firewall Rules
+- Routes tell VM instances and the VPC network how to send traffic from an instance to a destination, either inside the network or outside of Google Cloud. Notice that there is a route for each subnet and one for the Default internet gateway (0.0.0.0./0).
+- Each VPC network comes with some default routes to route traffic among its subnets and send traffic from eligible instances to the internet.
+- Every VPC network has two implied firewall rules that block all incoming connections and allow all outgoing connections.
+- There are 4 Ingress firewall rules for the default network: These firewall rules allow ICMP, RDP and SSH ingress traffic from anywhere (0.0.0.0/0) and all TCP, UDP and ICMP traffic within the network (10.128.0.0/9)
+  - default-allow-icmp
+  - default-allow-internal
+  - default-allow-rdp
+  - default-allow-ssh
+
+- A route is created when a network is created, enabling traffic delivery from "anywhere". Also, a route is created when a subnet is created. This is what enables VMs on the same network to communicate.
+
+- GCP firewall rules protect you virtual machine instances from unapproved connections, both inbound and outbound, known as ingress and egress, respectively. Although firewall rules are applied to the network as a whole, connections are allowed or denied at the instance level.
+- GCP firewall rules are stateful. This means that if a connection is allowed between a source and a target or a target at a destination, all subsequent traffic in either direction will be allowed. In other words, firewall rules allow bidirectional communication once a session is established.
+- If all firewall rules in a network are deleted, there is still an implied "Deny all" ingress rule and an implied "Allow all" egress rule for the network.
+- Firewall rule is composed of:
+
+    ![image](https://github.com/user-attachments/assets/e7a64ee8-e2e3-455f-82bc-3c8c9618a4bf)
+
+- Egress deny rules prevent instances from initiating connections that match non-permitted port, protocol, and IP range combinations. For egress firewall rules, destinations to which a rule applies may be specified using IP CIDR ranges.
+- Ingress firewall rules protect against incoming connections to the instance from any source. Source CIDR ranges can be used to protect an instance from undesired connections coming either from external networks or from GCP IP ranges.
+
+
+> ## Pricing
+- Network Pricing
+  - Ingress or traffic coming into GCP's network is not charged, unless there is a resource, such as a load balancer that is processing ingress traffic.
+  - Egress traffic to the same zone, is not charged as long as that egress is through the internal IP address of an instance.
+  - Egress traffic to Google products like YouTube, maps, drive, or traffic to a different GCP service within the same region, is not charged for.
+  - There is a charge for egress between zones in the same region, egress within a zone, if the traffic is through the external IP address of an instance, and egress between regions.
   
+    ![image](https://github.com/user-attachments/assets/e603c42a-926f-4a56-b35c-790e20cd8429)
 
-
-
+- IP address Pricing
+  - if you reserve a static external IP address and do not assign it to a resource, such as a VM instance or a forwarding rule, you are charged at a higher rate and for static and ephemeral external IP addresses that are in use.
+  - external IP addresses on preemptible VMs, have a lower charge than for standard VM instances.
 
 
 
@@ -60,12 +91,7 @@ A Virtual Private Cloud (VPC) network is a virtual version of a physical network
 
 Note: The deny-all-ingress and allow-all-egress rules are also displayed, but you cannot check or uncheck them as they are implied. These two rules have a lower Priority (higher integers indicate lower priorities) so that the allow ICMP, custom, RDP and SSH rules are considered first.
 
-Routes tell VM instances and the VPC network how to send traffic from an instance to a destination, either inside the network or outside of Google Cloud. Notice that there is a route for each subnet and one for the Default internet gateway (0.0.0.0./0).
-Every VPC network has two implied firewall rules that block all incoming connections and allow all outgoing connections.  there are 4 Ingress firewall rules for the default network: These firewall rules allow ICMP, RDP and SSH ingress traffic from anywhere (0.0.0.0/0) and all TCP, UDP and ICMP traffic within the network (10.128.0.0
-default-allow-icmp
-default-allow-internal
-default-allow-rdp
-default-allow-ssh
+
 
 If an instance is stopped, any ephemeral external IP addresses assigned to the instance are released back into the general Compute Engine pool and become available for use by other projects. When a stopped instance is started again, a new ephemeral external IP address is assigned to the instance.
 
