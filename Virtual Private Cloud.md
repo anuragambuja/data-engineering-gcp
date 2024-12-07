@@ -1,17 +1,33 @@
-# Networking
+# Virtual Private Cloud
 
   ![image](https://github.com/anuragambuja/data-engineering-gcp/assets/19702456/e726ba05-ff2d-42f0-b724-04db01d6b400)
 
+
+- A network must have at least one subnet before you can use it.
+- Machines in the same network can communicate via their private IPs regardless of their region. By default, VMs in different networks can only communicate with public IPs
+- Shared VPC allows a network to be shared across multiple projects
+
+  ![image](https://github.com/user-attachments/assets/c38a2344-e814-4bec-9c1b-f0b52b0192d1)
+
+
+> ## Subnet
+- Each VPC network consists of one or more IP address ranges called subnets.
+- Subnets are regional resources, and have IP address ranges associated with them.
 - Three types of network:
   - Default: Every project is provided with a default VPC network with preset subnets and firewall rules. Specifically, a subnet is allocated for each region with non-overlapping CIDR blocks and firewall rules that allow ingress traffic for ICMP, RDP, and SSH traffic from anywhere, as well as ingress traffic from within the default network for all protocols and ports. 
   - Auto: In an auto mode network, one subnet from each region is automatically created within it. The default network is actually an auto mode network. These automatically created subnets use a set of predefined IP ranges with a /20 mask that can be expanded to /16. All of these subnets fit within the 10.128.0.0/9 CIDR block.
-  - Custom: A custom mode network does not automatically create subnets. You decide which subnets to create, in regions you choose, and using IP ranges you specify. These IP ranges cannot overlap between subnets of the same network. You can convert an auto mode network to a custom mode network to take advantage of the control that custom mode networks provide. However, this conversion is one way, meaning that custom mode networks cannot be changed to auto mode networks.
-    
+  - Custom: A custom mode network does not automatically create subnets. You decide which subnets to create, in regions you choose, and using IP ranges you specify. These IP ranges cannot overlap between subnets of the same network. You can convert an auto mode network to a custom mode network to take advantage of the control that custom mode networks provide. However, this conversion is one way, meaning that custom mode networks cannot be changed to auto mode networks. To create an instance in a custom mode network, you must first create a subnetwork in that region and specify its IP range. A custom mode network can have zero, one, or many subnets per region.
+
+
+  
+
+
+
+
+
+
 > ## Zone & Region
-
-A region is a specific geographical location where you can run your resources. Each region has one or more zones. For example, the us-central1 region denotes a region in the Central United States that has zones us-central1-a, us-central1-b, us-central1-c, and us-central1-f. Resources that live in a zone are referred to as zonal resources. Virtual machine Instances and persistent disks live in a zone. To attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP.
-
-
+- A region is a specific geographical location where you can run your resources. Each region has one or more zones. For example, the us-central1 region denotes a region in the Central United States that has zones us-central1-a, us-central1-b, us-central1-c, and us-central1-f. Resources that live in a zone are referred to as zonal resources. Virtual machine Instances and persistent disks live in a zone. To attach a persistent disk to a virtual machine instance, both resources must be in the same zone. Similarly, if you want to assign a static IP address to an instance, the instance must be in the same region as the static IP.
 
 - Zones – Independent data Center. Each Zone has one or more discrete clusters. Failures in one zone do not affect the other zones in a region. Resources in different zones have no common points of failure
 - Region – Specific geographical location to host your resources
@@ -35,6 +51,9 @@ Find the updated zones and regions [here](https://cloud.google.com/about/locatio
 - RPO - Recovery Point objective: Maximum time for which organization can tolerate Dataloss
 
 ![image](https://user-images.githubusercontent.com/19702456/224393217-f29fcfe6-87ea-482d-8dba-acd4808bbdf7.png)
+
+
+
 
 > ## Virtual Private Cloud
 
@@ -126,17 +145,7 @@ An internal load balancer consists of a:
 
 
 
-## Subnet
-- Each VPC network consists of one or more IP address ranges called subnets. Subnets are regional resources, and have IP address ranges associated with them.
-- A subnetwork can be in auto mode or custom mode.
-  - An auto mode network has one subnet per region, each with a predetermined IP range and gateway. These subnets are created automatically when you create the auto mode network, and each subnet has the same name as the overall network.
-  - A custom mode network has no subnets at creation. To create an instance in a custom mode network, you must first create a subnetwork in that region and specify its IP range. A custom mode network can have zero, one, or many subnets per region.
-- A network must have at least one subnet before you can use it. Auto mode VPC networks create subnets in each region automatically.
-- Machines in the same network can communicate via their private IPs regardless of their region. By default, VMs in different networks can only communicate with public IPs
-- Shared VPC allows a network to be shared across multiple projects
 
-
-  ![image](https://github.com/user-attachments/assets/c38a2344-e814-4bec-9c1b-f0b52b0192d1)
 
 ## VPC Network Peering
 - Two VPC networks can be privately connected with VPC Network Peering
