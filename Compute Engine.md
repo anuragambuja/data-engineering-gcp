@@ -73,14 +73,3 @@ manually detach it.
   ![image](https://user-images.githubusercontent.com/19702456/230710552-dc31cd82-a9ba-4bac-a72b-c1f5769b4180.png)
 
 
-# Cloud Load Balancing
-
-  ![image](https://github.com/user-attachments/assets/679a2e03-c5de-477f-bce3-d3823e908900)
-
-- Cloud Load Balancing is a fully distributed load balancing solution that balances user traffic (HTTP(s), HTTPS/2 with gRPC, TCP/SSL, UDP, and QUIC) to multiple backends to avoid congestion, reduce latency, increase security, and reduce costs.
-  - Software-defined network (SDN) Cloud Load Balancing is not an instance- or device-based solution, which means you won't be locked into physical infrastructure or face HA, scale, and management challenges. 
-  - Single global anycast IP and autoscaling: Cloud Load Balancing front-ends all your backend instances in regions around the world. It provides cross-region load balancing, including automatic multi-region failover, which gradually moves traffic in fractions if backends become unhealthy or scales automatically if more resources are needed.
- 
-- Cloud Load Balancing supports multiple SSL certificates, enabling you to serve multiple domains using the same load balancer IP address and port. It absorbs and dissipates layer 3 and layer 4 volumetric attacks across Google’s global load balancing infrastructure.
-- Additionally, with Cloud Armor, you can protect against Layer 3 to Layer 7 application level attacks
-- By using Identity Aware Proxy and firewalls you can authenticate and authorize access to backend services. 
