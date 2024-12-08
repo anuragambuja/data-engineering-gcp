@@ -1,4 +1,3 @@
-![image](https://github.com/user-attachments/assets/fcc5efcb-cf5e-4632-abf5-f3a004b2f502)
 # Virtual Private Cloud
 
   ![image](https://github.com/anuragambuja/data-engineering-gcp/assets/19702456/e726ba05-ff2d-42f0-b724-04db01d6b400)
