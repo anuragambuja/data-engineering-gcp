@@ -72,4 +72,27 @@ manually detach it.
 
   ![image](https://user-images.githubusercontent.com/19702456/230710552-dc31cd82-a9ba-4bac-a72b-c1f5769b4180.png)
 
+- Preemtible VMs
+  - lower price for interruptible service (up to 91%)
+  - VM might be terminated at any time
+    - No charge if terminated in the first minute
+    - 24 hours max
+    - 30 second terminate warning, but not guaranteed
+  - No live miration; no auto restart
 
+- Spot VMs
+  - preemtible VMS with no minimum or maximum runtime
+  - Spot VMs are finite compute engine resources, so they might not always be available
+  - No live migrate; no auto restart
+
+- Confidential VMs
+  - Encrypts data while it's being processed
+  - Easy to use with no changes to code or performance compromise.
+  - N2D Compute Engine VM running on second generation AMD Epyc processors.
+  - Provides high memory capacity, high throughput, and supports parallel and compute heavy workloads
+
+- Shielded VMs
+  - Secure Boot: Shielded VMs offer verifiable integrity to your VM instances, so you can be confident that your instances haven't been compromised by boot or kernel-level malware or rootkits.
+  - Virtual platform module: help prevent data exfiltration.
+  - requires shielded image
+  
