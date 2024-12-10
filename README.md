@@ -64,6 +64,7 @@
 
   ![image](https://github.com/user-attachments/assets/c4366373-dba0-41d6-b491-3abb3699e268)
 
+  ![image](https://github.com/user-attachments/assets/1be05d9e-7f35-44b6-8c71-06140d60fa66)
 
 > ## Mapping of different cloud services with on-prem
 
