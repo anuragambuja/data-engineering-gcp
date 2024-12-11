@@ -122,8 +122,14 @@ There are three main concerns on large language models, hallucinations, factuali
 	- Decoder Takes extra step before producing the output
 
 
+> ## History of AI
 
+![image](https://github.com/user-attachments/assets/24559216-7ed8-42ad-915f-8a2a9ff9bd29)
 
+- Types of AI Models:
+  - Predictive AI: Used to make predictions or classifications based on input data
+  - Generative AI: Creates new data based on the patterns it has learned from training data
+-   
 
 
 
