@@ -250,33 +250,49 @@ been deleted.
   - The ability to use matplotlib, seaborn, and other popular libraries to visualize data at any point in your workflow.
 
 
-> ### BigQuery Data Transfer Service
-- BigQuery Data Transfer Service is serverless service which enables seamless loading of structured data from diverse sources, like SaaS applications, object stores, and other data warehouses into BigQuery on a scheduled, managed basis.
-- You can access the BigQuery Data Transfer Service using the:
-  - Google Cloud console
-  - bq command-line tool
-  - BigQuery Data Transfer Service API
-- You cannot use the BigQuery Data Transfer Service to transfer data out of BigQuery.
-- The BigQuery Data Transfer Service supports loading data from the following data sources: (30-10-2024)
-  - Amazon S3
-  - Amazon Redshift
-  - Azure Blob Storage
-  - Campaign Manager
-  - Cloud Storage
-  - Display & Video 360
-  - Facebook Ads (Preview)
-  - Google Ad Manager
-  - Google Ads
-  - Google Merchant Center (Preview)
-  - Google Play
-  - Oracle (Preview)
-  - Salesforce (Preview)
-  - Salesforce Marketing Cloud (Preview)
-  - Search Ads 360
-  - ServiceNow (Preview)
-  - Teradata
-  - YouTube Channel
-  - YouTube Content Owner
+> ## Data Migration Tool (DMT)
+- Automate schema migration, data migration, sql translation & validation
+- Open Source orchestration tool
+- Reports migration insights
+- Common DMT tools:
+   - Bigquery Data Transfer Service (BQDTS):
+      - BigQuery Data Transfer Service is serverless service which enables seamless loading of structured data from diverse sources, like SaaS applications, object stores, and other data warehouses into BigQuery on a scheduled, managed basis.
+      - You can access the BigQuery Data Transfer Service using the:
+        - Google Cloud console
+        - bq command-line tool
+        - BigQuery Data Transfer Service API
+      - You cannot use the BigQuery Data Transfer Service to transfer data out of BigQuery.
+      - The BigQuery Data Transfer Service supports loading data from the following data sources: (30-10-2024)
+        - Amazon S3
+        - Amazon Redshift
+        - Azure Blob Storage
+        - Campaign Manager
+        - Cloud Storage
+        - Display & Video 360
+        - Facebook Ads (Preview)
+        - Google Ad Manager
+        - Google Ads
+        - Google Merchant Center (Preview)
+        - Google Play
+        - Oracle (Preview)
+        - Salesforce (Preview)
+        - Salesforce Marketing Cloud (Preview)
+        - Search Ads 360
+        - ServiceNow (Preview)
+        - Teradata
+        - YouTube Channel
+        - YouTube Content Owner
+       
+   - Data Validation Tool (DVT):
+      - Open source python command line tool: Suuports data validation between on-premises and other cloud data warehouse
+      - Multi-level validations: Compares the source and target data by table, column, row and custom sql query
+      - Inegrates with Google Cloud services such as cloud composer, cloud functions, cloud run
+   
+   - Batch SQL translator:
+      - Translates scripts written in other SQL dialects into GoogleSQL queries
+     
+
+
 
 
 > ### Streaming in Bigquery
@@ -412,6 +428,10 @@ been deleted.
   * Order statements should be the last part of the query.
   * [Optimize join patterns](https://cloud.google.com/bigquery/docs/best-practices-performance-compute#optimize_your_join_patterns).
   * Place the table with the _largest_ number of rows first, followed by the table with the _fewest_ rows, and then place the remaining tables by decreasing size. This is due to how BigQuery works internally: the first table will be distributed evenly and the second table will be broadcasted to all the nodes.
+
+
+> ## Gemini Models in BiqQuery
+- 
 
 
 # Dataform 
