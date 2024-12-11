@@ -292,9 +292,6 @@ been deleted.
       - Translates scripts written in other SQL dialects into GoogleSQL queries
      
 
-
-
-
 > ### Streaming in Bigquery
 - Streaming Inserts allows you to insert one item at a time into a table.
 - New tables can be created from a temporary table that identifies the schema to be copied. The data enters a streaming buffer where it is held briefly until it can be inserted into the table.
@@ -308,6 +305,22 @@ been deleted.
   ![image](https://github.com/user-attachments/assets/0dd88997-05bf-4864-ae3d-6e4cf198186e)
 
   ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
+
+
+
+> ## Gemini Models in BiqQuery
+- BigQuery Insights
+   - It's a helpful tool for exploring and understanding your data, especially if you're new to SQL or want to get started with data analysis.
+   - It uses Gemini to generate queries based on your data's metadata, making it easier to find relevant insights.
+- Canvas discover and visualize the query workflow in BigQuery.
+- Table Explorer:
+   - It's a visual tool to explore one table at a time.
+   - It doesn't support complex operations like joins across multiple tables.
+   - It generates basic SQL queries. For example, you cannot create complex WHERE clause statements including operands like AND or OR.
+   - It doesn't provide AI-powered assistance for complex queries.
+ 
+     
+   ![image](https://github.com/user-attachments/assets/c1105b0d-cbe2-4ef6-b0f4-d81ef5aee8db)
 
 
 > ### Analytics Hub - Data share solution
@@ -430,8 +443,6 @@ been deleted.
   * Place the table with the _largest_ number of rows first, followed by the table with the _fewest_ rows, and then place the remaining tables by decreasing size. This is due to how BigQuery works internally: the first table will be distributed evenly and the second table will be broadcasted to all the nodes.
 
 
-> ## Gemini Models in BiqQuery
-- 
 
 
 # Dataform 
