@@ -308,6 +308,18 @@ been deleted.
 
    ![image](https://github.com/user-attachments/assets/db59209a-1589-4992-bb90-b1aabfcf2fcf)
 
+- Create a Model
+
+   ![image](https://github.com/user-attachments/assets/d449a051-9253-4da4-b366-51b240bef083)
+  
+- Model Explanation
+   - Aims to understand how each feature contributes to the predicted result.
+   - You can use: ML.explanation_predict for non-time-series models, particularly supervised models such as regression models and DNN. While ML.explanation_forecast is for time-series models.
+   
+- Model Monitoring
+   - Compares a model's serving data to its training data to prevent data skew.
+   - Compares new serving data to previously used data to prevent data drift.
+   - Commonly used functions for data monitoring include ML.DESCRIBE_DATA, ML.VALIDATE_DATA_SKEW, and ML.VALIDATE_DATA_DRIFT.
 
 > ## Gemini Models in BiqQuery
 - BigQuery Insights
