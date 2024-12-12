@@ -1,4 +1,3 @@
-
 # BigQuery
 
    ![image](https://github.com/user-attachments/assets/92aa8a0f-6c45-4a46-bfe2-3e003ee7b621)
@@ -320,6 +319,8 @@ been deleted.
    - Compares a model's serving data to its training data to prevent data skew.
    - Compares new serving data to previously used data to prevent data drift.
    - Commonly used functions for data monitoring include ML.DESCRIBE_DATA, ML.VALIDATE_DATA_SKEW, and ML.VALIDATE_DATA_DRIFT.
+
+- The primary purpose of an object table in BigQuery is to provide a structured interface for accessing and analyzing unstructured data stored in Cloud Storage.
 
 > ## Gemini Models in BiqQuery
 - BigQuery Insights
