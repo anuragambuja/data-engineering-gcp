@@ -306,6 +306,7 @@ been deleted.
 
   ![image](https://github.com/user-attachments/assets/caf50cf7-033d-4f11-bb99-79eb4a878170)
 
+   ![image](https://github.com/user-attachments/assets/db59209a-1589-4992-bb90-b1aabfcf2fcf)
 
 
 > ## Gemini Models in BiqQuery
