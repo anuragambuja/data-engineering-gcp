@@ -312,7 +312,8 @@ been deleted.
 - BigQuery Insights
    - It's a helpful tool for exploring and understanding your data, especially if you're new to SQL or want to get started with data analysis.
    - It uses Gemini to generate queries based on your data's metadata, making it easier to find relevant insights.
-- Canvas discover and visualize the query workflow in BigQuery.
+- DataCanvas
+   - discover and visualize the query workflow in BigQuery.
 - Table Explorer:
    - It's a visual tool to explore one table at a time.
    - It doesn't support complex operations like joins across multiple tables.
