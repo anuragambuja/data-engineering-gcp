@@ -1,4 +1,11 @@
 
+# Supervised and Unsupervised Learning
+
+![image](https://github.com/user-attachments/assets/2d04458d-01e5-45e5-9184-f95849f44488)
+
+![image](https://github.com/user-attachments/assets/b20e883b-eab9-4c9e-a0dc-49dfabb945b3)
+
+
 # Responsible AI
 
 Seven principles for responsible AI:
