@@ -76,17 +76,6 @@ Kinds of LLMs:
 
 Some of the challenges of using LLMs are that they can be expensive to train, they can be biased, and they can be used to generate harmful content.
 
-responsible AI: AI should 
-1. be socially beneficial
-2. avoid creating or reinforcing unfair bais
-3. be built and tested for safety -  seeks to promote the safety—both bodily integrity and overall health of people and communities, as well as the security of places, systems, properties, and infrastructures from attack or disruption.
-4. be accountable to people -  aims to respect people’s rights and independence. The principle aims to promote informed user consent, and it seeks to ensure that there is a path to report and redress misuse, unjust use, or malfunction.
-5. incorporate privacy design principles - the aim is to protect the privacy and safety of both individuals and groups. It is also the goal of the principle to ensure that users have clear expectations of how data will be used, and that they feel informed and have the ability to give consent to that use.
-6. uphold high standards of scienctific excellence - seeks to advance the state of knowledge in AI. This means to follow scientifically rigorous approaches and ensure that feature claims are scientifically credible.
-7. be made available for uses that accord with these principles - The principle aims for the widest availability and impact of our beneficial AI technologies, while discouraging harmful or abusive AI applications.
-
-
-
 
 There are three main concerns on large language models, hallucinations, factuality, and anthropomorphization.
 1. In generative AI, hallucinations refer to instances where the AI model generates content that is the AI model generates content that is unrealistic, fictional, or completely fabricated.
