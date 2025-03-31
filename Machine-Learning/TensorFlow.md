@@ -29,12 +29,11 @@
         - in-memory dictionary and lists of tensors
         - out-of-memory sharded data files
     - Preprocess data in parallel (and cache result of costly operations)
-        ```dataset = dataset.map(preproc_fun).cache()  
+        ``` dataset = dataset.map(preproc_fun).cache() ```
     - Configure the way the data is fed into a model with number of chaning methods
-        ```dataset = dataset.shuffle(1000).repeat(epochs)batch(batch_size, drop_reminder=True)
+        ``` dataset = dataset.shuffle(1000).repeat(epochs)batch(batch_size, drop_reminder=True) ```
 
          
-
 
 
 
