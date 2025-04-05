@@ -76,10 +76,6 @@
 
   ![image](https://github.com/user-attachments/assets/d84d9a46-1e75-4a87-9691-9610c4091486)
 
-> ## How to choose ebtween Bigquery ML, AutoML abd a custom Model
-
-  ![image](https://github.com/user-attachments/assets/f549910a-601c-4480-9cdb-280a9be174e9)
-
 > ## Hadoop Ecosystem Component Migration Mappings to GCP
 
   ![image](https://github.com/user-attachments/assets/683fc15f-179b-4a2d-9a27-25bcd8dd32c1)
