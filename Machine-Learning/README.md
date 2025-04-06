@@ -19,6 +19,10 @@
   ![image](https://github.com/user-attachments/assets/ed57ddc3-4146-4186-b5d1-f5f1d9148027)
 
 
+> ## ML Ops
+
+  ![image](https://github.com/user-attachments/assets/e9ea9dcb-c8c8-4726-8eb1-4136bda2eb62)
+
 
 > ## Explainable AI
 - Explainable AI is a set of tools and frameworks to help understand and interpret predictions made by machine learning models.
