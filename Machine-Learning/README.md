@@ -1,12 +1,30 @@
 
-# Supervised and Unsupervised Learning
+> ## Supervised and Unsupervised Learning
 
 ![image](https://github.com/user-attachments/assets/2d04458d-01e5-45e5-9184-f95849f44488)
 
 ![image](https://github.com/user-attachments/assets/b20e883b-eab9-4c9e-a0dc-49dfabb945b3)
 
+> ##
+- Feature: A feature refers to a factor that contributes to the prediction. It’s like an independent variable in statistics or a column in a table. It describes characterstics of an entity, act as an input variable. eg. height, length of an entity
+- Labels: An attribute that is predicted or categorized. eg, selling price, income, Fraud/Non Fraud
+- Feature Engineering: Identifying useful features
+- Vertex AI provides a service called Vertex AI Feature Store, which is a centralized repository to manage, serve, and share features. Benefits of Vertex AI Feature Store:
+  - They are managed and served from a central repository, maintaining consistency across your organization.
+  - features are reusable.
+  - features are scalable.
+ 
+- confusion matrix: A confusion matrix is a specific performance measurement for machine learning classification problems
+  ![image](https://github.com/user-attachments/assets/0feeb577-802f-4861-9749-138f3432381f)
+  ![image](https://github.com/user-attachments/assets/ed57ddc3-4146-4186-b5d1-f5f1d9148027)
 
-# Responsible AI
+
+ 
+> ## How to choose ebtween Bigquery ML, AutoML abd a custom Model
+
+  ![image](https://github.com/user-attachments/assets/f549910a-601c-4480-9cdb-280a9be174e9)
+
+> ## Responsible AI
 
 Seven principles for responsible AI:
 1. AI should be socially beneficial.
