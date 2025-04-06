@@ -19,11 +19,10 @@
   ![image](https://github.com/user-attachments/assets/ed57ddc3-4146-4186-b5d1-f5f1d9148027)
 
 
+
+> ## Explainable AI
+- Explainable AI is a set of tools and frameworks to help understand and interpret predictions made by machine learning models.
  
-> ## How to choose ebtween Bigquery ML, AutoML abd a custom Model
-
-  ![image](https://github.com/user-attachments/assets/f549910a-601c-4480-9cdb-280a9be174e9)
-
 > ## Responsible AI
 
 Seven principles for responsible AI:
@@ -34,3 +33,7 @@ Seven principles for responsible AI:
 5. AI should incorporate privacy design principles. - the aim is to protect the privacy and safety of both individuals and groups. It is also the goal of the principle to ensure that users have clear expectations of how data will be used, and that they feel informed and have the ability to give consent to that use.
 6. AI should uphold high standards of scientific excellence. - seeks to advance the state of knowledge in AI. This means to follow scientifically rigorous approaches and ensure that feature claims are scientifically credible.
 7. AI should be made available for uses that accord with these principles. - The principle aims for the widest availability and impact of our beneficial AI technologies, while discouraging harmful or abusive AI applications.
+
+> ## How to choose btween Bigquery ML, AutoML and a custom Model
+
+  ![image](https://github.com/user-attachments/assets/f549910a-601c-4480-9cdb-280a9be174e9)
