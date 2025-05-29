@@ -75,7 +75,8 @@
   - Representative: Data needs to be representative and inclusive, otherwise it can lead to skewed samples and biased outcomes. 
   - Consistency: The data must be relevant to the task the AI is designed to perform.
   - Relevance: 
- 
+- Secure AI Framework (SAIF) is used to establish security standards for building and deploying AI responsibly, addressing the unique challenges and threats in the AI landscape.
+
   > ## Factors when choosing a model for GenAI Use Case
   - Modality: Modality refers to the type of data the model can process and generate, such as text, images, video, or audio
   - Context Window: The context window refers to the amount of information a model can consider at one time when generating a response. A larger context window allows the model to "remember" more of the conversation or document, leading to more coherent and relevant outputs, especially for longer texts or complex tasks. However, larger context windows often come with increased computational costs. You need to balance the need for context with the practical limitations of your resources.
