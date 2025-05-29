@@ -87,3 +87,14 @@
   - Fine-tuning and customization: If you have a specialized use case, consider models that offer fine-tuning capabilities.
   - Ease of integration: Look for models that offer well-documented APIs and SDKs.
 
+> ## Layers of Gen AI
+- Gen AI powered application: This is the layer that delivers the AI capability to users through interfaces.
+- Agent: This layer utilizes the capabilities of the model layer to perform more complex actions. This layer interacts with the environment, gathers information and makes decisions and executes actions based on the information received.
+- Platform: This is the layer that consists of tools and services that help with building and deploying AI models. This includes model training platforms like Vertex AI and data management tools.
+- Model: The model is where the brains of the AI system reside. It comprises various algorithms that learn patterns from data and can make predictions or generate new content. Examples are large language models (LLMs) like Gemini, image recognition models, and recommendation systems.
+- Infrastructure: The foundation of any AI system, comprising the hardware (physical servers, cloud computing resources, specialized chips like GPUs and TPUs) and software (operating systems, networking) that provide the necessary computing power, storage, and connectivity to train, deploy, and scale AI models.
+
+  ![image](https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44)
+
+
+
