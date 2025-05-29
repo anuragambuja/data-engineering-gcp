@@ -89,7 +89,17 @@
 
 > ## Layers of Gen AI
 - Gen AI powered application: This is the layer that delivers the AI capability to users through interfaces.
-- Agent: This layer utilizes the capabilities of the model layer to perform more complex actions. This layer interacts with the environment, gathers information and makes decisions and executes actions based on the information received.
+- Agent: This layer utilizes the capabilities of the model layer to perform more complex actions. This layer interacts with the environment, gathers information and makes decisions and executes actions based on the information received. Think of agents as the intelligent pieces within a larger gen AI powered application. They bring specific capabilities to the table.
+  -  Conversational agents: Conversational agents are designed to understand what you mean, not just what you say, and respond in a way that makes sense. eg. Answering questions, Casual conversation etc.
+        `You provide input > The agent understands > The agent calls a tool to gather additional information > The agent generates a response > The agent delivers the response`
+  - Workflow agents: Workflow agents are designed to streamline your work and make sure things get done efficiently and correctly by automating tasks or going through complex processes. e.g. Ecommerce order fulfillment: An agent automatically processes orders, updates inventory, sends shipping notifications, and handles returns.
+  - Agents key elements:
+    - Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such frameworks include ReAct or chain-of-thought (CoT) prompting. These frameworks can include:
+      - Simple rule-based calculations
+      - Complex thought chains
+      - Machine learning algorithms
+      - Probabilistic reasoning techniques
+    - Tools: Tools are functionalities that allow the agent to interact with its environment. Tools can be anything from accessing and processing data to interacting with software applications or even physical robots. This empowers agents to connect with real-world information and services, much like apps on our phones.  
 - Platform: This is the layer that consists of tools and services that help with building and deploying AI models. This includes model training platforms like Vertex AI and data management tools.
 - Model: The model is where the brains of the AI system reside. It comprises various algorithms that learn patterns from data and can make predictions or generate new content. Examples are large language models (LLMs) like Gemini, image recognition models, and recommendation systems.
 - Infrastructure: The foundation of any AI system, comprising the hardware (physical servers, cloud computing resources, specialized chips like GPUs and TPUs) and software (operating systems, networking) that provide the necessary computing power, storage, and connectivity to train, deploy, and scale AI models.
