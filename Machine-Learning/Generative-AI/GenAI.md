@@ -108,3 +108,17 @@
 
 
 
+> ## Pricing for using models
+- Tiers:
+  - Usage-based: You pay for the amount you use, often measured in tokens or characters processed. This is common for APIs like Google’s PaLM & Gemini APIs.
+  - Subscription-based: You pay a recurring fee for access to the model, often with tiers based on usage limits or features.
+  - Licensing fees: One-time or recurring fees for using a model, especially for commercial purposes or embedding in products.
+  - Free tiers: Some providers offer free access with limited usage for experimentation or non-commercial purposes.
+- Factors affecting cost:
+  - Larger, more capable models generally cost more.
+  - A larger context window (the amount of text the model can consider) can increase costs.
+  - Specialized features like fine-tuning or embedding can have separate pricing.
+  - Depending on where you deploy your model and application, you may have compute based costs.
+
+
+
