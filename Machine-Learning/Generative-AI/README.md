@@ -26,7 +26,11 @@ LLM are also a subset of deep learning.
 
 - Zero-shot prompting is a method where the model is given a prompt that describes the task without additional examples. For example, if you want the LLM to answer a question, you just prompt "What is prompt design?"
 - One-shot prompting is a method where the LLM is given a single example of the task that it is being asked to perform. For example, if you want the LLM to write a poem, you might provide a single example poem.
-- Few-shot prompting is a method where the model is given a small number of examples of the task that it is being asked to perform. 
+- Few-shot prompting is a method where the model is given a small number of examples of the task that it is being asked to perform.
+- Role prompting: Role prompting is a technique used to guide the behavior of LLMs by assigning them a specific role or persona. This can be anything from a business analyst or Shakespearean actor to a helpful customer service agent.
+- Prompt chaining: Continuing a conversation with the AI, maintaining context.
+- Saved info: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies.
+- Gem: Creating a personalized AI assistant with specific instructions and resources.
 
 - Model Tuning
 
