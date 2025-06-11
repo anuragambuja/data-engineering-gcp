@@ -98,15 +98,52 @@
         `You provide input > The agent understands > The agent calls a tool to gather additional information > The agent generates a response > The agent delivers the response`
   - Workflow agents: Workflow agents are designed to streamline your work and make sure things get done efficiently and correctly by automating tasks or going through complex processes. e.g. Ecommerce order fulfillment: An agent automatically processes orders, updates inventory, sends shipping notifications, and handles returns.
   - Agents key elements:
-    - Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such frameworks include ReAct or chain-of-thought (CoT) prompting. These frameworks can include:
-      - Simple rule-based calculations
-      - Complex thought chains
-      - Machine learning algorithms
-      - Probabilistic reasoning techniques
+    - Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such frameworks include ReAct or chain-of-thought (CoT) prompting.
+      - ReAct is a prompting framework that allows the language model to reason and take action on a user query, with or without in-context examples. ReAct, which stands for "reasoning and acting," is like giving an LLM a brain and a pair of hands. It allows the LLM to not only think about a problem but also take actions to solve it. Imagine you're asking an LLM to find you a good Italian restaurant nearby. ReAct can be used in Question-answering, Fact verification, Decision making etc.With ReAct, the LLM can:
+
+          ![image](https://github.com/user-attachments/assets/5f024de9-f1ab-493d-8ad6-42b15c370da0)
+        - Key components of ReAct:
+          - Think: The LLM generates a thought about the problem, similar to CoT.
+          - Act: The LLM decides what action to take, such as searching the web, accessing a database, or using a specific tool; the LLM specifies the input for the action, like a search query or database command.
+          - Observe: The LLM receives feedback from the action, such as search results or database entries.
+          - Respond: The LLM generates a response, which could involve providing an answer to the user, taking further actions, or formulating a new thought for the next iteration.
+
+        - Why is ReAct important?
+          - Dynamic problem solving: ReAct allows LLMs to tackle complex tasks that require interacting with external resources and adapting to new information.
+          - Reduced hallucination: By grounding the LLM's reasoning in real-world data, ReAct can help reduce the risk of generating incorrect or nonsensical information.
+          - Increased trustworthiness: The ability to see the LLM's reasoning process and how it interacts with external sources makes its responses more transparent and trustworthy.
+
+      - Chain-of-thought prompting is a technique where you guide a language model through a problem-solving process by providing examples with intermediate reasoning steps, helping it learn to approach new problems in a more structured and logical way.
+        - Key components of CoT:
+          - Self-consistency: Encouraging the LLM to generate multiple solutions and choose the most consistent one.
+          - Active-prompting: Allowing the LLM to ask clarifying questions or request additional information.
+          - Multimodal CoT: Combining text with other forms of data, like images or videos, to enhance reasoning.
+        - CoT in action:
+          - Complex reasoning tasks: LLMs can use CoT to break down complex problems into smaller, more manageable steps, leading to more accurate solutions in tasks like math word problems or logical reasoning puzzles.
+          - Explanation generation: LLMs can use CoT to generate step-by-step explanations for their answers, making their reasoning process transparent and understandable, which is crucial for building trust and identifying potential errors.
+          - Multi-step planning: LLMs can use CoT to plan and execute complex tasks that require multiple steps, such as writing a story, planning a trip, or debugging code.
+
+      - while both ReAct and CoT enhance LLM reasoning, they have different strengths:
+        - CoT focuses on internal reasoning, guiding the LLM through a chain of thought.
+        - ReAct focuses on external interaction, allowing the LLM to gather information and take actions in the real world. 
+        
+      - These frameworks can include:
+        - Simple rule-based calculations
+        - Complex thought chains
+        - Machine learning algorithms
+        - Probabilistic reasoning techniques
     - Tools: Tools are functionalities that allow the agent to interact with its environment. Tools can be anything from accessing and processing data to interacting with software applications or even physical robots. This empowers agents to connect with real-world information and services, much like apps on our phones.
+      - Types of agent tools:
+        - Extensions (APIs): Extensions provide a standardized way for agents to use APIs, regardless of the API's specific design. This simplifies API interaction, making it easier for agents to access external services and data. Example: An agent designed to book travel might use an extension to interact with a travel company’s API.
+        - Functions: Functions represent specific actions the agent can perform. An agent's reasoning system selects the appropriate function based on the task at hand. Example: A "calculate_price" function might take flight details and passenger information as input and return the total cost.
+        - Data stores: Data stores provide agents with access to information. This can include real-time data, historical data, or knowledge bases. Data stores ensure that the agent's responses are accurate, relevant, and up-to-date. Example: An agent might use a data store to access current weather conditions, stock prices, or a database of customer information.
+        - Plugins: Plugins extend the agent's capabilities by adding new skills or integrations. They can connect the agent to specific services, provide access to specialized tools, or enable interaction with particular platforms. Example: A plugin could enable an agent to interact with a calendar application, allowing it to schedule appointments. 
+   
+        
     - key components of an agent:
       - Foundational Model: This is the underlying language model (LLM) that powers the agent. It could be a small or large language model, a Google model like Gemini, or a model from another provider. The key is to select a model with training data relevant to the agent's intended use case.
       - Tools: Tools enable the agent to interact with the outside world. These can include extensions that connect to APIs, functions that act as mock API calls, and data stores like vector databases. Tools allow the agent to not only observe the world but also act upon it.
+
       - Reasoning Loop: This is the core of the agent, responsible for making decisions and taking actions. It's an iterative process where the agent considers its goal, the available tools, and the information it has gathered. Frameworks like ReAct (Reason and Act) are commonly used to guide the reasoning process.
     - Evolution of Agents:
       - Deterministic agents (oldest): Same input will always produce same output.
@@ -155,6 +192,24 @@
   - Interactive learning: NotebookLM goes beyond simply summarizing information. It encourages active learning by allowing you to ask questions, generate different types of summaries, and even create quizzes to test your understanding.
   - Source-based answers: Every answer and insight provided by NotebookLM is directly grounded in your uploaded sources. This ensures accuracy and allows you to easily trace back to the original information. If you ask NotebookLM a question that isn't covered in the materials you've provided, it will honestly tell you that it can't answer. It won't invent information or speculate. This ensures that the information you get is always grounded in your sources and reliable.
  
+> ## Ways to improve your output
+- Sampling parameters and settings: Sampling parameters act as settings that influence the AI model's behavior, giving you more customized results. Think of these as knobs and dials you can adjust with your prompt input to impact the model's output. By tweaking these settings, you can ensure the model's output aligns with your specific needs, whether it's generating more creative text, providing more concise summaries, or staying within a certain tone. Most common parameters you can adjust are:
+  - Token count: Imagine each word and punctuation mark in your text as a character. These characters are grouped into smaller units called tokens, which represent meaningful chunks of text. Models have limits on how many tokens they can handle at once. A higher token count allows for longer and more complex conversations, but it also requires more processing power. For example, one token is roughly equivalent to four characters in English. So, a hundred tokens would be about sixty to eighty words.
+  - Temperature: This parameter controls the "creativity" of the model, because it adjusts the randomness of word choices during text generation, influencing the diversity and unpredictability of the output. A higher temperature makes the output more random and unpredictable, while a lower temperature makes it more focused, deterministic and repeatable.
+  - Top-p (nucleus sampling): "Top-p" stands for the cumulative probability of the most likely tokens considered during text generation. This is another way to control the randomness of the model's output. It concentrates the probability on the most likely tokens, making the output more coherent and relevant. A lower top-p value leads to more focused responses (i.e. only the most probable tokens), while a higher value allows for more diversity (i.e. extending to lower probability tokens as well). The model retuns a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P.
 
+    ![image](https://github.com/user-attachments/assets/48de0d44-69a4-46d4-b15d-84cb5c66c340)
 
+  - Top-k: The model returns a random word from a set of top K possible words.
 
+      ![image](https://github.com/user-attachments/assets/a61f7194-bcbc-43e9-bd30-01ad2d5eeea9)
+
+  - Safety settings: These settings allow you to filter out potentially harmful or inappropriate content from the model's output. You can adjust the level of filtering based on your specific needs and preferences.
+  - Output length: This determines the maximum length of the generated text. You can set it to a specific number of words or characters or allow the model to generate text until it reaches a natural stopping point.
+
+> ## Google AI Studio and Vertex AI Studio
+- Both Google AI Studio and Vertex AI Studio allow you to experiment with and utilize Google's Gemini API, but they cater to different needs and levels of expertise.
+
+  ![image](https://github.com/user-attachments/assets/9effa349-a5a9-4967-bc7e-0c37f383b252)
+
+  
