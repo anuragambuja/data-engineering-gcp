@@ -103,7 +103,20 @@
       - Complex thought chains
       - Machine learning algorithms
       - Probabilistic reasoning techniques
-    - Tools: Tools are functionalities that allow the agent to interact with its environment. Tools can be anything from accessing and processing data to interacting with software applications or even physical robots. This empowers agents to connect with real-world information and services, much like apps on our phones.  
+    - Tools: Tools are functionalities that allow the agent to interact with its environment. Tools can be anything from accessing and processing data to interacting with software applications or even physical robots. This empowers agents to connect with real-world information and services, much like apps on our phones.
+    - key components of an agent:
+      - Foundational Model: This is the underlying language model (LLM) that powers the agent. It could be a small or large language model, a Google model like Gemini, or a model from another provider. The key is to select a model with training data relevant to the agent's intended use case.
+      - Tools: Tools enable the agent to interact with the outside world. These can include extensions that connect to APIs, functions that act as mock API calls, and data stores like vector databases. Tools allow the agent to not only observe the world but also act upon it.
+      - Reasoning Loop: This is the core of the agent, responsible for making decisions and taking actions. It's an iterative process where the agent considers its goal, the available tools, and the information it has gathered. Frameworks like ReAct (Reason and Act) are commonly used to guide the reasoning process.
+    - Evolution of Agents:
+      - Deterministic agents (oldest): Same input will always produce same output.
+          ![image](https://github.com/user-attachments/assets/75b9497e-0e12-4858-8479-da0db11344eb)
+      - Generative agents:
+        - without RAG
+        - with RAG (Newest)
+        
+        ![image](https://github.com/user-attachments/assets/8d1606f2-c324-4517-8c67-26e066045354)
+
 - Platform: This is the layer that consists of tools and services that help with building and deploying AI models. This includes model training platforms like Vertex AI and data management tools. 
 - Model: The model is where the brains of the AI system reside. It comprises various algorithms that learn patterns from data and can make predictions or generate new content. Examples are large language models (LLMs) like Gemini, image recognition models, and recommendation systems.
 - Infrastructure: The foundation of any AI system, comprising the hardware (physical servers, cloud computing resources, specialized chips like GPUs and TPUs) and software (operating systems, networking) that provide the necessary computing power, storage, and connectivity to train, deploy, and scale AI models.
