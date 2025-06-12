@@ -213,4 +213,28 @@
 
   ![image](https://github.com/user-attachments/assets/9effa349-a5a9-4967-bc7e-0c37f383b252)
 
+
+> ## Vertex AI Search
+- Vertex AI Search offers both search and recommendation solutions.
+- Search allows you to create a powerful search experience for your public website. It can index and search across a variety of data types, including structured data in BigQuery and unstructured documents stored in Google Cloud Storage. This ensures your users can easily find the information they need on your website, regardless of how it's stored. Some specific forms of search includes Document search, Media search, Healthcare search, Search for commerce
+- The general purpose recommendation engine can be used to recommend similar content within websites, documents, and other structured content. It analyzes user behavior and content attributes to provide personalized recommendations, increasing user engagement and content discovery. Some specific forms of recommendations are Media recommendations, Retail recommendations
+- Vertex AI seamlessly connects to your existing data stores, whether they are structured databases, unstructured document repositories, or a combination of both. This connection is crucial as it allows Vertex AI Search to act as an agent, observing the user's query or context (the environment) and acting by retrieving relevant information or suggesting relevant items (using the data stores as tools) to achieve the goal of providing the right information or recommendation at the right time. Vertex AI Search also gives you the options of adding extra generative AI features to your search functionality such as Search summaries, Answers and follow ups. Vertex AI Search is built for enterprise and offers granular access controls to help ensure data security. It also provides advanced analytics to understand search trends and user behavior and scalable infrastructure to handle large volumes of data and search requests.
+
+> ## Google’s Customer Engagement Suite
+- Conversational Agents
+  - Conversational Agents to act as effective chatbots communicating with your customers. 
+- Agent Assist
+  - Agent Assist to support your live human contact center agents. Using AI and generative AI, Agent Assist can recommend agent responses to customers, suggest the appropriate knowledge base content to solve a customer’s issue, transcribe or translate calls in real time, summarize conversations and more.
+  - Not all human agents are the same and they have different levels of experience. There can be a lot of training needed, especially when a new agent starts.
+- Conversational Insights
+  - Conversational Insights to gain insights into all your communications with customers (through chatbot agents or human agents).
+  - This tool uses machine learning analytics to provide you with information such as agent and caller sentiment, entity identification, and call topics.
+- Contact center as a service (CCaaS)
+  - CCaaS provides a complete contact center solution. It manages the infrastructure, integrates with CRMs, and offers omnichannel support (consistent experience across all channels, like websites, apps, phone, and text).
+  - CCaaS seamlessly integrates with other Customer Engagement Suite tools, including Conversational Agents for automated support, Agent Assist for real-time agent guidance, and Conversational Insights for valuable data analysis.
   
+
+
+
+
+
