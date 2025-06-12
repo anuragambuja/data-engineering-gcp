@@ -234,7 +234,9 @@
   - CCaaS seamlessly integrates with other Customer Engagement Suite tools, including Conversational Agents for automated support, Agent Assist for real-time agent guidance, and Conversational Insights for valuable data analysis.
   
 
-
-
+> ## Google Agentspace
+- Google Agentspace is designed to help you and your team use your company's information more effectively. It uses AI to create customized agents that can access and understand data from various sources, regardless of where that data is stored. These agents can then be integrated into your organization’s internal websites or dashboards.
+- NotebookLM Enterprise as your specialized AI tool for diving deep into specific documents and web sources – asking questions, summarizing, and creating new content based only on those sources. Agentspace, on the other hand, is your comprehensive enterprise AI assistant. It uses AI agents and unified search to automate tasks and find information across all your connected business systems, not just specific documents you upload.
+- You can think of Agentspace like your personal AI assistant for work. It helps employees find information, understand data, and automate tasks. It is designed to increase productivity for teams in a variety of fields like marketing, sales, HR, software, and research and development.
 
 
