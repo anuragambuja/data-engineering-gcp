@@ -4,8 +4,10 @@
 - Gen AI is subset of deep learning which means it uses artificial neural networks, can process both labeled and unlabeled data using supervised, unsupervised and semi-supervised methods. 
 LLM are also a subset of deep learning.
 - It’s a type of artificial intelligence that generates content for you. The generated content can be multi-modal, including text, code, images, speech, video, and even 3D.
+- History of Gen AI
 
-	![image](https://github.com/user-attachments/assets/0a6d1d38-b7ab-4c86-87e0-4001a2b3db86)
+  	<div align="center"> <img src="https://github.com/user-attachments/assets/24559216-7ed8-42ad-915f-8a2a9ff9bd29" alt="Alt Text" width="500" height="300"> </div>
+	<div align="center"> <img src="https://github.com/user-attachments/assets/0a6d1d38-b7ab-4c86-87e0-4001a2b3db86" alt="Alt Text" width="800" height="300"> </div>
 
 - Gen AI workflow:
 	1. Input prompt: Via the Vertex AI Studio UI, input a prompt—a natural language request to gen AI models.
@@ -15,7 +17,7 @@ LLM are also a subset of deep learning.
 	5. Results grounding: Gen AI models return results that undergo grounding (optional) and citation checks to prevent hallucinations.
 	6. Final response: The final response appears on the Vertex AI Studio UI after a final check through responsible AI and safety measures.
 	
- 	![image](https://github.com/user-attachments/assets/378479b8-ac31-4527-a50a-af31882ebc59)
+ 	<div align="center"> <img src="https://github.com/user-attachments/assets/378479b8-ac31-4527-a50a-af31882ebc59" width="700" height="300"> </div>
 
 - Gemini is a Google gen AI model that powers many different solutions.
 	- Gemini app
@@ -125,6 +127,19 @@ LLM are also a subset of deep learning.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 > ## Others
 
 - Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that expect a true or correct response, while higher temperatures can lead to more diverse, unexpected, or potentially biased results. With a temperature of 0 the highest probability token is always selected.temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
@@ -220,7 +235,7 @@ There are three main concerns on large language models, hallucinations, factuali
 
 > ## History of AI
 
-![image](https://github.com/user-attachments/assets/24559216-7ed8-42ad-915f-8a2a9ff9bd29)
+
 
 - Types of AI Models:
   - Predictive AI: Used to make predictions or classifications based on input data
