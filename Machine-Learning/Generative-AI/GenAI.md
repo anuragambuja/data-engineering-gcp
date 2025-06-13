@@ -73,15 +73,6 @@
     ![image](https://github.com/user-attachments/assets/add9336e-3404-442e-a359-bcc2d41d9b88)
 
 
-> ## Data Quality
-- There are five factors to focus on when thinking about data quality.
-  - Accuracy
-  - Completeness: Completeness refers to the size of a dataset as well as representation within the dataset. The size of the dataset is important because the model needs enough to make an accurate prediction. 
-  - Representative: Data needs to be representative and inclusive, otherwise it can lead to skewed samples and biased outcomes. 
-  - Consistency: The data must be relevant to the task the AI is designed to perform.
-  - Relevance: 
-- Secure AI Framework (SAIF) is used to establish security standards for building and deploying AI responsibly, addressing the unique challenges and threats in the AI landscape.
-
   > ## Factors when choosing a model for GenAI Use Case
   - Modality: Modality refers to the type of data the model can process and generate, such as text, images, video, or audio
   - Context Window: The context window refers to the amount of information a model can consider at one time when generating a response. A larger context window allows the model to "remember" more of the conversation or document, leading to more coherent and relevant outputs, especially for longer texts or complex tasks. However, larger context windows often come with increased computational costs. You need to balance the need for context with the practical limitations of your resources.
@@ -115,10 +106,7 @@
   - Safety settings: These settings allow you to filter out potentially harmful or inappropriate content from the model's output. You can adjust the level of filtering based on your specific needs and preferences.
   - Output length: This determines the maximum length of the generated text. You can set it to a specific number of words or characters or allow the model to generate text until it reaches a natural stopping point.
 
-> ## Google AI Studio and Vertex AI Studio
-- Both Google AI Studio and Vertex AI Studio allow you to experiment with and utilize Google's Gemini API, but they cater to different needs and levels of expertise.
 
-  ![image](https://github.com/user-attachments/assets/9effa349-a5a9-4967-bc7e-0c37f383b252)
 
 
 
