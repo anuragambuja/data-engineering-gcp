@@ -40,6 +40,7 @@ LLM are also a subset of deep learning.
 	- Large language models (LLMs): A type of foundation model that is designed to understand and generate human language.
 	- Secure AI Framework (SAIF): The Secure AI Framework (SAIF) helps organizations manage AI/ML model risks and ensure security.
 
+
 > ## Layers of Gen AI
 <div align="center"> <img src="https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44" alt="Alt Text" width="700" height="300"> </div>
 
@@ -122,11 +123,57 @@ LLM are also a subset of deep learning.
 	- `AI on the edge`: You can run AI solutions on infrastructure (devices or servers) closer to where the action is happening.
 	- Google provides tools like `Lite Runtime (LiteRT)` to help developers deploy AI models on edge devices.
 	- `Gemini Nano` is Google's most efficient and compact AI model, specifically designed to run on devices.
- 
 
 
+> ## Pricing for using models
+- Tiers:
+	- Usage-based: You pay for the amount you use, often measured in tokens or characters processed. This is common for APIs like Google’s PaLM & Gemini APIs.
+	- Subscription-based: You pay a recurring fee for access to the model, often with tiers based on usage limits or features.
+	- Licensing fees: One-time or recurring fees for using a model, especially for commercial purposes or embedding in products.
+	- Free tiers: Some providers offer free access with limited usage for experimentation or non-commercial purposes.
+- Factors affecting cost:
+	- Larger, more capable models generally cost more.
+	- A larger context window (the amount of text the model can consider) can increase costs.
+	- Specialized features like fine-tuning or embedding can have separate pricing.
+	- Depending on where you deploy your model and application, you may have compute based costs.
 
 
+> ## NotebookLM
+- NotebookLM is an AI-first notebook, grounded in your own documents, designed to help you gain insights faster.
+- You can "ground" NotebookLM in specific sources like documents, presentations, or even audio and video files. This means your AI assistant will only use information from those sources to answer your questions and generate summaries.
+- NotebookLM Plus: For users who want to take their research to the next level, there's NotebookLM Plus, a subscription plan that offers benefits like increased capacity, customization of response length and style, and usage analytics.
+- NotebookLM Enterprise: NotebookLM Enterprise takes NotebookLM Plus to the next level by adding compliance and administrative features necessary for enterprise environments. This includes extra privacy and security features to give you enhanced control over your data. Your notebook information is only shared with your chosen collaborators, and you can manage access using predefined identity and access management (IAM) roles.
+- NotebookLM versus Gems
+  - Hyper-focused knowledge: Instead of drawing from a broad knowledge base, NotebookLM focuses solely on the sources you provide. This could be anything from research papers and articles to meeting notes and presentations.
+  - Interactive learning: NotebookLM goes beyond simply summarizing information. It encourages active learning by allowing you to ask questions, generate different types of summaries, and even create quizzes to test your understanding.
+  - Source-based answers: Every answer and insight provided by NotebookLM is directly grounded in your uploaded sources. This ensures accuracy and allows you to easily trace back to the original information. If you ask NotebookLM a question that isn't covered in the materials you've provided, it will honestly tell you that it can't answer. It won't invent information or speculate. This ensures that the information you get is always grounded in your sources and reliable.
+
+
+> ## Vertex AI Search
+- Vertex AI Search offers both search and recommendation solutions.
+- Search allows you to create a powerful search experience for your public website. It can index and search across a variety of data types, including structured data in BigQuery and unstructured documents stored in Google Cloud Storage. This ensures your users can easily find the information they need on your website, regardless of how it's stored. Some specific forms of search includes Document search, Media search, Healthcare search, Search for commerce
+- The general purpose recommendation engine can be used to recommend similar content within websites, documents, and other structured content. It analyzes user behavior and content attributes to provide personalized recommendations, increasing user engagement and content discovery. Some specific forms of recommendations are Media recommendations, Retail recommendations
+- Vertex AI seamlessly connects to your existing data stores, whether they are structured databases, unstructured document repositories, or a combination of both. This connection is crucial as it allows Vertex AI Search to act as an agent, observing the user's query or context (the environment) and acting by retrieving relevant information or suggesting relevant items (using the data stores as tools) to achieve the goal of providing the right information or recommendation at the right time. Vertex AI Search also gives you the options of adding extra generative AI features to your search functionality such as Search summaries, Answers and follow ups. Vertex AI Search is built for enterprise and offers granular access controls to help ensure data security. It also provides advanced analytics to understand search trends and user behavior and scalable infrastructure to handle large volumes of data and search requests.
+
+
+> ## Google’s Customer Engagement Suite
+- Conversational Agents
+  - Conversational Agents to act as effective chatbots communicating with your customers. 
+- Agent Assist
+  - Agent Assist to support your live human contact center agents. Using AI and generative AI, Agent Assist can recommend agent responses to customers, suggest the appropriate knowledge base content to solve a customer’s issue, transcribe or translate calls in real time, summarize conversations and more.
+  - Not all human agents are the same and they have different levels of experience. There can be a lot of training needed, especially when a new agent starts.
+- Conversational Insights
+  - Conversational Insights to gain insights into all your communications with customers (through chatbot agents or human agents).
+  - This tool uses machine learning analytics to provide you with information such as agent and caller sentiment, entity identification, and call topics.
+- Contact center as a service (CCaaS)
+  - CCaaS provides a complete contact center solution. It manages the infrastructure, integrates with CRMs, and offers omnichannel support (consistent experience across all channels, like websites, apps, phone, and text).
+  - CCaaS seamlessly integrates with other Customer Engagement Suite tools, including Conversational Agents for automated support, Agent Assist for real-time agent guidance, and Conversational Insights for valuable data analysis.
+  
+
+> ## Google Agentspace
+- Google Agentspace is designed to help you and your team use your company's information more effectively. It uses AI to create customized agents that can access and understand data from various sources, regardless of where that data is stored. These agents can then be integrated into your organization’s internal websites or dashboards.
+- NotebookLM Enterprise as your specialized AI tool for diving deep into specific documents and web sources – asking questions, summarizing, and creating new content based only on those sources. Agentspace, on the other hand, is your comprehensive enterprise AI assistant. It uses AI agents and unified search to automate tasks and find information across all your connected business systems, not just specific documents you upload.
+- You can think of Agentspace like your personal AI assistant for work. It helps employees find information, understand data, and automate tasks. It is designed to increase productivity for teams in a variety of fields like marketing, sales, HR, software, and research and development.
 
 
 
