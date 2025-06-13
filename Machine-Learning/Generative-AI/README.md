@@ -53,14 +53,14 @@ LLM are also a subset of deep learning.
 	<div align="center"> <img src="https://github.com/user-attachments/assets/1e3fb09a-c04a-473f-9908-552ae796217d" width="700" height="300"> </div>
 	
  	- Evolution of Agents:
-		- Deterministic agents (oldest): Same input will always produce same output.
+		- Deterministic agents (oldest): Agents that are built with predefined paths and actions. Same input will always produce same output.
 			<div align="center"><img src="https://github.com/user-attachments/assets/75b9497e-0e12-4858-8479-da0db11344eb" width="500" height="200"> </div>	
 
-	  	- Generative agents: without RAG and with RAG(Newest)
+	  	- Generative agents:Agents that are defined with natural language using LLMs to give a real conversational feel to your chatbot. These can be without RAG and with RAG(Newest)
 			<div align="center"><img src="https://github.com/user-attachments/assets/8d1606f2-c324-4517-8c67-26e066045354" width="500" height="200"> </div>
 
 	- Key components of an agent:
-		1. Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such frameworks include ReAct or chain-of-thought (CoT) prompting.
+		1. Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such Prompt engineering techniques include ReAct, chain-of-thought (CoT) prompting, Metaprompting.
 
   			- ReAct (Reason and Act) is a prompting framework that allows the language model to reason and take action on a user query, with or without in-context examples. ReAct, which stands for "reasoning and acting," is like giving an LLM a brain and a pair of hands. It allows the LLM to not only think about a problem but also take actions to solve it. Imagine you're asking an LLM to find you a good Italian restaurant nearby. ReAct can be used in Question-answering, Fact verification, Decision making etc.With ReAct, the LLM can:
 
@@ -92,7 +92,10 @@ LLM are also a subset of deep learning.
 				- while both ReAct and CoT enhance LLM reasoning, they have different strengths:
 					- CoT focuses on internal reasoning, guiding the LLM through a chain of thought.
 					- ReAct focuses on external interaction, allowing the LLM to gather information and take actions in the real world. 
-    
+ 
+    			- Metaprompting:
+      				- Use prompting to guide the AI model to generate, modify, or interpret other prompts.
+
 		3. Tools: Tools are functionalities that allow the agent to interact with its environment. Tools can be anything from accessing and processing data to interacting with software applications or even physical robots. This empowers agents to connect with real-world information and services, much like apps on our phones.
 			- Types of agent tools:
 				1. Extensions (APIs): Extensions provide a standardized way for agents to use APIs, regardless of the API's specific design. This simplifies API interaction, making it easier for agents to access external services and data. Example: An agent designed to book travel might use an extension to interact with a travel company’s API.
@@ -171,17 +174,18 @@ LLM are also a subset of deep learning.
 
 
 > ## Google’s Customer Engagement Suite
+- Tools to support your company in engaging with customers effectively, which can be built on top of Google’s Contact Center as a Service (CCaaS), an enterprise-grade contact center solution that is native to the cloud.
 - Conversational Agents
-  - Conversational Agents to act as effective chatbots communicating with your customers. 
+	- Conversational Agents to act as effective chatbots communicating with your customers. 
 - Agent Assist
-  - Agent Assist to support your live human contact center agents. Using AI and generative AI, Agent Assist can recommend agent responses to customers, suggest the appropriate knowledge base content to solve a customer’s issue, transcribe or translate calls in real time, summarize conversations and more.
-  - Not all human agents are the same and they have different levels of experience. There can be a lot of training needed, especially when a new agent starts.
+	- Agent Assist to support your live human contact center agents. Using AI and generative AI, Agent Assist can recommend agent responses to customers, suggest the appropriate knowledge base content to solve a customer’s issue, transcribe or translate calls in real time, summarize conversations and more.
+	- Not all human agents are the same and they have different levels of experience. There can be a lot of training needed, especially when a new agent starts.
 - Conversational Insights
-  - Conversational Insights to gain insights into all your communications with customers (through chatbot agents or human agents).
-  - This tool uses machine learning analytics to provide you with information such as agent and caller sentiment, entity identification, and call topics.
-- Contact center as a service (CCaaS)
-  - CCaaS provides a complete contact center solution. It manages the infrastructure, integrates with CRMs, and offers omnichannel support (consistent experience across all channels, like websites, apps, phone, and text).
-  - CCaaS seamlessly integrates with other Customer Engagement Suite tools, including Conversational Agents for automated support, Agent Assist for real-time agent guidance, and Conversational Insights for valuable data analysis.
+	- Conversational Insights to gain insights into all your communications with customers (through chatbot agents or human agents).
+	- This tool uses machine learning analytics to provide you with information such as agent and caller sentiment, entity identification, and call topics.
+	- Contact center as a service (CCaaS)
+	- CCaaS provides a complete contact center solution. It manages the infrastructure, integrates with CRMs, and offers omnichannel support (consistent experience across all channels, like websites, apps, phone, and text).
+	- CCaaS seamlessly integrates with other Customer Engagement Suite tools, including Conversational Agents for automated support, Agent Assist for real-time agent guidance, and Conversational Insights for valuable data analysis.
   
 
 > ## Google Agentspace
@@ -204,8 +208,8 @@ LLM are also a subset of deep learning.
 > ## Others
 
 - Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that expect a true or correct response, while higher temperatures can lead to more diverse, unexpected, or potentially biased results. With a temperature of 0 the highest probability token is always selected.temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
-- top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees. Top P allows the model to return a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
-- Metaprompting is about creating prompts that guide the AI to generate, modify, or interpret other prompts.
+- top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees.
+- Top P allows the model to return a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
 - Saved info: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies.
 - Gem: Creating a personalized AI assistant with specific instructions and resources.
 
