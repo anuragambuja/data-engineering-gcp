@@ -20,10 +20,10 @@ LLM are also a subset of deep learning.
  	<div align="center"> <img src="https://github.com/user-attachments/assets/378479b8-ac31-4527-a50a-af31882ebc59" width="700" height="300"> </div>
 
 - Gemini is a Google gen AI model that powers many different solutions.
-	- Gemini app
-	- Gemini for Workspace
-	- Gemini for Google Cloud
-
+	- Gemini app: The Gemini app is Google’s generative AI chatbot, where you can get help with writing, planning, learning, and more.
+	- Gemini for Workspace: Gemini for Google Workspace integrates gen AI into familiar Workspace apps, allowing you to do things like compose emails in Gmail, generate images in Slides, and summarize notes in Meet.
+	- Gemini for Google Cloud: Gemini for Google Cloud is your AI assistant for Google Cloud. It can help you write and debug code, manage and optimize cloud applications, analyze data in BigQuery, and strengthen your security posture.
+ 	- NotebookLM allows you to upload your files and then acts as a research assistant, summarizing key points, answering questions, and generating ideas, all while staying grounded in your source material. 
 
 - Terms
 	- Multimodal model: It’s a large foundation model that is capable of processing information from multiple modalities, including text, image, and video. The generated content can also be in multiple modalities.
@@ -36,7 +36,7 @@ LLM are also a subset of deep learning.
 		- One-shot prompting is a method where the LLM is given a single example of the task that it is being asked to perform. For example, if you want the LLM to write a poem, you might provide a single example poem.
 		- Few-shot prompting is a method where the model is given a small number of examples of the task that it is being asked to perform.
 		- Role prompting: Role prompting is a technique used to guide the behavior of LLMs by assigning them a specific role or persona. This can be anything from a business analyst or Shakespearean actor to a helpful customer service agent.
-		- Prompt chaining: Continuing a conversation with the AI, maintaining context.
+		- Prompt chaining: Continuing a conversation with the AI, maintaining context. Engaging in a back and forth conversation with the AI.
 	- Large language models (LLMs): A type of foundation model that is designed to understand and generate human language.
 
 - Google AI Studio and Vertex AI Studio
@@ -211,7 +211,7 @@ LLM are also a subset of deep learning.
 - top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees.
 - Top P allows the model to return a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
 - Saved info: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies.
-- Gem: Creating a personalized AI assistant with specific instructions and resources.
+- Gem: Creating a personalized AI assistant with specific instructions and resources. Gems are personalized AI assistants within Gemini. They provide personalized responses tailored to specific instructions, streamline workflows like templates, prompts, and guided interactions.
 
 
 
