@@ -39,74 +39,88 @@ LLM are also a subset of deep learning.
 	- Secure AI Framework (SAIF): The Secure AI Framework (SAIF) helps organizations manage AI/ML model risks and ensure security.
 
 > ## Layers of Gen AI
+	 
+  ![image](https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44)
 
 - Gen AI powered application: This is the layer that delivers the AI capability to users through interfaces.
-- Agent: This layer utilizes the capabilities of the model layer to perform more complex actions. This layer interacts with the environment, gathers information and makes decisions and executes actions based on the information received. Think of agents as the intelligent pieces within a larger gen AI powered application. They bring specific capabilities to the table.
-  -  Conversational agents: Conversational agents are designed to understand what you mean, not just what you say, and respond in a way that makes sense. eg. Answering questions, Casual conversation etc.
-        `You provide input > The agent understands > The agent calls a tool to gather additional information > The agent generates a response > The agent delivers the response`
-  - Workflow agents: Workflow agents are designed to streamline your work and make sure things get done efficiently and correctly by automating tasks or going through complex processes. e.g. Ecommerce order fulfillment: An agent automatically processes orders, updates inventory, sends shipping notifications, and handles returns.
-  - Agents key elements:
-    - Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such frameworks include ReAct or chain-of-thought (CoT) prompting.
-      - ReAct is a prompting framework that allows the language model to reason and take action on a user query, with or without in-context examples. ReAct, which stands for "reasoning and acting," is like giving an LLM a brain and a pair of hands. It allows the LLM to not only think about a problem but also take actions to solve it. Imagine you're asking an LLM to find you a good Italian restaurant nearby. ReAct can be used in Question-answering, Fact verification, Decision making etc.With ReAct, the LLM can:
+- Agent: This layer utilizes the capabilities of the model layer to perform more complex actions. This layer interacts with the environment, gathers information and makes decisions and executes actions based on the information received. Think of agents as the intelligent pieces within a larger GenAI powered application.
 
-          ![image](https://github.com/user-attachments/assets/5f024de9-f1ab-493d-8ad6-42b15c370da0)
-        - Key components of ReAct:
-          - Think: The LLM generates a thought about the problem, similar to CoT.
-          - Act: The LLM decides what action to take, such as searching the web, accessing a database, or using a specific tool; the LLM specifies the input for the action, like a search query or database command.
-          - Observe: The LLM receives feedback from the action, such as search results or database entries.
-          - Respond: The LLM generates a response, which could involve providing an answer to the user, taking further actions, or formulating a new thought for the next iteration.
+  	![image](https://github.com/user-attachments/assets/1e3fb09a-c04a-473f-9908-552ae796217d)
 
-        - Why is ReAct important?
-          - Dynamic problem solving: ReAct allows LLMs to tackle complex tasks that require interacting with external resources and adapting to new information.
-          - Reduced hallucination: By grounding the LLM's reasoning in real-world data, ReAct can help reduce the risk of generating incorrect or nonsensical information.
-          - Increased trustworthiness: The ability to see the LLM's reasoning process and how it interacts with external sources makes its responses more transparent and trustworthy.
+	- Evolution of Agents:
+		- Deterministic agents (oldest): Same input will always produce same output.
+	   
+			![image](https://github.com/user-attachments/assets/75b9497e-0e12-4858-8479-da0db11344eb)
+	
+	- Generative agents:
+		- without RAG
+		- with RAG (Newest)
+		
+	  ![image](https://github.com/user-attachments/assets/8d1606f2-c324-4517-8c67-26e066045354)
 
-      - Chain-of-thought prompting is a technique where you guide a language model through a problem-solving process by providing examples with intermediate reasoning steps, helping it learn to approach new problems in a more structured and logical way.
-        - Key components of CoT:
-          - Self-consistency: Encouraging the LLM to generate multiple solutions and choose the most consistent one.
-          - Active-prompting: Allowing the LLM to ask clarifying questions or request additional information.
-          - Multimodal CoT: Combining text with other forms of data, like images or videos, to enhance reasoning.
-        - CoT in action:
-          - Complex reasoning tasks: LLMs can use CoT to break down complex problems into smaller, more manageable steps, leading to more accurate solutions in tasks like math word problems or logical reasoning puzzles.
-          - Explanation generation: LLMs can use CoT to generate step-by-step explanations for their answers, making their reasoning process transparent and understandable, which is crucial for building trust and identifying potential errors.
-          - Multi-step planning: LLMs can use CoT to plan and execute complex tasks that require multiple steps, such as writing a story, planning a trip, or debugging code.
+  - Key components of an agent:
+  	1. Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such frameworks include ReAct or chain-of-thought (CoT) prompting.
+		1. ReAct (Reason and Act) is a prompting framework that allows the language model to reason and take action on a user query, with or without in-context examples. ReAct, which stands for "reasoning and acting," is like giving an LLM a brain and a pair of hands. It allows the LLM to not only think about a problem but also take actions to solve it. Imagine you're asking an LLM to find you a good Italian restaurant nearby. ReAct can be used in Question-answering, Fact verification, Decision making etc.With ReAct, the LLM can:
 
-      - while both ReAct and CoT enhance LLM reasoning, they have different strengths:
-        - CoT focuses on internal reasoning, guiding the LLM through a chain of thought.
-        - ReAct focuses on external interaction, allowing the LLM to gather information and take actions in the real world. 
-        
-      - These frameworks can include:
-        - Simple rule-based calculations
-        - Complex thought chains
-        - Machine learning algorithms
-        - Probabilistic reasoning techniques
-    - Tools: Tools are functionalities that allow the agent to interact with its environment. Tools can be anything from accessing and processing data to interacting with software applications or even physical robots. This empowers agents to connect with real-world information and services, much like apps on our phones.
+     		![image](https://github.com/user-attachments/assets/5f024de9-f1ab-493d-8ad6-42b15c370da0)
+
+			- Key components of ReAct:
+			  - Think: The LLM generates a thought about the problem, similar to CoT.
+			  - Act: The LLM decides what action to take, such as searching the web, accessing a database, or using a specific tool; the LLM specifies the input for the action, like a search query or database command.
+			  - Observe: The LLM receives feedback from the action, such as search results or database entries.
+			  - Respond: The LLM generates a response, which could involve providing an answer to the user, taking further actions, or formulating a new thought for the next iteration.
+			- Why is ReAct important?
+			  - Dynamic problem solving: ReAct allows LLMs to tackle complex tasks that require interacting with external resources and adapting to new information.
+			  - Reduced hallucination: By grounding the LLM's reasoning in real-world data, ReAct can help reduce the risk of generating incorrect or nonsensical information.
+			  - Increased trustworthiness: The ability to see the LLM's reasoning process and how it interacts with external sources makes its responses more transparent and trustworthy.
+
+		2. Chain-of-thought (CoT) prompting is a technique where you guide a language model through a problem-solving process by providing examples with intermediate reasoning steps, helping it learn to approach new problems in a more structured and logical way.
+			- Key components of CoT:
+			  - Self-consistency: Encouraging the LLM to generate multiple solutions and choose the most consistent one.
+			  - Active-prompting: Allowing the LLM to ask clarifying questions or request additional information.
+			  - Multimodal CoT: Combining text with other forms of data, like images or videos, to enhance reasoning.
+			- CoT in action:
+			  - Complex reasoning tasks: LLMs can use CoT to break down complex problems into smaller, more manageable steps, leading to more accurate solutions in tasks like math word problems or logical reasoning puzzles.
+			  - Explanation generation: LLMs can use CoT to generate step-by-step explanations for their answers, making their reasoning process transparent and understandable, which is crucial for building trust and identifying potential errors.
+			  - Multi-step planning: LLMs can use CoT to plan and execute complex tasks that require multiple steps, such as writing a story, planning a trip, or debugging code.
+
+			- while both ReAct and CoT enhance LLM reasoning, they have different strengths:
+				- CoT focuses on internal reasoning, guiding the LLM through a chain of thought.
+				- ReAct focuses on external interaction, allowing the LLM to gather information and take actions in the real world. 
+    
+    2. Tools: Tools are functionalities that allow the agent to interact with its environment. Tools can be anything from accessing and processing data to interacting with software applications or even physical robots. This empowers agents to connect with real-world information and services, much like apps on our phones.
       - Types of agent tools:
         - Extensions (APIs): Extensions provide a standardized way for agents to use APIs, regardless of the API's specific design. This simplifies API interaction, making it easier for agents to access external services and data. Example: An agent designed to book travel might use an extension to interact with a travel company’s API.
         - Functions: Functions represent specific actions the agent can perform. An agent's reasoning system selects the appropriate function based on the task at hand. Example: A "calculate_price" function might take flight details and passenger information as input and return the total cost.
         - Data stores: Data stores provide agents with access to information. This can include real-time data, historical data, or knowledge bases. Data stores ensure that the agent's responses are accurate, relevant, and up-to-date. Example: An agent might use a data store to access current weather conditions, stock prices, or a database of customer information.
         - Plugins: Plugins extend the agent's capabilities by adding new skills or integrations. They can connect the agent to specific services, provide access to specialized tools, or enable interaction with particular platforms. Example: A plugin could enable an agent to interact with a calendar application, allowing it to schedule appointments. 
-   
-        
-    - key components of an agent:
-      - Foundational Model: This is the underlying language model (LLM) that powers the agent. It could be a small or large language model, a Google model like Gemini, or a model from another provider. The key is to select a model with training data relevant to the agent's intended use case.
-      - Tools: Tools enable the agent to interact with the outside world. These can include extensions that connect to APIs, functions that act as mock API calls, and data stores like vector databases. Tools allow the agent to not only observe the world but also act upon it.
+    
+  - Few Types of Agents:
+	-  Conversational agents: Conversational agents are designed to understand what you mean, not just what you say, and respond in a way that makes sense. eg. Answering questions, Casual conversation etc.
+	  ```
+	     You provide input >
+		The agent understands >
+			The agent calls a tool to gather additional information >
+				The agent generates a response >
+					The agent delivers the response
+	  ```
+	
+	- Workflow agents: Workflow agents are designed to streamline your work and make sure things get done efficiently and correctly by automating tasks or going through complex processes. e.g. Ecommerce order fulfillment: An agent automatically processes orders, updates inventory, sends shipping notifications, and handles returns.
 
-      - Reasoning Loop: This is the core of the agent, responsible for making decisions and taking actions. It's an iterative process where the agent considers its goal, the available tools, and the information it has gathered. Frameworks like ReAct (Reason and Act) are commonly used to guide the reasoning process.
-    - Evolution of Agents:
-      - Deterministic agents (oldest): Same input will always produce same output.
-          ![image](https://github.com/user-attachments/assets/75b9497e-0e12-4858-8479-da0db11344eb)
-      - Generative agents:
-        - without RAG
-        - with RAG (Newest)
-        
-        ![image](https://github.com/user-attachments/assets/8d1606f2-c324-4517-8c67-26e066045354)
 
-- Platform: This is the layer that consists of tools and services that help with building and deploying AI models. This includes model training platforms like Vertex AI and data management tools. 
+- Platform: This is the layer that consists of tools and services that help with building and deploying AI models. This includes model training platforms like Vertex AI and data management tools.
+ - Vertex AI:
+   - Vertex AI is Google Cloud's unified machine learning (ML) platform designed to streamline the entire ML workflow.
+   - It provides the infrastructure, tools, and pre-trained models you need to build, deploy, and manage your ML and generative AI solutions.
+   - Vertex AI gives you options for how to handle AI models for your project.
+	- Model Garden: Pick from existing Google, third-party, or open-source models.
+ 	- Model Builder: Train and use your own models. Go fully custom and create and train models at scale using an ML framework. Or use AutoML to create and train models with minimal technical knowledge and effort.
 - Model: The model is where the brains of the AI system reside. It comprises various algorithms that learn patterns from data and can make predictions or generate new content. Examples are large language models (LLMs) like Gemini, image recognition models, and recommendation systems.
 - Infrastructure: The foundation of any AI system, comprising the hardware (physical servers, cloud computing resources, specialized chips like GPUs and TPUs) and software (operating systems, networking) that provide the necessary computing power, storage, and connectivity to train, deploy, and scale AI models.
-
-  ![image](https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44)
+	- `AI on the edge`: You can run AI solutions on infrastructure (devices or servers) closer to where the action is happening.
+	- Google provides tools like `Lite Runtime (LiteRT)` to help developers deploy AI models on edge devices.
+	- `Gemini Nano` is Google's most efficient and compact AI model, specifically designed to run on devices.
+ 
 
 
 
