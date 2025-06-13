@@ -38,11 +38,15 @@ LLM are also a subset of deep learning.
 		- Role prompting: Role prompting is a technique used to guide the behavior of LLMs by assigning them a specific role or persona. This can be anything from a business analyst or Shakespearean actor to a helpful customer service agent.
 		- Prompt chaining: Continuing a conversation with the AI, maintaining context.
 	- Large language models (LLMs): A type of foundation model that is designed to understand and generate human language.
-	- Secure AI Framework (SAIF): The Secure AI Framework (SAIF) helps organizations manage AI/ML model risks and ensure security.
+
+- Google AI Studio and Vertex AI Studio
+	- Both Google AI Studio and Vertex AI Studio allow you to experiment with and utilize Google's Gemini API, but they cater to different needs and levels of expertise.
+
+  		<div align="center"> <img src="https://github.com/user-attachments/assets/9effa349-a5a9-4967-bc7e-0c37f383b252" width="700" height="300"> </div>
 
 
 > ## Layers of Gen AI
-<div align="center"> <img src="https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44" alt="Alt Text" width="700" height="300"> </div>
+<div align="center"> <img src="https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44" width="700" height="300"> </div>
 
 - Gen AI powered application: This is the layer that delivers the AI capability to users through interfaces.
 - Agent: This layer utilizes the capabilities of the model layer to perform more complex actions. This layer interacts with the environment, gathers information and makes decisions and executes actions based on the information received. Think of agents as the intelligent pieces within a larger GenAI powered application.
@@ -123,6 +127,16 @@ LLM are also a subset of deep learning.
 	- `AI on the edge`: You can run AI solutions on infrastructure (devices or servers) closer to where the action is happening.
 	- Google provides tools like `Lite Runtime (LiteRT)` to help developers deploy AI models on edge devices.
 	- `Gemini Nano` is Google's most efficient and compact AI model, specifically designed to run on devices.
+
+
+> ## Data Quality
+- There are five factors to focus on when thinking about data quality.
+  - Accuracy
+  - Completeness: Completeness refers to the size of a dataset as well as representation within the dataset. The size of the dataset is important because the model needs enough to make an accurate prediction. 
+  - Representative: Data needs to be representative and inclusive, otherwise it can lead to skewed samples and biased outcomes. 
+  - Consistency: The data must be relevant to the task the AI is designed to perform.
+  - Relevance: 
+- Secure AI Framework (SAIF) is used to establish security standards for building and deploying AI responsibly, addressing the unique challenges and threats in the AI landscape.
 
 
 > ## Pricing for using models
