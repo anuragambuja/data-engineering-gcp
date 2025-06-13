@@ -7,7 +7,6 @@
   D. Develop fairness assessments for the gen AI model.
 
 Ans: C.
-
 A is incorrect because, while a larger and more diverse dataset could potentially improve the model's accuracy and reduce bias, it does not inherently make the model's screening process transparent. Recruiters would still lack insight into why certain candidates are being shortlisted over others. While data quality is essential for ethical AI, it doesn't automatically provide explainability.
 B is incorrect because fine-tuning aims to optimize the model's performance on the screening task, but it doesn't necessarily reveal how the model is making its choices. Even if the shortlist improves after fine-tuning, the lack of transparency regarding the selection criteria remains. Fine-tuning focuses on improving task-specific performance, not on making the model's reasoning understandable.
 C is correct because it directly tackles the issue of unclear decision-making. Implementing explainable gen AI techniques would allow the HR department and recruiters to understand the factors that the AI model is using to rank and exclude candidates. This aligns with the principle that transparency is paramount for ethical applications and that users need to understand how AI systems make decisions. Explainable AI makes the decision-making processes of AI models transparent and understandable, which is crucial for building trust and identifying potential issues.
@@ -21,8 +20,11 @@ D is incorrect because, while developing fairness assessments is important for e
   C. LLMs have strong inherent logical reasoning and problem-solving abilities without extra prompting.
   D. LLMs are trained on vast datasets, enabling broad language and context understanding, and adaptability across many tasks.
  
-Ans: 
-
+Ans: D.
+A is incorrect because, while LLMs can be applied to specific tasks, their core strength lies in their general language understanding derived from broad training, enabling them to handle a variety of applications rather than being limited to highly specialized areas.
+B is incorrect because LLMs are known for requiring vast amounts of data for effective training to achieve their broad capabilities. They are not typically effective with limited datasets without fine-tuning on more specific data.
+C is incorrect because, while LLMs can exhibit reasoning capabilities, this often requires effective prompt engineering or advanced techniques like chain-of-thought prompting. They do not inherently possess strong logical reasoning without guidance. Additionally, limitations such as "hallucinations," indicating they are not flawless problem-solvers.
+D is correct because foundation models, including LLMs, are trained on massive amounts of diverse data (text, images, and code). This broad training allows them to develop a deep understanding of the data and be adapted to many different tasks. The flexibility of foundation models, including LLMs, to support a wide range of use cases stems directly from this training on diverse data.
 ```
 
 ```
@@ -32,8 +34,11 @@ Ans:
   C. Unsupervised learning
   D. Reinforcement learning
  
-Ans: 
-
+Ans: D. 
+A is incorrect because supervised learning requires labeled data, where each input is paired with a correct output. This scenario does not involve pre-labeled optimal routes; the robot learns through trial and error.
+B is incorrect because, while deep learning can be a component of reinforcement learning, it is not the overarching learning paradigm described. Deep learning refers to neural networks with multiple layers. Deep learning can be used to implement the function that learns the optimal policy in reinforcement learning. However, the learning process itself is defined by the reward and penalty mechanism.
+C is incorrect because unsupervised learning focuses on finding patterns in unlabeled data without specific goals or feedback. The robot's learning is goal-oriented (optimizing delivery routes) and driven by the feedback it receives.
+D is correct because the robot learns through interaction with its environment and by receiving rewards (positive scores) and penalties (negative scores) for its actions. That is the fundamental process of reinforcement learning. Reinforcement learning is all about learning through interaction and feedback, where an algorithm learns to maximize rewards and minimize penalties by interacting with its environment.
 ```
 
 ```
@@ -43,8 +48,11 @@ Ans:
   C. To be a smart system that can analyze, use tools, and make decisions to reach goals.
   D. To be a central storage place for the data that AI models use.
 
-Ans: 
-
+Ans: C.
+A is incorrect because, while infrastructure is crucial for AI, its primary function is to provide the foundational computing resources, not to act as the intelligent decision-making component of an agent.
+B is incorrect because, while platforms like Vertex AI Studio offer interfaces for interacting with models, the primary function of an agent is the autonomous reasoning and action, not just the user interface. Agents use models, but they are more than just an interface.
+C is correct because AI agents are defined as entities that observe, act, and achieve goals by incorporating a reasoning loop and tools. A gen AI agent is an application that tries to achieve a goal by observing the world and acting upon it using the tools it has at its disposal. This highlights their ability to analyze situations and make decisions to fulfill objectives without constant human oversight. They leverage tools to interact with their environment and perform actions.
+D is incorrect because, while data storage is essential for AI, it is a separate function from the agent's ability to process information, reason, and take actions. Agents utilize data stores as tools, but their core function is not data management itself.
 ```
 
 ```
@@ -54,8 +62,11 @@ Ans:
   C. Veo
   D. Imagen
 
-Ans: 
-
+Ans: D.
+A is incorrect because, while Gemini is a multimodal model capable of understanding images and text, its primary strength for this specific scenario isn't solely focused on generating high-quality images from text as Imagen is.
+B is incorrect because Gemma is a family of lightweight, open models built upon the research behind Gemini, but it is not specifically highlighted as the primary Google model for high-quality text-to-image generation.
+C is incorrect because Veo is a model designed for generating video content from text or still images, not primarily for creating still photorealistic images from text descriptions.
+D is correct because Imagen is a powerful text-to-image diffusion model that excels at generating high-quality images from textual descriptions. This directly addresses the agency's need to create photorealistic images from text prompts.
 ```
 
 ```
@@ -65,8 +76,11 @@ Ans:
   C. Google Cloud's strategy prioritizing fully managed AI services that simplify the user experience
   D. Google Cloud's primary focus on automating AI workflows
 
-Ans: 
-
+Ans: A.
+A is correct because Google Cloud has an open approach and recognize the benefits of Google Cloud's open approach. This openness implies support for customer choice across different offerings. This directly mitigates concerns about vendor lock-in and promotes flexibility in their technology stack. Open standards allow users to move services between vendors more easily.
+B is incorrect because a strict adherence to proprietary technologies would exacerbate concerns about vendor lock-in, directly contradicting the company's priority for flexibility.
+C is incorrect because, while fully managed services offer convenience, they can potentially limit user control and choice. This would not align with the company's desire for flexibility and avoiding vendor lock-in.
+D is incorrect because, while automation can streamline workflows, it doesn't inherently address the concern of vendor lock-in. The company's priority is maintaining flexibility and choice among different AI technologies.
 ```
 
 ```
@@ -76,8 +90,11 @@ Ans:
   C. Vertex AI Search
   D. Gemini for Google Workspace
 
-Ans: 
-
+Ans: A.
+A is correct because NotebookLM is specifically designed as an AI-first notebook grounded in user-provided documents to help users gain insights faster. It allows users to upload multiple documents, ask questions about the content, request summaries, and save key insights as notes. This directly addresses the research team's need to analyze several documents, understand their findings, identify connections, and organize information efficiently. NotebookLM's focus on source-based answers ensures accuracy and the ability to trace back to the original information.
+B is incorrect. The Gemini app is Google’s generative AI chatbot that can help with writing, planning, learning, and more. However, it is not specifically designed for the in-depth analysis and organization of insights from a specific set of uploaded research documents in the way NotebookLM is.
+C is incorrect because Vertex AI Search is designed for building search applications over structured and unstructured data. While it can help find information within documents, it does not offer the focused Q&A, summarization, and note-taking capabilities of NotebookLM for a specific research task.
+D is incorrect because Gemini for Google Workspace integrates generative AI into productivity tools like Docs and Drive. While helpful for individual document-level tasks, it does not provide the dedicated, multi-document analysis and insight organization features of NotebookLM for a research project involving multiple complex documents.
 ```
 
 ```
@@ -87,8 +104,11 @@ Ans:
   C. Vertex AI Search
   D. Conversational Agents
 
-Ans:
-
+Ans: B.
+A is incorrect because Gemini for Google Workspace integrates generative AI features into productivity tools like Gmail, Docs, and Sheets to enhance individual and collaborative work within those applications. While helpful for tasks within these tools, it doesn't provide a centralized solution for accessing information across multiple disparate internal systems like Agentspace.
+B is correct because Google Agentspace is designed to help teams use their company's information more effectively by creating customized agents that can access and understand data from various sources, regardless of where that data is stored. This directly addresses the grocery store's need for a central platform where employees can easily find information across their sales, inventory, and marketing systems to improve decision-making and operational efficiency.
+C is incorrect because Vertex AI Search is designed for building search applications over structured and unstructured data to help users find specific information. While it could potentially search across the grocery store's systems, it doesn't offer the broader capabilities of Google Agentspace to create customized AI assistants that can proactively provide insights and automate information retrieval from various systems.
+D is incorrect because Conversational Agents are primarily used for building customer-facing chatbots to automate interactions and answer customer inquiries. While valuable for customer service, they are not the most suitable solution for improving internal employee access to information across various internal systems, which is the core need in this scenario.
 ```
 
 ```
