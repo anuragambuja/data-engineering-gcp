@@ -40,28 +40,26 @@ LLM are also a subset of deep learning.
 
 > ## Layers of Gen AI
 	 
-  ![image](https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44)
+  <img src="https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44" alt="Alt Text" width="800" height="300">
 
 - Gen AI powered application: This is the layer that delivers the AI capability to users through interfaces.
 - Agent: This layer utilizes the capabilities of the model layer to perform more complex actions. This layer interacts with the environment, gathers information and makes decisions and executes actions based on the information received. Think of agents as the intelligent pieces within a larger GenAI powered application.
-
-  	![image](https://github.com/user-attachments/assets/1e3fb09a-c04a-473f-9908-552ae796217d)
+	<img src="https://github.com/user-attachments/assets/1e3fb09a-c04a-473f-9908-552ae796217d" width="800" height="300">
 
 	- Evolution of Agents:
 		- Deterministic agents (oldest): Same input will always produce same output.
-	   
-			![image](https://github.com/user-attachments/assets/75b9497e-0e12-4858-8479-da0db11344eb)
+	   		<img src="https://github.com/user-attachments/assets/75b9497e-0e12-4858-8479-da0db11344eb" width="800" height="300">
 	
 	- Generative agents:
 		- without RAG
 		- with RAG (Newest)
-		
-	  ![image](https://github.com/user-attachments/assets/8d1606f2-c324-4517-8c67-26e066045354)
+ 
+		<img src="https://github.com/user-attachments/assets/8d1606f2-c324-4517-8c67-26e066045354" width="800" height="300">
 
   - Key components of an agent:
   	1. Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such frameworks include ReAct or chain-of-thought (CoT) prompting.
 		1. ReAct (Reason and Act) is a prompting framework that allows the language model to reason and take action on a user query, with or without in-context examples. ReAct, which stands for "reasoning and acting," is like giving an LLM a brain and a pair of hands. It allows the LLM to not only think about a problem but also take actions to solve it. Imagine you're asking an LLM to find you a good Italian restaurant nearby. ReAct can be used in Question-answering, Fact verification, Decision making etc.With ReAct, the LLM can:
-
+		<img src="" width="800" height="300">
      		![image](https://github.com/user-attachments/assets/5f024de9-f1ab-493d-8ad6-42b15c370da0)
 
 			- Key components of ReAct:
