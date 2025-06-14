@@ -68,6 +68,7 @@
       - Retrieval: The AI model first retrieves relevant information from a vast knowledge base (like a database, a set of documents, or even the entire web). This retrieval process is often powered by sophisticated techniques, like semantic search or vector databases.
       - Augmentation: The retrieved information is then incorporated (or "augmented") into the prompt that is fed to the LLM. This augmented prompt now contains both the user's original query and the relevant context retrieved from external sources.
       - Generation: The model then uses this retrieved information to generate the final output. This could be anything from answering a question to writing a creative story.
+      - Iteration (optional): The LLM can iterate on the retrieval process as necessary.
    
       
   - Prompt engineering: This involves crafting precise prompts to guide the model towards desired outputs. It refines results by understanding the factors that influence a model's responses. However, prompting is limited by the model's existing knowledge; it can't conjure information it hasn't learned.
