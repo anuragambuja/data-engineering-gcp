@@ -58,6 +58,7 @@
   - Fairness: These evaluations typically focus on specific categories of bias, potentially overlooking other forms of prejudice. Consequently, these benchmarks do not provide a complete picture of all potential risks associated with the models' outputs, highlighting the ongoing challenge of achieving truly equitable AI.
   - Hallucinations: Because foundation models can't verify information against external sources, they may generate factually incorrect or nonsensical responses. .
   - Edge cases: Rare and atypical scenarios can expose a model's weaknesses, leading to errors, misinterpretations, and unexpected results.
+
 - Techniques to overcome limitations:
   - Grounding: Grounding is the process of connecting the AI's output to verifiable sources of information—like giving AI a reality check. Grounding also anchors responses, ensuring the AI's answers are rooted in your provided data sources
     - Retrieval-augmented generation (RAG): RAG is a grounding method that uses search to find relevant information from a knowledge base and provides that information to the LLM, giving it necessary context. The first step is retrieval. When you ask an AI a question, RAG uses a search engine to find relevant information. This search engine uses an index that understands the semantic meaning of the text, not just keywords. This means it finds information based on meaning, ensuring higher relevance. The retrieved information is then added to the prompt given to the AI. This is the augmentation phase. The AI then uses this augmented prompt, along with its existing knowledge, to generate a response. This is referred to as the generation phase. One way to start using a RAG system without any coding or database development is with a tool called NotebookLM.
@@ -74,6 +75,11 @@
   - Prompt engineering: This involves crafting precise prompts to guide the model towards desired outputs. It refines results by understanding the factors that influence a model's responses. However, prompting is limited by the model's existing knowledge; it can't conjure information it hasn't learned.
   - Fine-tuning: Pre-trained models are powerful, but they're designed for general purposes. Tuning helps them excel in specific areas. Tuning involves further training a pre-trained or foundation model on a new dataset specific to your task. This process adjusts the model's parameters, making it more specialized for your needs. e.g. Fine-tuning a translation model to translate between specific languages or domains.
   - Humans in the loop (HITL): HITL systems integrate human input and feedback directly into the ML process.
+    - Content moderation: HITL ensures usergenerated content is moderated contextually, catching harmful material algorithms might overlook.
+    - Sensitive applications: HITL provides critical oversight in fields like healthcare and finance, ensuring accuracy and reducing risks from automated systems.
+    - High risk decision-making: For high-stakes decisions, HITL can help safeguard accuracy and accountability through human review of ML model outputs.
+    - Pre-generation review: Human experts review and validate ML outputs before deployment, catching errors or biases before user impact.
+    - Post-generation review: Continuous human review and feedback after deployment help ML models improve and adapt to changing contexts and user needs.
 
     ![image](https://github.com/user-attachments/assets/add9336e-3404-442e-a359-bcc2d41d9b88)
 
@@ -112,8 +118,14 @@
   - Output length: This determines the maximum length of the generated text. You can set it to a specific number of words or characters or allow the model to generate text until it reaches a natural stopping point.
 
 
-
-
+> ## Managing your model
+- Google Cloud offers tools for managing the entire lifecycle of ML models. This includes the following:
+  - Versioning: Keep track of different versions of the model with Vertex AI Model Registry.
+  - Performance tracking: Review the model metrics to check the model's performance.
+  - Drift monitoring: Watch for changes in the model's accuracy over time with Vertex AI Model Monitoring.
+  - Data management: Use Vertex AI Feature Store to manage the data features the model uses.
+  - Storage: Use Vertex AI Model Garden to store and organize the models in one place.
+  - Automate: Use Vertex AI Pipelines to automate your machine learning tasks.
 
 
 
