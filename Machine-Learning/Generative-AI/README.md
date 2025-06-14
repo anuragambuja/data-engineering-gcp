@@ -31,19 +31,26 @@ LLM are also a subset of deep learning.
 		- Trained on diverse data.
 		- Flexible to a wide range of use cases.
 		- Adaptable to specialized domains through additional, targeted training.
-	- Prompt: A prompt is a natural language request submitted to a model in order to receive a response.
+
+  	- Prompt: A prompt is a natural language request submitted to a model in order to receive a response.
 		- Zero-shot prompting is a method where the model is given a prompt that describes the task without additional examples. For example, if you want the LLM to answer a question, you just prompt "What is prompt design?"
 		- One-shot prompting is a method where the LLM is given a single example of the task that it is being asked to perform. For example, if you want the LLM to write a poem, you might provide a single example poem.
 		- Few-shot prompting is a method where the model is given a small number of examples of the task that it is being asked to perform.
 		- Role prompting: Role prompting is a technique used to guide the behavior of LLMs by assigning them a specific role or persona. This can be anything from a business analyst or Shakespearean actor to a helpful customer service agent.
 		- Prompt chaining: Continuing a conversation with the AI, maintaining context. Engaging in a back and forth conversation with the AI.
-	- Large language models (LLMs): A type of foundation model that is designed to understand and generate human language.
+
+  	- Large language models (LLMs): A type of foundation model that is designed to understand and generate human language.
 
 - Google AI Studio and Vertex AI Studio
 	- Both Google AI Studio and Vertex AI Studio allow you to experiment with and utilize Google's Gemini API, but they cater to different needs and levels of expertise.
 
   		<div align="center"> <img src="https://github.com/user-attachments/assets/9effa349-a5a9-4967-bc7e-0c37f383b252" width="700" height="300"> </div>
 
+- Streamlining prompting workflows
+	- Reusing prompts: Saving prompts as templates for repeated use.
+	- Leveraging prompt chaining: Continuing conversations within the same chatbot to maintain context.
+	- Saved info: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies. Storing specific information for the model to use consistently.
+	- Gems: Creating a personalized AI assistant with specific instructions and resources. Gems are personalized AI assistants within Gemini. They provide personalized responses tailored to specific instructions, streamline workflows like templates, prompts, and guided interactions.
 
 > ## Layers of Gen AI
 <div align="center"> <img src="https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44" width="600" height="200"> </div>
@@ -225,6 +232,14 @@ LLM are also a subset of deep learning.
 	- Understand the sentiment of text, classify content, and extract important entities
 
 
+> ## Sampling parameters
+- Token count: This represents meaningful chunks of text (like words and punctuation).
+- Temperature: Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that expect a true or correct response, while higher temperatures can lead to more diverse, unexpected, or potentially biased results. With a temperature of 0 the highest probability token is always selected.temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
+- Top-p (nucleus sampling): The cumulative probability of the most likely tokens considered during text generation. This is another way to control the randomness of the model's output. Top P allows the model to return a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
+- Top-k: Top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees.
+- Safety settings: These settings allow you to filter out potentially harmful or inappropriate content from the model's output.
+- Output length: This determines the maximum length of the generated text.
+
 
 
 
@@ -235,15 +250,6 @@ LLM are also a subset of deep learning.
 
 
 > ## Others
-
-- Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that expect a true or correct response, while higher temperatures can lead to more diverse, unexpected, or potentially biased results. With a temperature of 0 the highest probability token is always selected.temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
-- top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees.
-- Top P allows the model to return a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
-- Saved info: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies.
-- Gem: Creating a personalized AI assistant with specific instructions and resources. Gems are personalized AI assistants within Gemini. They provide personalized responses tailored to specific instructions, streamline workflows like templates, prompts, and guided interactions.
-
-
-
 - Model Tuning
 
   ![image](https://github.com/user-attachments/assets/b3002888-d0b6-4ae3-b8a6-20aa08a7dc14)
