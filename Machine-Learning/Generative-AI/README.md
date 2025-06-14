@@ -312,35 +312,10 @@ There are three main concerns on large language models, hallucinations, factuali
 
 	https://github.com/GoogleCloudPlatform/generative-ai/blob/main/gemini/getting-started/intro_gemini_python.ipynb
 
-
-
-> ## Attention Mechanism
-- Attention Mechanism is a technique which allows a neural network to focus on specific parts of an input sequence. This is done by assigning weights to different parts of the input sequence with the most important parts receiving the highest weights. The weighted sum of the input is then used as the input to the next layer of the neural network
-- The attention mechanism lets the decoder focus on specific parts of the input sequence, which can improve the accuracy of the translation.
-- The two main steps of the attention mechanism
-	- Calculating the attention weights
- 	- Generating the context vector
-	  
-- Traditional RNN encoder-decoder
-
-	![image](https://github.com/user-attachments/assets/f2de56bd-d135-4b1b-938b-84152de6c2f2)
-
-- Attention model differs from a traditional model in 2 main ways:
-	- Encoder passes more data to decoder.
-
-		![image](https://github.com/user-attachments/assets/8f62a9bd-c4da-4620-a1e9-876190597ad6)
-
-	- Decoder Takes extra step before producing the output
-
-
-> ## History of AI
-
-
-
 - Types of AI Models:
   - Predictive AI: Used to make predictions or classifications based on input data
   - Generative AI: Creates new data based on the patterns it has learned from training data
--   
+   
 
 
 
