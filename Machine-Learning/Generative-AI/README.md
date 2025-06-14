@@ -198,6 +198,31 @@ LLM are also a subset of deep learning.
 - You can think of Agentspace like your personal AI assistant for work. It helps employees find information, understand data, and automate tasks. It is designed to increase productivity for teams in a variety of fields like marketing, sales, HR, software, and research and development.
 
 
+> ## Google Cloud's generative AI API's offerings
+- Speech-to-Text API
+	- The API converts speech into text.
+	- It also transcribes audio and video content.
+- Text-to-Speech API
+  	- It converts text to natural-sounding speech.
+	- The API also creates voice user interfaces and personalized communication.
+- Translation API
+  	- The Translation API translates text, documents, websites, audio and video files.
+- Document Translation API
+  	- It translates formatted documents while keeping the original layout.
+- Document AI API
+	- The Document AI API extracts data from varied formats.
+	- It automates data capture and document processing.
+	- The API can also summarize documents.
+- Cloud Vision API
+	- The API analyzes image content, tagging images based on detected objects and text.
+	- It can also identify faces and landmarks.
+	- The API supports use cases like content moderation and visual search.
+- Cloud Video Intelligence API
+	- Allows developers to analyze video content and extract meaningful info
+	- Content recommendation, video search, and media analysis
+- Natural Language API
+	- Helps derive insights from unstructured text
+	- Understand the sentiment of text, classify content, and extract important entities
 
 
 
