@@ -46,12 +46,12 @@ LLM are also a subset of deep learning.
 
 
 > ## Layers of Gen AI
-<div align="center"> <img src="https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44" width="700" height="300"> </div>
+<div align="center"> <img src="https://github.com/user-attachments/assets/1284c20d-d811-45ea-9d37-0d5e37902d44" width="600" height="200"> </div>
 
 - Gen AI powered application: This is the layer that delivers the AI capability to users through interfaces.
 - Agent: This layer utilizes the capabilities of the model layer to perform more complex actions. This layer interacts with the environment, gathers information and makes decisions and executes actions based on the information received. Think of agents as the intelligent pieces within a larger GenAI powered application.
-	<div align="center"> <img src="https://github.com/user-attachments/assets/1e3fb09a-c04a-473f-9908-552ae796217d" width="700" height="300"> </div>
-	
+	<div align="center"> <img src="https://github.com/user-attachments/assets/ee625c05-59ad-47f1-992a-589696565731" width="500" height="200"> </div>
+
  	- Evolution of Agents:
 		- Deterministic agents (oldest): Agents that are built with predefined paths and actions. Same input will always produce same output.
 			<div align="center"><img src="https://github.com/user-attachments/assets/75b9497e-0e12-4858-8479-da0db11344eb" width="500" height="200"> </div>	
@@ -59,7 +59,11 @@ LLM are also a subset of deep learning.
 	  	- Generative agents:Agents that are defined with natural language using LLMs to give a real conversational feel to your chatbot. These can be without RAG and with RAG(Newest)
 			<div align="center"><img src="https://github.com/user-attachments/assets/8d1606f2-c324-4517-8c67-26e066045354" width="500" height="200"> </div>
 
+   		- Hybrid Agents: These agents combine both deterministic and generative capabilities, and this combination makes them very powerful.
+
 	- Key components of an agent:
+   		<div align="center"> <img src="https://github.com/user-attachments/assets/1e3fb09a-c04a-473f-9908-552ae796217d" width="700" height="300"> </div>
+     
 		1. Reasoning loop: The reasoning loop is the agent's "thinking process." It's a continuous cycle of observing, interpreting, planning, and acting. This iterative process enables agents to analyze situations, plan actions, and adapt based on outcomes. The reasoning loop often utilizes advanced prompt engineering frameworks to guide its decision-making process. Examples of such Prompt engineering techniques include ReAct, chain-of-thought (CoT) prompting, Metaprompting.
 
   			- ReAct (Reason and Act) is a prompting framework that allows the language model to reason and take action on a user query, with or without in-context examples. ReAct, which stands for "reasoning and acting," is like giving an LLM a brain and a pair of hands. It allows the LLM to not only think about a problem but also take actions to solve it. Imagine you're asking an LLM to find you a good Italian restaurant nearby. ReAct can be used in Question-answering, Fact verification, Decision making etc.With ReAct, the LLM can:
