@@ -17,6 +17,12 @@
 - RNN (recurrent neural networks)
 - LLM (large language models)
 
+- Deep Leaning models:
+1. Discriminative model: used to classify or predict labels for data. These models are typically trainied on the data set of labeled data points and they learn the relationship between the features of the data points and the labels. Once it is tranined, it can be used to predict the label for new data points. 
+2. Generative Model: generated new data instances based on a leaned probability distribution of existing data. Generative models generate new contents. 
+
+
+
 > ## Attention Mechanism
 - Attention Mechanism is a technique which allows a neural network to focus on specific parts of an input sequence. This is done by assigning weights to different parts of the input sequence with the most important parts receiving the highest weights. The weighted sum of the input is then used as the input to the next layer of the neural network
 - The attention mechanism lets the decoder focus on specific parts of the input sequence, which can improve the accuracy of the translation.
