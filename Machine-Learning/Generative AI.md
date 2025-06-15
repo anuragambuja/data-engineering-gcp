@@ -26,16 +26,7 @@
 	- Vertical solutions, which focus on specific industries
  	- horizontal solutions, which solve problems across industries
 
-- Streamlining prompting workflows
-	- Reusing prompts: Saving prompts as templates for repeated use.
-	- Leveraging prompt chaining: Continuing conversations within the same chatbot to maintain context.
-	- Saved info: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies. Storing specific information for the model to use consistently.
-	- Gems: Gems are personalized AI assistants within Gemini. They provide personalized responses tailored to specific instructions, streamline workflows like templates, prompts, and guided interactions.Gems are AI assistants that can process information and reason over complex ideas within the context of your chosen task.
-		- Gems can be tailored with specific instructions and information. This allows them to provide responses that are more relevant to your needs and preferences within that particular use case.
-		- Gems can help you streamline repetitive tasks by providing templates, prompts, or guided interactions. This can save you time and effort when working on familiar projects or activities.
-		- You can set the context for a Gem, like giving it background information or specific instructions. Then, you can start multiple chats with that Gem, each with its own focus and flow. These chats remain separate, so information from one won't spill over into another. It's like having different conversations with the same expert, each tailored to a specific purpose.
 
- 
 > ## Foundation model
 - Foundation models are large-scale, general-purpose models trained on a massive amount of data. Examples: Gemini, Imagen, Chirp
 - Foundation models, like other AI models, take in inputs, which are called prompts, to produce outputs.
@@ -82,11 +73,18 @@
    
       
 	2. Prompt engineering: A prompt is a natural language request submitted to a model in order to receive a response. This involves crafting precise prompts to guide the model towards desired outputs. It refines results by understanding the factors that influence a model's responses. However, prompting is limited by the model's existing knowledge; it can't conjure information it hasn't learned.
-		- Zero-shot prompting is a method where the model is given a prompt that describes the task without additional examples. For example, if you want the LLM to answer a question, you just prompt "What is prompt design?"
-		- One-shot prompting is a method where the LLM is given a single example of the task that it is being asked to perform. For example, if you want the LLM to write a poem, you might provide a single example poem.
-		- Few-shot prompting is a method where the model is given a small number of examples of the task that it is being asked to perform.
-		- Role prompting: Role prompting is a technique used to guide the behavior of LLMs by assigning them a specific role or persona. This can be anything from a business analyst or Shakespearean actor to a helpful customer service agent.
-		- Prompt chaining: Continuing a conversation with the AI, maintaining context. Engaging in a back and forth conversation with the AI.
+		- `Zero-shot prompting` is a method where the model is given a prompt that describes the task without additional examples. For example, if you want the LLM to answer a question, you just prompt "What is prompt design?"
+		- `One-shot prompting` is a method where the LLM is given a single example of the task that it is being asked to perform. For example, if you want the LLM to write a poem, you might provide a single example poem.
+		- `Few-shot prompting` is a method where the model is given a small number of examples of the task that it is being asked to perform.
+		- `Role prompting`: Role prompting is a technique used to guide the behavior of LLMs by assigning them a specific role or persona. This can be anything from a business analyst or Shakespearean actor to a helpful customer service agent.
+		- `Prompt chaining`: Continuing a conversation with the AI, maintaining context. Engaging in a back and forth conversation with the AI.
+		- `Reusing prompts`: Saving prompts as templates for repeated use.
+		- `Saved info`: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies. Storing specific information for the model to use consistently.
+		- `Gems`: Gems are personalized AI assistants within Gemini. They provide personalized responses tailored to specific instructions, streamline workflows like templates, prompts, and guided interactions.Gems are AI assistants that can process information and reason over complex ideas within the context of your chosen task.
+			- Gems can be tailored with specific instructions and information. This allows them to provide responses that are more relevant to your needs and preferences within that particular use case.
+			- Gems can help you streamline repetitive tasks by providing templates, prompts, or guided interactions. This can save you time and effort when working on familiar projects or activities.
+			- You can set the context for a Gem, like giving it background information or specific instructions. Then, you can start multiple chats with that Gem, each with its own focus and flow. These chats remain separate, so information from one won't spill over into another. It's like having different conversations with the same expert, each tailored to a specific purpose.
+ 
 	4. Fine-tuning: Pre-trained models are powerful, but they're designed for general purposes. Tuning helps them excel in specific areas. Tuning involves further training a pre-trained or foundation model on a new dataset specific to your task. This process adjusts the model's parameters, making it more specialized for your needs. e.g. Fine-tuning a translation model to translate between specific languages or domains.
 		<div align="center"> <img src="https://github.com/user-attachments/assets/add9336e-3404-442e-a359-bcc2d41d9b88" width="600" height="300"> </div>
 	5. Humans in the loop (HITL): HITL systems integrate human input and feedback directly into the ML process.
@@ -109,19 +107,26 @@
 
 
 > ## Ways to improve your output
-- Sampling parameters and settings: Sampling parameters act as settings that influence the AI model's behavior, giving you more customized results. Think of these as knobs and dials you can adjust with your prompt input to impact the model's output. By tweaking these settings, you can ensure the model's output aligns with your specific needs, whether it's generating more creative text, providing more concise summaries, or staying within a certain tone. Most common parameters you can adjust are:
+- `Prompt engineering` 
+- `Sampling parameters and settings`: Sampling parameters act as settings that influence the AI model's behavior, giving you more customized results. Think of these as knobs and dials you can adjust with your prompt input to impact the model's output. By tweaking these settings, you can ensure the model's output aligns with your specific needs, whether it's generating more creative text, providing more concise summaries, or staying within a certain tone. Most common parameters you can adjust are:
 	- `Token count`: Imagine each word and punctuation mark in your text as a character. These characters are grouped into smaller units called tokens, which represent meaningful chunks of text. Models have limits on how many tokens they can handle at once. A higher token count allows for longer and more complex conversations, but it also requires more processing power. For example, one token is roughly equivalent to four characters in English. So, a hundred tokens would be about sixty to eighty words.
-	- `Temperature`: This parameter controls the "creativity" of the model, because it adjusts the randomness of word choices during text generation, influencing the diversity and unpredictability of the output. A higher temperature makes the output more random and unpredictable, while a lower temperature makes it more focused, deterministic and repeatable.
-	- `Top-p (nucleus sampling)`: "Top-p" stands for the cumulative probability of the most likely tokens considered during text generation. This is another way to control the randomness of the model's output. It concentrates the probability on the most likely tokens, making the output more coherent and relevant. A lower top-p value leads to more focused responses (i.e. only the most probable tokens), while a higher value allows for more diversity (i.e. extending to lower probability tokens as well). The model retuns a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P.
+	- `Temperature`: Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that expect a true or correct response, while higher temperatures can lead to more diverse, unexpected, or potentially biased results. With a temperature of 0 the highest probability token is always selected. Temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
+	- `Top-p (nucleus sampling)`: "Top-p" stands for the cumulative probability of the most likely tokens considered during text generation. This is another way to control the randomness of the model's output. It concentrates the probability on the most likely tokens, making the output more coherent and relevant. A lower top-p value leads to more focused responses (i.e. only the most probable tokens), while a higher value allows for more diversity (i.e. extending to lower probability tokens as well). The model retuns a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
 	
 	<div align="center"> <img src="https://github.com/user-attachments/assets/48de0d44-69a4-46d4-b15d-84cb5c66c340" width="600" height="200"> </div>
 	
-	- `Top-k`: The model returns a random word from a set of top K possible words.
+	- `Top-k`: The model returns a random word from a set of top K possible words. Top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees.
 	
 	<div align="center"> <img src="https://github.com/user-attachments/assets/a61f7194-bcbc-43e9-bd30-01ad2d5eeea9" width="600" height="200"> </div>
 	
 	- `Safety settings`: These settings allow you to filter out potentially harmful or inappropriate content from the model's output. You can adjust the level of filtering based on your specific needs and preferences.
 	- `Output length`: This determines the maximum length of the generated text. You can set it to a specific number of words or characters or allow the model to generate text until it reaches a natural stopping point.
+
+- `Model Tuning`
+  <div align="center"><img src="https://github.com/user-attachments/assets/b3002888-d0b6-4ae3-b8a6-20aa08a7dc14" width="700" height="200"> </div>
+	- Adapter tuning, which is supervised tuning. It lets you use as few as one hundred examples to improve model performance.
+	- Reinforcement tuning, which is unsupervised reinforcement learning with human feedback.
+	- Distillation, a more technical tuning technique, enables training smaller task-specific models with less training data, and lower serving costs and latency than the original model. This technology transfers knowledge from a larger model to a smaller model to optimize performance, latency, and cost. The rationale is to use a larger teacher model that trains smaller student models to perform specific tasks better and with improved reasoning capabilities. Rationales are like asking the model to explain why examples are labeled the way they are.
 
 
 > ## Managing your model
@@ -322,22 +327,6 @@
 	- Understand the sentiment of text, classify content, and extract important entities
 
 
-> ## Sampling parameters
-- Token count: This represents meaningful chunks of text (like words and punctuation).
-- Temperature: Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that expect a true or correct response, while higher temperatures can lead to more diverse, unexpected, or potentially biased results. With a temperature of 0 the highest probability token is always selected. Temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
-- Top-p (nucleus sampling): The cumulative probability of the most likely tokens considered during text generation. This is another way to control the randomness of the model's output. Top P allows the model to return a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
-- Top-k: Top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees.
-- Safety settings: These settings allow you to filter out potentially harmful or inappropriate content from the model's output.
-- Output length: This determines the maximum length of the generated text.
-
-
-> ## Model Tuning
-
-  <div align="center"><img src="https://github.com/user-attachments/assets/b3002888-d0b6-4ae3-b8a6-20aa08a7dc14" width="700" height="200"> </div>
-
-- Adapter tuning, which is supervised tuning. It lets you use as few as one hundred examples to improve model performance.
-- Reinforcement tuning, which is unsupervised reinforcement learning with human feedback.
-- Distillation, a more technical tuning technique, enables training smaller task-specific models with less training data, and lower serving costs and latency than the original model. This technology transfers knowledge from a larger model to a smaller model to optimize performance, latency, and cost. The rationale is to use a larger teacher model that trains smaller student models to perform specific tasks better and with improved reasoning capabilities. Rationales are like asking the model to explain why examples are labeled the way they are.
 
 
 
