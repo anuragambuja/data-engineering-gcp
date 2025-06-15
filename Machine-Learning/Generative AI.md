@@ -1,16 +1,16 @@
 # Generative AI
 
 > ## Overview
-- Gen AI is subset of deep learning which means it uses artificial neural networks, can process both labeled and unlabeled data using supervised, unsupervised and semi-supervised methods. 
-LLM are also a subset of deep learning.
-- It’s a type of artificial intelligence that generates content for you. The generated content can be multi-modal, including text, code, images, speech, video, and even 3D.
+
+- It’s a type of artificial intelligence that generates content for you. The generated content can be multi-modal, including text, code, images, speech, video, and even 3D. Multimodal model is a large foundation model that is capable of processing information from multiple modalities, including text, image, and video.
+- Gen AI is subset of deep learning which means it uses artificial neural networks, can process both labeled and unlabeled data using supervised, unsupervised and semi-supervised methods. LLM are also a subset of deep learning.
 - History of Gen AI
 
   	<div align="center"> <img src="https://github.com/user-attachments/assets/24559216-7ed8-42ad-915f-8a2a9ff9bd29" alt="Alt Text" width="500" height="300"> </div>
 	<div align="center"> <img src="https://github.com/user-attachments/assets/0a6d1d38-b7ab-4c86-87e0-4001a2b3db86" alt="Alt Text" width="800" height="300"> </div>
 
 - General Gen AI workflow:
-	1. Input prompt: via the Vertex AI Studio UI, input a prompt—a natural language request to gen AI models.
+	1. Input prompt: A natural language request to gen AI models e.g. via the Vertex AI Studio UI
 	2. Responsible AI and safety measures: The prompt undergoes responsible AI and safety checks, configurable through the UI or code.
 	3. Foundation models: The screened prompt proceeds to foundation models like Gemini multimodal or other gen AI models like Imagen and Codey based on your choices.
 	4. Model customization: Optionally, customize gen AI models to fit your data and use cases by further tuning them.
@@ -22,30 +22,20 @@ LLM are also a subset of deep learning.
 - Both Google AI Studio and Vertex AI Studio allow you to experiment with and utilize Google's Gemini API, but they cater to different needs and levels of expertise.
 		<div align="center"> <img src="https://github.com/user-attachments/assets/9effa349-a5a9-4967-bc7e-0c37f383b252" width="700" height="300"> </div>
 
-- Streamlining prompting workflows
-	- Reusing prompts: Saving prompts as templates for repeated use.
-	- Leveraging prompt chaining: Continuing conversations within the same chatbot to maintain context.
-	- Saved info: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies. Storing specific information for the model to use consistently.
-	- Gems: Creating a personalized AI assistant with specific instructions and resources. Gems are personalized AI assistants within Gemini. They provide personalized responses tailored to specific instructions, streamline workflows like templates, prompts, and guided interactions.Gems are AI assistants that can process information and reason over complex ideas within the context of your chosen task.
-		- Gems can be tailored with specific instructions and information. This allows them to provide responses that are more relevant to your needs and preferences within that particular use case.
-		- Gems can help you streamline repetitive tasks by providing templates, prompts, or guided interactions. This can save you time and effort when working on familiar projects or activities.
-		- You can set the context for a Gem, like giving it background information or specific instructions. Then, you can start multiple chats with that Gem, each with its own focus and flow. These chats remain separate, so information from one won't spill over into another. It's like having different conversations with the same expert, each tailored to a specific purpose.
-
 - Categories of AI solutions provided by Google Cloud:
 	- Vertical solutions, which focus on specific industries
  	- horizontal solutions, which solve problems across industries
 
-- Terms
-	- Multimodal model: It’s a large foundation model that is capable of processing information from multiple modalities, including text, image, and video. The generated content can also be in multiple modalities.
- 	- Context window: The amount of text the model can consider. 
-  	- Prompt: A prompt is a natural language request submitted to a model in order to receive a response.
-		- Zero-shot prompting is a method where the model is given a prompt that describes the task without additional examples. For example, if you want the LLM to answer a question, you just prompt "What is prompt design?"
-		- One-shot prompting is a method where the LLM is given a single example of the task that it is being asked to perform. For example, if you want the LLM to write a poem, you might provide a single example poem.
-		- Few-shot prompting is a method where the model is given a small number of examples of the task that it is being asked to perform.
-		- Role prompting: Role prompting is a technique used to guide the behavior of LLMs by assigning them a specific role or persona. This can be anything from a business analyst or Shakespearean actor to a helpful customer service agent.
-		- Prompt chaining: Continuing a conversation with the AI, maintaining context. Engaging in a back and forth conversation with the AI.
+- Streamlining prompting workflows
+	- Reusing prompts: Saving prompts as templates for repeated use.
+	- Leveraging prompt chaining: Continuing conversations within the same chatbot to maintain context.
+	- Saved info: Storing persistent information for all your Gemini interactions, avoiding repetition and potential inconsistencies. Storing specific information for the model to use consistently.
+	- Gems: Gems are personalized AI assistants within Gemini. They provide personalized responses tailored to specific instructions, streamline workflows like templates, prompts, and guided interactions.Gems are AI assistants that can process information and reason over complex ideas within the context of your chosen task.
+		- Gems can be tailored with specific instructions and information. This allows them to provide responses that are more relevant to your needs and preferences within that particular use case.
+		- Gems can help you streamline repetitive tasks by providing templates, prompts, or guided interactions. This can save you time and effort when working on familiar projects or activities.
+		- You can set the context for a Gem, like giving it background information or specific instructions. Then, you can start multiple chats with that Gem, each with its own focus and flow. These chats remain separate, so information from one won't spill over into another. It's like having different conversations with the same expert, each tailored to a specific purpose.
 
-  
+ 
 > ## Foundation model
 - Foundation models are large-scale, general-purpose models trained on a massive amount of data. Examples: Gemini, Imagen, Chirp
 - Foundation models, like other AI models, take in inputs, which are called prompts, to produce outputs.
@@ -74,7 +64,7 @@ LLM are also a subset of deep learning.
 	- `Data dependency`: They require large datasets, and any biases or incompleteness in that data will inevitably seep into their outputs.
 	- `Knowledge cutoff`: Models with older knowledge cutoffs may not know about recent events or discoveries. This can lead to incorrect or outdated answers, since AI models don't automatically update with the latest happenings around the world.
 	- `Bias`: Due to their statistical learning nature, they can sometimes amplify existing biases present in the data. Even subtle biases in the training data can be magnified in the model's outputs.
-	- `Fairness`: These evaluations typically focus on specific categories of bias, potentially overlooking other forms of prejudice. Consequently, these benchmarks do not provide a complete picture of all potential risks associated with the models' outputs, highlighting the ongoing challenge of achieving truly equitable AI.
+	- `Fairness`: These evaluations typically focus on specific categories of bias, potentially overlooking other forms of prejudice.
 	- `Hallucinations`: Because foundation models can't verify information against external sources, they may generate factually incorrect or nonsensical responses. .
 	- `Edge cases`: Rare and atypical scenarios can expose a model's weaknesses, leading to errors, misinterpretations, and unexpected results.
 
@@ -91,16 +81,20 @@ LLM are also a subset of deep learning.
 				- Iteration (optional): The LLM can iterate on the retrieval process as necessary.
    
       
-	2. Prompt engineering: This involves crafting precise prompts to guide the model towards desired outputs. It refines results by understanding the factors that influence a model's responses. However, prompting is limited by the model's existing knowledge; it can't conjure information it hasn't learned.
-	3. Fine-tuning: Pre-trained models are powerful, but they're designed for general purposes. Tuning helps them excel in specific areas. Tuning involves further training a pre-trained or foundation model on a new dataset specific to your task. This process adjusts the model's parameters, making it more specialized for your needs. e.g. Fine-tuning a translation model to translate between specific languages or domains.
-	4. Humans in the loop (HITL): HITL systems integrate human input and feedback directly into the ML process.
+	2. Prompt engineering: A prompt is a natural language request submitted to a model in order to receive a response. This involves crafting precise prompts to guide the model towards desired outputs. It refines results by understanding the factors that influence a model's responses. However, prompting is limited by the model's existing knowledge; it can't conjure information it hasn't learned.
+		- Zero-shot prompting is a method where the model is given a prompt that describes the task without additional examples. For example, if you want the LLM to answer a question, you just prompt "What is prompt design?"
+		- One-shot prompting is a method where the LLM is given a single example of the task that it is being asked to perform. For example, if you want the LLM to write a poem, you might provide a single example poem.
+		- Few-shot prompting is a method where the model is given a small number of examples of the task that it is being asked to perform.
+		- Role prompting: Role prompting is a technique used to guide the behavior of LLMs by assigning them a specific role or persona. This can be anything from a business analyst or Shakespearean actor to a helpful customer service agent.
+		- Prompt chaining: Continuing a conversation with the AI, maintaining context. Engaging in a back and forth conversation with the AI.
+	4. Fine-tuning: Pre-trained models are powerful, but they're designed for general purposes. Tuning helps them excel in specific areas. Tuning involves further training a pre-trained or foundation model on a new dataset specific to your task. This process adjusts the model's parameters, making it more specialized for your needs. e.g. Fine-tuning a translation model to translate between specific languages or domains.
+		<div align="center"> <img src="https://github.com/user-attachments/assets/add9336e-3404-442e-a359-bcc2d41d9b88" width="600" height="300"> </div>
+	5. Humans in the loop (HITL): HITL systems integrate human input and feedback directly into the ML process.
 		- Content moderation: HITL ensures usergenerated content is moderated contextually, catching harmful material algorithms might overlook.
 		- Sensitive applications: HITL provides critical oversight in fields like healthcare and finance, ensuring accuracy and reducing risks from automated systems.
 		- High risk decision-making: For high-stakes decisions, HITL can help safeguard accuracy and accountability through human review of ML model outputs.
 		- Pre-generation review: Human experts review and validate ML outputs before deployment, catching errors or biases before user impact.
 		- Post-generation review: Continuous human review and feedback after deployment help ML models improve and adapt to changing contexts and user needs.
-  
-	<div align="center"> <img src="https://github.com/user-attachments/assets/add9336e-3404-442e-a359-bcc2d41d9b88" width="600" height="200"> </div>
 
 
 > ## Factors when choosing a model for GenAI Use Case
@@ -290,16 +284,16 @@ LLM are also a subset of deep learning.
 - Conversational Insights
 	- Conversational Insights to gain insights into all your communications with customers (through chatbot agents or human agents).
 	- This tool uses machine learning analytics to provide you with information such as agent and caller sentiment, entity identification, and call topics.
-	- Contact center as a service (CCaaS)
+- Contact center as a service (CCaaS)
 	- CCaaS provides a complete contact center solution. It manages the infrastructure, integrates with CRMs, and offers omnichannel support (consistent experience across all channels, like websites, apps, phone, and text).
 	- CCaaS seamlessly integrates with other Customer Engagement Suite tools, including Conversational Agents for automated support, Agent Assist for real-time agent guidance, and Conversational Insights for valuable data analysis.
   
 
 > ## Google Agentspace
 - Google Agentspace is designed to help you and your team use your company's information more effectively. It uses AI to create customized agents that can access and understand data from various sources, regardless of where that data is stored. These agents can then be integrated into your organization’s internal websites or dashboards.
-- NotebookLM Enterprise as your specialized AI tool for diving deep into specific documents and web sources – asking questions, summarizing, and creating new content based only on those sources. Agentspace, on the other hand, is your comprehensive enterprise AI assistant. It uses AI agents and unified search to automate tasks and find information across all your connected business systems, not just specific documents you upload.
 - You can think of Agentspace like your personal AI assistant for work. It helps employees find information, understand data, and automate tasks. It is designed to increase productivity for teams in a variety of fields like marketing, sales, HR, software, and research and development.
-
+- NotebookLM Enterprise as your specialized AI tool for diving deep into specific documents and web sources – asking questions, summarizing, and creating new content based only on those sources. Agentspace, on the other hand, is your comprehensive enterprise AI assistant. It uses AI agents and unified search to automate tasks and find information across all your connected business systems, not just specific documents you upload.
+  
 
 > ## Google Cloud's generative AI API's offerings
 - Speech-to-Text API
@@ -330,7 +324,7 @@ LLM are also a subset of deep learning.
 
 > ## Sampling parameters
 - Token count: This represents meaningful chunks of text (like words and punctuation).
-- Temperature: Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that expect a true or correct response, while higher temperatures can lead to more diverse, unexpected, or potentially biased results. With a temperature of 0 the highest probability token is always selected.temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
+- Temperature: Temperature controls the degree of randomness in token selection. Lower temperatures are good for prompts that expect a true or correct response, while higher temperatures can lead to more diverse, unexpected, or potentially biased results. With a temperature of 0 the highest probability token is always selected. Temperature is a number used to tune the degree of randomness. Low temperature: Means to narrow the range of possible words to those that have high possibilities and are more typical. High temperature: It means to extend the range of possible words to include those that have low possibility and are more unusual. This setting is good if you want to generate more “creative” or unexpected content like an advertisement slogan.
 - Top-p (nucleus sampling): The cumulative probability of the most likely tokens considered during text generation. This is another way to control the randomness of the model's output. Top P allows the model to return a random word from the smallest subset with the sum of the likelihoods that exceeds or equals to P. For instance, P of 0.75 means you sample from a set of words that have a cumulative probability greater than 0.75.
 - Top-k: Top K lets the model randomly return a word from the top K number of words in terms of possibility. For example, top 2 means you get a random word from the top 2 possible words including flowers and trees.
 - Safety settings: These settings allow you to filter out potentially harmful or inappropriate content from the model's output.
