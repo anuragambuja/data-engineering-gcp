@@ -124,7 +124,8 @@
 
 - `Model Tuning`
   <div align="center"><img src="https://github.com/user-attachments/assets/b3002888-d0b6-4ae3-b8a6-20aa08a7dc14" width="700" height="200"> </div>
-	- Adapter tuning, which is supervised tuning. It lets you use as few as one hundred examples to improve model performance.
+	
+ 	- Adapter tuning, which is supervised tuning. It lets you use as few as one hundred examples to improve model performance.
 	- Reinforcement tuning, which is unsupervised reinforcement learning with human feedback.
 	- Distillation, a more technical tuning technique, enables training smaller task-specific models with less training data, and lower serving costs and latency than the original model. This technology transfers knowledge from a larger model to a smaller model to optimize performance, latency, and cost. The rationale is to use a larger teacher model that trains smaller student models to perform specific tasks better and with improved reasoning capabilities. Rationales are like asking the model to explain why examples are labeled the way they are.
 
